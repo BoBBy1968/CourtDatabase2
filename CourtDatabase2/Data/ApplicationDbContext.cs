@@ -9,7 +9,7 @@ namespace CourtDatabase2.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        private const string connectionString = @"Server=.;Database=CourtDatabase;Integrated Security=true;";
+        private const string connectionString = @"Server=.;Database=CourtDatabase2;Integrated Security=true;";
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -26,6 +26,8 @@ namespace CourtDatabase2.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<LawCase>().HasOne(x => x.Obligation).WithOne(x => x.LawCase).OnDelete(DeleteBehavior.Restrict);
         }
 

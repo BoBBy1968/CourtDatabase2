@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using CourtDatabase2.Models;
+using CourtDatabase2.ViewModels;
 
 namespace CourtDatabase2.Controllers
 {
