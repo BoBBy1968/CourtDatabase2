@@ -12,6 +12,8 @@ using CourtDatabase2.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using CourtDatabase2.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CourtDatabase2
 {
@@ -32,8 +34,12 @@ namespace CourtDatabase2
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(options =>
+            {
+                options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+            });
             services.AddRazorPages();
+            services.AddTransient<IHeatEstateService, HeatEstateService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
