@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CourtDatabase2.ViewModels.CourtTown
+namespace CourtDatabase2.ViewModels
 {
-    public class CreateCourtTownViewModel
+    public class CourtTownCreateViewModel
     {
         [Required(ErrorMessage = "Името на града е задъжително за попълване.")]
         [MaxLength(20, ErrorMessage = "Името на града не може да бъде по-дълго от 20 символа")]

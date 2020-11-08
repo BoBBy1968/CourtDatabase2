@@ -1,6 +1,5 @@
 ﻿using CourtDatabase2.Services;
 using CourtDatabase2.ViewModels;
-using CourtDatabase2.ViewModels.CourtTown;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CourtDatabase2.Controllers
@@ -25,7 +24,7 @@ namespace CourtDatabase2.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(CreateCourtTownViewModel model)
+        public IActionResult Create(CourtTownCreateViewModel model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -61,7 +60,7 @@ namespace CourtDatabase2.Controllers
         }
         
         [HttpPost]
-        public IActionResult Edit(EditCourtTownViewModel model)
+        public IActionResult Edit(CourtTownEditViewModel model)
         {
             this.service.Edit(model.TownName, model.Address, model.Id);
             return this.RedirectToAction("All");
