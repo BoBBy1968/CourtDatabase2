@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CourtDatabase2.ViewModels.Create.CourtTown
+namespace CourtDatabase2.ViewModels.CourtTown
 {
     public class CreateCourtTownViewModel
     {

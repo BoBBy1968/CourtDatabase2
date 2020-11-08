@@ -1,44 +1,34 @@
-﻿using System;
+﻿using CourtDatabase2.Data;
+using CourtDatabase2.Data.Models;
+using CourtDatabase2.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CourtDatabase2.Data;
-using CourtDatabase2.Data.Models;
-using CourtDatabase2.ViewModels.Create.CourtTown;
 
 namespace CourtDatabase2.Services
 {
-    public class CreateCourtTownService : ICreateCourtTownService
+    public class CourtTownService : ICourtTownService
     {
         private readonly ApplicationDbContext dbContext;
 
-        public CreateCourtTownService(ApplicationDbContext dbContext)
+        public CourtTownService(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;
         }
 
-        public IEnumerable<CreateCourtTownViewModel> All()
+        public IEnumerable<EditCourtTownViewModel> All()
         {
             return this.dbContext
                 .CourtTowns
                 .OrderByDescending(c=>c.Id)
-                .Select(t => new CreateCourtTownViewModel
-            {
+                .Select(t => new EditCourtTownViewModel
+                {
                 TownName = t.TownName,
                 Address = t.Address,
+                Id = t.Id,
             }).ToList();
         }
-
-        //public async Task Create(string townName, string address)
-        //{
-        //    var courtTown = new CourtTown
-        //    {
-        //        TownName = townName,
-        //        Address = address,
-        //    };
-        //    this.dbContext.CourtTowns.Add(courtTown);
-        //    await dbContext.SaveChangesAsync();
-        //}
 
         public void Create(string townName, string address)
         {
@@ -50,5 +40,12 @@ namespace CourtDatabase2.Services
             this.dbContext.CourtTowns.Add(courtTown);
             this.dbContext.SaveChanges();
         }
+
+        public CourtTown Details(int id)
+        {
+            var result = this.dbContext.CourtTowns.FirstOrDefault(x => x.Id == id);
+            return result;
+        }
+
     }
 }

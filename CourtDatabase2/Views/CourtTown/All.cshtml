@@ -1,5 +1,5 @@
-﻿@using CourtDatabase2.ViewModels.Create.CourtTown
-@model IEnumerable<CreateCourtTownViewModel>
+﻿@using CourtDatabase2.ViewModels.CourtTown
+@model IEnumerable<EditCourtTownViewModel>
 
 @{
     ViewData["Title"] = "Всички съдебни градове";
@@ -12,6 +12,7 @@
 </p>
 
 <table class="table table-bordered table-hover">
+@*<table class="table ">*@
     <thead>
         <tr>
             <th>
@@ -25,14 +26,19 @@
     <tbody>
         @foreach (var t in Model)
         {
-            <tr>
-                <td>
-                    @t.TownName
-                </td>
-                <td>
-                    @t.Address
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @t.TownName
+            </td>
+            <td>
+                @t.Address
+            </td>
+            <td>
+                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@t.Id">Edit</a> |
+                <a a class="btn btn-primary" asp-action="Details" asp-route-id="@t.Id">Details</a> |
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@t.Id">Delete</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

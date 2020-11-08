@@ -1,14 +1,15 @@
 ﻿using CourtDatabase2.Services;
-using CourtDatabase2.ViewModels.Create.CourtTown;
+using CourtDatabase2.ViewModels;
+using CourtDatabase2.ViewModels.CourtTown;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CourtDatabase2.Controllers
 {
     public class CourtTownController : Controller
     {
-        private readonly ICreateCourtTownService service;
+        private readonly ICourtTownService service;
 
-        public CourtTownController(ICreateCourtTownService service)
+        public CourtTownController(ICourtTownService service)
         {
             this.service = service;
         }
@@ -39,6 +40,12 @@ namespace CourtDatabase2.Controllers
         {
             var viewModel = this.service.All();
             return View(viewModel);
+        }
+
+        public IActionResult Details(int id)
+        {
+            var viewModel = this.service.Details(id);
+            return this.View(viewModel);
         }
     }
 }

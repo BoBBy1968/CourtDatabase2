@@ -1,0 +1,31 @@
+﻿
+@model CourtDatabase2.Data.Models.CourtTown
+
+@{
+    ViewData["Title"] = "CourtTowns";
+}
+
+<h1>Редактиране на съдебен град</h1>
+
+<hr />
+<dl class="row">
+    <dt class="col-sm-2">
+        <label asp-for="TownName">Име на града</label>
+    </dt>
+    <dd class="col-sm-10">
+        <div>@Model.TownName</div>
+        @*@Html.DisplayFor(model => model.TownName)*@
+    </dd>
+    <dt class="col-sm-2">
+        <label asp-for="Address">Адрес</label>
+    </dt>
+    <dd class="col-sm-10">
+        <div>@Model.Address</div>
+        @*@Html.DisplayFor(model => model.Address)*@
+    </dd>
+
+</dl>
+<div>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a class="btn btn-primary" asp-action="Index">Back to List</a>
+</div>
