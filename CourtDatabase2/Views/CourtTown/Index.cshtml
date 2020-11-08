@@ -1,0 +1,17 @@
+﻿@using CourtDatabase2.ViewModels.Create.CourtTown
+@model CourtDatabase2.ViewModels.Create.CourtTown.CreateCourtTownViewModel
+
+@{
+    ViewData["Title"] = "CourtTowns";
+}
+
+<h1>Създаване на съдебен град</h1>
+
+
+<form method="post">
+    <label asp-for="TownName" >Град</label>
+    <input asp-for="TownName" />
+    <label asp-for="Address">Адрес</label>
+    <input asp-for="Address" />
+    <input type="submit" value="Запис" class="btn btn-primary" asp-controller="CourtTown" asp-action="Create"/> 
+</form>
