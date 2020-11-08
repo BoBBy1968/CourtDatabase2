@@ -24,7 +24,7 @@ namespace CourtDatabase2.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(CourtTownCreateViewModel model)
+        public IActionResult Create(CreateCourtTownViewModel model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -60,7 +60,7 @@ namespace CourtDatabase2.Controllers
         }
         
         [HttpPost]
-        public IActionResult Edit(CourtTownEditViewModel model)
+        public IActionResult Edit(EditCourtTownViewModel model)
         {
             this.service.Edit(model.TownName, model.Address, model.Id);
             return this.RedirectToAction("All");

@@ -18,12 +18,12 @@ namespace CourtDatabase2.Services
             this.dbContext = dbContext;
         }
 
-        public IEnumerable<CourtTownEditViewModel> All()
+        public IEnumerable<EditCourtTownViewModel> All()
         {
             return this.dbContext
                 .CourtTowns
                 .OrderByDescending(c => c.Id)
-                .Select(t => new CourtTownEditViewModel
+                .Select(t => new EditCourtTownViewModel
                 {
                     TownName = t.TownName,
                     Address = t.Address,
