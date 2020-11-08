@@ -15,13 +15,19 @@ namespace CourtDatabase2.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("All");
         }
 
+        public IActionResult Create()
+        {
+            return this.View();
+        }
+
+        [HttpPost]
         public IActionResult Create(CreateCourtTownViewModel model)
         {
             this.service.Create(model.TownName, model.Address);
-            return this.RedirectToAction("Index");
+            return this.RedirectToAction("All");
         }
 
         public IActionResult All()

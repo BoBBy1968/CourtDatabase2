@@ -25,11 +25,19 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
+                        @*<li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Debitors" asp-action="Index">Длъжници</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="CourtTown" asp-action="Index">Съдилища</a>
+                        </li>*@
+                        <li class="nav-item dropdown mx-2">
+                            <a class="nav-link text-dark" href="#" id="nav-inner-primary_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Дела</a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="nav-inner-primary_dropdown_1">
+                                @*<a class="dropdown-item" href="/Repositories/All">Repositories</a>*@
+                                <a class="dropdown-item" asp-controller="Debitors" asp-action="Index">Длъжници</a>
+                                <a class="dropdown-item" asp-controller="CourtTown" asp-action="Index">Съдилища</a>
+                            </div>
                         </li>
                     </ul>
                 </div>

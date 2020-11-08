@@ -2,10 +2,14 @@
 @model IEnumerable<CreateCourtTownViewModel>
 
 @{
-    ViewData["Title"] = "All Courts Towns";
+    ViewData["Title"] = "Всички съдебни градове";
 }
 
 <h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create" >Create New</a>
+</p>
 
 <table class="table table-bordered table-hover">
     <thead>

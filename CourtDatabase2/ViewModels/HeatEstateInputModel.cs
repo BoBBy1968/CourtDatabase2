@@ -2,7 +2,7 @@
 
 namespace CourtDatabase2.ViewModels
 {
-    public class CreateHeatEstateInputModel
+    public class HeatEstateInputModel
     {
         [Required]
         public string AbNumber { get; set; }

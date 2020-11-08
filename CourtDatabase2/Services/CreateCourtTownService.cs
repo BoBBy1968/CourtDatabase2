@@ -19,7 +19,10 @@ namespace CourtDatabase2.Services
 
         public IEnumerable<CreateCourtTownViewModel> All()
         {
-            return this.dbContext.CourtTowns.Select(t => new CreateCourtTownViewModel
+            return this.dbContext
+                .CourtTowns
+                .OrderByDescending(c=>c.Id)
+                .Select(t => new CreateCourtTownViewModel
             {
                 TownName = t.TownName,
                 Address = t.Address,

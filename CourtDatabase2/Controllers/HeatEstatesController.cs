@@ -56,7 +56,7 @@ namespace CourtDatabase2.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public async Task<IActionResult> Create([Bind("AbNumber,Address")] HeatEstate heatEstate)
-        public async Task<IActionResult> Create(CreateHeatEstateInputModel model)
+        public async Task<IActionResult> Create(HeatEstateInputModel model)
         {
             if (ModelState.IsValid)
             {
