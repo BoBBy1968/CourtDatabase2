@@ -23,5 +23,11 @@ namespace CourtDatabase2.Controllers
             this.service.Create(model.TownName, model.Address);
             return this.RedirectToAction("Index");
         }
+
+        public IActionResult All()
+        {
+            var viewModel = this.service.All();
+            return View(viewModel);
+        }
     }
 }

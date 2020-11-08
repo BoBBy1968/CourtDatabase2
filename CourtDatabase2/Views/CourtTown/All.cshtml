@@ -1,6 +1,34 @@
 ﻿@using CourtDatabase2.ViewModels.Create.CourtTown
 @model IEnumerable<CreateCourtTownViewModel>
-  
+
 @{
     ViewData["Title"] = "All Courts Towns";
 }
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                Град
+            </th>
+            <th>
+                Адрес
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var t in Model)
+        {
+            <tr>
+                <td>
+                    @t.TownName
+                </td>
+                <td>
+                    @t.Address
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

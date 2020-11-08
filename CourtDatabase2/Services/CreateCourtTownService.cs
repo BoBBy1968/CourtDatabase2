@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using CourtDatabase2.Data;
 using CourtDatabase2.Data.Models;
+using CourtDatabase2.ViewModels.Create.CourtTown;
 
 namespace CourtDatabase2.Services
 {
@@ -12,6 +15,15 @@ namespace CourtDatabase2.Services
         public CreateCourtTownService(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;
+        }
+
+        public IEnumerable<CreateCourtTownViewModel> All()
+        {
+            return this.dbContext.CourtTowns.Select(t => new CreateCourtTownViewModel
+            {
+                TownName = t.TownName,
+                Address = t.Address,
+            }).ToList();
         }
 
         //public async Task Create(string townName, string address)
