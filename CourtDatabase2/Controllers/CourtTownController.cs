@@ -26,6 +26,11 @@ namespace CourtDatabase2.Controllers
         [HttpPost]
         public IActionResult Create(CreateCourtTownViewModel model)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
+
             this.service.Create(model.TownName, model.Address);
             return this.RedirectToAction("All");
         }
