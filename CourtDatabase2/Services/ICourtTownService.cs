@@ -13,5 +13,11 @@ namespace CourtDatabase2.Services
         IEnumerable<EditCourtTownViewModel> All();
 
         CourtTown Details(int id);
+
+        void Delete(int id);
+        
+        CourtTown Edit(int id);
+
+        void Edit(string townName, string address, int id);
     }
 }

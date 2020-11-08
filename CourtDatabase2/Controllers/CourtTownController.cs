@@ -47,5 +47,24 @@ namespace CourtDatabase2.Controllers
             var viewModel = this.service.Details(id);
             return this.View(viewModel);
         }
+
+        public IActionResult Delete(int id)
+        {
+            this.service.Delete(id);
+            return RedirectToAction("all");
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var viewModel = this.service.Edit(id);
+            return this.View(viewModel);
+        }
+        
+        [HttpPost]
+        public IActionResult Edit(EditCourtTownViewModel model)
+        {
+            this.service.Edit(model.TownName, model.Address, model.Id);
+            return this.RedirectToAction("All");
+        }
     }
 }

@@ -1,0 +1,21 @@
+﻿@model CourtDatabase2.Data.Models.CourtTown
+@{
+    ViewData["Title"] = "Редактиране на съдебния град";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    <label asp-for="TownName">Град</label>
+    <input asp-for="TownName" /><br />
+    <span asp-validation-for="TownName" class="text-danger"></span><br />
+    <label asp-for="Address">Адрес</label>
+    <input asp-for="Address" /><br />
+    <span asp-validation-for="Address" class="text-danger"></span><br />
+    <input type="submit" value="Запис" class="btn btn-primary  badge-success" asp-controller="CourtTown" asp-action="Edit" />
+    <a class="btn btn-primary badge-pill" asp-action="All">Back</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

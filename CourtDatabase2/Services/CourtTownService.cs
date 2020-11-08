@@ -1,6 +1,7 @@
 ﻿using CourtDatabase2.Data;
 using CourtDatabase2.Data.Models;
 using CourtDatabase2.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,13 +22,13 @@ namespace CourtDatabase2.Services
         {
             return this.dbContext
                 .CourtTowns
-                .OrderByDescending(c=>c.Id)
+                .OrderByDescending(c => c.Id)
                 .Select(t => new EditCourtTownViewModel
                 {
-                TownName = t.TownName,
-                Address = t.Address,
-                Id = t.Id,
-            }).ToList();
+                    TownName = t.TownName,
+                    Address = t.Address,
+                    Id = t.Id,
+                }).ToList();
         }
 
         public void Create(string townName, string address)
@@ -41,11 +42,29 @@ namespace CourtDatabase2.Services
             this.dbContext.SaveChanges();
         }
 
+        public void Delete(int id)
+        {
+            var courtTown = this.dbContext.CourtTowns.FirstOrDefault(x => x.Id == id);
+            this.dbContext.Remove(courtTown);
+            this.dbContext.SaveChanges();
+        }
+
         public CourtTown Details(int id)
         {
             var result = this.dbContext.CourtTowns.FirstOrDefault(x => x.Id == id);
             return result;
         }
 
+        public CourtTown Edit(int id)
+            => this.dbContext.CourtTowns.FirstOrDefault(t => t.Id == id);
+
+        public void Edit(string townName, string address, int id)
+        {
+            var courtTown = this.dbContext.CourtTowns.FirstOrDefault(x => x.Id == id);
+            courtTown.TownName = townName;
+            courtTown.Address = address;
+            this.dbContext.CourtTowns.Update(courtTown);
+            this.dbContext.SaveChanges();
+        }
     }
 }
