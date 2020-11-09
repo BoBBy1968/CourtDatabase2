@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using CourtDatabase2.Data;
+using CourtDatabase2.Data.Models;
+using CourtDatabase2.Data.Models.Enumerations;
+using CourtDatabase2.Services;
+using CourtDatabase2.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using CourtDatabase2.Data;
-using CourtDatabase2.Data.Models;
-using CourtDatabase2.Services;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace CourtDatabase2.Controllers
 {
@@ -25,8 +26,9 @@ namespace CourtDatabase2.Controllers
         // GET: Courts
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Courts.Include(c => c.CourtTown);
-            return View(await applicationDbContext.ToListAsync());
+            //var applicationDbContext = _context.Courts.Include(c => c.CourtTown);
+            //return View(await applicationDbContext.ToListAsync());
+            return this.RedirectToAction("All");
         }
 
         public IActionResult All()
@@ -35,7 +37,45 @@ namespace CourtDatabase2.Controllers
             return this.View(viewModel);
         }
 
-        // GET: Courts/Details/5
+        // GET: Courts/Create
+        public IActionResult Create()
+        {
+            ViewData["CourtTownId"] = new SelectList(_context.CourtTowns, "Id", "Address");
+            return View();
+        }
+
+        // POST: Courts/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(CourtCreateViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            this.service.Create(model.CourtType, model.CourtTownId);
+            return this.RedirectToAction(nameof(All));
+            
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var courtViewModel = this.service.Edit(id);
+            ViewData["CourtTownId"] = new SelectList(_context.CourtTowns, "Id", "Address");
+            return this.View(courtViewModel);
+
+        }
+
+        [HttpPost]
+        public IActionResult Edit(CourtEditViewModel model)
+        {
+            this.service.Edit(model.Id, model.CourtType, model.CourtTownId);
+            
+            return this.RedirectToAction("All");
+        }
+
+        //GET: Courts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -51,83 +91,6 @@ namespace CourtDatabase2.Controllers
                 return NotFound();
             }
 
-            return View(court);
-        }
-
-        // GET: Courts/Create
-        public IActionResult Create()
-        {
-            ViewData["CourtTownId"] = new SelectList(_context.CourtTowns, "Id", "Address");
-            return View();
-        }
-
-        // POST: Courts/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CourtType,CourtTownId")] Court court)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(court);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CourtTownId"] = new SelectList(_context.CourtTowns, "Id", "Address", court.CourtTownId);
-            return View(court);
-        }
-
-        // GET: Courts/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var court = await _context.Courts.FindAsync(id);
-            if (court == null)
-            {
-                return NotFound();
-            }
-            ViewData["CourtTownId"] = new SelectList(_context.CourtTowns, "Id", "Address", court.CourtTownId);
-            return View(court);
-        }
-
-        // POST: Courts/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CourtType,CourtTownId")] Court court)
-        {
-            if (id != court.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(court);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CourtExists(court.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CourtTownId"] = new SelectList(_context.CourtTowns, "Id", "Address", court.CourtTownId);
             return View(court);
         }
 

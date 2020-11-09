@@ -8,6 +8,10 @@ namespace CourtDatabase2.Services
     {
         IEnumerable<AllCourtViewModel> All();
 
-        void Create();
+        void Create(string courtType, int courtTownId);
+
+        public CourtEditViewModel Edit(int id);
+
+        void Edit(int id, string courtType, int courtTownId);
     }
 }

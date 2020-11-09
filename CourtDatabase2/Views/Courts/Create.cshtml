@@ -2,12 +2,11 @@
 @model CourtDatabase2.Data.Models.Court
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Създай съд";
 }
 
-<h1>Create</h1>
+<h1>@ViewData["Title"]</h1>
 
-<h4>Court</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -31,6 +30,6 @@
 </div>
 
 <div>
-    <a asp-action="All">Back to List</a>
+    <a class="btn btn-primary" asp-action="All">Обратно</a>
 </div>
 

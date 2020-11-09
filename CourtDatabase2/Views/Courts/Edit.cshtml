@@ -1,4 +1,5 @@
-﻿@model CourtDatabase2.Data.Models.Court
+﻿@using CourtDatabase2.Data.Models.Enumerations
+@model CourtEditViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -16,7 +17,7 @@
             <div class="form-group">
                 <label asp-for="CourtType" class="control-label"></label>
 
-                <select asp-for="CourtType" class="form-control" asp-items="@Html.GetEnumSelectList<CourtDatabase2.Data.Models.Enumerations.CourtType>()"></select>
+                <select asp-for="CourtType" class="form-control" asp-items="@Html.GetEnumSelectList<CourtType>()"></select>
                 <span asp-validation-for="CourtType" class="text-danger"></span>
             </div>
             <div class="form-group">
