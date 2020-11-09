@@ -2,10 +2,10 @@
 {
     public enum CourtType
     {
-        local = 1,
-        district = 2,
-        appeal = 3, 
-        city = 4,
-        supreme = 5,
+        Районен = 1,
+        Окръжен = 2,
+        Апелативен = 3, 
+        Градски = 4,
+        Върховен = 5,
     }
 }

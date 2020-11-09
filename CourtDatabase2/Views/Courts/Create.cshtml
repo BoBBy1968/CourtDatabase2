@@ -1,0 +1,36 @@
+﻿@using CourtDatabase2.Data.Models.Enumerations
+@model CourtDatabase2.Data.Models.Court
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Court</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CourtType" class="control-label">Вид съд</label>
+                <select asp-for="CourtType" class="form-control" asp-items="@Html.GetEnumSelectList<CourtType>()"></select>
+                <span asp-validation-for="CourtType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourtTownId" class="control-label">Град и адрес</label>
+                <select asp-for="CourtTownId" class="form-control" asp-items="ViewBag.CourtTownId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Създай" class="btn btn-primary" />
+                <input type="submit" asp-controller="CourtTown" asp-action="Create" value="Добави нов аднес" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
