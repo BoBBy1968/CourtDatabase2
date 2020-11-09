@@ -4,5 +4,7 @@
     {
         public string CourtType { get; set; }
 
+        public int MyProperty { get; set; }
+
     }
 }
