@@ -35,6 +35,7 @@ namespace CourtDatabase2
             services.AddRazorPages();
             services.AddTransient<IHeatEstateService, HeatEstateService>();
             services.AddTransient<ICourtTownService, CourtTownService>();
+            services.AddTransient<ICourtService, CourtService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

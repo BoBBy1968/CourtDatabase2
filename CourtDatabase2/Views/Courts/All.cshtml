@@ -1,0 +1,48 @@
+﻿@model IEnumerable<AllCourtViewModel>
+
+@{
+    ViewData["Title"] = "All courts";
+}
+<h1>@ViewData["Title"]</h1>
+<p>
+    <a class="btn btn-primary" asp-action="Create">Създай нов</a>
+</p>
+
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Съд
+            </th>
+            <th>
+                Град
+            </th>
+            <th>
+                Адрес
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>
+                    @c.CourtType
+                </td>
+                <td>
+                    @c.TownName
+                </td>
+                <td>
+                    @c.Address
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@c.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@c.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@c.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

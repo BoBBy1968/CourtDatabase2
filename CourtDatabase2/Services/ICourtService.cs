@@ -1,8 +1,12 @@
-﻿namespace CourtDatabase2.Services
+﻿using CourtDatabase2.ViewModels;
+using System;
+using System.Collections.Generic;
+
+namespace CourtDatabase2.Services
 {
     public interface ICourtService
     {
-        void All();
+        IEnumerable<AllCourtViewModel> All();
 
         void Create();
     }

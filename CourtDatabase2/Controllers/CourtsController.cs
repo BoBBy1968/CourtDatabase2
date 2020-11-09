@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CourtDatabase2.Data;
 using CourtDatabase2.Data.Models;
+using CourtDatabase2.Services;
 
 namespace CourtDatabase2.Controllers
 {
     public class CourtsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ICourtService service;
 
-        public CourtsController(ApplicationDbContext context)
+        public CourtsController(ApplicationDbContext context, ICourtService service)
         {
             _context = context;
+            this.service = service;
         }
 
         // GET: Courts
@@ -24,6 +27,12 @@ namespace CourtDatabase2.Controllers
         {
             var applicationDbContext = _context.Courts.Include(c => c.CourtTown);
             return View(await applicationDbContext.ToListAsync());
+        }
+
+        public IActionResult All()
+        {
+            var viewModel = this.service.All();
+            return this.View(viewModel);
         }
 
         // GET: Courts/Details/5
