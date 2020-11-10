@@ -4,6 +4,7 @@ using System.Text;
 using CourtDatabase2.Data.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using CourtDatabase2.ViewModels;
 
 namespace CourtDatabase2.Data
 {
@@ -46,6 +47,7 @@ namespace CourtDatabase2.Data
         public DbSet<LegalAction> LegalActions { get; set; }
         public DbSet<Obligation> Obligations { get; set; }
         public DbSet<Payment> Payments { get; set; }
+        public DbSet<CourtDatabase2.ViewModels.LegalActionViewModel> LegalActionViewModel { get; set; }
 
     }
 }
