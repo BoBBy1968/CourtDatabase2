@@ -5,9 +5,9 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>Редактиране</h1>
 
-<h4>Court</h4>
+<h4>Съд</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,13 +15,13 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="CourtType" class="control-label"></label>
+                <label asp-for="CourtType" class="control-label">Вид съд</label>
 
                 <select asp-for="CourtType" class="form-control" asp-items="@Html.GetEnumSelectList<CourtType>()"></select>
                 <span asp-validation-for="CourtType" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CourtTownId" class="control-label"></label>
+                <label asp-for="CourtTownId" class="control-label">Град и адрес</label>
                 <select asp-for="CourtTownId" class="form-control" asp-items="ViewBag.CourtTownId"></select>
                 <span asp-validation-for="CourtTownId" class="text-danger"></span>
             </div>

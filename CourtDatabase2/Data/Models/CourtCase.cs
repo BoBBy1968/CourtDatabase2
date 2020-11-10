@@ -21,6 +21,7 @@ namespace CourtDatabase2.Data.Models
 
         public int CaseNumber { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime CaseYear { get; set; }
 
         public string CourtChamber { get; set; }

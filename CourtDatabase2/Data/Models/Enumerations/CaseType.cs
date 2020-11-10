@@ -2,8 +2,8 @@
 {
     public enum CaseType
     {
-        order = 1,
-        claim = 2,
-        executive = 3,
+        Заповедно = 1,
+        Исково = 2,
+        Изпълнително = 3,
     }
 }

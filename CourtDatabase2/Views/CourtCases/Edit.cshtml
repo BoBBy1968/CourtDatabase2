@@ -1,0 +1,56 @@
+﻿@model CourtDatabase2.Data.Models.CourtCase
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>CourtCase</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="CourtId" class="control-label"></label>
+                <select asp-for="CourtId" class="form-control" asp-items="ViewBag.CourtId"></select>
+                <span asp-validation-for="CourtId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LawCaseId" class="control-label"></label>
+                <select asp-for="LawCaseId" class="form-control" asp-items="ViewBag.LawCaseId"></select>
+                <span asp-validation-for="LawCaseId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CaseNumber" class="control-label"></label>
+                <input asp-for="CaseNumber" class="form-control" />
+                <span asp-validation-for="CaseNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CaseYear" class="control-label"></label>
+                <input asp-for="CaseYear" class="form-control" />
+                <span asp-validation-for="CaseYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourtChamber" class="control-label"></label>
+                <input asp-for="CourtChamber" class="form-control" />
+                <span asp-validation-for="CourtChamber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CaseType" class="control-label"></label>
+                <select asp-for="CaseType" class="form-control"></select>
+                <span asp-validation-for="CaseType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

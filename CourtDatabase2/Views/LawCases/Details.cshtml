@@ -1,0 +1,54 @@
+﻿@model CourtDatabase2.Data.Models.LawCase
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>LawCase</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Debitor)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Debitor.EGN)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Obligation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Obligation.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HeatEstate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HeatEstate.AbNumber)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MoratoriumInterest)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MoratoriumInterest)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LegalInterest)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LegalInterest)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
