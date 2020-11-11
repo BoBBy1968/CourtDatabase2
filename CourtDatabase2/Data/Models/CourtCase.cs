@@ -19,13 +19,17 @@ namespace CourtDatabase2.Data.Models
         public int LawCaseId { get; set; }
         public virtual LawCase LawCase { get; set; }
 
+        [Display(Name = "Дело № ")]
         public int CaseNumber { get; set; }
 
+        [Display(Name = "Дело година")]
         [DataType(DataType.Date)]
         public DateTime CaseYear { get; set; }
 
+        [Display(Name = "Съдебна инстанция")]
         public string CourtChamber { get; set; }
 
+        [Display(Name = "Вид дело")]
         public CaseType CaseType { get; set; }
 
     }
