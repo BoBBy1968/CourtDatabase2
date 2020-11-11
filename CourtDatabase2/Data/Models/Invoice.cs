@@ -15,6 +15,7 @@ namespace CourtDatabase2.Data.Models
         public DateTime IssueDate { get; set; }// Дата на издаване
 
         [Range(0, 79228162514264337593543935D)]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Value { get; set; } // Стойност
 
         public DateTime Maturity { get; set; } // Падеж

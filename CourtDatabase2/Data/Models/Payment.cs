@@ -11,6 +11,7 @@ namespace CourtDatabase2.Data.Models
         public int Id { get; set; }
 
         [Range(0, 79228162514264337593543935D)]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Value { get; set; }
 
         public DateTime Date { get; set; }

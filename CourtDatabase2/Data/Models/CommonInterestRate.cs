@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CourtDatabase2.Data.Models
 {
@@ -10,6 +11,7 @@ namespace CourtDatabase2.Data.Models
 
         public DateTime Date { get; set; }
 
+        [Column(TypeName = "decimal(18,2)")]
         public decimal InterestRate { get; set; }
 
     }

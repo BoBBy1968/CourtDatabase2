@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace CourtDatabase2.Data.Migrations
+namespace CourtDatabase2.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201102175949_InitialSetup")]
-    partial class InitialSetup
+    [Migration("20201111104704_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -94,8 +94,8 @@ namespace CourtDatabase2.Data.Migrations
                     b.Property<int>("CaseType")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CaseYear")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("CaseYear")
+                        .HasColumnType("int");
 
                     b.Property<string>("CourtChamber")
                         .HasColumnType("nvarchar(max)");
@@ -435,6 +435,24 @@ namespace CourtDatabase2.Data.Migrations
                     b.HasIndex("ObligationId");
 
                     b.ToTable("Payments");
+                });
+
+            modelBuilder.Entity("CourtDatabase2.ViewModels.LegalActionViewModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ActionName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LegalActionViewModel");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

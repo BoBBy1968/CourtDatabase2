@@ -18,6 +18,7 @@ namespace CourtDatabase2.Data.Models
         public string ExpenceDescription { get; set; }
 
         [Range(0.01, 100_000)]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal ExpenceValue { get; set; }
 
         public DateTime ExpenceDate { get; set; }

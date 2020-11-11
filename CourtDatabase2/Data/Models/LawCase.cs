@@ -24,8 +24,10 @@ namespace CourtDatabase2.Data.Models
         public string AbNumber { get; set; }
         public virtual HeatEstate HeatEstate { get; set; }
 
+        [Column(TypeName = "decimal(18,2)")]
         public decimal? MoratoriumInterest { get; set; }
 
+        [Column(TypeName = "decimal(18,2)")]
         public decimal? LegalInterest { get; set; }
 
         public virtual ICollection<ExecutorCase> ExecutorCases => new HashSet<ExecutorCase>();
