@@ -16,11 +16,7 @@ namespace CourtDatabase2.Data.Models
         public int DebitorId { get; set; }
         public virtual Debitor Debitor { get; set; }
 
-        [ForeignKey(nameof(Obligation))]
-        public int ObligationId { get; set; }
-        public virtual Obligation Obligation { get; set; }
-
-        [ForeignKey(nameof(HeatEstate))]
+         [ForeignKey(nameof(HeatEstate))]
         public string AbNumber { get; set; }
         public virtual HeatEstate HeatEstate { get; set; }
 
@@ -29,6 +25,23 @@ namespace CourtDatabase2.Data.Models
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal? LegalInterest { get; set; }
+
+        //for Oblibation------------------------------------------------------
+
+        [Range(0, 79228162514264337593543935D)]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal Value { get; set; }
+
+        public DateTime PeriodFrom { get; set; }
+
+        public DateTime PeriodTo { get; set; }
+
+        [Range(0, int.MaxValue)]
+        public int InvoiceCount { get; set; }
+
+        public virtual ICollection<Payment> Payments => new HashSet<Payment>();
+
+        //^from Obligation----------------------------------------------------------------------
 
         public virtual ICollection<ExecutorCase> ExecutorCases => new HashSet<ExecutorCase>();
 

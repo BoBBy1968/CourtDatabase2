@@ -7,6 +7,8 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\CourtsController - Copy.cs" />
+    <Compile Remove="Migrations\20201111180213_ExecutorYearType.cs" />
+    <Compile Remove="Migrations\20201111180213_ExecutorYearType.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

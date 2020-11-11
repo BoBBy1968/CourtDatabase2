@@ -20,6 +20,6 @@ namespace CourtDatabase2.Data.Models
         [Range(0, 100_000)]
         public int ExecutorCaseNumber { get; set; }
 
-        public DateTime Year { get; set; }
+        public DateTime Year { get; set; } //TODO type of int
     }
 }

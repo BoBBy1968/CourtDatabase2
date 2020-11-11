@@ -18,8 +18,8 @@ namespace CourtDatabase2.Data.Models
 
         public PaymentSource PaymentSource { get; set; }
 
-        [ForeignKey(nameof(Obligation))]
-        public int ObligationId { get; set; }
-        public virtual Obligation Obligation { get; set; }
+        [ForeignKey(nameof(LawCase))]
+        public int LawCaseId { get; set; }
+        public virtual LawCase LawCase { get; set; }
     }
 }

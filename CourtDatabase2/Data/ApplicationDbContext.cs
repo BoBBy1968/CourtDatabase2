@@ -29,26 +29,39 @@ namespace CourtDatabase2.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<LawCase>().HasOne(x => x.Obligation).WithOne(x => x.LawCase).OnDelete(DeleteBehavior.Restrict);
+            //modelBuilder.Entity<LawCase>().HasOne(x => x.Obligation).WithOne(x => x.LawCase).OnDelete(DeleteBehavior.Restrict);
         }
 
         public DbSet<CaseAction> CaseActions { get; set; }
+
         public DbSet<CommonInterestRate> CommonInterestRates { get; set; }
+
         public DbSet<Court> Courts { get; set; }
+
         public DbSet<CourtCase> CourtCases { get; set; }
+
         public DbSet<CourtTown> CourtTowns { get; set; }
+
         public DbSet<Debitor> Debitors { get; set; }
+
         public DbSet<Executor> Executors { get; set; }
+
         public DbSet<ExecutorCase> ExecutorCases { get; set; }
+
         public DbSet<Expense> Expenses { get; set; }
+
         public DbSet<HeatEstate> HeatEstates { get; set; }
+
         public DbSet<Invoice> Invoices { get; set; }
+
         public DbSet<LawCase> LawCases { get; set; }
+
         public DbSet<LegalAction> LegalActions { get; set; }
-        public DbSet<Obligation> Obligations { get; set; }
+        //public DbSet<Obligation> Obligations { get; set; }
+
         public DbSet<Payment> Payments { get; set; }
-        public DbSet<CourtDatabase2.ViewModels.LegalActionViewModel> LegalActionViewModel { get; set; }
-        public DbSet<CourtDatabase2.ViewModels.CourtCasesViewModel> CourtCasesViewModel { get; set; }
+        //public DbSet<CourtDatabase2.ViewModels.LegalActionViewModel> LegalActionViewModel { get; set; }
+        //public DbSet<CourtDatabase2.ViewModels.CourtCasesViewModel> CourtCasesViewModel { get; set; }
 
     }
 }
