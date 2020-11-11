@@ -7,22 +7,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CourtDatabase2.Data;
 using CourtDatabase2.Data.Models;
+using CourtDatabase2.ViewModels;
+using CourtDatabase2.Services;
 
 namespace CourtDatabase2.Controllers
 {
     public class CourtCasesController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext dbContext;
+        private readonly ICourtCasesService courtCasesService;
 
-        public CourtCasesController(ApplicationDbContext context)
+        public CourtCasesController(ApplicationDbContext context, ICourtCasesService courtCasesService)
         {
-            _context = context;
+            dbContext = context;
+            this.courtCasesService = courtCasesService;
         }
 
         // GET: CourtCases
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.CourtCases.Include(c => c.Court).Include(c => c.LawCase);
+            var applicationDbContext = dbContext.CourtCases.Include(c => c.Court).Include(c => c.LawCase);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -34,7 +38,7 @@ namespace CourtDatabase2.Controllers
                 return NotFound();
             }
 
-            var courtCase = await _context.CourtCases
+            var courtCase = await dbContext.CourtCases
                 .Include(c => c.Court)
                 .Include(c => c.LawCase)
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -49,13 +53,13 @@ namespace CourtDatabase2.Controllers
         // GET: CourtCases/Create
         public IActionResult Create()
         {
-            var courts = this._context.Courts.Select(x => new
+            var courts = this.dbContext.Courts.Select(x => new
             {
                 x.Id,
                 CourtType = x.CourtType.ToString() + "  " + x.CourtTown.TownName + ", " + x.CourtTown.Address,
-            });
+            }).ToList();
             ViewData["CourtId"] = new SelectList(courts, "Id", "CourtType");
-            ViewData["LawCaseId"] = new SelectList(_context.LawCases, "Id", "Id");
+            ViewData["LawCaseId"] = new SelectList(dbContext.LawCases, "Id", "Id");
             return View();
         }
 
@@ -64,17 +68,17 @@ namespace CourtDatabase2.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CourtId,LawCaseId,CaseNumber,CaseYear,CourtChamber,CaseType")] CourtCase courtCase)
+        //public async Task<IActionResult> Create([Bind("Id,CourtId,LawCaseId,CaseNumber,CaseYear,CourtChamber,CaseType")] CourtCase courtCase)
+        public async Task<IActionResult> Create(CourtCasesInputModel model)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(courtCase);
-                await _context.SaveChangesAsync();
+                this.courtCasesService.Create(model);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CourtId"] = new SelectList(_context.Courts, "Id", "Id", courtCase.CourtId);
-            ViewData["LawCaseId"] = new SelectList(_context.LawCases, "Id", "Id", courtCase.LawCaseId);
-            return View(courtCase);
+            ViewData["CourtId"] = new SelectList(dbContext.Courts, "Id", "Id", model.CourtId);
+            ViewData["LawCaseId"] = new SelectList(dbContext.LawCases, "Id", "Id", model.LawCaseId);
+            return View(model);
         }
 
         // GET: CourtCases/Edit/5
@@ -85,13 +89,13 @@ namespace CourtDatabase2.Controllers
                 return NotFound();
             }
 
-            var courtCase = await _context.CourtCases.FindAsync(id);
+            var courtCase = await dbContext.CourtCases.FindAsync(id);
             if (courtCase == null)
             {
                 return NotFound();
             }
-            ViewData["CourtId"] = new SelectList(_context.Courts, "Id", "Id", courtCase.CourtId);
-            ViewData["LawCaseId"] = new SelectList(_context.LawCases, "Id", "Id", courtCase.LawCaseId);
+            ViewData["CourtId"] = new SelectList(dbContext.Courts, "Id", "Id", courtCase.CourtId);
+            ViewData["LawCaseId"] = new SelectList(dbContext.LawCases, "Id", "Id", courtCase.LawCaseId);
             return View(courtCase);
         }
 
@@ -111,8 +115,8 @@ namespace CourtDatabase2.Controllers
             {
                 try
                 {
-                    _context.Update(courtCase);
-                    await _context.SaveChangesAsync();
+                    dbContext.Update(courtCase);
+                    await dbContext.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -127,8 +131,8 @@ namespace CourtDatabase2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CourtId"] = new SelectList(_context.Courts, "Id", "Id", courtCase.CourtId);
-            ViewData["LawCaseId"] = new SelectList(_context.LawCases, "Id", "Id", courtCase.LawCaseId);
+            ViewData["CourtId"] = new SelectList(dbContext.Courts, "Id", "Id", courtCase.CourtId);
+            ViewData["LawCaseId"] = new SelectList(dbContext.LawCases, "Id", "Id", courtCase.LawCaseId);
             return View(courtCase);
         }
 
@@ -140,7 +144,7 @@ namespace CourtDatabase2.Controllers
                 return NotFound();
             }
 
-            var courtCase = await _context.CourtCases
+            var courtCase = await dbContext.CourtCases
                 .Include(c => c.Court)
                 .Include(c => c.LawCase)
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -157,15 +161,15 @@ namespace CourtDatabase2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var courtCase = await _context.CourtCases.FindAsync(id);
-            _context.CourtCases.Remove(courtCase);
-            await _context.SaveChangesAsync();
+            var courtCase = await dbContext.CourtCases.FindAsync(id);
+            dbContext.CourtCases.Remove(courtCase);
+            await dbContext.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CourtCaseExists(int id)
         {
-            return _context.CourtCases.Any(e => e.Id == id);
+            return dbContext.CourtCases.Any(e => e.Id == id);
         }
     }
 }
