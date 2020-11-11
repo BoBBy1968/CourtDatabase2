@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CourtDatabase2.Data.Models.CourtCase>
+﻿@model IEnumerable<CourtCasesViewModel>
 
 @{
     ViewData["Title"] = "Съдебни дела";
@@ -13,10 +13,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Court)
+                @Html.DisplayNameFor(model => model.CourtId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LawCase)
+                @Html.DisplayNameFor(model => model.CourtName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LawCaseId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CaseNumber)
@@ -37,10 +40,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Court.Id)
+                @Html.DisplayFor(modelItem => item.CourtId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LawCase.Id)
+                @Html.DisplayFor(modelItem => item.CourtName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LawCaseId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CaseNumber)

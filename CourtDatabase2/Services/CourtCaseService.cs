@@ -2,6 +2,7 @@
 using CourtDatabase2.Data.Models;
 using CourtDatabase2.Data.Models.Enumerations;
 using CourtDatabase2.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,24 @@ namespace CourtDatabase2.Services
         public CourtCaseService(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;
+        }
+
+        public IEnumerable<CourtCasesViewModel> All()
+        {
+            var courtCases = dbContext.CourtCases
+                .Include(c => c.Court).Include(c => c.LawCase)
+                .Select(x=>new CourtCasesViewModel
+                {
+                    CaseNumber = x.CaseNumber,
+                    CaseYear = x.CaseYear,
+                    CaseType = x.CaseType.ToString(),
+                    CourtChamber = x.CourtChamber,
+                    CourtId = x.CourtId,
+                    LawCaseId = x.LawCaseId,
+                    CourtName = x.Court.CourtTown.TownName + " " + x.Court.CourtType.ToString(),
+                })
+                .ToList();
+            return courtCases;
         }
 
         public IEnumerable<KeyValuePair<string, string>> AllCourts()

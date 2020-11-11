@@ -26,8 +26,15 @@ namespace CourtDatabase2.Controllers
         // GET: CourtCases
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = dbContext.CourtCases.Include(c => c.Court).Include(c => c.LawCase);
-            return View(await applicationDbContext.ToListAsync());
+            //var applicationDbContext = dbContext.CourtCases.Include(c => c.Court).Include(c => c.LawCase);
+            //return View(await applicationDbContext.ToListAsync());
+            return this.RedirectToAction("All");
+        }
+
+        public IActionResult All()
+        {
+            var viewModel = this.courtCasesService.All();
+            return this.View(viewModel);
         }
 
         // GET: CourtCases/Details/5
@@ -69,7 +76,7 @@ namespace CourtDatabase2.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public async Task<IActionResult> Create([Bind("Id,CourtId,LawCaseId,CaseNumber,CaseYear,CourtChamber,CaseType")] CourtCase courtCase)
-        public async Task<IActionResult> Create(CourtCasesInputModel model)
+        public IActionResult Create(CourtCasesInputModel model)
         {
             if (ModelState.IsValid)
             {
