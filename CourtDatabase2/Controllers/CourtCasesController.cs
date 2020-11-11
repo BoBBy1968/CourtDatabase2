@@ -24,10 +24,8 @@ namespace CourtDatabase2.Controllers
         }
 
         // GET: CourtCases
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            //var applicationDbContext = dbContext.CourtCases.Include(c => c.Court).Include(c => c.LawCase);
-            //return View(await applicationDbContext.ToListAsync());
             return this.RedirectToAction("All");
         }
 
@@ -38,17 +36,19 @@ namespace CourtDatabase2.Controllers
         }
 
         // GET: CourtCases/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var courtCase = await dbContext.CourtCases
-                .Include(c => c.Court)
-                .Include(c => c.LawCase)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            //var courtCase = await dbContext.CourtCases
+            //    .Include(c => c.Court)
+            //    .Include(c => c.LawCase)
+            //    .FirstOrDefaultAsync(m => m.Id == id);
+
+            var courtCase = this.courtCasesService.Details(id);
             if (courtCase == null)
             {
                 return NotFound();
@@ -71,11 +71,8 @@ namespace CourtDatabase2.Controllers
         }
 
         // POST: CourtCases/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("Id,CourtId,LawCaseId,CaseNumber,CaseYear,CourtChamber,CaseType")] CourtCase courtCase)
         public IActionResult Create(CourtCasesInputModel model)
         {
             if (ModelState.IsValid)
@@ -94,19 +91,24 @@ namespace CourtDatabase2.Controllers
         }
 
         // GET: CourtCases/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var courtCase = await dbContext.CourtCases.FindAsync(id);
+            var courtCase = this.courtCasesService.Edit(id);
             if (courtCase == null)
             {
                 return NotFound();
             }
-            ViewData["CourtId"] = new SelectList(dbContext.Courts, "Id", "Id", courtCase.CourtId);
+            var courts = this.dbContext.Courts.Select(x => new
+            {
+                x.Id,
+                CourtType = x.CourtType.ToString() + "  " + x.CourtTown.TownName + ", " + x.CourtTown.Address,
+            }).ToList();
+            ViewData["CourtId"] = new SelectList(courts, "Id", "CourtType", courtCase.CourtId);
             ViewData["LawCaseId"] = new SelectList(dbContext.LawCases, "Id", "Id", courtCase.LawCaseId);
             return View(courtCase);
         }
@@ -116,50 +118,39 @@ namespace CourtDatabase2.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CourtId,LawCaseId,CaseNumber,CaseYear,CourtChamber,CaseType")] CourtCase courtCase)
+        //public async Task<IActionResult> Edit(int id, [Bind("Id,CourtId,LawCaseId,CaseNumber,CaseYear,CourtChamber,CaseType")] CourtCase courtCase)
+        public IActionResult Edit(CourtCasesViewModel model)
         {
-            if (id != courtCase.Id)
-            {
-                return NotFound();
-            }
+            //if (id != courtCase.Id)
+            //{
+            //    return NotFound();
+            //}
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    dbContext.Update(courtCase);
-                    await dbContext.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CourtCaseExists(courtCase.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                
+                this.courtCasesService.Edit(model);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CourtId"] = new SelectList(dbContext.Courts, "Id", "Id", courtCase.CourtId);
-            ViewData["LawCaseId"] = new SelectList(dbContext.LawCases, "Id", "Id", courtCase.LawCaseId);
-            return View(courtCase);
+            var courts = this.dbContext.Courts.Select(x => new
+            {
+                x.Id,
+                CourtType = x.CourtType.ToString() + "  " + x.CourtTown.TownName + ", " + x.CourtTown.Address,
+            }).ToList();
+            ViewData["CourtId"] = new SelectList(courts, "Id", "CourtType", model.CourtId);
+            ViewData["LawCaseId"] = new SelectList(dbContext.LawCases, "Id", "Id", model.LawCaseId);
+            return View(model);
         }
 
         // GET: CourtCases/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var courtCase = await dbContext.CourtCases
-                .Include(c => c.Court)
-                .Include(c => c.LawCase)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var courtCase = this.courtCasesService.DeleteGet(id);
             if (courtCase == null)
             {
                 return NotFound();
@@ -171,11 +162,11 @@ namespace CourtDatabase2.Controllers
         // POST: CourtCases/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
-            var courtCase = await dbContext.CourtCases.FindAsync(id);
-            dbContext.CourtCases.Remove(courtCase);
-            await dbContext.SaveChangesAsync();
+            this.courtCasesService.DeletePost(id);
+            //dbContext.CourtCases.Remove(courtCase);
+            //await dbContext.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 

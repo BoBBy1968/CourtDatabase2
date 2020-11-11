@@ -1,26 +1,32 @@
-﻿@model CourtDatabase2.Data.Models.CourtCase
+﻿@model CourtDatabase2.ViewModels.CourtCasesViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Детайли";
 }
 
-<h1>Details</h1>
+<h1>@ViewData["Title"]</h1>
 
 <div>
-    <h4>CourtCase</h4>
+    <h4>Детайли по дело</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Court)
+            @Html.DisplayNameFor(model => model.CourtId)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Court.Id)
+            @Html.DisplayFor(model => model.CourtId)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LawCase)
+            @Html.DisplayNameFor(model => model.CourtName)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LawCase.Id)
+            @Html.DisplayFor(model => model.CourtName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LawCaseId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LawCaseId)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.CaseNumber)
@@ -49,6 +55,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Редактирай</a> |
+    <a class="btn btn-primary" asp-action="Index">Обратно</a>
 </div>

@@ -22,8 +22,9 @@ namespace CourtDatabase2.Services
         {
             var courtCases = dbContext.CourtCases
                 .Include(c => c.Court).Include(c => c.LawCase)
-                .Select(x=>new CourtCasesViewModel
+                .Select(x => new CourtCasesViewModel
                 {
+                    Id = x.Id,
                     CaseNumber = x.CaseNumber,
                     CaseYear = x.CaseYear,
                     CaseType = x.CaseType.ToString(),
@@ -64,6 +65,69 @@ namespace CourtDatabase2.Services
                 LawCaseId = model.LawCaseId,
             };
             this.dbContext.CourtCases.Add(courtCase);
+            this.dbContext.SaveChanges();
+        }
+
+        public CourtCasesViewModel Details(int? id)
+        {
+            return this.dbContext.CourtCases.Where(x => x.Id == id)
+                .Select(x => new CourtCasesViewModel
+                {
+                    Id = x.Id,
+                    CaseNumber = x.CaseNumber,
+                    CaseYear = x.CaseYear,
+                    CaseType = x.CaseType.ToString(),
+                    CourtChamber = x.CourtChamber,
+                    CourtId = x.CourtId,
+                    LawCaseId = x.LawCaseId,
+                    CourtName = x.Court.CourtTown.TownName + " " + x.Court.CourtType.ToString(),
+                }).FirstOrDefault();
+        }
+
+        public CourtCasesViewModel Edit(int? id)
+        {
+            return this.dbContext.CourtCases.Where(x => x.Id == id).Select(c => new CourtCasesViewModel
+            {
+                Id = c.Id,
+                CaseNumber = c.CaseNumber,
+                CaseYear = c.CaseYear,
+                CaseType = c.CaseType.ToString(),
+                CourtChamber = c.CourtChamber,
+                CourtId = c.CourtId,
+                LawCaseId = c.LawCaseId,
+                //CourtName = x.Court.CourtTown.TownName + " " + x.Court.CourtType.ToString(),
+            }).FirstOrDefault();
+        }
+
+        public void Edit(CourtCasesViewModel model)
+        {
+            var courtCase = new CourtCase
+            {
+                Id = model.Id,
+                CaseNumber = model.CaseNumber,
+                CaseYear = model.CaseYear,
+                CaseType = Enum.Parse<CaseType>(model.CaseType, true),
+                CourtChamber = model.CourtChamber,
+                CourtId = model.CourtId,
+                LawCaseId = model.LawCaseId,
+            };
+            this.dbContext.CourtCases.Update(courtCase);
+            this.dbContext.SaveChanges();
+        }
+
+        public CourtCase DeleteGet(int? id)
+        {
+            var courtCase = dbContext.CourtCases
+                .Include(c => c.Court)
+                .Include(c => c.LawCase)
+                .FirstOrDefault(m => m.Id == id);
+            return courtCase;
+        }
+
+        public void DeletePost(int? id)
+        {
+            var courtCase = this.DeleteGet(id);
+            this.dbContext.CourtCases.Remove(courtCase);
             this.dbContext.SaveChanges();
         }
     }

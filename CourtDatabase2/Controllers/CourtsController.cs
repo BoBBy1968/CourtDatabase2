@@ -21,7 +21,7 @@ namespace CourtDatabase2.Controllers
         }
 
         // GET: Courts
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             return this.RedirectToAction("All");
         }
