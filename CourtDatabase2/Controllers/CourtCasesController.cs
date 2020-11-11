@@ -76,7 +76,12 @@ namespace CourtDatabase2.Controllers
                 this.courtCasesService.Create(model);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CourtId"] = new SelectList(dbContext.Courts, "Id", "Id", model.CourtId);
+            var courts = this.dbContext.Courts.Select(x => new
+            {
+                x.Id,
+                CourtType = x.CourtType.ToString() + "  " + x.CourtTown.TownName + ", " + x.CourtTown.Address,
+            }).ToList();
+            ViewData["CourtId"] = new SelectList(courts, "Id", "CourtType", model.CourtId);
             ViewData["LawCaseId"] = new SelectList(dbContext.LawCases, "Id", "Id", model.LawCaseId);
             return View(model);
         }
