@@ -23,8 +23,8 @@ namespace CourtDatabase2.Data.Models
         public int CaseNumber { get; set; }
 
         [Display(Name = "Дело година")]
-        [DataType(DataType.Date)]
-        public DateTime CaseYear { get; set; }
+        [Range(2000, 2050)]
+        public int CaseYear { get; set; }
 
         [Display(Name = "Съдебна инстанция")]
         public string CourtChamber { get; set; }

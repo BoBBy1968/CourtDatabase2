@@ -49,7 +49,12 @@ namespace CourtDatabase2.Controllers
         // GET: CourtCases/Create
         public IActionResult Create()
         {
-            ViewData["CourtId"] = new SelectList(_context.Courts, "Id", "CourtType");
+            var courts = this._context.Courts.Select(x => new
+            {
+                x.Id,
+                CourtType = x.CourtType.ToString() + "  " + x.CourtTown.TownName + ", " + x.CourtTown.Address,
+            });
+            ViewData["CourtId"] = new SelectList(courts, "Id", "CourtType");
             ViewData["LawCaseId"] = new SelectList(_context.LawCases, "Id", "Id");
             return View();
         }

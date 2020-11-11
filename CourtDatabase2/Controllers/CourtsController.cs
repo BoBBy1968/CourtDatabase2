@@ -1,12 +1,9 @@
 ﻿using CourtDatabase2.Data;
-using CourtDatabase2.Data.Models;
-using CourtDatabase2.Data.Models.Enumerations;
 using CourtDatabase2.Services;
 using CourtDatabase2.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -26,8 +23,6 @@ namespace CourtDatabase2.Controllers
         // GET: Courts
         public async Task<IActionResult> Index()
         {
-            //var applicationDbContext = _context.Courts.Include(c => c.CourtTown);
-            //return View(await applicationDbContext.ToListAsync());
             return this.RedirectToAction("All");
         }
 
@@ -40,7 +35,14 @@ namespace CourtDatabase2.Controllers
         // GET: Courts/Create
         public IActionResult Create()
         {
-            ViewData["CourtTownId"] = new SelectList(_context.CourtTowns, "Id", "Address");
+            var towns = this._context.CourtTowns.Select(x => new
+            {
+                x.Id,
+                TownName = x.TownName + ", " + x.Address,
+            });
+            //ViewData["CourtTownId"] = new SelectList(_context.CourtTowns, "Id", "Address");
+            //ViewData["CourtTownId"] = new SelectList(_context.CourtTowns, "Id", "TownName");
+            ViewData["CourtTownId"] = new SelectList(towns, "Id", "TownName");
             return View();
         }
 
@@ -61,8 +63,16 @@ namespace CourtDatabase2.Controllers
 
         public IActionResult Edit(int id)
         {
+            //ViewData["CourtTownId"] = new SelectList(_context.CourtTowns, "Id", "Address");
+            var towns = this._context.CourtTowns.Select(x => new
+            {
+                x.Id,
+                TownName = x.TownName + ", " + x.Address,
+            });
+            //ViewData["CourtTownId"] = new SelectList(_context.CourtTowns, "Id", "Address");
+            //ViewData["CourtTownId"] = new SelectList(_context.CourtTowns, "Id", "TownName");
+            ViewData["CourtTownId"] = new SelectList(towns, "Id", "TownName");
             var courtViewModel = this.service.Edit(id);
-            ViewData["CourtTownId"] = new SelectList(_context.CourtTowns, "Id", "Address");
             return this.View(courtViewModel);
 
         }

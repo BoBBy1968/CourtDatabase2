@@ -7,6 +7,8 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\CourtsController - Copy.cs" />
+    <Compile Remove="Data\Migrations\20201111102944_CaseYearToInt.cs" />
+    <Compile Remove="Data\Migrations\20201111102944_CaseYearToInt.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -2,8 +2,6 @@
 using CourtDatabase2.Data.Models;
 using CourtDatabase2.Data.Models.Enumerations;
 using CourtDatabase2.ViewModels;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +28,7 @@ namespace CourtDatabase2.Services
                 Address = c.CourtTown.Address,
                 Id = c.Id,
             })
-                .OrderByDescending(x=>x.Id)
+                .OrderByDescending(x => x.Id)
                 .ToList();
             return courts;
         }
@@ -51,8 +49,8 @@ namespace CourtDatabase2.Services
             var court = new Court
             {
                 Id = id,
+                CourtType = Enum.Parse<CourtType>(courtType, true),
                 CourtTownId = courtTownId,
-                CourtType = Enum.Parse<CourtType>(courtType, true)
             };
             this.dbContext.Update(court);
             this.dbContext.SaveChanges();
@@ -60,7 +58,7 @@ namespace CourtDatabase2.Services
 
         public CourtEditViewModel Edit(int id)
         {
-            return this.dbContext.Courts.Select(x => new CourtEditViewModel
+            return this.dbContext.Courts.Where(x => x.Id == id).Select(x => new CourtEditViewModel
             {
                 Id = x.Id,
                 CourtType = x.CourtType.ToString(),
