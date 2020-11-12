@@ -1,0 +1,96 @@
+﻿@model IEnumerable<AllLawCasesViewModel>
+
+@{
+    ViewData["Title"] = "Всички дела";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Създай ново</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Дата на завеждане
+            </th>
+            <th>
+                Име
+            </th>
+            <th>
+                Презиме
+            </th>
+            <th>
+                Фамилия
+            </th>
+            <th>
+                Имот
+            </th>
+            <th>
+                Главница
+            </th>
+            <th>
+                Лихва
+            </th>
+            <th>
+                Брой фактури
+            </th>
+            <th>
+                Период от
+            </th>
+            <th>
+                Период до
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var d in Model)
+        {
+            <tr>
+                <td>
+                    @d.Date
+                </td>
+                <td>
+                    @d.Debitor.FirstName
+                </td>
+                <td>
+                    @d.Debitor.MiddleName
+                </td>
+                <td>
+                    @d.Debitor.LastName
+                </td>
+                <td>
+                    @d.HeatEstate.Address
+                </td>
+                <td>
+                    @d.Value
+                </td>
+                <td>
+                    @d.MoratoriumInterest
+                </td>
+                <td>
+                    @d.InvoiceCount
+                </td>
+                <td>
+                    @d.PeriodFrom
+                </td>
+                <td>
+                    @d.PeriodTo
+                </td>
+                <td>
+                    <a class="btn btn-primary align-items-start"  asp-action="Edit" asp-route-id="@d.Id">Редактирай</a> |
+                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@d.Id">Детайли</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@d.Id">Изтрий</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>
+
+
+

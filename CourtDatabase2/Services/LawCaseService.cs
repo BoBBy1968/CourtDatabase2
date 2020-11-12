@@ -1,6 +1,8 @@
 ﻿using CourtDatabase2.Data;
 using CourtDatabase2.Data.Models;
 using CourtDatabase2.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CourtDatabase2.Services
 {
@@ -11,6 +13,24 @@ namespace CourtDatabase2.Services
         public LawCaseService(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;
+        }
+
+        public IEnumerable<AllLawCasesViewModel> All()
+        {
+            var cases = this.dbContext.LawCases.Select(x => new AllLawCasesViewModel
+            {
+                Date = x.Date,
+                Debitor = x.Debitor,
+                HeatEstate = x.HeatEstate,
+                Value = x.Value,
+                MoratoriumInterest = x.MoratoriumInterest,
+                LegalInterest = x.LegalInterest,
+                InvoiceCount = x.InvoiceCount,
+                PeriodFrom = x.PeriodFrom,
+                PeriodTo = x.PeriodTo,
+                Id = x.Id,
+            }).ToList();
+            return cases;
         }
 
         public void Create(LawCaseInputModel model)

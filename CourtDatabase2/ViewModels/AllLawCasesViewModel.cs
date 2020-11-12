@@ -1,17 +1,20 @@
-﻿using System;
+﻿using CourtDatabase2.Data.Models;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CourtDatabase2.ViewModels
 {
-    public class LawCaseInputModel
+    public class AllLawCasesViewModel
     {
+        public int Id { get; set; }
+
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
-        public int DebitorId { get; set; }
+        public virtual Debitor Debitor { get; set; }
 
-        public string AbNumber { get; set; }
+        public virtual HeatEstate HeatEstate { get; set; }
 
         [Range(0, 79228162514264337593543935D)]
         [Column(TypeName = "decimal(18,2)")]
