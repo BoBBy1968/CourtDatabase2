@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -31,5 +32,8 @@ namespace CourtDatabase2.ViewModels
 
         [DataType(DataType.Date)]
         public DateTime PeriodTo { get; set; }
+
+        public IEnumerable<KeyValuePair<string, string>> AbNumbers { get; set; }
+        public IEnumerable<KeyValuePair<string, string>> Debitors { get; set; }
     }
 }

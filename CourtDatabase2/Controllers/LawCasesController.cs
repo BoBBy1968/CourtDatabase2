@@ -1,4 +1,5 @@
 ﻿using CourtDatabase2.Services;
+using CourtDatabase2.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CourtDatabase2.Controllers
@@ -24,9 +25,28 @@ namespace CourtDatabase2.Controllers
             return View(viewModel);
         }
 
+        //Get
         public IActionResult Create()
         {
-            return this.View();
+            var viewModel = new LawCaseInputModel();
+            viewModel.AbNumbers = this.lawCaseService.AbNumbers();
+            viewModel.Debitors = this.lawCaseService.Debitors();
+            return this.View(viewModel);
+        }
+
+        //Post
+        [HttpPost]
+        public IActionResult Create(LawCaseInputModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new LawCaseInputModel();
+                viewModel.AbNumbers = this.lawCaseService.AbNumbers();
+                viewModel.Debitors = this.lawCaseService.Debitors();
+                return this.View(viewModel);
+            }
+            this.lawCaseService.Create(model);
+            return this.RedirectToAction("All");
         }
     }
 }

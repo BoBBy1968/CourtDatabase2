@@ -15,6 +15,24 @@ namespace CourtDatabase2.Services
             this.dbContext = dbContext;
         }
 
+        public IEnumerable<KeyValuePair<string, string>> AbNumbers()
+        {
+            return this.dbContext.HeatEstates.Select(x => new
+            {
+                x.AbNumber,
+                x.Address,
+            }).ToList().Select(a => new KeyValuePair<string, string>(a.AbNumber, a.Address));
+        }
+
+        public IEnumerable<KeyValuePair<string, string>> Debitors()
+        {
+            return this.dbContext.Debitors.Select(x => new
+            {
+                Id = x.Id.ToString(),
+                Name = x.FirstName + " " + x.MiddleName + " " + x.LastName,
+            }).ToList().Select(d => new KeyValuePair<string, string>(d.Id, d.Name));
+        }
+
         public IEnumerable<AllLawCasesViewModel> All()
         {
             var cases = this.dbContext.LawCases.Select(x => new AllLawCasesViewModel
