@@ -43,5 +43,25 @@ namespace CourtDatabase2.Controllers
             this.paymentsService.Create(model);
             return this.RedirectToAction("All");
         }
+
+        public IActionResult Edit(int? id)
+        {
+            var viewModel = this.paymentsService.ToEdit(id);
+            viewModel.LawCases = this.paymentsService.AllLawCasesId();
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(PaymentsEditViewModel model)
+        {
+            this.paymentsService.Edit(model);
+            return this.RedirectToAction("All");
+        }
+
+        public IActionResult Details(int? id)
+        {
+            var viewModel = this.paymentsService.Details(id);
+            return this.View(viewModel);
+        }
     }
 }

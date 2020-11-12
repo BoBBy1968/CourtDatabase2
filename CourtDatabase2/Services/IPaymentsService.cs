@@ -9,5 +9,8 @@ namespace CourtDatabase2.Services
 
         IEnumerable<KeyValuePair<string, string>> AllLawCasesId();
         void Create(PaymentsInputViewModel model);
+        PaymentsEditViewModel Details(int? id);
+        void Edit(PaymentsEditViewModel model);
+        PaymentsEditViewModel ToEdit(int? id);
     }
 }

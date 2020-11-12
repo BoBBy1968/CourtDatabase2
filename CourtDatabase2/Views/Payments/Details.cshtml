@@ -1,6 +1,18 @@
-﻿
+﻿@model PaymentsEditViewModel
+
 @{
     ViewData["Title"] = "Details";
 }
 
 <h1>@ViewData["Title"]</h1>
+
+
+<p>ИД на плащането: @Model.Id</p>
+<p>Дата на плащане: @Model.Date</p>
+<p>Начин на плащане: @Model.PaymentSource</p>
+<p>Стойност на плащане: @Model.Value</p>
+<p>№ дело: @Model.LawCaseId</p>
+
+<p>
+    <a class="btn btn-primary" asp-action="All">Обратно</a>
+</p>

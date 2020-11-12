@@ -22,12 +22,13 @@ namespace CourtDatabase2.Services
         {
             return this.dbContext.Payments.Select(x => new PaymentsAllViewModel
             {
+                Id = x.Id,
                 Date = x.Date,
                 PaymentSource = x.PaymentSource.ToString(),
                 Value = x.Value,
                 LawCaseId = x.LawCaseId,
                 LawCase = x.LawCase,
-                Contractor = x.LawCase.Debitor.FirstName+ " " + x.LawCase.Debitor.LastName 
+                Contractor = x.LawCase.Debitor.FirstName + " " + x.LawCase.Debitor.LastName
                 + "- " + x.LawCase.Value + " лв. "
             }).ToList();
         }
@@ -53,6 +54,45 @@ namespace CourtDatabase2.Services
             };
             this.dbContext.Payments.Add(payment);
             this.dbContext.SaveChanges();
+        }
+
+        public void Edit(PaymentsEditViewModel model)
+        {
+            var payment = new Payment
+            {
+                Id = model.Id,
+                Date = model.Date,
+                LawCaseId = model.LawCaseId,
+                PaymentSource = Enum.Parse<PaymentSource>(model.PaymentSource, true),
+                Value = model.Value,
+            };
+            this.dbContext.Update(payment);
+            this.dbContext.SaveChanges();
+        }
+
+        public PaymentsEditViewModel ToEdit(int? id)
+        {
+            var payment = this.dbContext.Payments.Where(x => x.Id == id).Select(x => new PaymentsEditViewModel
+            {
+                Id = x.Id,
+                Date = x.Date,
+                LawCaseId = x.LawCaseId,
+                PaymentSource = x.PaymentSource.ToString(),
+                Value = x.Value,
+            }).FirstOrDefault();
+            return payment;
+        }
+
+        public PaymentsEditViewModel Details(int? id)
+        {
+            return this.dbContext.Payments.Where(x => x.Id == id).Select(x => new PaymentsEditViewModel
+            {
+                Id = x.Id,
+                Date = x.Date,
+                LawCaseId = x.LawCaseId,
+                PaymentSource = x.PaymentSource.ToString(),
+                Value = x.Value,
+            }).FirstOrDefault();
         }
     }
 }
