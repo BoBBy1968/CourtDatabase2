@@ -6,5 +6,8 @@ namespace CourtDatabase2.Services
     public interface IPaymentsService
     {
         IEnumerable<PaymentsAllViewModel> All();
+
+        IEnumerable<KeyValuePair<string, string>> AllLawCasesId();
+        void Create(PaymentsInputViewModel model);
     }
 }

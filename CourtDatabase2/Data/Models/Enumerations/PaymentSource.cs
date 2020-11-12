@@ -2,9 +2,9 @@
 {
     public enum PaymentSource
     {
-        casheir = 1,
-        bankTransfer = 2,
-        collectorPay = 3,
-        cashOffSet = 4,
+        каса = 1,
+        банков_превод = 2,
+        съдия_изпълнител = 3,
+        прихващане = 4,
     }
 }

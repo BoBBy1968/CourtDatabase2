@@ -1,5 +1,9 @@
 ﻿using CourtDatabase2.Data;
+using CourtDatabase2.Data.Models;
+using CourtDatabase2.Data.Models.Enumerations;
 using CourtDatabase2.ViewModels;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -22,9 +26,33 @@ namespace CourtDatabase2.Services
                 PaymentSource = x.PaymentSource.ToString(),
                 Value = x.Value,
                 LawCaseId = x.LawCaseId,
+                LawCase = x.LawCase,
+                Contractor = x.LawCase.Debitor.FirstName+ " " + x.LawCase.Debitor.LastName 
+                + "- " + x.LawCase.Value + " лв. "
             }).ToList();
         }
 
+        public IEnumerable<KeyValuePair<string, string>> AllLawCasesId()
+        {
+            return this.dbContext.LawCases.Select(x => new
+            {
+                Id = x.Id.ToString(),
+                Text = x.Debitor.FirstName + " " + x.Debitor.MiddleName + " " + x.Debitor.LastName
+                + " - главница " + x.Value + " лв.",
+            }).ToList().Select(d => new KeyValuePair<string, string>(d.Id, d.Text));
+        }
 
+        public void Create(PaymentsInputViewModel model)
+        {
+            var payment = new Payment
+            {
+                Date = model.Date,
+                LawCaseId = model.LawCaseId,
+                PaymentSource = Enum.Parse<PaymentSource>(model.PaymentSource, true),
+                Value = model.Value,
+            };
+            this.dbContext.Payments.Add(payment);
+            this.dbContext.SaveChanges();
+        }
     }
 }
