@@ -1,21 +1,20 @@
 ﻿@model LawCaseViewModel
 
 @{
-    ViewData["Title"] = "Детайли по гражданско дело";
+    ViewData["Title"] = "Изтриване гражданско дело";
 }
 
 <h1>@ViewData["Title"]</h1>
+<h3>Сигурен ли сте, че желаете да изтриете това дело?</h3>
 
-<p>ИД: @Model.Id</p>
+<p>Абонатен номер: @Model.AbNumber</p>
 <p>Длъжник: @Model.Debitor.FirstName @Model.Debitor.MiddleName @Model.Debitor.LastName ЕГН: @Model.Debitor.EGN Емайл: @Model.Debitor.Email, Тел.: @Model.Debitor.Phone, Представител: @Model.Debitor.Representative, </p>
-<p>Абонатен номер: @Model.HeatEstate.AbNumber</p>
-<p>Адрес: @Model.HeatEstate.Address</p>
 <p>Дата на завеждане: @Model.Date.ToShortDateString()</p>
 <p>Главница: @Model.Value</p>
 <p>Мораторна лихва: @Model.MoratoriumInterest</p>
-<p>Законова лихва: @Model.LegalInterest</p>
 <p>Брой фактури: @Model.InvoiceCount</p>
 <p>Период начало: @Model.PeriodFrom.ToShortDateString()</p>
 <p>Период край: @Model.PeriodTo.ToShortDateString()</p>
 
 <a class="btn btn-primary" asp-action="All">Обратно</a>
+<a class="btn btn-danger" asp-action="DeleteConfirm" asp-route-id="@Model.Id">Изтриване</a>

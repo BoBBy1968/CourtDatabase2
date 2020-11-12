@@ -14,6 +14,8 @@ namespace CourtDatabase2.Services
 
         LawCaseViewModel Details(int? id);
 
-        
+        void Delete(int? id);
+        LawCaseViewModel Edit(int? id);
+        void Edit(LawCaseViewModel model);
     }
 }

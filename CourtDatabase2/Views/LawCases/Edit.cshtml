@@ -1,0 +1,70 @@
+﻿@model LawCaseViewModel
+
+@{
+    ViewData["Title"] = "Редактиране на гражданско дело";
+    var abNumbers = this.Model.AbNumbers.Select(x => new SelectListItem(x.Value, x.Key));
+    var debitors = this.Model.Debitors.Select(x => new SelectListItem(x.Value, x.Key));
+}
+
+<h1>@ViewData["Title"]</h1>
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="LawCases" asp-action="Create" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DebitorId" class="control-label"></label>
+                <select asp-for="DebitorId" class="form-control" asp-items="debitors"></select>
+                <span asp-validation-for="DebitorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AbNumber" class="control-label"></label>
+                <select asp-for="AbNumber" class="form-control" asp-items="@abNumbers"></select>
+                <span asp-validation-for="AbNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Value" class="control-label"></label>
+                <input asp-for="Value" class="form-control" />
+                <span asp-validation-for="Value" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MoratoriumInterest" class="control-label"></label>
+                <input asp-for="MoratoriumInterest" class="form-control" />
+                <span asp-validation-for="MoratoriumInterest" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LegalInterest" class="control-label"></label>
+                <input asp-for="LegalInterest" class="form-control" />
+                <span asp-validation-for="LegalInterest" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InvoiceCount" class="control-label"></label>
+                <input asp-for="InvoiceCount" class="form-control" />
+                <span asp-validation-for="InvoiceCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PeriodFrom" class="control-label"></label>
+                <input asp-for="PeriodFrom" class="form-control" />
+                <span asp-validation-for="PeriodFrom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PeriodTo" class="control-label"></label>
+                <input asp-for="PeriodTo" class="form-control" />
+                <span asp-validation-for="PeriodTo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" asp-action="Edit" value="Запис" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a class="btn btn-primary" asp-action="Index">Обратно</a>
+</div>

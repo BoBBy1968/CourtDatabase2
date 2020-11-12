@@ -13,9 +13,11 @@ namespace CourtDatabase2.ViewModels
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
+        public int DebitorId { get; set; }
         public Debitor Debitor { get; set; }
 
         public string AbNumber { get; set; }
+        public HeatEstate HeatEstate { get; set; }
 
         [Range(0, 79228162514264337593543935D)]
         [Column(TypeName = "decimal(18,2)")]
@@ -35,5 +37,8 @@ namespace CourtDatabase2.ViewModels
 
         [DataType(DataType.Date)]
         public DateTime PeriodTo { get; set; }
+
+        public IEnumerable<KeyValuePair<string, string>> AbNumbers { get; set; }
+        public IEnumerable<KeyValuePair<string, string>> Debitors { get; set; }
     }
 }

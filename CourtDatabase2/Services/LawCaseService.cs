@@ -56,8 +56,8 @@ namespace CourtDatabase2.Services
             var lawCase = new LawCase
             {
                 Date = model.Date,
-                AbNumber = model.AbNumber,//dropdown
-                DebitorId = model.DebitorId,//dropdown
+                AbNumber = model.AbNumber,
+                DebitorId = model.DebitorId,
                 MoratoriumInterest = model.MoratoriumInterest,
                 LegalInterest = model.LegalInterest,
                 Value = model.Value,
@@ -77,7 +77,7 @@ namespace CourtDatabase2.Services
                 Id = x.Id,
                 Date = x.Date,
                 Debitor = x.Debitor,
-                AbNumber = x.AbNumber,
+                HeatEstate = x.HeatEstate,
                 Value = x.Value,
                 MoratoriumInterest = x.MoratoriumInterest,
                 LegalInterest = x.LegalInterest,
@@ -85,6 +85,49 @@ namespace CourtDatabase2.Services
                 PeriodFrom = x.PeriodFrom,
                 PeriodTo = x.PeriodTo,
             }).FirstOrDefault();
+        }
+
+        public void Delete(int? id)
+        {
+            var lawCase = this.dbContext.LawCases.Where(x => x.Id == id).FirstOrDefault();
+            this.dbContext.LawCases.Remove(lawCase);
+            this.dbContext.SaveChanges();
+        }
+
+        public LawCaseViewModel Edit(int? id)
+        {
+            return this.dbContext.LawCases.Where(x => x.Id == id).Select(l => new LawCaseViewModel
+            {
+                Id = l.Id,
+                Date = l.Date,
+                AbNumber = l.AbNumber,
+                DebitorId = l.DebitorId,
+                MoratoriumInterest = l.MoratoriumInterest,
+                LegalInterest = l.LegalInterest,
+                Value = l.Value,
+                PeriodFrom = l.PeriodFrom,
+                PeriodTo = l.PeriodTo,
+                InvoiceCount = l.InvoiceCount,
+            }).FirstOrDefault();
+        }
+
+        public void Edit(LawCaseViewModel model)
+        {
+            var lawCase = new LawCase
+            {
+                Id = model.Id,
+                Date = model.Date,
+                AbNumber = model.AbNumber,
+                DebitorId = model.DebitorId,
+                MoratoriumInterest = model.MoratoriumInterest,
+                LegalInterest = model.LegalInterest,
+                Value = model.Value,
+                PeriodFrom = model.PeriodFrom,
+                PeriodTo = model.PeriodTo,
+                InvoiceCount = model.InvoiceCount,
+            };
+            this.dbContext.Update(lawCase);
+            this.dbContext.SaveChanges();
         }
     }
 }
