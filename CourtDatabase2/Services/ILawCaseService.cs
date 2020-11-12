@@ -12,6 +12,8 @@ namespace CourtDatabase2.Services
         IEnumerable<KeyValuePair<string, string>> AbNumbers();
         IEnumerable<KeyValuePair<string, string>> Debitors();
 
+        LawCaseViewModel Details(int? id);
+
         
     }
 }

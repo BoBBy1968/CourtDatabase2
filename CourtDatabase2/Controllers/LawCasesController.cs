@@ -48,5 +48,11 @@ namespace CourtDatabase2.Controllers
             this.lawCaseService.Create(model);
             return this.RedirectToAction("All");
         }
+
+        public IActionResult Details(int? id)
+        {
+            var viewModel = this.lawCaseService.Details(id);
+            return this.View(viewModel);
+        }
     }
 }

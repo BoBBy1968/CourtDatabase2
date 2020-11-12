@@ -1,0 +1,18 @@
+﻿@model LawCaseViewModel
+
+@{
+    ViewData["Title"] = "Детайли по гражданско дело";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>Абонатен номер: @Model.AbNumber</p>
+<p>Длъжник: @Model.Debitor.FirstName @Model.Debitor.MiddleName @Model.Debitor.LastName ЕГН: @Model.Debitor.EGN Емайл: @Model.Debitor.Email, Тел.: @Model.Debitor.Phone, Представител: @Model.Debitor.Representative, </p>
+<p>Дата на завеждане: @Model.Date.ToShortDateString()</p>
+<p>Главница: @Model.Value</p>
+<p>Мораторна лихва: @Model.MoratoriumInterest</p>
+<p>Брой фактури: @Model.InvoiceCount</p>
+<p>Период начало: @Model.PeriodFrom.ToShortDateString()</p>
+<p>Период край: @Model.PeriodTo.ToShortDateString()</p>
+
+<a class="btn btn-primary" asp-action="All">Обратно</a>

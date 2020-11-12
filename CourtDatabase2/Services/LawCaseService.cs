@@ -69,5 +69,22 @@ namespace CourtDatabase2.Services
             this.dbContext.LawCases.Add(lawCase);
             this.dbContext.SaveChanges();
         }
+
+        public LawCaseViewModel Details(int? id)
+        {
+            return this.dbContext.LawCases.Where(x => x.Id == id).Select(x => new LawCaseViewModel
+            {
+                Id = x.Id,
+                Date = x.Date,
+                Debitor = x.Debitor,
+                AbNumber = x.AbNumber,
+                Value = x.Value,
+                MoratoriumInterest = x.MoratoriumInterest,
+                LegalInterest = x.LegalInterest,
+                InvoiceCount = x.InvoiceCount,
+                PeriodFrom = x.PeriodFrom,
+                PeriodTo = x.PeriodTo,
+            }).FirstOrDefault();
+        }
     }
 }
