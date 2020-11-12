@@ -1,0 +1,51 @@
+﻿@model IEnumerable<PaymentsAllViewModel>
+
+@{
+    ViewData["Title"] = "All";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Направи плащане</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Платена сума
+            </th>
+            <th>
+                Дата на плащане
+            </th>
+            <th>
+                Начин на плащане
+            </th>
+            <th>
+                Дело ИД
+            </th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @item.Value
+            </td>
+            <td>
+                @item.Date
+            </td>
+            <td>
+                @item.PaymentSource
+            </td>
+            <td>
+                @item.LawCaseId
+            </td>
+        </tr>
+        }
+    </tbody>
+
+</table>

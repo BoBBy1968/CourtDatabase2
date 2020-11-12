@@ -33,9 +33,9 @@ namespace CourtDatabase2.Services
             }).ToList().Select(d => new KeyValuePair<string, string>(d.Id, d.Name));
         }
 
-        public IEnumerable<AllLawCasesViewModel> All()
+        public IEnumerable<LawCasesAllViewModel> All()
         {
-            var cases = this.dbContext.LawCases.Select(x => new AllLawCasesViewModel
+            var cases = this.dbContext.LawCases.Select(x => new LawCasesAllViewModel
             {
                 Date = x.Date,
                 Debitor = x.Debitor,

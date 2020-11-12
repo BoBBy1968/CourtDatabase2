@@ -7,7 +7,7 @@ namespace CourtDatabase2.Services
     {
         void Create(LawCaseInputModel model);
 
-        IEnumerable<AllLawCasesViewModel> All();
+        IEnumerable<LawCasesAllViewModel> All();
 
         IEnumerable<KeyValuePair<string, string>> AbNumbers();
         IEnumerable<KeyValuePair<string, string>> Debitors();

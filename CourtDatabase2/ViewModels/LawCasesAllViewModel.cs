@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CourtDatabase2.ViewModels
 {
-    public class AllLawCasesViewModel
+    public class LawCasesAllViewModel
     {
         public int Id { get; set; }
 
