@@ -13,20 +13,18 @@ namespace CourtDatabase2.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IDebitorsSeeder debitorsSeeder;
-        private readonly IHeatEstateSeeder heatEstateSeeder;
+        private readonly ISeederService seeder;
 
-        public HomeController(ILogger<HomeController> logger, IDebitorsSeeder debitorsSeeder, IHeatEstateSeeder heatEstateSeeder)
+        public HomeController(ILogger<HomeController> logger, ISeederService seeder)
         {
             _logger = logger;
-            this.debitorsSeeder = debitorsSeeder;
-            this.heatEstateSeeder = heatEstateSeeder;
+            this.seeder = seeder;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            this.heatEstateSeeder.HeatEstateSeed();
-            this.debitorsSeeder.DebitorsSeed();
+            await this.seeder.HeatEstateSeedAsync();
+            await this.seeder.DebitorsSeedAsync();
             return View();
         }
 

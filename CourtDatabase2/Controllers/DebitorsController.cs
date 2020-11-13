@@ -154,6 +154,16 @@ namespace CourtDatabase2.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public async Task<IActionResult> DeleteAll()
+        {
+            foreach (var debitor in this.dbContext.Debitors)
+            {
+                this.dbContext.Debitors.Remove(debitor);
+            }
+            await this.dbContext.SaveChangesAsync();
+            return this.RedirectToAction("Index");
+        }
+
         private bool DebitorExists(int id)
         {
             return dbContext.Debitors.Any(e => e.Id == id);
