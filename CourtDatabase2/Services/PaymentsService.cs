@@ -94,5 +94,12 @@ namespace CourtDatabase2.Services
                 Value = x.Value,
             }).FirstOrDefault();
         }
+
+        public void Delete(int? id)
+        {
+            var payment = this.dbContext.Payments.Where(x => x.Id == id).FirstOrDefault();
+            this.dbContext.Payments.Remove(payment);
+            this.dbContext.SaveChanges();
+        }
     }
 }

@@ -63,5 +63,17 @@ namespace CourtDatabase2.Controllers
             var viewModel = this.paymentsService.Details(id);
             return this.View(viewModel);
         }
+
+        public IActionResult Delete(int? id)
+        {
+            var viewModel = this.paymentsService.Details(id);
+            return this.View(viewModel);
+        }
+        
+        public IActionResult DeleteConfirm(int? id)
+        {
+            this.paymentsService.Delete(id);
+            return this.RedirectToAction("All");
+        }
     }
 }

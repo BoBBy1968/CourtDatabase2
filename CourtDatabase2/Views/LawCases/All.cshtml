@@ -51,7 +51,7 @@
         {
             <tr>
                 <td>
-                    @d.Date
+                    @d.Date.ToShortDateString()
                 </td>
                 <td>
                     @d.Debitor.FirstName
@@ -75,10 +75,10 @@
                     @d.InvoiceCount
                 </td>
                 <td>
-                    @d.PeriodFrom
+                    @d.PeriodFrom.ToShortDateString()
                 </td>
                 <td>
-                    @d.PeriodTo
+                    @d.PeriodTo.ToShortDateString()
                 </td>
                 <td>
                     <a class="btn btn-primary align-items-start"  asp-action="Edit" asp-route-id="@d.Id">Редактирай</a> |
