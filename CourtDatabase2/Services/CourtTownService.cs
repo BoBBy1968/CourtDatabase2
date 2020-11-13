@@ -1,11 +1,9 @@
 ﻿using CourtDatabase2.Data;
 using CourtDatabase2.Data.Models;
+using CourtDatabase2.Services.Contracts;
 using CourtDatabase2.ViewModels;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CourtDatabase2.Services
 {

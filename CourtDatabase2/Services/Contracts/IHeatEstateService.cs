@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace CourtDatabase2.Services
+namespace CourtDatabase2.Services.Contracts
 {
     public interface IHeatEstateService
     {

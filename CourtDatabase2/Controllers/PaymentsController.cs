@@ -1,4 +1,4 @@
-﻿using CourtDatabase2.Services;
+﻿using CourtDatabase2.Services.Contracts;
 using CourtDatabase2.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,8 +27,10 @@ namespace CourtDatabase2.Controllers
 
         public IActionResult Create()
         {
-            var viewModel = new PaymentsInputViewModel();
-            viewModel.LawCases = this.paymentsService.AllLawCasesId();
+            var viewModel = new PaymentsInputViewModel
+            {
+                LawCases = this.paymentsService.AllLawCasesId()
+            };
             return this.View(viewModel);
         }
 

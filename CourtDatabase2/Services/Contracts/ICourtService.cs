@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CourtDatabase2.Services
+namespace CourtDatabase2.Services.Contracts
 {
     public interface ICourtService
     {

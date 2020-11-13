@@ -1,4 +1,4 @@
-﻿using CourtDatabase2.Services;
+﻿using CourtDatabase2.Services.Contracts;
 using CourtDatabase2.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,9 +28,11 @@ namespace CourtDatabase2.Controllers
         //Get
         public IActionResult Create()
         {
-            var viewModel = new LawCaseInputModel();
-            viewModel.AbNumbers = this.lawCaseService.AbNumbers();
-            viewModel.Debitors = this.lawCaseService.Debitors();
+            var viewModel = new LawCaseInputModel
+            {
+                AbNumbers = this.lawCaseService.AbNumbers(),
+                Debitors = this.lawCaseService.Debitors()
+            };
             return this.View(viewModel);
         }
 
@@ -40,9 +42,11 @@ namespace CourtDatabase2.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var viewModel = new LawCaseInputModel();
-                viewModel.AbNumbers = this.lawCaseService.AbNumbers();
-                viewModel.Debitors = this.lawCaseService.Debitors();
+                var viewModel = new LawCaseInputModel
+                {
+                    AbNumbers = this.lawCaseService.AbNumbers(),
+                    Debitors = this.lawCaseService.Debitors()
+                };
                 return this.View(viewModel);
             }
             this.lawCaseService.Create(model);
