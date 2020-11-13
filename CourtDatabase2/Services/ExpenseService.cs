@@ -56,17 +56,26 @@ namespace CourtDatabase2.Services
         public ExpenseEditViewModel Delete(int? id)
         {
             throw new System.NotImplementedException();
-        }
+        }//TODO
 
         public ExpenseEditViewModel DeleteConfirm(int? id)
         {
             throw new System.NotImplementedException();
-        }
+        }//TODO
 
         public ExpenseEditViewModel Details(int? id)
         {
-            throw new System.NotImplementedException();
-        }
+            var expense = this.dbContext.Expenses.Where(x => x.Id == id).Select(x => new ExpenseEditViewModel
+            {
+                Id = x.Id,
+                ExpenceDate = x.ExpenceDate,
+                ExpenceDescription = x.ExpenceDescription,
+                ExpenceValue = x.ExpenceValue,
+                LawCaseId = x.LawCaseId,
+                Payee = x.Payee,
+            }).FirstOrDefault();
+            return expense;
+        }//TODO
 
         public ExpenseEditViewModel Edit(int? id)
         {

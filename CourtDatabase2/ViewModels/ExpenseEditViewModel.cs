@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CourtDatabase2.ViewModels
 {
-    public class ExpenseEditViewModel
+    public class ExpenseEditViewModel 
     {
         public int Id { get; set; }
 
