@@ -6,7 +6,7 @@ namespace CourtDatabase2.Services.Contracts
 {
     public interface ICourtService
     {
-        IEnumerable<AllCourtViewModel> All();
+        IEnumerable<CourtAllViewModel> All();
 
         void Create(string courtType, int courtTownId);
 

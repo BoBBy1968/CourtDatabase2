@@ -20,9 +20,9 @@ namespace CourtDatabase2.Services
 
         //public CourtType EnumParse { get; private set; }
 
-        public IEnumerable<AllCourtViewModel> All()
+        public IEnumerable<CourtAllViewModel> All()
         {
-            var courts = this.dbContext.Courts.Select(c => new AllCourtViewModel
+            var courts = this.dbContext.Courts.Select(c => new CourtAllViewModel
             {
                 CourtType = c.CourtType.ToString(),
                 TownName = c.CourtTown.TownName,

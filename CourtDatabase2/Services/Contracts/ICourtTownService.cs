@@ -8,7 +8,7 @@ namespace CourtDatabase2.Services.Contracts
     {
         void Create(string townName, string address);
 
-        IEnumerable<EditCourtTownViewModel> All();
+        IEnumerable<CourtTownEditViewModel> All();
 
         CourtTown Details(int id);
 

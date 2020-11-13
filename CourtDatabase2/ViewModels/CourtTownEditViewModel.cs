@@ -1,6 +1,6 @@
 ﻿namespace CourtDatabase2.ViewModels
 {
-    public class EditCourtTownViewModel : CreateCourtTownViewModel
+    public class CourtTownEditViewModel : CourtTownCreateViewModel
     {
         public int Id { get; set; }
 
