@@ -1,6 +1,23 @@
-﻿namespace CourtDatabase2.Services.Contracts
+﻿using CourtDatabase2.ViewModels;
+using System.Collections.Generic;
+
+namespace CourtDatabase2.Services.Contracts
 {
-    public class IExpenseService
+    public interface IExpenseService
     {
+        IEnumerable<ExpenseAllViewModel> All();
+
+        void Create(ExpenseInputViewModel model);
+
+        ExpenseEditViewModel Edit(int? id);
+
+        void Edit(ExpenseEditViewModel model);
+
+        ExpenseEditViewModel Details(int? id);
+
+        ExpenseEditViewModel Delete(int? id);
+
+        ExpenseEditViewModel DeleteConfirm(int? id);
+        IEnumerable<KeyValuePair<string, string>> GetAllLawCases();
     }
 }

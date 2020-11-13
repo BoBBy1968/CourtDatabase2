@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ExpenseAllViewModel>
+
+@{
+    ViewData["Title"] = "Всички разноски";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Направи разноски</a>
+</p>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                ИД
+            </th>
+            <th>
+                Получател
+            </th>
+            <th>
+                Описание
+            </th>
+            <th>
+                Стойност
+            </th>
+            <th>
+                Дата
+            </th>
+            <th>
+                Дело ИД
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Id
+                </td>
+                <td>
+                    @item.Payee
+                </td>
+                <td>
+                    @item.ExpenceDescription
+                </td>
+                <td>
+                    @item.ExpenceValue
+                </td>
+                <td>
+                    @item.ExpenceDate
+                </td>
+                <td>
+                    @item.LawCaseId
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Редактирай</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Детайли</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Към Изтрий</a>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+

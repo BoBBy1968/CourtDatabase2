@@ -43,6 +43,7 @@ namespace CourtDatabase2
             services.AddTransient<ILawCaseService, LawCaseService>();
             services.AddTransient<IPaymentsService, PaymentsService>();
             services.AddTransient<ISeederService, SeederService>();
+            services.AddTransient<IExpenseService, ExpenseService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

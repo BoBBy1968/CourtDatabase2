@@ -1,0 +1,46 @@
+﻿@model ExpenseInputViewModel
+
+@{
+    ViewData["Title"] = "Направи разноски";
+    var lawCases = this.Model.LawCases.Select(x => new SelectListItem(x.Value, x.Key));
+}
+
+
+<h1>@ViewData["Title"]</h1>
+
+
+<form asp-controller="Expenses" asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Payee" >Получател  </label>
+        <input asp-for="Payee" />
+        <span asp-validation-for="Payee"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ExpenceDescription">Описание  </label>
+        <input asp-for="ExpenceDescription" />
+        <span asp-validation-for="ExpenceDescription"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ExpenceValue">Стойност  </label>
+        <input asp-for="ExpenceValue" />
+        <span asp-validation-for="ExpenceValue"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ExpenceDate">Дата  </label>
+        <input asp-for="ExpenceDate" />
+        <span asp-validation-for="ExpenceDate"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LawCaseId">Дело ИД  </label>
+        <input asp-for="LawCaseId" />
+        <select asp-for="LawCaseId" asp-items="lawCases"></select>
+        <span asp-validation-for="LawCaseId"></span>
+    </div>
+    <div>
+        <input type="submit" value="Запис"/>
+    </div>
+</form>
+
+<p>
+    <a class="btn btn-primary" asp-action="Index">Обратно</a>
+</p>
