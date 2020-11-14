@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CourtDatabase2.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitialSetup : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -80,7 +80,12 @@ namespace CourtDatabase2.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CHSIExecutor = table.Column<int>(nullable: false)
+                    Name = table.Column<string>(maxLength: 150, nullable: false),
+                    Address = table.Column<string>(maxLength: 300, nullable: false),
+                    Telephon = table.Column<string>(maxLength: 15, nullable: true),
+                    Email = table.Column<string>(maxLength: 200, nullable: true),
+                    Number = table.Column<string>(maxLength: 5, nullable: false),
+                    Region = table.Column<string>(maxLength: 20, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -111,37 +116,6 @@ namespace CourtDatabase2.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_LegalActions", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "LegalActionViewModel",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Date = table.Column<DateTime>(nullable: false),
-                    ActionName = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LegalActionViewModel", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Obligations",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Value = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PeriodFrom = table.Column<DateTime>(nullable: false),
-                    PeriodTo = table.Column<DateTime>(nullable: false),
-                    InvoiceCount = table.Column<int>(nullable: false),
-                    LawCaseId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Obligations", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -298,28 +272,6 @@ namespace CourtDatabase2.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Payments",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Value = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Date = table.Column<DateTime>(nullable: false),
-                    PaymentSource = table.Column<int>(nullable: false),
-                    ObligationId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Payments", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Payments_Obligations_ObligationId",
-                        column: x => x.ObligationId,
-                        principalTable: "Obligations",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Invoices",
                 columns: table => new
                 {
@@ -360,10 +312,13 @@ namespace CourtDatabase2.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Date = table.Column<DateTime>(nullable: false),
                     DebitorId = table.Column<int>(nullable: false),
-                    ObligationId = table.Column<int>(nullable: false),
                     AbNumber = table.Column<string>(nullable: true),
                     MoratoriumInterest = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    LegalInterest = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
+                    LegalInterest = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Value = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PeriodFrom = table.Column<DateTime>(nullable: false),
+                    PeriodTo = table.Column<DateTime>(nullable: false),
+                    InvoiceCount = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -380,12 +335,6 @@ namespace CourtDatabase2.Migrations
                         principalTable: "Debitors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_LawCases_Obligations_ObligationId",
-                        column: x => x.ObligationId,
-                        principalTable: "Obligations",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -452,8 +401,8 @@ namespace CourtDatabase2.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ExecutorId = table.Column<int>(nullable: false),
                     LawCaseId = table.Column<int>(nullable: false),
-                    ExecutorCaseNumber = table.Column<int>(nullable: false),
-                    Year = table.Column<DateTime>(nullable: false)
+                    ExecutorCaseNumber = table.Column<int>(nullable: true),
+                    Year = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -489,6 +438,28 @@ namespace CourtDatabase2.Migrations
                     table.PrimaryKey("PK_Expenses", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Expenses_LawCases_LawCaseId",
+                        column: x => x.LawCaseId,
+                        principalTable: "LawCases",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Payments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Value = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Date = table.Column<DateTime>(nullable: false),
+                    PaymentSource = table.Column<int>(nullable: false),
+                    LawCaseId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Payments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Payments_LawCases_LawCaseId",
                         column: x => x.LawCaseId,
                         principalTable: "LawCases",
                         principalColumn: "Id",
@@ -600,15 +571,9 @@ namespace CourtDatabase2.Migrations
                 column: "DebitorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_LawCases_ObligationId",
-                table: "LawCases",
-                column: "ObligationId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Payments_ObligationId",
+                name: "IX_Payments_LawCaseId",
                 table: "Payments",
-                column: "ObligationId");
+                column: "LawCaseId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -647,9 +612,6 @@ namespace CourtDatabase2.Migrations
                 name: "Invoices");
 
             migrationBuilder.DropTable(
-                name: "LegalActionViewModel");
-
-            migrationBuilder.DropTable(
                 name: "Payments");
 
             migrationBuilder.DropTable(
@@ -675,9 +637,6 @@ namespace CourtDatabase2.Migrations
 
             migrationBuilder.DropTable(
                 name: "Debitors");
-
-            migrationBuilder.DropTable(
-                name: "Obligations");
 
             migrationBuilder.DropTable(
                 name: "HeatEstates");

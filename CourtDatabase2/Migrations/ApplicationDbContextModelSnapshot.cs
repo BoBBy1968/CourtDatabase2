@@ -234,7 +234,7 @@ namespace CourtDatabase2.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ExecutorCaseNumber")
+                    b.Property<int?>("ExecutorCaseNumber")
                         .HasColumnType("int");
 
                     b.Property<int>("ExecutorId")
@@ -243,8 +243,8 @@ namespace CourtDatabase2.Migrations
                     b.Property<int>("LawCaseId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Year")
-                        .HasColumnType("datetime2");
+                    b.Property<int?>("Year")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

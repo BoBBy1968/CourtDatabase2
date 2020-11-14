@@ -18,8 +18,8 @@ namespace CourtDatabase2.Data.Models
         public LawCase LawCase { get; set; }
 
         [Range(0, 100_000)]
-        public int ExecutorCaseNumber { get; set; }
+        public int? ExecutorCaseNumber { get; set; }
 
-        public DateTime Year { get; set; } //TODO type of int
+        public int? Year { get; set; } //TODO type of int
     }
 }

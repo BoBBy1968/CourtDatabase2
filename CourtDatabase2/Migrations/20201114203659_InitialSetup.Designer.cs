@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CourtDatabase2.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201114164501_ExecutorModify")]
-    partial class ExecutorModify
+    [Migration("20201114203659_InitialSetup")]
+    partial class InitialSetup
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -197,8 +197,13 @@ namespace CourtDatabase2.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
+                        .IsRequired()
                         .HasColumnType("nvarchar(300)")
                         .HasMaxLength(300);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -215,6 +220,10 @@ namespace CourtDatabase2.Migrations
                         .HasColumnType("nvarchar(20)")
                         .HasMaxLength(20);
 
+                    b.Property<string>("Telephon")
+                        .HasColumnType("nvarchar(15)")
+                        .HasMaxLength(15);
+
                     b.HasKey("Id");
 
                     b.ToTable("Executors");
@@ -227,7 +236,7 @@ namespace CourtDatabase2.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ExecutorCaseNumber")
+                    b.Property<int?>("ExecutorCaseNumber")
                         .HasColumnType("int");
 
                     b.Property<int>("ExecutorId")
@@ -236,8 +245,8 @@ namespace CourtDatabase2.Migrations
                     b.Property<int>("LawCaseId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Year")
-                        .HasColumnType("datetime2");
+                    b.Property<int?>("Year")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
