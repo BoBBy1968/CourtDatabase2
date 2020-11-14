@@ -1,13 +1,9 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace CourtDatabase2.Data.Models
+namespace CourtDatabase2.ViewModels
 {
-    public class Executor
+    public class ExecutorsCreateViewModel
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         [MaxLength(150)]
         public string Name { get; set; }
@@ -20,6 +16,7 @@ namespace CourtDatabase2.Data.Models
         public string Telephon { get; set; }
 
         [MaxLength(200)]
+        [EmailAddress]
         public string Email { get; set; }
 
         [Required]
@@ -29,8 +26,5 @@ namespace CourtDatabase2.Data.Models
         [Required]
         [MaxLength(20)]
         public string Region { get; set; }
-
-        public ICollection<ExecutorCase> ExecutorCases => new HashSet<ExecutorCase>();
-
     }
 }

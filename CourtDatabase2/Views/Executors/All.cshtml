@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ExecutorsAllViewModel>
+
+@{
+    ViewData["Title"] = "Всички съдебни изпълнители";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Добави съдебен изпълнител</a>
+</p>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                ИД
+            </th>
+            <th>
+                Име
+            </th>
+            <th>
+                Адрес
+            </th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Id
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Address
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Редактирай</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Детайли</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Изтрий</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
