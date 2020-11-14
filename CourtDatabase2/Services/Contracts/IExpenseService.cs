@@ -17,7 +17,8 @@ namespace CourtDatabase2.Services.Contracts
 
         ExpenseEditViewModel Delete(int? id);
 
-        ExpenseEditViewModel DeleteConfirm(int? id);
+        void DeleteConfirm(int? id);
+
         IEnumerable<KeyValuePair<string, string>> GetAllLawCases();
     }
 }

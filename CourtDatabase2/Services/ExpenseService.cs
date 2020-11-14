@@ -55,13 +55,15 @@ namespace CourtDatabase2.Services
 
         public ExpenseEditViewModel Delete(int? id)
         {
-            throw new System.NotImplementedException();
-        }//TODO
+            return this.Edit(id);
+        }
 
-        public ExpenseEditViewModel DeleteConfirm(int? id)
+        public void DeleteConfirm(int? id)
         {
-            throw new System.NotImplementedException();
-        }//TODO
+            var expense = this.dbContext.Expenses.Where(x => x.Id == id).FirstOrDefault();
+            this.dbContext.Expenses.Remove(expense);
+            this.dbContext.SaveChanges();
+        }
 
         public ExpenseEditViewModel Details(int? id)
         {
@@ -75,7 +77,7 @@ namespace CourtDatabase2.Services
                 Payee = x.Payee,
             }).FirstOrDefault();
             return expense;
-        }//TODO
+        }
 
         public ExpenseEditViewModel Edit(int? id)
         {

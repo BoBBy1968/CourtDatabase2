@@ -6,3 +6,28 @@
 
 
 <h1>@ViewData["Title"]</h1>
+
+
+<p>
+    ИД: @Model.Id
+</p>
+<p>
+    Получател: @Model.Payee
+</p>
+<p>
+    Описание: @Model.ExpenceDescription
+</p>
+<p>
+    Стойност: @Model.ExpenceValue
+</p>
+<p>
+    Дата: @Model.ExpenceDate
+</p>
+<p>
+    Дело ИД: @Model.LawCaseId
+</p>
+
+<div>
+    <a class="btn btn-primary" asp-action="All">Обратно</a>
+    <a class="btn btn-danger" asp-action="DeleteConfirm" asp-route-id="@Model.Id">Изтрий Директно</a>
+</div>
