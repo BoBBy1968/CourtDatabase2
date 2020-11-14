@@ -1,8 +1,22 @@
-﻿
+﻿@model ExecutorsEditViewModel
 
 @{
-    ViewData["Title"] = "Детайли за съдебене изпълнител";
+    ViewData["Title"] = "Детайли за съдебен изпълнител";
 }
 
 <h1>@ViewData["Title"]</h1>
 
+
+<p>ИД: @Model.Id</p>
+<p>Служебен номер: @Model.Number</p>
+<p>Имена: @Model.Name</p>
+<p>Адрес: @Model.Address</p>
+<p>Регион: @Model.Region</p>
+<p>Телефон: @Model.Telephon</p>
+<p>Ел поща: @Model.Email</p>
+
+
+<p>
+    <a asp-action="All" class="btn btn-primary">Обратно</a>
+    <a asp-action="Edit" asp-route-Id="@Model.Id" class="btn btn-primary">Редактирай</a>
+</p>
