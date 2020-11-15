@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<PaymentsAllViewModel>
 
 @{
-    ViewData["Title"] = "All";
+    ViewData["Title"] = "Всички плащания";
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -47,7 +47,7 @@
                 <td>
                     <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Редактирай</a>
                     <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Детайли</a>
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Изтрий</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Към Изтрий</a>
                 </td>
             </tr>
         }

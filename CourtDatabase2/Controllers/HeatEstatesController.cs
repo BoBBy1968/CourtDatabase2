@@ -1,12 +1,11 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using CourtDatabase2.Data;
+using CourtDatabase2.Data.Models;
+using CourtDatabase2.Services.Contracts;
+using CourtDatabase2.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using CourtDatabase2.Data;
-using CourtDatabase2.Data.Models;
-using CourtDatabase2.ViewModels;
-using CourtDatabase2.Services;
-using CourtDatabase2.Services.Contracts;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace CourtDatabase2.Controllers
 {

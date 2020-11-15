@@ -15,47 +15,47 @@
             <div asp-validation-summary="All" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
+                <label asp-for="Date" class="control-label">Дата</label>
                 <input asp-for="Date" class="form-control" />
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DebitorId" class="control-label"></label>
+                <label asp-for="DebitorId" class="control-label">Длъжник</label>
                 <select asp-for="DebitorId" class="form-control" asp-items="debitors"></select>
                 <span asp-validation-for="DebitorId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AbNumber" class="control-label"></label>
+                <label asp-for="AbNumber" class="control-label">Абонатен номер</label>
                 <select asp-for="AbNumber" class="form-control" asp-items="@abNumbers"></select>
                 <span asp-validation-for="AbNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Value" class="control-label"></label>
+                <label asp-for="Value" class="control-label">Главница</label>
                 <input asp-for="Value" class="form-control" />
                 <span asp-validation-for="Value" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MoratoriumInterest" class="control-label"></label>
+                <label asp-for="MoratoriumInterest" class="control-label">Мораторна лихва</label>
                 <input asp-for="MoratoriumInterest" class="form-control" />
                 <span asp-validation-for="MoratoriumInterest" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LegalInterest" class="control-label"></label>
+                <label asp-for="LegalInterest" class="control-label">Законова лихва</label>
                 <input asp-for="LegalInterest" class="form-control" />
                 <span asp-validation-for="LegalInterest" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="InvoiceCount" class="control-label"></label>
+                <label asp-for="InvoiceCount" class="control-label">Брой фактури</label>
                 <input asp-for="InvoiceCount" class="form-control" />
                 <span asp-validation-for="InvoiceCount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PeriodFrom" class="control-label"></label>
+                <label asp-for="PeriodFrom" class="control-label">Период от</label>
                 <input asp-for="PeriodFrom" class="form-control" />
                 <span asp-validation-for="PeriodFrom" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PeriodTo" class="control-label"></label>
+                <label asp-for="PeriodTo" class="control-label">Период до</label>
                 <input asp-for="PeriodTo" class="form-control" />
                 <span asp-validation-for="PeriodTo" class="text-danger"></span>
             </div>

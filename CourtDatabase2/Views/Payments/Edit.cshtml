@@ -1,7 +1,7 @@
 ﻿@model PaymentsEditViewModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Редактирай плащане";
     var lawCases = this.Model.LawCases.Select(x => new SelectListItem(x.Value, x.Key));
 }
 
@@ -13,22 +13,22 @@
             <div asp-validation-summary="All" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
+                <label asp-for="Date" class="control-label">Дата</label>
                 <input asp-for="Date" class="form-control" />
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LawCaseId" class="control-label"></label>
+                <label asp-for="LawCaseId" class="control-label">Гражданско дело</label>
                 <select asp-for="LawCaseId" class="form-control" asp-items="@lawCases"></select>
                 <span asp-validation-for="LawCaseId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Value" class="control-label"></label>
+                <label asp-for="Value" class="control-label">Стойност</label>
                 <input asp-for="Value" class="form-control" />
                 <span asp-validation-for="Value" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PaymentSource" class="control-label"></label>
+                <label asp-for="PaymentSource" class="control-label">Начин на плащане</label>
                 <select asp-for="PaymentSource" class="form-control" asp-items="@Html.GetEnumSelectList<CourtDatabase2.Data.Models.Enumerations.PaymentSource>();"></select>
                 <span asp-validation-for="PaymentSource" class="text-danger"></span>
             </div>

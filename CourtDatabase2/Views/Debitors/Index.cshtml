@@ -7,7 +7,7 @@
 <h1>Длъжници</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Създай нов</a>
     <a asp-action="DeleteAll" class="btn btn-danger">ИЗТРИЙ ВСИЧКИ САМО ЗА ЦЕЛИТЕ НА СИЙДВАНЕТО</a>
 </p>
 <table class="table">
@@ -74,9 +74,9 @@
                 @Html.DisplayFor(modelItem => item.Representative)
             </td>*@
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Редактирай</a> |
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Детайли</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Към Изтрий</a>
             </td>
         </tr>
 }
