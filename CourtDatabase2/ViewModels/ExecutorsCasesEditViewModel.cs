@@ -15,6 +15,8 @@ namespace CourtDatabase2.ViewModels
         
         public LawCase LawCase { get; set; }
 
+        public Debitor Debitor { get; set; }
+
         [Range(0, 100_000)]
         public int? ExecutorCaseNumber { get; set; }
 

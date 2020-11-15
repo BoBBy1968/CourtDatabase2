@@ -9,16 +9,19 @@
 
 <ul>
     <li>
-        <div><span class="alert-warning">Дело ИД:</span> <span class="alert-info col-md-1 font-weight-bold">@Model.Id</span></div>
+        <div><span class="font-weight-lighter alert-warning">Дело ИД:</span> <span class="alert-info col-md-1 font-weight-bold">@Model.Id</span></div>
     </li>
     <li>
-        <div><span class="alert-warning">Съдебен изпълнител:</span> <span class="font-weight-bold alert-info col-md-1">@Model.Executor.Name</span></div>
+        <div><span class="font-weight-lighter alert-warning">Съдебен изпълнител:</span> <span class="font-weight-bold alert-info col-md-1">@Model.Executor.Name</span></div>
     </li>
     <li>
-        <div><span class="alert-warning">Изпълнително дело №:</span> <span class="font-weight-bold alert-info col-md-1">@Model.ExecutorCaseNumber/@Model.Year г.</span></div>
+        <div><span class="font-weight-lighter alert-warning">Изпълнително дело №:</span> <span class="font-weight-bold alert-info col-md-1">@Model.ExecutorCaseNumber/@Model.Year г.</span></div>
     </li>
     <li>
-        <div><span class="alert-warning">главница:</span> <span class="font-weight-bold alert-info col-md-1 ">@Model.LawCase.Value лв.</span></div>
+        <div><span class="font-weight-lighter alert-warning">главница:</span> <span class="font-weight-bold alert-info col-md-1 ">@Model.LawCase.Value лв.</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Длъжник:</span> <span class="font-weight-bold alert-info col-md-1 ">@Model.LawCase.Debitor.FirstName @Model.LawCase.Debitor.MiddleName @Model.LawCase.Debitor.LastName</span></div>
     </li>
 </ul>
 

@@ -1,4 +1,5 @@
 ﻿using CourtDatabase2.Data;
+using CourtDatabase2.Data.Models;
 using CourtDatabase2.Services.Contracts;
 using CourtDatabase2.ViewModels;
 using System.Collections.Generic;
@@ -28,6 +29,19 @@ namespace CourtDatabase2.Services
             }).ToList();
         }
 
+        public void Create(ExecutorsCasesCreateViewModel model)
+        {
+            var executorsCase = new ExecutorCase
+            {
+                LawCaseId = model.LawCaseId,
+                ExecutorId = model.ExecutorId,
+                ExecutorCaseNumber = model.ExecutorCaseNumber,
+                Year = model.Year,
+            };
+            this.dbContext.ExecutorCases.Add(executorsCase);
+            this.dbContext.SaveChanges();
+        }
+
         public ExecutorsCasesEditViewModel Details(int? id)
         {
             return this.dbContext.ExecutorCases.Where(x => x.Id == id)
@@ -40,7 +54,33 @@ namespace CourtDatabase2.Services
                     LawCaseId = e.LawCaseId,
                     Executor = e.Executor,
                     LawCase = e.LawCase,
+                    Debitor = e.LawCase.Debitor,
                 }).FirstOrDefault();
+        }
+
+        public void Delete(int? id)
+        {
+            var myCase = this.dbContext.ExecutorCases.Where(x => x.Id == id).FirstOrDefault();
+            this.dbContext.ExecutorCases.Remove(myCase);
+            this.dbContext.SaveChanges();
+        }
+
+        public IEnumerable<KeyValuePair<string, string>> GetAllLawCases()
+        {
+            return this.dbContext.LawCases.Select(l=> new 
+            {
+                l.Id,
+                Name = l.Id + " - " + l.Debitor.FirstName + " " + l.Debitor.LastName + " - " + l.Value + " лв." 
+            }).ToList().Select(x=> new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
+        }
+
+        public IEnumerable<KeyValuePair<string, string>> GetAllExecutors()
+        {
+            return this.dbContext.Executors.Select(e => new
+            {
+                Id = e.Id.ToString(),
+                Name = e.Name + " - " + e.Region + " - " + e.Number
+            }).ToList().Select(x => new KeyValuePair<string, string>(x.Id, x.Name));
         }
     }
 }
