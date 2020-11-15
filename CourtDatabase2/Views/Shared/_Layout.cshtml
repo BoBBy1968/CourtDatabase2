@@ -25,12 +25,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        @*<li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Debitors" asp-action="Index">Длъжници</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="CourtTown" asp-action="Index">Съдилища</a>
-                        </li>*@
                         <li class="nav-item dropdown mx-2">
                             <a class="nav-link text-dark" href="#" id="nav-inner-primary_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Дела</a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="nav-inner-primary_dropdown_1">
@@ -44,6 +38,7 @@
                                 <a class="dropdown-item" asp-controller="Payments" asp-action="All">Всички плащания</a>
                                 <a class="dropdown-item" asp-controller="Expenses" asp-action="All">Всички разноски</a>
                                 <a class="dropdown-item" asp-controller="Executors" asp-action="All">Съдебни изпълнители</a>
+                                <a class="dropdown-item" asp-controller="ExecutorsCases" asp-action="All">Изпълнителни дела</a>
                             </div>
                         </li>
                     </ul>

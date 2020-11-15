@@ -1,0 +1,25 @@
+﻿@model ExecutorsCasesEditViewModel
+
+@{
+    ViewData["Title"] = "Детайли по изпълнително дело";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+
+<ul>
+    <li>
+        <div><span class="alert-warning">Дело ИД:</span> <span class="alert-info col-md-1 font-weight-bold">@Model.Id</span></div>
+    </li>
+    <li>
+        <div><span class="alert-warning">Съдебен изпълнител:</span> <span class="font-weight-bold alert-info col-md-1">@Model.Executor.Name</span></div>
+    </li>
+    <li>
+        <div><span class="alert-warning">Изпълнително дело №:</span> <span class="font-weight-bold alert-info col-md-1">@Model.ExecutorCaseNumber/@Model.Year г.</span></div>
+    </li>
+    <li>
+        <div><span class="alert-warning">главница:</span> <span class="font-weight-bold alert-info col-md-1 ">@Model.LawCase.Value лв.</span></div>
+    </li>
+</ul>
+
+<a asp-action="All" class="btn btn-primary">Обратно</a>
