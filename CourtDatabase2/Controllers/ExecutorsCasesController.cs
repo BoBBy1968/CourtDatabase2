@@ -41,18 +41,28 @@ namespace CourtDatabase2.Controllers
             return this.RedirectToAction("All");
         }
 
-        public IActionResult Edit()
+        public IActionResult Edit(int? id)
         {
-            return this.View();
+            var viewModel = this.executorsCasesService.Details(id);
+            viewModel.Executors = this.executorsCasesService.GetAllExecutors();
+            viewModel.LawCases = this.executorsCasesService.GetAllLawCases();
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(ExecutorsCasesEditViewModel model)
+        {
+            this.executorsCasesService.Edit(model);
+            return this.RedirectToAction("All");
         }
 
         public IActionResult Details(int? id)
         {
             var viewModel = this.executorsCasesService.Details(id);
-            return this.View(viewModel);  
+            return this.View(viewModel);
         }
 
-        public IActionResult Delete(int? id)   
+        public IActionResult Delete(int? id)
         {
             var viewModel = this.executorsCasesService.Details(id);
             return this.View(viewModel);

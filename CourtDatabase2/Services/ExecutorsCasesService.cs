@@ -42,6 +42,20 @@ namespace CourtDatabase2.Services
             this.dbContext.SaveChanges();
         }
 
+        public void Edit(ExecutorsCasesEditViewModel model)
+        {
+            var executorCase = new ExecutorCase
+            {
+                Id = model.Id,
+                ExecutorId = model.ExecutorId,
+                LawCaseId = model.LawCaseId,
+                ExecutorCaseNumber = model.ExecutorCaseNumber,
+                Year = model.Year,
+            };
+            this.dbContext.Update(executorCase);
+            this.dbContext.SaveChanges();
+        }
+
         public ExecutorsCasesEditViewModel Details(int? id)
         {
             return this.dbContext.ExecutorCases.Where(x => x.Id == id)

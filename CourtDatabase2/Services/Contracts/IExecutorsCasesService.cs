@@ -16,5 +16,7 @@ namespace CourtDatabase2.Services.Contracts
         IEnumerable<KeyValuePair<string, string>> GetAllLawCases();
 
         IEnumerable<KeyValuePair<string, string>> GetAllExecutors();
+
+        void Edit(ExecutorsCasesEditViewModel model);
     }
 }

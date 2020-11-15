@@ -1,4 +1,5 @@
 ﻿using CourtDatabase2.Data.Models;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace CourtDatabase2.ViewModels
@@ -22,5 +23,8 @@ namespace CourtDatabase2.ViewModels
 
         [Range(2000, 2100)]
         public int? Year { get; set; }
+
+        public IEnumerable<KeyValuePair<string, string>> Executors { get; set; }
+        public IEnumerable<KeyValuePair<string, string>> LawCases { get; set; }
     }
 }
