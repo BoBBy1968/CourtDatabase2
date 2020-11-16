@@ -17,9 +17,9 @@ namespace CourtDatabase2.Services
             this.dbContext = dbContext;
         }
 
-        public IEnumerable<CourtTownEditViewModel> All()
+        public async Task<IEnumerable<CourtTownEditViewModel>> AllAsync()
         {
-            return this.dbContext
+            var task = Task < IEnumerable < CourtTownEditViewModel >>.Run(() => this.dbContext
                 .CourtTowns
                 .OrderByDescending(c => c.Id)
                 .Select(t => new CourtTownEditViewModel
@@ -27,7 +27,9 @@ namespace CourtDatabase2.Services
                     TownName = t.TownName,
                     Address = t.Address,
                     Id = t.Id,
-                }).ToList();
+                }).ToList());
+            await task;
+            return task.Result;
         }
 
         public async Task CreateAsync(string townName, string address)

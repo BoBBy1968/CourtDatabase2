@@ -17,14 +17,16 @@ namespace CourtDatabase2.Services
             this.dbContext = dbContext;
         }
 
-        public IEnumerable<ExecutorsAllViewModel> All()
+        public async Task<IEnumerable<ExecutorsAllViewModel>> AllAsync()
         {
-            return this.dbContext.Executors.Select(x => new ExecutorsAllViewModel
+            var task = Task < IEnumerable < ExecutorsAllViewModel >>.Run(() => this.dbContext.Executors.Select(x => new ExecutorsAllViewModel
             {
                 Id = x.Id,
                 Name = x.Name,
                 Address = x.Address,
-            }).ToList();
+            }).ToList());
+            await task;
+            return task.Result;
         }
 
         public async Task CreateAsync(ExecutorsCreateViewModel model)

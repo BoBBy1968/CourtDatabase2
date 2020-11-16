@@ -20,9 +20,9 @@ namespace CourtDatabase2.Controllers
             //
         }
 
-        public IActionResult All()
+        public async Task<IActionResult> All()
         {
-            var viewModel = this.lawCaseService.All();
+             var viewModel = await this.lawCaseService.AllAsync();
             return View(viewModel);
         }
 

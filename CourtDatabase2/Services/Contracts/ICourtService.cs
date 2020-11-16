@@ -7,7 +7,7 @@ namespace CourtDatabase2.Services.Contracts
 {
     public interface ICourtService
     {
-        IEnumerable<CourtAllViewModel> All();
+        Task<IEnumerable<CourtAllViewModel>> AllAsync();
 
         Task CreateAsync(string courtType, int courtTownId);
 

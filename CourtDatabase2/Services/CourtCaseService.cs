@@ -20,9 +20,9 @@ namespace CourtDatabase2.Services
             this.dbContext = dbContext;
         }
 
-        public IEnumerable<CourtCasesViewModel> All()
+        public async Task<IEnumerable<CourtCasesViewModel>> AllAsync()
         {
-            var courtCases = dbContext.CourtCases
+            var task = Task < IEnumerable < CourtCasesViewModel >>.Run(() => dbContext.CourtCases
                 .Include(c => c.Court).Include(c => c.LawCase)
                 .Select(x => new CourtCasesViewModel
                 {
@@ -35,8 +35,9 @@ namespace CourtDatabase2.Services
                     LawCaseId = x.LawCaseId,
                     CourtName = x.Court.CourtTown.TownName + " " + x.Court.CourtType.ToString(),
                 })
-                .ToList();
-            return courtCases;
+                .ToList());
+            await task;
+            return task.Result;
         }
 
         public IEnumerable<KeyValuePair<string, string>> AllCourts()

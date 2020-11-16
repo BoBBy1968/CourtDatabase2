@@ -24,7 +24,6 @@ namespace CourtDatabase2.Services
 
             dbContext.Add(heatEstate);
             await dbContext.SaveChangesAsync();
-            //return RedirectToAction(nameof(Index));
         }
     }
 }

@@ -20,9 +20,10 @@ namespace CourtDatabase2.Services
             this.dbContext = dbContext;
         }
 
-        public IEnumerable<PaymentsAllViewModel> All()
+        public async Task<IEnumerable<PaymentsAllViewModel>> AllAsync()
         {
-            return this.dbContext.Payments.Select(x => new PaymentsAllViewModel
+            var task = Task<IEnumerable<PaymentsAllViewModel>>.Run(() => this.dbContext.Payments
+            .Select(x => new PaymentsAllViewModel
             {
                 Id = x.Id,
                 Date = x.Date,
@@ -32,7 +33,9 @@ namespace CourtDatabase2.Services
                 LawCase = x.LawCase,
                 Contractor = x.LawCase.Debitor.FirstName + " " + x.LawCase.Debitor.LastName
                 + "- " + x.LawCase.Value + " лв. "
-            }).ToList();
+            }).ToList());
+            await task;
+            return task.Result;
         }
 
         public IEnumerable<KeyValuePair<string, string>> AllLawCasesId()

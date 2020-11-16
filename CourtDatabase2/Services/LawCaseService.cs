@@ -35,9 +35,11 @@ namespace CourtDatabase2.Services
             }).ToList().Select(d => new KeyValuePair<string, string>(d.Id, d.Name));
         }
 
-        public IEnumerable<LawCasesAllViewModel> All()
+        public async Task<IEnumerable<LawCasesAllViewModel>> AllAsync()
         {
-            var cases = this.dbContext.LawCases.Select(x => new LawCasesAllViewModel
+            var task = Task<IEnumerable<LawCasesAllViewModel>>.Run(() => this.dbContext
+            .LawCases
+            .Select(x => new LawCasesAllViewModel
             {
                 Date = x.Date,
                 Debitor = x.Debitor,
@@ -49,8 +51,9 @@ namespace CourtDatabase2.Services
                 PeriodFrom = x.PeriodFrom,
                 PeriodTo = x.PeriodTo,
                 Id = x.Id,
-            }).ToList();
-            return cases;
+            }).ToList());
+            await task;
+            return task.Result; ;
         }
 
         public async Task CreateAsync(LawCaseInputModel model)

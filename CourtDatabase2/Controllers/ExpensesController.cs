@@ -19,9 +19,9 @@ namespace CourtDatabase2.Controllers
             return this.RedirectToAction("All");
         }
 
-        public IActionResult All()
+        public async Task<IActionResult> All()
         {
-            var viewModel = this.expenseService.All();
+            var viewModel = await this.expenseService.AllAsync();
             return View(viewModel);
         }
 

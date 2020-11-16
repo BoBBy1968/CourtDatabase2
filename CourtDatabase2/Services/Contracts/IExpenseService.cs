@@ -6,7 +6,7 @@ namespace CourtDatabase2.Services.Contracts
 {
     public interface IExpenseService
     {
-        IEnumerable<ExpenseAllViewModel> All();
+        Task<IEnumerable<ExpenseAllViewModel>> AllAsync();
 
         Task CreateAsync(ExpenseInputViewModel model);
 

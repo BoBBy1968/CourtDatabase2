@@ -17,9 +17,10 @@ namespace CourtDatabase2.Services
             this.dbContext = dbContext;
         }
 
-        public IEnumerable<ExecutorsCasesAllViewModel> All()
+        public async Task<IEnumerable<ExecutorsCasesAllViewModel>> AllAsync()
         {
-            return this.dbContext.ExecutorCases.Select(e => new ExecutorsCasesAllViewModel
+            var task = Task < IEnumerable < ExecutorsCasesAllViewModel >>.Run(() => this.dbContext
+            .ExecutorCases.Select(e => new ExecutorsCasesAllViewModel
             {
                 Id = e.Id,
                 ExecutorCaseNumber = e.ExecutorCaseNumber,
@@ -27,7 +28,9 @@ namespace CourtDatabase2.Services
                 Executor = e.Executor,
                 LawCase = e.LawCase,
                 Debitor = e.LawCase.Debitor,
-            }).ToList();
+            }).ToList());
+            await task;
+            return task.Result;
         }
 
         public async Task CreateAsync(ExecutorsCasesCreateViewModel model)

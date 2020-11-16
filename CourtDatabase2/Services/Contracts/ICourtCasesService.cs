@@ -10,7 +10,7 @@ namespace CourtDatabase2.Services.Contracts
         IEnumerable<KeyValuePair<string, string>> AllCourts();
         Task CreateAsync(CourtCasesInputModel model);
 
-        IEnumerable<CourtCasesViewModel> All();
+        Task<IEnumerable<CourtCasesViewModel>> AllAsync();
 
         CourtCasesViewModel Details(int? id);
 

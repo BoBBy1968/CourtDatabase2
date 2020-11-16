@@ -6,7 +6,7 @@ namespace CourtDatabase2.Services.Contracts
 {
     public interface IPaymentsService
     {
-        IEnumerable<PaymentsAllViewModel> All();
+        Task<IEnumerable<PaymentsAllViewModel>> AllAsync();
 
         IEnumerable<KeyValuePair<string, string>> AllLawCasesId();
         Task CreateAsync(PaymentsInputViewModel model);

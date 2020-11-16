@@ -6,7 +6,7 @@ namespace CourtDatabase2.Services.Contracts
 {
     public interface IExecutorService
     {
-        IEnumerable<ExecutorsAllViewModel> All();
+        Task<IEnumerable<ExecutorsAllViewModel>> AllAsync();
 
         Task CreateAsync(ExecutorsCreateViewModel model);
 

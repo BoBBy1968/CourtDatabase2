@@ -25,9 +25,9 @@ namespace CourtDatabase2.Controllers
             return this.RedirectToAction("All");
         }
 
-        public IActionResult All()
+        public async Task<IActionResult> All()
         {
-            var viewModel = this.service.All();
+            var viewModel = await this.service.AllAsync();
             return this.View(viewModel);
         }
 
@@ -55,7 +55,7 @@ namespace CourtDatabase2.Controllers
 
             await this.service.CreateAsync(model.CourtType, model.CourtTownId);
             return this.RedirectToAction(nameof(All));
-            
+
         }
 
         public IActionResult Edit(int? id)
@@ -84,7 +84,7 @@ namespace CourtDatabase2.Controllers
         public IActionResult Edit(CourtEditViewModel model)
         {
             this.service.Edit(model.Id, model.CourtType, model.CourtTownId);
-            
+
             return this.RedirectToAction("All");
         }
 

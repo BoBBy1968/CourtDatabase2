@@ -21,18 +21,21 @@ namespace CourtDatabase2.Services
 
         //public CourtType EnumParse { get; private set; }
 
-        public IEnumerable<CourtAllViewModel> All()
+        public async Task<IEnumerable<CourtAllViewModel>> AllAsync()
         {
-            var courts = this.dbContext.Courts.Select(c => new CourtAllViewModel
+            var task = Task<IEnumerable<CourtAllViewModel>>.Run(() => this.dbContext
+            .Courts
+            .Select(c => new CourtAllViewModel
             {
                 CourtType = c.CourtType.ToString(),
                 TownName = c.CourtTown.TownName,
                 Address = c.CourtTown.Address,
                 Id = c.Id,
             })
-                .OrderByDescending(x => x.Id)
-                .ToList();
-            return courts;
+           .OrderByDescending(x => x.Id)
+           .ToList());
+            await task;
+            return task.Result;
         }
 
         public async Task CreateAsync(string courtType, int courtTownId)

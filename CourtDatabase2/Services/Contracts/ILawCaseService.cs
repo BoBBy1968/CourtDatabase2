@@ -8,7 +8,7 @@ namespace CourtDatabase2.Services.Contracts
     {
         Task CreateAsync(LawCaseInputModel model);
 
-        IEnumerable<LawCasesAllViewModel> All();
+        Task<IEnumerable<LawCasesAllViewModel>> AllAsync();
 
         IEnumerable<KeyValuePair<string, string>> AbNumbers();
         IEnumerable<KeyValuePair<string, string>> Debitors();

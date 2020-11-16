@@ -9,7 +9,7 @@ namespace CourtDatabase2.Services.Contracts
     {
         Task CreateAsync(string townName, string address);
 
-        IEnumerable<CourtTownEditViewModel> All();
+        Task<IEnumerable<CourtTownEditViewModel>> AllAsync();
 
         CourtTown Details(int? id);
 
