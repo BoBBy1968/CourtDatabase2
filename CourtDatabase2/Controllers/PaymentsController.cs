@@ -35,6 +35,7 @@ namespace CourtDatabase2.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(PaymentsInputViewModel model)
         {
             if (!ModelState.IsValid)
@@ -62,6 +63,7 @@ namespace CourtDatabase2.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Edit(PaymentsEditViewModel model)
         {
             if (!ModelState.IsValid)

@@ -25,6 +25,7 @@ namespace CourtDatabase2.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(CourtTownCreateViewModel model)
         {
             if (!this.ModelState.IsValid)
@@ -81,6 +82,7 @@ namespace CourtDatabase2.Controllers
         }
         
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Edit(CourtTownEditViewModel model)
         {
             if (!ModelState.IsValid)

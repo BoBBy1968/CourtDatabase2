@@ -38,6 +38,7 @@ namespace CourtDatabase2.Controllers
 
         //Post
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(LawCaseInputModel model)
         {
             if (!ModelState.IsValid)
@@ -103,6 +104,7 @@ namespace CourtDatabase2.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Edit(LawCaseViewModel model)
         {
 

@@ -83,6 +83,7 @@ namespace CourtDatabase2.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Edit(CourtEditViewModel model)
         {
             this.service.Edit(model.Id, model.CourtType, model.CourtTownId);
