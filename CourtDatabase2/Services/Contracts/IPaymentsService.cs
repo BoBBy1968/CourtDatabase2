@@ -1,5 +1,6 @@
 ﻿using CourtDatabase2.ViewModels;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CourtDatabase2.Services.Contracts
 {
@@ -8,7 +9,7 @@ namespace CourtDatabase2.Services.Contracts
         IEnumerable<PaymentsAllViewModel> All();
 
         IEnumerable<KeyValuePair<string, string>> AllLawCasesId();
-        void Create(PaymentsInputViewModel model);
+        Task CreateAsync(PaymentsInputViewModel model);
         void Delete(int? id);
         PaymentsEditViewModel Details(int? id);
         void Edit(PaymentsEditViewModel model);

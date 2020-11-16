@@ -1,13 +1,14 @@
 ﻿using CourtDatabase2.Data.Models;
 using CourtDatabase2.ViewModels;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CourtDatabase2.Services.Contracts
 {
     public interface ICourtCasesService
     {
         IEnumerable<KeyValuePair<string, string>> AllCourts();
-        void Create(CourtCasesInputModel model);
+        Task CreateAsync(CourtCasesInputModel model);
 
         IEnumerable<CourtCasesViewModel> All();
 

@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CourtDatabase2.Services
 {
@@ -54,7 +55,7 @@ namespace CourtDatabase2.Services
             return cor;
         }
 
-        public void Create(CourtCasesInputModel model)
+        public async Task CreateAsync(CourtCasesInputModel model)
         {
             var courtCase = new CourtCase
             {
@@ -65,8 +66,8 @@ namespace CourtDatabase2.Services
                 CourtChamber = model.CourtChamber,
                 LawCaseId = model.LawCaseId,
             };
-            this.dbContext.CourtCases.Add(courtCase);
-            this.dbContext.SaveChanges();
+            await this.dbContext.CourtCases.AddAsync(courtCase);
+            await this.dbContext.SaveChangesAsync();
         }
 
         public CourtCasesViewModel Details(int? id)

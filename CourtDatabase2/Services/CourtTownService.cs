@@ -4,6 +4,7 @@ using CourtDatabase2.Services.Contracts;
 using CourtDatabase2.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CourtDatabase2.Services
 {
@@ -29,15 +30,15 @@ namespace CourtDatabase2.Services
                 }).ToList();
         }
 
-        public void Create(string townName, string address)
+        public async Task CreateAsync(string townName, string address)
         {
             var courtTown = new CourtTown
             {
                 TownName = townName,
                 Address = address,
             };
-            this.dbContext.CourtTowns.Add(courtTown);
-            this.dbContext.SaveChanges();
+            await this.dbContext.CourtTowns.AddAsync(courtTown);
+            await this.dbContext.SaveChangesAsync();
         }
 
         public void Delete(int? id)

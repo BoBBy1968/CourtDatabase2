@@ -1,12 +1,13 @@
 ﻿using CourtDatabase2.Data.Models;
 using CourtDatabase2.ViewModels;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CourtDatabase2.Services.Contracts
 {
     public interface ICourtTownService
     {
-        void Create(string townName, string address);
+        Task CreateAsync(string townName, string address);
 
         IEnumerable<CourtTownEditViewModel> All();
 

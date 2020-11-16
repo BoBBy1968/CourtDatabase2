@@ -7,6 +7,7 @@ using CourtDatabase2.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CourtDatabase2.Services
 {
@@ -44,7 +45,7 @@ namespace CourtDatabase2.Services
             }).ToList().Select(d => new KeyValuePair<string, string>(d.Id, d.Text));
         }
 
-        public void Create(PaymentsInputViewModel model)
+        public async Task CreateAsync(PaymentsInputViewModel model)
         {
             var payment = new Payment
             {
@@ -53,8 +54,8 @@ namespace CourtDatabase2.Services
                 PaymentSource = Enum.Parse<PaymentSource>(model.PaymentSource, true),
                 Value = model.Value,
             };
-            this.dbContext.Payments.Add(payment);
-            this.dbContext.SaveChanges();
+            await this.dbContext.Payments.AddAsync(payment);
+            await this.dbContext.SaveChangesAsync();
         }
 
         public void Edit(PaymentsEditViewModel model)

@@ -4,6 +4,7 @@ using CourtDatabase2.Services.Contracts;
 using CourtDatabase2.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CourtDatabase2.Services
 {
@@ -26,7 +27,7 @@ namespace CourtDatabase2.Services
             }).ToList();
         }
 
-        public void Create(ExecutorsCreateViewModel model)
+        public async Task CreateAsync(ExecutorsCreateViewModel model)
         {
             var executor = new Executor
             {
@@ -37,8 +38,8 @@ namespace CourtDatabase2.Services
                  Number = model.Number,
                  Region = model.Region,
             };
-            this.dbContext.Executors.Add(executor);
-            this.dbContext.SaveChanges();
+            await this.dbContext.Executors.AddAsync(executor);
+            await this.dbContext.SaveChangesAsync();
         }
 
         public ExecutorsEditViewModel Details(int? id)

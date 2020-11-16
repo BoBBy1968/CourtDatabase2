@@ -6,6 +6,7 @@ using CourtDatabase2.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CourtDatabase2.Services
 {
@@ -34,15 +35,15 @@ namespace CourtDatabase2.Services
             return courts;
         }
 
-        public void Create(string courtType, int courtTownId)
+        public async Task CreateAsync(string courtType, int courtTownId)
         {
             var court = new Court
             {
                 CourtType = Enum.Parse<CourtType>(courtType, true),
                 CourtTownId = courtTownId,
             };
-            this.dbContext.Courts.Add(court);
-            this.dbContext.SaveChanges();
+            await this.dbContext.Courts.AddAsync(court);
+            await this.dbContext.SaveChangesAsync();
         }
 
         public void Edit(int id, string courtType, int courtTownId)

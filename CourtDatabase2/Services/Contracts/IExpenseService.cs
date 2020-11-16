@@ -1,5 +1,6 @@
 ﻿using CourtDatabase2.ViewModels;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CourtDatabase2.Services.Contracts
 {
@@ -7,7 +8,7 @@ namespace CourtDatabase2.Services.Contracts
     {
         IEnumerable<ExpenseAllViewModel> All();
 
-        void Create(ExpenseInputViewModel model);
+        Task CreateAsync(ExpenseInputViewModel model);
 
         ExpenseEditViewModel Edit(int? id);
 

@@ -4,6 +4,7 @@ using CourtDatabase2.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CourtDatabase2.Controllers
 {
@@ -64,11 +65,11 @@ namespace CourtDatabase2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(CourtCasesInputModel model)
+        public async Task<IActionResult> Create(CourtCasesInputModel model)
         {
             if (ModelState.IsValid)
             {
-                this.courtCasesService.Create(model);
+                await this.courtCasesService.CreateAsync(model);
                 return RedirectToAction(nameof(Index));
             }
             var courts = this.dbContext.Courts.Select(x => new

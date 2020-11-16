@@ -4,6 +4,7 @@ using CourtDatabase2.Services.Contracts;
 using CourtDatabase2.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CourtDatabase2.Services
 {
@@ -39,7 +40,7 @@ namespace CourtDatabase2.Services
             }).ToList().Select(x => new KeyValuePair<string, string>(x.Id, x.Text));
         }
 
-        public void Create(ExpenseInputViewModel model)
+        public async Task CreateAsync(ExpenseInputViewModel model)
         {
             var expense = new Expense
             {
@@ -49,8 +50,8 @@ namespace CourtDatabase2.Services
                 ExpenceValue = model.ExpenceValue,
                 LawCaseId = model.LawCaseId,
             };
-            this.dbContext.Expenses.Add(expense);
-            this.dbContext.SaveChanges();
+            await this.dbContext.Expenses.AddAsync(expense);
+            await this.dbContext.SaveChangesAsync();
         }
 
         public ExpenseEditViewModel Delete(int? id)

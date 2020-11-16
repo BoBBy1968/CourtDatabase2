@@ -2,6 +2,7 @@
 using CourtDatabase2.Services.Contracts;
 using CourtDatabase2.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace CourtDatabase2.Controllers
 {
@@ -32,13 +33,13 @@ namespace CourtDatabase2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(ExecutorsCreateViewModel model)
+        public async Task<IActionResult> Create(ExecutorsCreateViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return this.View(model);
             }
-            this.executorService.Create(model);
+            await this.executorService.CreateAsync(model);
             return this.RedirectToAction("All");
         }
 

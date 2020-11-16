@@ -4,6 +4,7 @@ using CourtDatabase2.Services.Contracts;
 using CourtDatabase2.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CourtDatabase2.Services
 {
@@ -52,7 +53,7 @@ namespace CourtDatabase2.Services
             return cases;
         }
 
-        public void Create(LawCaseInputModel model)
+        public async Task CreateAsync(LawCaseInputModel model)
         {
             var lawCase = new LawCase
             {
@@ -67,8 +68,8 @@ namespace CourtDatabase2.Services
                 InvoiceCount = model.InvoiceCount,
 
             };
-            this.dbContext.LawCases.Add(lawCase);
-            this.dbContext.SaveChanges();
+            await this.dbContext.LawCases.AddAsync(lawCase);
+            await this.dbContext.SaveChangesAsync();
         }
 
         public LawCaseViewModel Details(int? id)

@@ -46,14 +46,14 @@ namespace CourtDatabase2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(CourtCreateViewModel model)
+        public async Task<IActionResult> Create(CourtCreateViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return this.View(model);
             }
 
-            this.service.Create(model.CourtType, model.CourtTownId);
+            await this.service.CreateAsync(model.CourtType, model.CourtTownId);
             return this.RedirectToAction(nameof(All));
             
         }
