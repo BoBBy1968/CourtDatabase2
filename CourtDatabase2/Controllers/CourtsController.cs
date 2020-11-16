@@ -1,5 +1,4 @@
 ﻿using CourtDatabase2.Data;
-using CourtDatabase2.Services;
 using CourtDatabase2.Services.Contracts;
 using CourtDatabase2.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -62,16 +61,21 @@ namespace CourtDatabase2.Controllers
             
         }
 
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int? id)
         {
-            //ViewData["CourtTownId"] = new SelectList(_context.CourtTowns, "Id", "Address");
+            if (id == null)
+            {
+                return NotFound();
+            }
             var towns = this._context.CourtTowns.Select(x => new
             {
                 x.Id,
                 TownName = x.TownName + ", " + x.Address,
             });
-            //ViewData["CourtTownId"] = new SelectList(_context.CourtTowns, "Id", "Address");
-            //ViewData["CourtTownId"] = new SelectList(_context.CourtTowns, "Id", "TownName");
+            if (towns == null)
+            {
+                return NotFound();
+            }
             ViewData["CourtTownId"] = new SelectList(towns, "Id", "TownName");
             var courtViewModel = this.service.Edit(id);
             return this.View(courtViewModel);
@@ -127,8 +131,12 @@ namespace CourtDatabase2.Controllers
         // POST: Courts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
             var court = await _context.Courts.FindAsync(id);
             _context.Courts.Remove(court);
             await _context.SaveChangesAsync();

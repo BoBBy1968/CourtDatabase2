@@ -42,27 +42,51 @@ namespace CourtDatabase2.Controllers
             return View(viewModel);
         }
 
-        public IActionResult Details(int id)
+        public IActionResult Details(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
             var viewModel = this.service.Details(id);
+            if (viewModel == null)
+            {
+                return NotFound();
+            }
             return this.View(viewModel);
         }
 
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
             this.service.Delete(id);
             return RedirectToAction("all");
         }
 
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
             var viewModel = this.service.Edit(id);
+            if (viewModel == null)
+            {
+                return NotFound();
+            }
             return this.View(viewModel);
         }
         
         [HttpPost]
         public IActionResult Edit(CourtTownEditViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return this.View(model);
+            }
             this.service.Edit(model.TownName, model.Address, model.Id);
             return this.RedirectToAction("All");
         }

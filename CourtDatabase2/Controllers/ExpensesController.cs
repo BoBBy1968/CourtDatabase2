@@ -36,13 +36,25 @@ namespace CourtDatabase2.Controllers
         [HttpPost]
         public IActionResult Create(ExpenseInputViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return this.View(model);
+            }
             this.expenseService.Create(model);
             return this.RedirectToAction("All");
         }
 
         public IActionResult Edit(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
             var viewModel = this.expenseService.Edit(id);
+            if (viewModel == null)
+            {
+                return NotFound();
+            }
             viewModel.LawCases = this.expenseService.GetAllLawCases();
             return View(viewModel);
         }
@@ -50,24 +62,48 @@ namespace CourtDatabase2.Controllers
         [HttpPost]
         public IActionResult Edit(ExpenseEditViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return this.View(model);
+            }
             this.expenseService.Edit(model);
             return this.RedirectToAction("All");
         }
 
         public IActionResult Details(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
             var viewModel = this.expenseService.Details(id);
+            if (viewModel == null)
+            {
+                return NotFound();
+            }
             return View(viewModel);
         }
 
         public IActionResult Delete(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
             var viewModel = this.expenseService.Delete(id);
+            if (viewModel == null)
+            {
+                return NotFound();
+            }
             return View(viewModel);
         }
 
         public IActionResult DeleteConfirm(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
             this.expenseService.DeleteConfirm(id);
             return RedirectToAction("All");
         }

@@ -40,20 +40,20 @@ namespace CourtDatabase2.Services
             this.dbContext.SaveChanges();
         }
 
-        public void Delete(int id)
+        public void Delete(int? id)
         {
             var courtTown = this.dbContext.CourtTowns.FirstOrDefault(x => x.Id == id);
             this.dbContext.Remove(courtTown);
             this.dbContext.SaveChanges();
         }
 
-        public CourtTown Details(int id)
+        public CourtTown Details(int? id)
         {
             var result = this.dbContext.CourtTowns.FirstOrDefault(x => x.Id == id);
             return result;
         }
 
-        public CourtTown Edit(int id)
+        public CourtTown Edit(int? id)
             => this.dbContext.CourtTowns.FirstOrDefault(t => t.Id == id);
 
         public void Edit(string townName, string address, int id)

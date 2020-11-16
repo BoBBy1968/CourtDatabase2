@@ -109,21 +109,13 @@ namespace CourtDatabase2.Controllers
         }
 
         // POST: CourtCases/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public async Task<IActionResult> Edit(int id, [Bind("Id,CourtId,LawCaseId,CaseNumber,CaseYear,CourtChamber,CaseType")] CourtCase courtCase)
         public IActionResult Edit(CourtCasesViewModel model)
         {
-            //if (id != courtCase.Id)
-            //{
-            //    return NotFound();
-            //}
-
             if (ModelState.IsValid)
             {
-                
                 this.courtCasesService.Edit(model);
                 return RedirectToAction(nameof(Index));
             }
@@ -157,8 +149,12 @@ namespace CourtDatabase2.Controllers
         // POST: CourtCases/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
             this.courtCasesService.DeletePost(id);
             //dbContext.CourtCases.Remove(courtCase);
             //await dbContext.SaveChangesAsync();

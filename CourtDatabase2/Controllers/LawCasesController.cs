@@ -55,23 +55,47 @@ namespace CourtDatabase2.Controllers
 
         public IActionResult Details(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
             var viewModel = this.lawCaseService.Details(id);
+            if (viewModel == null)
+            {
+                return NotFound();
+            }
             return this.View(viewModel);
         }
 
         public IActionResult Delete(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
             var viewModel = this.lawCaseService.Details(id);
+            if (viewModel == null)
+            {
+                return NotFound();
+            }
             return this.View(viewModel);
         }
         public IActionResult DeleteConfirm(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
             this.lawCaseService.Delete(id);
             return this.RedirectToAction("All");
         }
 
         public IActionResult Edit(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
             var viewModel = this.lawCaseService.Edit(id);
             viewModel.AbNumbers = this.lawCaseService.AbNumbers();
             viewModel.Debitors = this.lawCaseService.Debitors();
@@ -81,6 +105,11 @@ namespace CourtDatabase2.Controllers
         [HttpPost]
         public IActionResult Edit(LawCaseViewModel model)
         {
+
+            if (!ModelState.IsValid)
+            {
+                return this.View(model);
+            }
             this.lawCaseService.Edit(model);
             return this.RedirectToAction("All");
         }

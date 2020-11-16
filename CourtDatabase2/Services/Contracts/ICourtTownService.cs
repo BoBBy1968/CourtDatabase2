@@ -10,11 +10,11 @@ namespace CourtDatabase2.Services.Contracts
 
         IEnumerable<CourtTownEditViewModel> All();
 
-        CourtTown Details(int id);
+        CourtTown Details(int? id);
 
-        void Delete(int id);
+        void Delete(int? id);
         
-        CourtTown Edit(int id);
+        CourtTown Edit(int? id);
 
         void Edit(string townName, string address, int id);
     }

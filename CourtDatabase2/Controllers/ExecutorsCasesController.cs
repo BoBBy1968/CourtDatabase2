@@ -37,13 +37,25 @@ namespace CourtDatabase2.Controllers
         [HttpPost]
         public IActionResult Create(ExecutorsCasesCreateViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return this.View(model);
+            }
             this.executorsCasesService.Create(model);
             return this.RedirectToAction("All");
         }
 
         public IActionResult Edit(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
             var viewModel = this.executorsCasesService.Details(id);
+            if (viewModel == null)
+            {
+                return NotFound();
+            }
             viewModel.Executors = this.executorsCasesService.GetAllExecutors();
             viewModel.LawCases = this.executorsCasesService.GetAllLawCases();
             return this.View(viewModel);
@@ -52,24 +64,48 @@ namespace CourtDatabase2.Controllers
         [HttpPost]
         public IActionResult Edit(ExecutorsCasesEditViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return this.View(model);
+            }
             this.executorsCasesService.Edit(model);
             return this.RedirectToAction("All");
         }
 
         public IActionResult Details(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
             var viewModel = this.executorsCasesService.Details(id);
+            if (viewModel == null)
+            {
+                return NotFound();
+            }
             return this.View(viewModel);
         }
 
         public IActionResult Delete(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
             var viewModel = this.executorsCasesService.Details(id);
+            if (viewModel == null)
+            {
+                return NotFound();
+            }
             return this.View(viewModel);
         }
 
         public IActionResult DeleteConfirm(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
             this.executorsCasesService.Delete(id);
             return this.RedirectToAction("All");
         }

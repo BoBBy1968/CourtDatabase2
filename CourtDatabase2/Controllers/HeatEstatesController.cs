@@ -51,8 +51,6 @@ namespace CourtDatabase2.Controllers
         }
 
         // POST: HeatEstates/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public async Task<IActionResult> Create([Bind("AbNumber,Address")] HeatEstate heatEstate)
@@ -141,6 +139,10 @@ namespace CourtDatabase2.Controllers
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var heatEstate = await dbContext.HeatEstates.FindAsync(id);
+            if (heatEstate == null)
+            {
+                return NotFound();
+            }
             dbContext.HeatEstates.Remove(heatEstate);
             await dbContext.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
