@@ -18,7 +18,6 @@ namespace CourtDatabase2.Controllers
             this.courtCasesService = courtCasesService;
         }
 
-        // GET: CourtCases
         public IActionResult Index()
         {
             return this.RedirectToAction("All");
@@ -30,7 +29,6 @@ namespace CourtDatabase2.Controllers
             return this.View(viewModel);
         }
 
-        // GET: CourtCases/Details/5
         public IActionResult Details(int? id)
         {
             if (id == null)
@@ -52,7 +50,6 @@ namespace CourtDatabase2.Controllers
             return View(courtCase);
         }
 
-        // GET: CourtCases/Create
         public IActionResult Create()
         {
             var courts = this.dbContext.Courts.Select(x => new
@@ -65,7 +62,6 @@ namespace CourtDatabase2.Controllers
             return View();
         }
 
-        // POST: CourtCases/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(CourtCasesInputModel model)
@@ -85,7 +81,6 @@ namespace CourtDatabase2.Controllers
             return View(model);
         }
 
-        // GET: CourtCases/Edit/5
         public IActionResult Edit(int? id)
         {
             if (id == null)
@@ -108,10 +103,8 @@ namespace CourtDatabase2.Controllers
             return View(courtCase);
         }
 
-        // POST: CourtCases/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(int id, [Bind("Id,CourtId,LawCaseId,CaseNumber,CaseYear,CourtChamber,CaseType")] CourtCase courtCase)
         public IActionResult Edit(CourtCasesViewModel model)
         {
             if (ModelState.IsValid)
@@ -129,7 +122,6 @@ namespace CourtDatabase2.Controllers
             return View(model);
         }
 
-        // GET: CourtCases/Delete/5
         public IActionResult Delete(int? id)
         {
             if (id == null)
@@ -146,7 +138,6 @@ namespace CourtDatabase2.Controllers
             return View(courtCase);
         }
 
-        // POST: CourtCases/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int? id)

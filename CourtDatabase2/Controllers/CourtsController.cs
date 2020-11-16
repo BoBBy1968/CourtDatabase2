@@ -20,7 +20,6 @@ namespace CourtDatabase2.Controllers
             this.service = service;
         }
 
-        // GET: Courts
         public IActionResult Index()
         {
             return this.RedirectToAction("All");
@@ -32,7 +31,6 @@ namespace CourtDatabase2.Controllers
             return this.View(viewModel);
         }
 
-        // GET: Courts/Create
         public IActionResult Create()
         {
             var towns = this._context.CourtTowns.Select(x => new
@@ -46,7 +44,6 @@ namespace CourtDatabase2.Controllers
             return View();
         }
 
-        // POST: Courts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(CourtCreateViewModel model)
@@ -91,7 +88,6 @@ namespace CourtDatabase2.Controllers
             return this.RedirectToAction("All");
         }
 
-        //GET: Courts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -110,7 +106,6 @@ namespace CourtDatabase2.Controllers
             return View(court);
         }
 
-        // GET: Courts/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -129,7 +124,6 @@ namespace CourtDatabase2.Controllers
             return View(court);
         }
 
-        // POST: Courts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int? id)

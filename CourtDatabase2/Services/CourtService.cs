@@ -57,7 +57,7 @@ namespace CourtDatabase2.Services
             this.dbContext.SaveChanges();
         }
 
-        public CourtEditViewModel Edit(int id)
+        public CourtEditViewModel Edit(int? id)
         {
             return this.dbContext.Courts.Where(x => x.Id == id).Select(x => new CourtEditViewModel
             {

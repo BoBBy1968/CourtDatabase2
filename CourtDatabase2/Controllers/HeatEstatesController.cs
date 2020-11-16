@@ -20,13 +20,11 @@ namespace CourtDatabase2.Controllers
             this.heatEstateService = heatEstateService;
         }
 
-        // GET: HeatEstates
         public async Task<IActionResult> Index()
         {
             return View(await dbContext.HeatEstates.ToListAsync());
         }
 
-        // GET: HeatEstates/Details/5
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -44,16 +42,13 @@ namespace CourtDatabase2.Controllers
             return View(heatEstate);
         }
 
-        // GET: HeatEstates/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: HeatEstates/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("AbNumber,Address")] HeatEstate heatEstate)
         public async Task<IActionResult> Create(HeatEstateInputModel model)
         {
             if (ModelState.IsValid)
@@ -64,7 +59,6 @@ namespace CourtDatabase2.Controllers
             return View(model);
         }
 
-        // GET: HeatEstates/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -80,7 +74,6 @@ namespace CourtDatabase2.Controllers
             return View(heatEstate);
         }
 
-        // POST: HeatEstates/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("AbNumber,Address")] HeatEstate heatEstate)
@@ -113,7 +106,6 @@ namespace CourtDatabase2.Controllers
             return View(heatEstate);
         }
 
-        // GET: HeatEstates/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -131,7 +123,6 @@ namespace CourtDatabase2.Controllers
             return View(heatEstate);
         }
 
-        // POST: HeatEstates/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)

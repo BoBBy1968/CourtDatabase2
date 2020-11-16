@@ -19,14 +19,12 @@ namespace CourtDatabase2.Controllers
         }
 
         [Authorize]
-        // GET: Debitors
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = dbContext.Debitors.Include(d => d.HeatEstate);
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Debitors/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -45,16 +43,12 @@ namespace CourtDatabase2.Controllers
             return View(debitor);
         }
 
-        // GET: Debitors/Create
         public IActionResult Create()
         {
             ViewData["AbNumber"] = new SelectList(dbContext.HeatEstates, "AbNumber", "AbNumber");
             return View();
         }
 
-        // POST: Debitors/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,FirstName,MiddleName,LastName,EGN,AbNumber,AddressToContact,Phone,Email,Representative")] Debitor debitor)
@@ -69,7 +63,6 @@ namespace CourtDatabase2.Controllers
             return View(debitor);
         }
 
-        // GET: Debitors/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,7 +79,6 @@ namespace CourtDatabase2.Controllers
             return View(debitor);
         }
 
-        // POST: Debitors/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,MiddleName,LastName,EGN,AbNumber,AddressToContact,Phone,Email,Representative")] Debitor debitor)
@@ -120,7 +112,6 @@ namespace CourtDatabase2.Controllers
             return View(debitor);
         }
 
-        // GET: Debitors/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -139,7 +130,6 @@ namespace CourtDatabase2.Controllers
             return View(debitor);
         }
 
-        // POST: Debitors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int? id)

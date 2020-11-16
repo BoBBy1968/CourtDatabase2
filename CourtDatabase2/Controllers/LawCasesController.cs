@@ -25,7 +25,6 @@ namespace CourtDatabase2.Controllers
             return View(viewModel);
         }
 
-        //Get
         public IActionResult Create()
         {
             var viewModel = new LawCaseInputModel
@@ -36,7 +35,6 @@ namespace CourtDatabase2.Controllers
             return this.View(viewModel);
         }
 
-        //Post
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(LawCaseInputModel model)

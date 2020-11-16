@@ -16,21 +16,17 @@ namespace CourtDatabase2.Controllers
         }
 
 
-        // GET: LegalActionsController
         public ActionResult Index() => RedirectToAction("All");
 
 
-        // GET: LegalActionsController/All
         public ActionResult All()
         {
             var viewModel = this.service.All();
             return View(viewModel);
         }
 
-        // GET: LegalActionsController/Create
         public ActionResult Create() => View();
 
-        // POST: LegalActionsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(LegalActionViewModel model)
@@ -39,10 +35,8 @@ namespace CourtDatabase2.Controllers
             return this.RedirectToAction("All");
         }
 
-        // GET: LegalActionsController/Edit/5
         public ActionResult Edit(int id) => View();
 
-        // POST: LegalActionsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -57,10 +51,8 @@ namespace CourtDatabase2.Controllers
             }
         }
 
-        // GET: LegalActionsController/Delete/5
         public ActionResult Delete(int id) => View();
 
-        // POST: LegalActionsController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
