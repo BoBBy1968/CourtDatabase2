@@ -22,7 +22,7 @@ namespace CourtDatabase2.Services
                 Address = address,
             };
 
-            dbContext.Add(heatEstate);
+            await dbContext.AddAsync(heatEstate);
             await dbContext.SaveChangesAsync();
         }
     }

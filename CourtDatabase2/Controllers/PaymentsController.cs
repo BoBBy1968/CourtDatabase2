@@ -48,13 +48,13 @@ namespace CourtDatabase2.Controllers
             return this.RedirectToAction("All");
         }
 
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            var viewModel = this.paymentsService.ToEdit(id);
+            var viewModel = await this.paymentsService.EditAsync(id);
             if (viewModel == null)
             {
                 return NotFound();
@@ -65,23 +65,23 @@ namespace CourtDatabase2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(PaymentsEditViewModel model)
+        public async Task<IActionResult> Edit(PaymentsEditViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return this.View(model);
             }
-            this.paymentsService.Edit(model);
+            await this.paymentsService.EditAsync(model);
             return this.RedirectToAction("All");
         }
 
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            var viewModel = this.paymentsService.Details(id);
+            var viewModel = await this.paymentsService.DetailsAsync(id);
             if (viewModel == null)
             {
                 return NotFound();
@@ -89,13 +89,13 @@ namespace CourtDatabase2.Controllers
             return this.View(viewModel);
         }
 
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            var viewModel = this.paymentsService.Details(id);
+            var viewModel = await this.paymentsService.DetailsAsync(id);
             if (viewModel == null)
             {
                 return NotFound();
@@ -103,13 +103,13 @@ namespace CourtDatabase2.Controllers
             return this.View(viewModel);
         }
         
-        public IActionResult DeleteConfirm(int? id)
+        public async Task<IActionResult> DeleteConfirm(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            this.paymentsService.Delete(id);
+            await this.paymentsService.DeleteAsync(id);
             return this.RedirectToAction("All");
         }
     }

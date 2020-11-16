@@ -9,10 +9,15 @@ namespace CourtDatabase2.Services.Contracts
         Task<IEnumerable<PaymentsAllViewModel>> AllAsync();
 
         IEnumerable<KeyValuePair<string, string>> AllLawCasesId();
+
         Task CreateAsync(PaymentsInputViewModel model);
-        void Delete(int? id);
-        PaymentsEditViewModel Details(int? id);
-        void Edit(PaymentsEditViewModel model);
-        PaymentsEditViewModel ToEdit(int? id);
+
+        Task DeleteAsync(int? id);
+
+        Task<PaymentsEditViewModel> DetailsAsync(int? id);
+
+        Task EditAsync(PaymentsEditViewModel model);
+
+        Task<PaymentsEditViewModel> EditAsync(int? id);
     }
 }

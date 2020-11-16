@@ -3,7 +3,7 @@ using CourtDatabase2.Data.Models;
 using CourtDatabase2.Data.Models.Enumerations;
 using CourtDatabase2.Services.Contracts;
 using CourtDatabase2.ViewModels;
-
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +32,7 @@ namespace CourtDatabase2.Services
                 LawCaseId = x.LawCaseId,
                 LawCase = x.LawCase,
                 Contractor = x.LawCase.Debitor.FirstName + " " + x.LawCase.Debitor.LastName
-                + "- " + x.LawCase.Value + " лв. "
+                + " - " + x.LawCase.Value + " лв. "
             }).ToList());
             await task;
             return task.Result;
@@ -47,7 +47,7 @@ namespace CourtDatabase2.Services
                 + " - главница " + x.Value + " лв.",
             }).ToList().Select(d => new KeyValuePair<string, string>(d.Id, d.Text));
         }
-
+         
         public async Task CreateAsync(PaymentsInputViewModel model)
         {
             var payment = new Payment
@@ -61,7 +61,7 @@ namespace CourtDatabase2.Services
             await this.dbContext.SaveChangesAsync();
         }
 
-        public void Edit(PaymentsEditViewModel model)
+        public async Task EditAsync(PaymentsEditViewModel model)
         {
             var payment = new Payment
             {
@@ -72,39 +72,39 @@ namespace CourtDatabase2.Services
                 Value = model.Value,
             };
             this.dbContext.Update(payment);
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
         }
 
-        public PaymentsEditViewModel ToEdit(int? id)
+        public async Task<PaymentsEditViewModel> EditAsync(int? id)
         {
-            var payment = this.dbContext.Payments.Where(x => x.Id == id).Select(x => new PaymentsEditViewModel
+            var payment =  await this.dbContext.Payments.Where(x => x.Id == id).Select(x => new PaymentsEditViewModel
             {
                 Id = x.Id,
                 Date = x.Date,
                 LawCaseId = x.LawCaseId,
                 PaymentSource = x.PaymentSource.ToString(),
                 Value = x.Value,
-            }).FirstOrDefault();
+            }).FirstOrDefaultAsync();
             return payment;
         }
 
-        public PaymentsEditViewModel Details(int? id)
+        public async Task<PaymentsEditViewModel> DetailsAsync(int? id)
         {
-            return this.dbContext.Payments.Where(x => x.Id == id).Select(x => new PaymentsEditViewModel
+            return await this.dbContext.Payments.Where(x => x.Id == id).Select(x => new PaymentsEditViewModel
             {
                 Id = x.Id,
                 Date = x.Date,
                 LawCaseId = x.LawCaseId,
                 PaymentSource = x.PaymentSource.ToString(),
                 Value = x.Value,
-            }).FirstOrDefault();
+            }).FirstOrDefaultAsync();
         }
 
-        public void Delete(int? id)
+        public async Task DeleteAsync(int? id)
         {
-            var payment = this.dbContext.Payments.Where(x => x.Id == id).FirstOrDefault();
+            var payment = await this.dbContext.Payments.Where(x => x.Id == id).FirstOrDefaultAsync();
             this.dbContext.Payments.Remove(payment);
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
         }
     }
 }
