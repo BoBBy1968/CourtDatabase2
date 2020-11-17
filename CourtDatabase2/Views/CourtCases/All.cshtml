@@ -12,27 +12,23 @@
 <table class="table">
     <thead>
         <tr>
-            @*<th>
-                @Html.DisplayNameFor(model => model.CourtId)
-            </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.CourtName)
-                @*Съд*@
+                Дело ИД
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LawCase.Debitor.FirstName)
+                Длъжник
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CaseNumber)
+                Дело №
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CaseYear)
+                година
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CourtChamber)
+                Инстанция
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CaseType)
+                Вид
             </th>
             <th></th>
         </tr>
@@ -40,26 +36,23 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.CourtId)
-            </td>*@
             <td>
-                @Html.DisplayFor(modelItem => item.CourtName)
+                @item.Id 
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Debitor)
+                @item.Debitor
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CaseNumber)
+                @item.CaseNumber /
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CaseYear)
+                @item.CaseYear
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CourtChamber)
+                @item.CourtName
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CaseType)
+                @item.CaseType
             </td>
             <td>
                 <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Редактирай</a> |
