@@ -32,7 +32,10 @@ namespace CourtDatabase2.Services
                     CaseType = x.CaseType.ToString(),
                     CourtChamber = x.CourtChamber,
                     CourtId = x.CourtId,
+                    Court = x.Court,
                     LawCaseId = x.LawCaseId,
+                    LawCase = x.LawCase,
+                    Debitor = x.LawCase.Debitor.FirstName + " " + x.LawCase.Debitor.LastName,
                     CourtName = x.Court.CourtTown.TownName + " " + x.Court.CourtType.ToString(),
                 })
                 .ToListAsync();

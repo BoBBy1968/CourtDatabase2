@@ -12,15 +12,15 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.CourtId)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.CourtName)
                 @*Съд*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LawCaseId)
+                @Html.DisplayNameFor(model => model.LawCase.Debitor.FirstName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CaseNumber)
@@ -40,14 +40,14 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.CourtId)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.CourtName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LawCaseId)
+                @Html.DisplayFor(modelItem => item.Debitor)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CaseNumber)
