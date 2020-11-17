@@ -60,8 +60,12 @@ namespace CourtDatabase2.Controllers
                 CourtType = x.CourtType.ToString() + "  " + x.CourtTown.TownName + ", " + x.CourtTown.Address,
             }).ToListAsync();
             ViewData["CourtId"] = new SelectList(courts, "Id", "CourtType");
-            ViewData["LawCaseId"] = new SelectList(dbContext.LawCases, "Id", "Id");
-            return View();
+            //ViewData["LawCaseId"] = new SelectList(dbContext.LawCases, "Id", "Id");
+            var viewModel = new CourtCasesInputModel
+            {
+                LawCases = this.courtCasesService.GetAllLawCases(),
+            };
+            return View(viewModel);
         }
 
         [HttpPost]

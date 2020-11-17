@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CourtDatabase2.ViewModels
 {
-    public class CourtCasesInputModel //Id,CourtId,LawCaseId,CaseNumber,CaseYear,CourtChamber,CaseType
+    public class CourtCasesInputModel //Id, CourtId,LawCaseId,CaseNumber,CaseYear,CourtChamber,CaseType
     {
         public int CourtId { get; set; }
 
@@ -25,5 +25,6 @@ namespace CourtDatabase2.ViewModels
         [Display(Name = "Вид дело")]
         public string CaseType { get; set; }
 
+        public IEnumerable<KeyValuePair<string, string>> LawCases { get; set; }
     }
 }
