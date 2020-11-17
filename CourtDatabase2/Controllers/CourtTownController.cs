@@ -1,5 +1,4 @@
-﻿using CourtDatabase2.Services;
-using CourtDatabase2.Services.Contracts;
+﻿using CourtDatabase2.Services.Contracts;
 using CourtDatabase2.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -44,13 +43,13 @@ namespace CourtDatabase2.Controllers
             return View(viewModel);
         }
 
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            var viewModel = this.service.Details(id);
+            var viewModel = await this.service.DetailsAsync(id);
             if (viewModel == null)
             {
                 return NotFound();
@@ -58,23 +57,23 @@ namespace CourtDatabase2.Controllers
             return this.View(viewModel);
         }
 
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            this.service.Delete(id);
+            await this.service.DeleteAsync(id);
             return RedirectToAction("all");
         }
 
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            var viewModel = this.service.Edit(id);
+            var viewModel = await this.service.EditAsync(id);
             if (viewModel == null)
             {
                 return NotFound();
@@ -84,13 +83,13 @@ namespace CourtDatabase2.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(CourtTownEditViewModel model)
+        public async Task<IActionResult> Edit(CourtTownEditViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return this.View(model);
             }
-            this.service.Edit(model.TownName, model.Address, model.Id);
+            await this.service.EditAsync(model.TownName, model.Address, model.Id);
             return this.RedirectToAction("All");
         }
     }

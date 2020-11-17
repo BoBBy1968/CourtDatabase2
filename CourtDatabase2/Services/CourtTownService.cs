@@ -2,6 +2,7 @@
 using CourtDatabase2.Data.Models;
 using CourtDatabase2.Services.Contracts;
 using CourtDatabase2.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace CourtDatabase2.Services
 
         public async Task<IEnumerable<CourtTownEditViewModel>> AllAsync()
         {
-            var task = Task < IEnumerable < CourtTownEditViewModel >>.Run(() => this.dbContext
+            return await this.dbContext
                 .CourtTowns
                 .OrderByDescending(c => c.Id)
                 .Select(t => new CourtTownEditViewModel
@@ -27,9 +28,7 @@ namespace CourtDatabase2.Services
                     TownName = t.TownName,
                     Address = t.Address,
                     Id = t.Id,
-                }).ToList());
-            await task;
-            return task.Result;
+                }).ToListAsync();
         }
 
         public async Task CreateAsync(string townName, string address)
@@ -43,29 +42,28 @@ namespace CourtDatabase2.Services
             await this.dbContext.SaveChangesAsync();
         }
 
-        public void Delete(int? id)
+        public async Task DeleteAsync(int? id)
         {
-            var courtTown = this.dbContext.CourtTowns.FirstOrDefault(x => x.Id == id);
+            var courtTown = await this.dbContext.CourtTowns.FirstOrDefaultAsync(x => x.Id == id);
             this.dbContext.Remove(courtTown);
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
         }
 
-        public CourtTown Details(int? id)
+        public async Task<CourtTown> DetailsAsync(int? id)
         {
-            var result = this.dbContext.CourtTowns.FirstOrDefault(x => x.Id == id);
-            return result;
+            return await this.dbContext.CourtTowns.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public CourtTown Edit(int? id)
-            => this.dbContext.CourtTowns.FirstOrDefault(t => t.Id == id);
+        public async Task<CourtTown> EditAsync(int? id)
+            => await this.dbContext.CourtTowns.FirstOrDefaultAsync(t => t.Id == id);
 
-        public void Edit(string townName, string address, int id)
+        public async Task EditAsync(string townName, string address, int id)
         {
-            var courtTown = this.dbContext.CourtTowns.FirstOrDefault(x => x.Id == id);
+            var courtTown = await this.dbContext.CourtTowns.FirstOrDefaultAsync(x => x.Id == id);
             courtTown.TownName = townName;
             courtTown.Address = address;
             this.dbContext.CourtTowns.Update(courtTown);
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
         }
     }
 }

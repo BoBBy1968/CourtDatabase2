@@ -11,12 +11,12 @@ namespace CourtDatabase2.Services.Contracts
 
         Task<IEnumerable<CourtTownEditViewModel>> AllAsync();
 
-        CourtTown Details(int? id);
+        Task<CourtTown> DetailsAsync(int? id);
 
-        void Delete(int? id);
-        
-        CourtTown Edit(int? id);
+        Task DeleteAsync(int? id);
 
-        void Edit(string townName, string address, int id);
+        Task<CourtTown> EditAsync(int? id);
+
+        Task EditAsync(string townName, string address, int id);
     }
 }
