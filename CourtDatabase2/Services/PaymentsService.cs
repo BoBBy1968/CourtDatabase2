@@ -22,7 +22,7 @@ namespace CourtDatabase2.Services
 
         public async Task<IEnumerable<PaymentsAllViewModel>> AllAsync()
         {
-            return await Task<IEnumerable<PaymentsAllViewModel>>.Run(() => this.dbContext.Payments
+            return await this.dbContext.Payments
             .Select(x => new PaymentsAllViewModel
             {
                 Id = x.Id,
@@ -33,7 +33,7 @@ namespace CourtDatabase2.Services
                 LawCase = x.LawCase,
                 Contractor = x.LawCase.Debitor.FirstName + " " + x.LawCase.Debitor.LastName
                 + " - " + x.LawCase.Value + " лв. "
-            }).ToListAsync());
+            }).ToListAsync();
         }
 
         //ToListAsync dosn't contain .Select

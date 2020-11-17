@@ -20,7 +20,7 @@ namespace CourtDatabase2.Services
 
         public async Task<IEnumerable<ExpenseAllViewModel>> AllAsync()
         {
-            var task = Task < IEnumerable < ExpenseAllViewModel >>.Run(() => this.dbContext.Expenses.Select(x => new ExpenseAllViewModel
+            return await this.dbContext.Expenses.Select(x => new ExpenseAllViewModel
             {
                 Id = x.Id,
                 Payee = x.Payee,
@@ -28,9 +28,7 @@ namespace CourtDatabase2.Services
                 ExpenceDate = x.ExpenceDate.ToShortDateString(),
                 ExpenceDescription = x.ExpenceDescription,
                 ExpenceValue = x.ExpenceValue,
-            }).ToList());
-            await task;
-            return task.Result;
+            }).ToListAsync();
         }
 
         public IEnumerable<KeyValuePair<string, string>> GetAllLawCases()

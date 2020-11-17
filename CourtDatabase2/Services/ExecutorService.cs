@@ -2,6 +2,7 @@
 using CourtDatabase2.Data.Models;
 using CourtDatabase2.Services.Contracts;
 using CourtDatabase2.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,14 +20,12 @@ namespace CourtDatabase2.Services
 
         public async Task<IEnumerable<ExecutorsAllViewModel>> AllAsync()
         {
-            var task = Task < IEnumerable < ExecutorsAllViewModel >>.Run(() => this.dbContext.Executors.Select(x => new ExecutorsAllViewModel
+            return await this.dbContext.Executors.Select(x => new ExecutorsAllViewModel
             {
                 Id = x.Id,
                 Name = x.Name,
                 Address = x.Address,
-            }).ToList());
-            await task;
-            return task.Result;
+            }).ToListAsync();
         }
 
         public async Task CreateAsync(ExecutorsCreateViewModel model)
@@ -44,9 +43,9 @@ namespace CourtDatabase2.Services
             await this.dbContext.SaveChangesAsync();
         }
 
-        public ExecutorsEditViewModel Details(int? id)
+        public async Task<ExecutorsEditViewModel> DetailsAsync(int? id)
         {
-            return this.dbContext.Executors.Where(x => x.Id == id).Select(e => new ExecutorsEditViewModel
+            return await this.dbContext.Executors.Where(x => x.Id == id).Select(e => new ExecutorsEditViewModel
             {
                 Name = e.Name,
                 Address = e.Address,
@@ -55,10 +54,10 @@ namespace CourtDatabase2.Services
                 Id = e.Id,
                 Region = e.Region,
                 Telephon = e.Telephon,
-            }).FirstOrDefault();
+            }).FirstOrDefaultAsync();
         }
 
-        public void Edit(ExecutorsEditViewModel model)
+        public async Task EditAsync(ExecutorsEditViewModel model)
         {
             var executor = new Executor
             {
@@ -71,14 +70,14 @@ namespace CourtDatabase2.Services
                 Telephon = model.Telephon,
             };
             this.dbContext.Update(executor);
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
         } 
 
-        public void Delete(int? id)
+        public async Task DeleteAsync(int? id)
         {
-            var executor = this.dbContext.Executors.Where(x => x.Id == id).FirstOrDefault();
+            var executor = await this.dbContext.Executors.Where(x => x.Id == id).FirstOrDefaultAsync();
             this.dbContext.Executors.Remove(executor);
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
         }
     }
 }

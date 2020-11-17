@@ -41,7 +41,7 @@ namespace CourtDatabase2.Services
 
         public async Task<IEnumerable<LawCasesAllViewModel>> AllAsync()
         {
-            var task = Task<IEnumerable<LawCasesAllViewModel>>.Run(() => this.dbContext
+            return await this.dbContext
             .LawCases
             .Select(x => new LawCasesAllViewModel
             {
@@ -55,9 +55,7 @@ namespace CourtDatabase2.Services
                 PeriodFrom = x.PeriodFrom,
                 PeriodTo = x.PeriodTo,
                 Id = x.Id,
-            }).ToList());
-            await task;
-            return task.Result; ;
+            }).ToListAsync();
         }
 
         public async Task CreateAsync(LawCaseInputModel model)
