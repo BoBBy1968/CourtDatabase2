@@ -10,15 +10,15 @@ namespace CourtDatabase2.Services.Contracts
 
         Task CreateAsync(ExpenseInputViewModel model);
 
-        ExpenseEditViewModel Edit(int? id);
+        Task<ExpenseEditViewModel> Edit(int? id);
 
-        void Edit(ExpenseEditViewModel model);
+        Task Edit(ExpenseEditViewModel model);
 
-        ExpenseEditViewModel Details(int? id);
+        Task<ExpenseEditViewModel> Details(int? id);
 
-        ExpenseEditViewModel Delete(int? id);
+        Task<ExpenseEditViewModel> Delete(int? id);
 
-        void DeleteConfirm(int? id);
+        Task DeleteConfirm(int? id);
 
         IEnumerable<KeyValuePair<string, string>> GetAllLawCases();
     }
