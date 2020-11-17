@@ -22,7 +22,7 @@ namespace CourtDatabase2.Services
 
         public async Task<IEnumerable<PaymentsAllViewModel>> AllAsync()
         {
-            var task = Task<IEnumerable<PaymentsAllViewModel>>.Run(() => this.dbContext.Payments
+            return await Task<IEnumerable<PaymentsAllViewModel>>.Run(() => this.dbContext.Payments
             .Select(x => new PaymentsAllViewModel
             {
                 Id = x.Id,
@@ -33,11 +33,10 @@ namespace CourtDatabase2.Services
                 LawCase = x.LawCase,
                 Contractor = x.LawCase.Debitor.FirstName + " " + x.LawCase.Debitor.LastName
                 + " - " + x.LawCase.Value + " лв. "
-            }).ToList());
-            await task;
-            return task.Result;
+            }).ToListAsync());
         }
 
+        //ToListAsync dosn't contain .Select
         public IEnumerable<KeyValuePair<string, string>> AllLawCasesId()
         {
             return this.dbContext.LawCases.Select(x => new
@@ -77,7 +76,7 @@ namespace CourtDatabase2.Services
 
         public async Task<PaymentsEditViewModel> EditAsync(int? id)
         {
-            var payment =  await this.dbContext.Payments.Where(x => x.Id == id).Select(x => new PaymentsEditViewModel
+            return await this.dbContext.Payments.Where(x => x.Id == id).Select(x => new PaymentsEditViewModel
             {
                 Id = x.Id,
                 Date = x.Date,
@@ -85,7 +84,6 @@ namespace CourtDatabase2.Services
                 PaymentSource = x.PaymentSource.ToString(),
                 Value = x.Value,
             }).FirstOrDefaultAsync();
-            return payment;
         }
 
         public async Task<PaymentsEditViewModel> DetailsAsync(int? id)

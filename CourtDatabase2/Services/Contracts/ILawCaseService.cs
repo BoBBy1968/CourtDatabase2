@@ -11,12 +11,15 @@ namespace CourtDatabase2.Services.Contracts
         Task<IEnumerable<LawCasesAllViewModel>> AllAsync();
 
         IEnumerable<KeyValuePair<string, string>> AbNumbers();
+
         IEnumerable<KeyValuePair<string, string>> Debitors();
 
-        LawCaseViewModel Details(int? id);
+        Task<LawCaseViewModel> DetailsAsync(int? id);
 
-        void Delete(int? id);
-        LawCaseViewModel Edit(int? id);
-        void Edit(LawCaseViewModel model);
+        Task DeleteAsync(int? id);
+
+        Task<LawCaseViewModel> EditAsync(int? id);
+
+        Task EditAsync(LawCaseViewModel model);
     }
 }

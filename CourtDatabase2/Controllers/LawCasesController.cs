@@ -17,7 +17,6 @@ namespace CourtDatabase2.Controllers
         public IActionResult Index()
         {
             return this.RedirectToAction("All");
-            //
         }
 
         public async Task<IActionResult> All()
@@ -53,13 +52,13 @@ namespace CourtDatabase2.Controllers
             return this.RedirectToAction("All");
         }
 
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            var viewModel = this.lawCaseService.Details(id);
+            var viewModel = await this.lawCaseService.DetailsAsync(id);
             if (viewModel == null)
             {
                 return NotFound();
@@ -67,36 +66,36 @@ namespace CourtDatabase2.Controllers
             return this.View(viewModel);
         }
 
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            var viewModel = this.lawCaseService.Details(id);
+            var viewModel = await this.lawCaseService.DetailsAsync(id);
             if (viewModel == null)
             {
                 return NotFound();
             }
             return this.View(viewModel);
         }
-        public IActionResult DeleteConfirm(int? id)
+        public async Task<IActionResult> DeleteConfirm(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            this.lawCaseService.Delete(id);
+            await this.lawCaseService.DeleteAsync(id);
             return this.RedirectToAction("All");
         }
 
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            var viewModel = this.lawCaseService.Edit(id);
+            var viewModel = await this.lawCaseService.EditAsync(id);
             viewModel.AbNumbers = this.lawCaseService.AbNumbers();
             viewModel.Debitors = this.lawCaseService.Debitors();
             return this.View(viewModel);
@@ -104,14 +103,14 @@ namespace CourtDatabase2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(LawCaseViewModel model)
+        public async Task<IActionResult> Edit(LawCaseViewModel model)
         {
 
             if (!ModelState.IsValid)
             {
                 return this.View(model);
             }
-            this.lawCaseService.Edit(model);
+            await this.lawCaseService.EditAsync(model);
             return this.RedirectToAction("All");
         }
     }

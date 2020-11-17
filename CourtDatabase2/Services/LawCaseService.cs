@@ -2,6 +2,7 @@
 using CourtDatabase2.Data.Models;
 using CourtDatabase2.Services.Contracts;
 using CourtDatabase2.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace CourtDatabase2.Services
             this.dbContext = dbContext;
         }
 
+        //.ToListAsync doesn't contain .Select
         public IEnumerable<KeyValuePair<string, string>> AbNumbers()
         {
             return this.dbContext.HeatEstates.Select(x => new
@@ -24,8 +26,10 @@ namespace CourtDatabase2.Services
                 x.AbNumber,
                 x.Address,
             }).ToList().Select(a => new KeyValuePair<string, string>(a.AbNumber, a.Address));
+            
         }
 
+        //.ToListAsync doesn't contain .Select
         public IEnumerable<KeyValuePair<string, string>> Debitors()
         {
             return this.dbContext.Debitors.Select(x => new
@@ -75,9 +79,9 @@ namespace CourtDatabase2.Services
             await this.dbContext.SaveChangesAsync();
         }
 
-        public LawCaseViewModel Details(int? id)
+        public async Task<LawCaseViewModel> DetailsAsync(int? id)
         {
-            return this.dbContext.LawCases.Where(x => x.Id == id).Select(x => new LawCaseViewModel
+            return await this.dbContext.LawCases.Where(x => x.Id == id).Select(x => new LawCaseViewModel
             {
                 Id = x.Id,
                 Date = x.Date,
@@ -89,19 +93,19 @@ namespace CourtDatabase2.Services
                 InvoiceCount = x.InvoiceCount,
                 PeriodFrom = x.PeriodFrom,
                 PeriodTo = x.PeriodTo,
-            }).FirstOrDefault();
+            }).FirstOrDefaultAsync();
         }
 
-        public void Delete(int? id)
+        public async Task DeleteAsync(int? id)
         {
-            var lawCase = this.dbContext.LawCases.Where(x => x.Id == id).FirstOrDefault();
+            var lawCase = await this.dbContext.LawCases.Where(x => x.Id == id).FirstOrDefaultAsync();
             this.dbContext.LawCases.Remove(lawCase);
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
         }
 
-        public LawCaseViewModel Edit(int? id)
+        public async Task<LawCaseViewModel> EditAsync(int? id)
         {
-            return this.dbContext.LawCases.Where(x => x.Id == id).Select(l => new LawCaseViewModel
+            return await this.dbContext.LawCases.Where(x => x.Id == id).Select(l => new LawCaseViewModel
             {
                 Id = l.Id,
                 Date = l.Date,
@@ -113,10 +117,10 @@ namespace CourtDatabase2.Services
                 PeriodFrom = l.PeriodFrom,
                 PeriodTo = l.PeriodTo,
                 InvoiceCount = l.InvoiceCount,
-            }).FirstOrDefault();
+            }).FirstOrDefaultAsync();
         }
 
-        public void Edit(LawCaseViewModel model)
+        public async Task EditAsync(LawCaseViewModel model)
         {
             var lawCase = new LawCase
             {
@@ -132,7 +136,7 @@ namespace CourtDatabase2.Services
                 InvoiceCount = model.InvoiceCount,
             };
             this.dbContext.Update(lawCase);
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
         }
     }
 }
