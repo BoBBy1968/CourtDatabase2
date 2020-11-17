@@ -12,14 +12,14 @@ namespace CourtDatabase2.Services.Contracts
 
         Task<IEnumerable<CourtCasesViewModel>> AllAsync();
 
-        CourtCasesViewModel Details(int? id);
+        Task<CourtCasesViewModel> DetailsAsync(int? id);
 
-        CourtCasesViewModel Edit(int? id);
+        Task<CourtCasesViewModel> EditAsync(int? id);
 
-        void Edit(CourtCasesViewModel model);
+        Task EditAsync(CourtCasesViewModel model);
 
-        CourtCase DeleteGet(int? id);
+        Task<CourtCase> Delete(int? id);
 
-        void DeletePost(int? id);
+        Task DeleteAsync(int? id);
     }
 }
