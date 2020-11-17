@@ -3,6 +3,7 @@ using CourtDatabase2.Data.Models;
 using CourtDatabase2.Data.Models.Enumerations;
 using CourtDatabase2.Services.Contracts;
 using CourtDatabase2.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,11 +20,9 @@ namespace CourtDatabase2.Services
             this.dbContext = dbContext;
         }
 
-        //public CourtType EnumParse { get; private set; }
-
         public async Task<IEnumerable<CourtAllViewModel>> AllAsync()
         {
-            var task = Task<IEnumerable<CourtAllViewModel>>.Run(() => this.dbContext
+            return await this.dbContext
             .Courts
             .Select(c => new CourtAllViewModel
             {
@@ -33,9 +32,7 @@ namespace CourtDatabase2.Services
                 Id = c.Id,
             })
            .OrderByDescending(x => x.Id)
-           .ToList());
-            await task;
-            return task.Result;
+           .ToListAsync();
         }
 
         public async Task CreateAsync(string courtType, int courtTownId)
@@ -49,7 +46,7 @@ namespace CourtDatabase2.Services
             await this.dbContext.SaveChangesAsync();
         }
 
-        public void Edit(int id, string courtType, int courtTownId)
+        public async Task EditAsync(int id, string courtType, int courtTownId)
         {
             var court = new Court
             {
@@ -58,18 +55,18 @@ namespace CourtDatabase2.Services
                 CourtTownId = courtTownId,
             };
             this.dbContext.Update(court);
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
         }
 
-        public CourtEditViewModel Edit(int? id)
+        public async Task<CourtEditViewModel> EditAsync(int? id)
         {
-            return this.dbContext.Courts.Where(x => x.Id == id).Select(x => new CourtEditViewModel
+            return await this.dbContext.Courts.Where(x => x.Id == id).Select(x => new CourtEditViewModel
             {
                 Id = x.Id,
                 CourtType = x.CourtType.ToString(),
                 CourtTownId = x.CourtTownId
 
-            }).FirstOrDefault();
+            }).FirstOrDefaultAsync();
         }
     }
 }

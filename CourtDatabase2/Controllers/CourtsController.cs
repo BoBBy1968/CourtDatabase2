@@ -11,12 +11,12 @@ namespace CourtDatabase2.Controllers
 {
     public class CourtsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext dbContext;
         private readonly ICourtService service;
 
         public CourtsController(ApplicationDbContext context, ICourtService service)
         {
-            _context = context;
+            this.dbContext = context;
             this.service = service;
         }
 
@@ -31,15 +31,13 @@ namespace CourtDatabase2.Controllers
             return this.View(viewModel);
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            var towns = this._context.CourtTowns.Select(x => new
+            var towns = await this.dbContext.CourtTowns.Select(x => new
             {
                 x.Id,
                 TownName = x.TownName + ", " + x.Address,
-            });
-            //ViewData["CourtTownId"] = new SelectList(_context.CourtTowns, "Id", "Address");
-            //ViewData["CourtTownId"] = new SelectList(_context.CourtTowns, "Id", "TownName");
+            }).ToListAsync();
             ViewData["CourtTownId"] = new SelectList(towns, "Id", "TownName");
             return View();
         }
@@ -58,32 +56,32 @@ namespace CourtDatabase2.Controllers
 
         }
 
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            var towns = this._context.CourtTowns.Select(x => new
+            var towns = await this.dbContext.CourtTowns.Select(x => new
             {
                 x.Id,
                 TownName = x.TownName + ", " + x.Address,
-            });
+            }).ToListAsync();
             if (towns == null)
             {
                 return NotFound();
             }
             ViewData["CourtTownId"] = new SelectList(towns, "Id", "TownName");
-            var courtViewModel = this.service.Edit(id);
+            var courtViewModel = await this.service.EditAsync(id);
             return this.View(courtViewModel);
 
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(CourtEditViewModel model)
+        public async Task<IActionResult> Edit(CourtEditViewModel model)
         {
-            this.service.Edit(model.Id, model.CourtType, model.CourtTownId);
+            await this.service.EditAsync(model.Id, model.CourtType, model.CourtTownId);
 
             return this.RedirectToAction("All");
         }
@@ -95,7 +93,7 @@ namespace CourtDatabase2.Controllers
                 return NotFound();
             }
 
-            var court = await _context.Courts
+            var court = await dbContext.Courts
                 .Include(c => c.CourtTown)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (court == null)
@@ -113,7 +111,7 @@ namespace CourtDatabase2.Controllers
                 return NotFound();
             }
 
-            var court = await _context.Courts
+            var court = await dbContext.Courts
                 .Include(c => c.CourtTown)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (court == null)
@@ -132,15 +130,15 @@ namespace CourtDatabase2.Controllers
             {
                 return NotFound();
             }
-            var court = await _context.Courts.FindAsync(id);
-            _context.Courts.Remove(court);
-            await _context.SaveChangesAsync();
+            var court = await dbContext.Courts.FindAsync(id);
+            dbContext.Courts.Remove(court);
+            await dbContext.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CourtExists(int id)
         {
-            return _context.Courts.Any(e => e.Id == id);
+            return dbContext.Courts.Any(e => e.Id == id);
         }
     }
 }

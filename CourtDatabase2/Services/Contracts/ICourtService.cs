@@ -11,8 +11,8 @@ namespace CourtDatabase2.Services.Contracts
 
         Task CreateAsync(string courtType, int courtTownId);
 
-        public CourtEditViewModel Edit(int? id);
+        Task<CourtEditViewModel> EditAsync(int? id);
 
-        void Edit(int id, string courtType, int courtTownId);
+        Task EditAsync(int id, string courtType, int courtTownId);
     }
 }
