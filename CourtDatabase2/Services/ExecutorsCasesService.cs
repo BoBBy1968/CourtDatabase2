@@ -2,6 +2,7 @@
 using CourtDatabase2.Data.Models;
 using CourtDatabase2.Services.Contracts;
 using CourtDatabase2.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace CourtDatabase2.Services
 
         public async Task<IEnumerable<ExecutorsCasesAllViewModel>> AllAsync()
         {
-            var task = Task < IEnumerable < ExecutorsCasesAllViewModel >>.Run(() => this.dbContext
+            return await this.dbContext
             .ExecutorCases.Select(e => new ExecutorsCasesAllViewModel
             {
                 Id = e.Id,
@@ -28,9 +29,7 @@ namespace CourtDatabase2.Services
                 Executor = e.Executor,
                 LawCase = e.LawCase,
                 Debitor = e.LawCase.Debitor,
-            }).ToList());
-            await task;
-            return task.Result;
+            }).ToListAsync();
         }
 
         public async Task CreateAsync(ExecutorsCasesCreateViewModel model)
@@ -46,7 +45,7 @@ namespace CourtDatabase2.Services
             await this.dbContext.SaveChangesAsync();
         }
 
-        public void Edit(ExecutorsCasesEditViewModel model)
+        public async Task EditAsync(ExecutorsCasesEditViewModel model)
         {
             var executorCase = new ExecutorCase
             {
@@ -57,12 +56,12 @@ namespace CourtDatabase2.Services
                 Year = model.Year,
             };
             this.dbContext.Update(executorCase);
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
         }
 
-        public ExecutorsCasesEditViewModel Details(int? id)
+        public async Task<ExecutorsCasesEditViewModel> DetailsAsync(int? id)
         {
-            return this.dbContext.ExecutorCases.Where(x => x.Id == id)
+            return await this.dbContext.ExecutorCases.Where(x => x.Id == id)
                 .Select(e => new ExecutorsCasesEditViewModel
                 {
                     Id = e.Id,
@@ -73,14 +72,14 @@ namespace CourtDatabase2.Services
                     Executor = e.Executor,
                     LawCase = e.LawCase,
                     Debitor = e.LawCase.Debitor,
-                }).FirstOrDefault();
+                }).FirstOrDefaultAsync();
         }
 
-        public void Delete(int? id)
+        public async Task DeleteAsync(int? id)
         {
-            var myCase = this.dbContext.ExecutorCases.Where(x => x.Id == id).FirstOrDefault();
+            var myCase = await this.dbContext.ExecutorCases.Where(x => x.Id == id).FirstOrDefaultAsync();
             this.dbContext.ExecutorCases.Remove(myCase);
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
         }
 
         public IEnumerable<KeyValuePair<string, string>> GetAllLawCases()

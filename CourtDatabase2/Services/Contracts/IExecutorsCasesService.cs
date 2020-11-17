@@ -8,16 +8,16 @@ namespace CourtDatabase2.Services.Contracts
     {
         Task<IEnumerable<ExecutorsCasesAllViewModel>> AllAsync();
         
-        ExecutorsCasesEditViewModel Details(int? id);
+        Task<ExecutorsCasesEditViewModel> DetailsAsync(int? id);
         
         Task CreateAsync(ExecutorsCasesCreateViewModel model);
         
-        void Delete(int? id);
+        Task DeleteAsync(int? id);
 
         IEnumerable<KeyValuePair<string, string>> GetAllLawCases();
 
         IEnumerable<KeyValuePair<string, string>> GetAllExecutors();
 
-        void Edit(ExecutorsCasesEditViewModel model);
+        Task EditAsync(ExecutorsCasesEditViewModel model);
     }
 }
