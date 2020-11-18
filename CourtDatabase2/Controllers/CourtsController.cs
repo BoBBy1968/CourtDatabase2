@@ -89,15 +89,14 @@ namespace CourtDatabase2.Controllers
                 return NotFound();
             }
 
-            var court = await dbContext.Courts
-                .Include(c => c.CourtTown)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (court == null)
+            var viewModel = await this.courtService.DetailsAcync(id);
+            
+            if (viewModel == null)
             {
                 return NotFound();
             }
 
-            return View(court);
+            return View(viewModel);
         }
 
         public async Task<IActionResult> Delete(int? id)

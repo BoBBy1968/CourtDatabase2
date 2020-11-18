@@ -77,5 +77,20 @@ namespace CourtDatabase2.Services
 
             }).FirstOrDefaultAsync();
         }
+
+        public async Task<CourtEditViewModel> DetailsAcync(int? id)
+        {
+            return await dbContext.Courts
+                .Include(c => c.CourtTown)
+                .Where(x=> x.Id==id)
+                .Select(c=> new CourtEditViewModel
+                {
+                    Id = c.Id,
+                    CourtTownId = c.CourtTownId,
+                    Town = c.CourtTown.TownName + ", " + c.CourtTown.Address,
+                    CourtType = c.CourtType.ToString(),
+                })
+                .FirstOrDefaultAsync(m => m.Id == id);
+        }
     }
 }
