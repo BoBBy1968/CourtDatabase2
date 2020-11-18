@@ -1,4 +1,5 @@
 ﻿using CourtDatabase2.Data.Models;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace CourtDatabase2.ViewModels
@@ -46,5 +47,7 @@ namespace CourtDatabase2.ViewModels
         [MaxLength(150)]
         [Display(Name = "Представител")]
         public string Representative { get; set; }
+
+        public IEnumerable<KeyValuePair<string, string>> HeatEstates { get; set; }
     }
 }

@@ -6,7 +6,7 @@ namespace CourtDatabase2.Services.Contracts
 {
     public interface IDebitorsService
     {
-        IEnumerable<KeyValuePair<string, string>> GetAllCourtTowns();
+        IEnumerable<KeyValuePair<string, string>> GetAllHeatEstates();
 
         Task<IEnumerable<DebitorsAllViewModel>> AllAsync();
 

@@ -1,7 +1,7 @@
 ﻿using CourtDatabase2.Data;
 using CourtDatabase2.Data.Models;
 using CourtDatabase2.Services.Contracts;
-
+using CourtDatabase2.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -30,12 +30,14 @@ namespace CourtDatabase2.Controllers
             return this.RedirectToAction("All");
         }
 
+        //ready
         public async Task<IActionResult> All()
         {
             var viewModel = await this.debitorsService.AllAsync();
             return View(viewModel);
         }
 
+        //ready
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -52,24 +54,26 @@ namespace CourtDatabase2.Controllers
             return View(debitor);
         }
 
+        //ready
         public IActionResult Create()
         {
-            ViewData["AbNumber"] = new SelectList(dbContext.HeatEstates, "AbNumber", "AbNumber");
-            return View();
+            var viewModel = new DebitorCreateViewModel
+            {
+                HeatEstates = this.debitorsService.GetAllHeatEstates()
+            };
+            return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,MiddleName,LastName,EGN,AbNumber,AddressToContact,Phone,Email,Representative")] Debitor debitor)
+        public async Task<IActionResult> Create(DebitorCreateViewModel model)
         {
             if (ModelState.IsValid)
             {
-                dbContext.Add(debitor);
-                await dbContext.SaveChangesAsync();
+                await this.debitorsService.CreateAsync(model);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AbNumber"] = new SelectList(dbContext.HeatEstates, "AbNumber", "AbNumber", debitor.AbNumber);
-            return View(debitor);
+            return View(model);
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -121,6 +125,7 @@ namespace CourtDatabase2.Controllers
             return View(debitor);
         }
 
+        //ready
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -137,6 +142,7 @@ namespace CourtDatabase2.Controllers
             return View(debitor);
         }
 
+        //ready
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int? id)
@@ -145,9 +151,7 @@ namespace CourtDatabase2.Controllers
             {
                 return NotFound();
             }
-            var debitor = await dbContext.Debitors.FindAsync(id);
-            dbContext.Debitors.Remove(debitor);
-            await dbContext.SaveChangesAsync();
+            await this.debitorsService.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }
 
