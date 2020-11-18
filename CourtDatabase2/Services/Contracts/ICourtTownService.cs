@@ -7,16 +7,16 @@ namespace CourtDatabase2.Services.Contracts
 {
     public interface ICourtTownService
     {
-        Task CreateAsync(string townName, string address);
-
         Task<IEnumerable<CourtTownEditViewModel>> AllAsync();
 
-        Task<CourtTown> DetailsAsync(int? id);
-
-        Task DeleteAsync(int? id);
+        Task CreateAsync(string townName, string address);
 
         Task<CourtTown> EditAsync(int? id);
 
         Task EditAsync(string townName, string address, int id);
+
+        Task<CourtTown> DetailsAsync(int? id);
+
+        Task DeleteAsync(int? id);
     }
 }

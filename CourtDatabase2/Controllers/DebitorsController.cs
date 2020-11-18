@@ -24,14 +24,12 @@ namespace CourtDatabase2.Controllers
             return this.RedirectToAction("All");
         }
 
-        //ready
         public async Task<IActionResult> All()
         {
             var viewModel = await this.debitorsService.AllAsync();
             return View(viewModel);
         }
 
-        //ready
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -48,7 +46,6 @@ namespace CourtDatabase2.Controllers
             return View(debitor);
         }
 
-        //ready
         public IActionResult Create()
         {
             var viewModel = new DebitorCreateViewModel
@@ -58,7 +55,6 @@ namespace CourtDatabase2.Controllers
             return View(viewModel);
         }
 
-        //ready
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(DebitorCreateViewModel model)
@@ -71,7 +67,6 @@ namespace CourtDatabase2.Controllers
             return View(model);
         }
 
-        //ready
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -88,7 +83,6 @@ namespace CourtDatabase2.Controllers
             return View(debitor);
         }
 
-        //ready
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(DebitorEditViewModel model)
@@ -101,7 +95,6 @@ namespace CourtDatabase2.Controllers
             return View(model);
         }
 
-        //ready
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -118,7 +111,6 @@ namespace CourtDatabase2.Controllers
             return View(debitor);
         }
 
-        //ready
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int? id)
@@ -131,7 +123,6 @@ namespace CourtDatabase2.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //ready
         public async Task<IActionResult> DeleteAll()
         {
             await this.debitorsService.DeleteAll();

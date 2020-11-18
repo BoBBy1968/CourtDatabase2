@@ -6,18 +6,18 @@ namespace CourtDatabase2.Services.Contracts
 {
     public interface IPaymentsService
     {
-        Task<IEnumerable<PaymentsAllViewModel>> AllAsync();
-
         IEnumerable<KeyValuePair<string, string>> AllLawCasesId();
 
+        Task<IEnumerable<PaymentsAllViewModel>> AllAsync();
+
         Task CreateAsync(PaymentsInputViewModel model);
-
-        Task DeleteAsync(int? id);
-
-        Task<PaymentsEditViewModel> DetailsAsync(int? id);
 
         Task EditAsync(PaymentsEditViewModel model);
 
         Task<PaymentsEditViewModel> EditAsync(int? id);
+
+        Task<PaymentsEditViewModel> DetailsAsync(int? id);
+
+        Task DeleteAsync(int? id);
     }
 }
