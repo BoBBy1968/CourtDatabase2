@@ -4,18 +4,44 @@
     ViewData["Title"] = "Детайли по гражданско дело";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1 class="text-danger">@ViewData["Title"]</h1>
+<h3 class="alert-danger">Сигурен ли сте, че искате да изтриете това гражданско дело?</h3>
 
-<p>ИД: @Model.Id</p>
-<p>Длъжник: @Model.Debitor.FirstName @Model.Debitor.MiddleName @Model.Debitor.LastName ЕГН: @Model.Debitor.EGN Емайл: @Model.Debitor.Email, Тел.: @Model.Debitor.Phone, Представител: @Model.Debitor.Representative, </p>
-<p>Абонатен номер: @Model.HeatEstate.AbNumber</p>
-<p>Адрес: @Model.HeatEstate.Address</p>
-<p>Дата на завеждане: @Model.Date.ToShortDateString()</p>
-<p>Главница: @Model.Value</p>
-<p>Мораторна лихва: @Model.MoratoriumInterest</p>
-<p>Законова лихва: @Model.LegalInterest</p>
-<p>Брой фактури: @Model.InvoiceCount</p>
-<p>Период начало: @Model.PeriodFrom.ToShortDateString()</p>
-<p>Период край: @Model.PeriodTo.ToShortDateString()</p>
+<ul>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">ИД: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.Id</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Длъжник:  </span><span class="alert-info col-md-1 font-weight-bold">@Model.Debitor.FirstName @Model.Debitor.MiddleName @Model.Debitor.LastName <span class="font-weight-lighter alert-warning">  ЕГН:  </span> @Model.Debitor.EGN <span class="font-weight-lighter alert-warning">Емайл: </span> @Model.Debitor.Email, <span class="font-weight-lighter alert-warning">Тел.: </span>@Model.Debitor.Phone, <span class="font-weight-lighter alert-warning">Представител: </span>@Model.Debitor.Representative</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Абонатен номер: ИД: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.HeatEstate.AbNumber</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Адрес: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.HeatEstate.Address</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Дата на завеждане: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.Date.ToShortDateString()</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Главница: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.Value</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Мораторна лихва: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.MoratoriumInterest</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Законова лихва: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.LegalInterest</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Брой фактури: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.InvoiceCount</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Период начало: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.PeriodFrom.ToShortDateString()</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Период край: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.PeriodTo.ToShortDateString()</span></div>
+    </li>
+
+</ul>
 
 <a class="btn btn-primary" asp-action="All">Обратно</a>

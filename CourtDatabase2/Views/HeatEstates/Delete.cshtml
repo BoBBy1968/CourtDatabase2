@@ -4,21 +4,20 @@
     ViewData["Title"] = "Изтрий";
 }
 
-<h1>@ViewData["Title"]</h1>
-
-<h3>Сигурен ли сте, че желаете да изтриете този?</h3>
+<h1 class="text-danger">@ViewData["Title"]</h1>
+<h3 class="alert-danger">Сигурен ли сте, че искате да изтриете този?</h3>
 <div>
     <h4>Имот</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Address)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Address)
         </dd>
     </dl>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="AbNumber" />
         <input type="submit" value="Изтрий" class="btn btn-danger" /> |

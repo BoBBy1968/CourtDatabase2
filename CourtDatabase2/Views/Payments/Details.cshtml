@@ -6,12 +6,23 @@
 
 <h1>@ViewData["Title"]</h1>
 
-
-<p>ИД на плащането: @Model.Id</p>
-<p>Дата на плащане: @Model.Date.ToShortDateString()</p>
-<p>Начин на плащане: @Model.PaymentSource</p>
-<p>Стойност на плащане: @Model.Value</p>
-<p>Дело ИД: @Model.LawCaseId</p>
+<ul>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">ИД на плащането: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.Id</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Дата на плащане: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.Date.ToShortDateString()</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Начин на плащане: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.PaymentSource</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Стойност на плащане: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.Value</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Дело ИД: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.LawCaseId</span></div>
+    </li>
+</ul>
 
 <p>
     <a class="btn btn-primary" asp-action="All">Обратно</a>

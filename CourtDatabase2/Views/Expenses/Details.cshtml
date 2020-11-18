@@ -1,4 +1,4 @@
-﻿@model ExpenseEditViewModel
+﻿ @model ExpenseEditViewModel
 
 @{
     ViewData["Title"] = "Детайли за разноски";
@@ -8,24 +8,44 @@
 <h1>@ViewData["Title"]</h1>
 
 
-<p>
-    ИД: @Model.Id
-</p>
-<p>
-    Получател: @Model.Payee
-</p>
-<p>
-    Описание: @Model.ExpenceDescription
-</p>
-<p>
-    Стойност: @Model.ExpenceValue
-</p>
-<p>
-    Дата: @Model.ExpenceDate
-</p>
-<p>
-    Дело ИД: @Model.LawCaseId
-</p>
+<ul>
+    <li>
+        <div>
+            <span class="font-weight-lighter alert-warning">ИД на разноските: </span>
+            <span class="alert-info col-md-1 font-weight-bold">@Model.Id</span>
+        </div>
+    </li>
+    <li>
+        <div>
+            <span class="font-weight-lighter alert-warning">Получател: </span>
+            <span class="alert-info col-md-1 font-weight-bold">@Model.Payee</span>
+        </div>
+    </li>
+    <li>
+        <div>
+            <span class="font-weight-lighter alert-warning">Описание: </span>
+            <span class="alert-info col-md-1 font-weight-bold">@Model.ExpenceDescription</span>
+        </div>
+    </li>
+    <li>
+        <div>
+            <span class="font-weight-lighter alert-warning">Стойност: </span>
+            <span class="alert-info col-md-1 font-weight-bold">@Model.ExpenceValue</span>
+        </div>
+    </li>
+    <li>
+        <div>
+            <span class="font-weight-lighter alert-warning">Дата: </span>
+            <span class="alert-info col-md-1 font-weight-bold">@Model.ExpenceDate.ToShortDateString()</span>
+        </div>
+    </li>
+    <li>
+        <div>
+            <span class="font-weight-lighter alert-warning">Дело ИД: </span>
+            <span class="alert-info col-md-1 font-weight-bold">@Model.LawCaseId</span>
+        </div>
+    </li>
+</ul>
 
 <div>
     <a class="btn btn-primary" asp-action="All">Обратно</a>

@@ -6,15 +6,50 @@
 
 <h1>@ViewData["Title"]</h1>
 
-
-<p>ИД: @Model.Id</p>
-<p>Служебен номер: @Model.Number</p>
-<p>Имена: @Model.Name</p>
-<p>Адрес: @Model.Address</p>
-<p>Регион: @Model.Region</p>
-<p>Телефон: @Model.Telephon</p>
-<p>Ел поща: @Model.Email</p>
-
+<ul>
+    <li>
+        <div>
+            <span class="font-weight-lighter alert-warning">ИД: </span>
+            <span class="alert-info col-md-1 font-weight-bold">@Model.Id</span>
+        </div>
+    </li>
+    <li>
+        <div>
+            <span class="font-weight-lighter alert-warning">Служебен номер: </span>
+            <span class="alert-info col-md-1 font-weight-bold">@Model.Number</span>
+        </div>
+    </li>
+    <li>
+        <div>
+            <span class="font-weight-lighter alert-warning">Имена: </span>
+            <span class="alert-info col-md-1 font-weight-bold">@Model.Name</span>
+        </div>
+    </li>
+    <li>
+        <div>
+            <span class="font-weight-lighter alert-warning">Адрес: </span>
+            <span class="alert-info col-md-1 font-weight-bold">@Model.Address</span>
+        </div>
+    </li>
+    <li>
+        <div>
+            <span class="font-weight-lighter alert-warning">Регион: </span>
+            <span class="alert-info col-md-1 font-weight-bold">@Model.Region</span>
+        </div>
+    </li>
+    <li>
+        <div>
+            <span class="font-weight-lighter alert-warning">Телефон: </span>
+            <span class="alert-info col-md-1 font-weight-bold">@Model.Telephon</span>
+        </div>
+    </li>
+    <li>
+        <div>
+            <span class="font-weight-lighter alert-warning">Електронна поща: </span>
+            <span class="alert-info col-md-1 font-weight-bold">@Model.Email</span>
+        </div>
+    </li>
+</ul>
 
 <p>
     <a asp-action="All" class="btn btn-primary">Обратно</a>

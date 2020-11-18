@@ -1,12 +1,11 @@
 ﻿@model CourtDatabase2.Data.Models.CourtTown
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Изтриване";
 }
 
-<h1>Изтриване</h1>
-
-<h3>Сигурен ли сте, че искате да изтриете този?</h3>
+<h1 class="text-danger">@ViewData["Title"]</h1>
+<h3 class="alert-danger">Сигурен ли сте, че искате да изтриете този?</h3>
 <div>
     <h4>Град</h4>
     <hr />

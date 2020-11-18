@@ -1,26 +1,56 @@
 ﻿@model ExecutorsEditViewModel
 
 @{
-    ViewData["Title"] = "Изтрий съдебен изпълнител";
+    ViewData["Title"] = "Изтрий ";
 }
 
-<h1>@ViewData["Title"]</h1>
-<h4>Сигурен ли сте, че искате да изтриете този съдебен изпълнител?</h4>
+<h1 class="text-danger">@ViewData["Title"]</h1>
+<h3 class="alert-danger">Сигурен ли сте, че искате да изтриете този съдебен изпълнител?</h3>
 
-
-<p>ИД: @Model.Id</p>
-<hr />
-<p>Служебен номер: @Model.Number</p>
-<hr />
-<p>Имена: @Model.Name</p>
-<hr />
-<p>Адрес: @Model.Address</p>
-<hr />
-<p>Регион: @Model.Region</p>
-<hr />
-<p>Телефон: @Model.Telephon</p>
-<hr />
-<p>Ел поща: @Model.Email</p>
+<ul>
+    <li>
+        <div>
+            <span class="font-weight-lighter alert-warning">ИД: </span>
+            <span class="alert-info col-md-1 font-weight-bold">@Model.Id</span>
+        </div>
+    </li>
+    <li>
+        <div>
+            <span class="font-weight-lighter alert-warning">Служебен номер: </span>
+            <span class="alert-info col-md-1 font-weight-bold">@Model.Number</span>
+        </div>
+    </li>
+    <li>
+        <div>
+            <span class="font-weight-lighter alert-warning">Имена: </span>
+            <span class="alert-info col-md-1 font-weight-bold">@Model.Name</span>
+        </div>
+    </li>
+    <li>
+        <div>
+            <span class="font-weight-lighter alert-warning">Адрес: </span>
+            <span class="alert-info col-md-1 font-weight-bold">@Model.Address</span>
+        </div>
+    </li>
+    <li>
+        <div>
+            <span class="font-weight-lighter alert-warning">Регион: </span>
+            <span class="alert-info col-md-1 font-weight-bold">@Model.Region</span>
+        </div>
+    </li>
+    <li>
+        <div>
+            <span class="font-weight-lighter alert-warning">Телефон: </span>
+            <span class="alert-info col-md-1 font-weight-bold">@Model.Telephon</span>
+        </div>
+    </li>
+    <li>
+        <div>
+            <span class="font-weight-lighter alert-warning">Електронна поща: </span>
+            <span class="alert-info col-md-1 font-weight-bold">@Model.Email</span>
+        </div>
+    </li>
+</ul>
 <hr />
 
 

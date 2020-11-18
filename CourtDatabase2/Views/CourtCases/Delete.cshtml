@@ -5,9 +5,8 @@
     ViewData["Title"] = "Изтриване";
 }
 
-<h1>@ViewData["Title"]</h1>
-
-<h3>Сигурен ли сте, че желаете да изтриете това?</h3>
+<h1 class="text-danger">@ViewData["Title"]</h1>
+<h3 class="alert-danger">Сигурен ли сте, че желаете да изтриете това?</h3>
 <div>
     <h4>Съдебно дело</h4>
     <hr />
@@ -33,10 +32,10 @@
         <li>
             <div><span class="font-weight-lighter alert-warning">Вид дело:</span> <span class="font-weight-bold alert-info col-md-1">@Model.CaseType</span></div>
         </li>
-    </ul>    
+    </ul>
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
         <input type="submit" value="Изтрий директно" class="btn btn-danger" /> |
-        <a class="btn btn-primary"asp-action="Index">Обратно</a>
+        <a class="btn btn-primary" asp-action="Index">Обратно</a>
     </form>
 </div>

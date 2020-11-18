@@ -8,9 +8,8 @@
     var representative = string.IsNullOrWhiteSpace(Model.Representative) ? "n/a" : Model.Representative;
 }
 
-<h1>@ViewData["Title"]</h1>
-
-<h3>Сигурен ли сте, че желаете да изтриете този?</h3>
+<h1 class="text-danger">@ViewData["Title"]</h1>
+<h3 class="alert-danger">Сигурен ли сте, че искате да изтриете този?</h3>
 <div>
     <h4>Длъжник</h4>
     <hr />
@@ -34,10 +33,10 @@
             <div><span class="font-weight-lighter alert-warning">Представител:</span> <span class="font-weight-bold alert-info col-md-1">@representative</span></div>
         </li>
     </ul>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
         <input type="submit" value="Изтрий" class="btn btn-danger" /> |
-        <a asp-action="Index" class="btn btn-primary" >Обратно</a>
+        <a asp-action="Index" class="btn btn-primary">Обратно</a>
     </form>
 </div>
