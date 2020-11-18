@@ -52,18 +52,12 @@ namespace CourtDatabase2.Controllers
             return View(courtCase);
         }
 
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
-            var courts = await this.dbContext.Courts.Select(x => new
-            {
-                x.Id,
-                CourtType = x.CourtType.ToString() + "  " + x.CourtTown.TownName + ", " + x.CourtTown.Address,
-            }).ToListAsync();
-            ViewData["CourtId"] = new SelectList(courts, "Id", "CourtType");
-            //ViewData["LawCaseId"] = new SelectList(dbContext.LawCases, "Id", "Id");
             var viewModel = new CourtCasesInputModel
             {
                 LawCases = this.courtCasesService.GetAllLawCases(),
+                CourtTypes = this.courtCasesService.GetAllCourtTypes(),
             };
             return View(viewModel);
         }
@@ -77,13 +71,8 @@ namespace CourtDatabase2.Controllers
                 await this.courtCasesService.CreateAsync(model);
                 return RedirectToAction(nameof(Index));
             }
-            var courts = this.dbContext.Courts.Select(x => new
-            {
-                x.Id,
-                CourtType = x.CourtType.ToString() + "  " + x.CourtTown.TownName + ", " + x.CourtTown.Address,
-            }).ToList();
-            ViewData["CourtId"] = new SelectList(courts, "Id", "CourtType", model.CourtId);
-            ViewData["LawCaseId"] = new SelectList(dbContext.LawCases, "Id", "Id", model.LawCaseId);
+            model.CourtTypes = this.courtCasesService.GetAllCourtTypes();
+            model.LawCases = this.courtCasesService.GetAllLawCases();
             return View(model);
         }
 
@@ -99,13 +88,9 @@ namespace CourtDatabase2.Controllers
             {
                 return NotFound();
             }
-            var courts = await this.dbContext.Courts.Select(x => new
-            {
-                x.Id,
-                CourtType = x.CourtType.ToString() + "  " + x.CourtTown.TownName + ", " + x.CourtTown.Address,
-            }).ToListAsync();
-            ViewData["CourtId"] = new SelectList(courts, "Id", "CourtType", courtCase.CourtId);
-            ViewData["LawCaseId"] = new SelectList(dbContext.LawCases, "Id", "Id", courtCase.LawCaseId);
+            courtCase.LawCases = this.courtCasesService.GetAllLawCases();
+            courtCase.CourtTypes = this.courtCasesService.GetAllCourtTypes();
+
             return View(courtCase);
         }
 
@@ -118,13 +103,8 @@ namespace CourtDatabase2.Controllers
                 await this.courtCasesService.EditAsync(model);
                 return RedirectToAction(nameof(Index));
             }
-            var courts = await this.dbContext.Courts.Select(x => new
-            {
-                x.Id,
-                CourtType = x.CourtType.ToString() + "  " + x.CourtTown.TownName + ", " + x.CourtTown.Address,
-            }).ToListAsync();
-            ViewData["CourtId"] = new SelectList(courts, "Id", "CourtType", model.CourtId);
-            ViewData["LawCaseId"] = new SelectList(dbContext.LawCases, "Id", "Id", model.LawCaseId);
+            model.CourtTypes = this.courtCasesService.GetAllCourtTypes();
+            model.LawCases = this.courtCasesService.GetAllLawCases();
             return View(model);
         }
 

@@ -20,26 +20,13 @@ namespace CourtDatabase2.Services
             this.dbContext = dbContext;
         }
 
-        //public IEnumerable<KeyValuePair<string, string>> AllCourts()
-        //{
-        //    var courts = this.dbContext.Courts.Select(x => new
-        //    {
-        //        x.Id,
-        //        CourtType = x.CourtType.ToString() + "  " + x.CourtTown.TownName + ", " + x.CourtTown.Address,
-        //    }).ToList();//.Select(y => new KeyValuePair<string, string>(y.Id.ToString(), y.CourtType));
-
-        //    var cor = new List<KeyValuePair<string, string>>();
-        //    foreach (var i in courts)
-        //    {
-        //        cor.Add(new KeyValuePair<string, string>(i.Id.ToString(), i.CourtType));
-        //    }
-        //    return cor;
-        //}
-
-
-        public IEnumerable<KeyValuePair<string, string>> GetAllCourts()
+        public IEnumerable<KeyValuePair<string, string>> GetAllCourtTypes()
         {
-            throw new NotImplementedException();
+            return this.dbContext.Courts.Select(x => new
+            {
+                x.Id,
+                CourtType = x.CourtType.ToString() + " съд " + x.CourtTown.TownName,
+            }).ToList().Select(y => new KeyValuePair<string, string>(y.Id.ToString(), y.CourtType));
         }
 
         public IEnumerable<KeyValuePair<string, string>> GetAllLawCases()
@@ -48,7 +35,7 @@ namespace CourtDatabase2.Services
             {
                 Id = x.Id.ToString(),
                 Name = x.Debitor.FirstName + " " + x.Debitor.LastName + " - " + x.Value + " лв."
-            }).ToList().Select(n => new KeyValuePair<string, string>(n.Id, n.Name)); 
+            }).ToList().Select(n => new KeyValuePair<string, string>(n.Id, n.Name));
         }
 
         public async Task<IEnumerable<CourtCasesViewModel>> AllAsync()
@@ -114,7 +101,6 @@ namespace CourtDatabase2.Services
                 CourtChamber = c.CourtChamber,
                 CourtId = c.CourtId,
                 LawCaseId = c.LawCaseId,
-                //CourtName = x.Court.CourtTown.TownName + " " + x.Court.CourtType.ToString(),
             }).FirstOrDefaultAsync();
         }
 
