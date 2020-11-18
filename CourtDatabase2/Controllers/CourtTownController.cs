@@ -63,6 +63,16 @@ namespace CourtDatabase2.Controllers
             {
                 return NotFound();
             }
+            var viewModel = await this.service.DetailsAsync(id);
+            return this.View(viewModel);
+        }
+
+        public async Task<IActionResult> DeleteConfirm(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
             await this.service.DeleteAsync(id);
             return RedirectToAction("all");
         }

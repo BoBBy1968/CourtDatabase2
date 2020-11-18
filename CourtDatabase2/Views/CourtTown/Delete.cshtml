@@ -1,12 +1,16 @@
 ﻿@model CourtDatabase2.Data.Models.CourtTown
 
 @{
-    ViewData["Title"] = "съдебен град";
+    ViewData["Title"] = "Delete";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1>Изтриване</h1>
 
-<hr />
+<h3>Сигурен ли сте, че искате да изтриете този?</h3>
+<div>
+    <h4>Град</h4>
+    <hr />
+
     <ul>
         <li>
             <div><span class="font-weight-lighter alert-warning">Съд ИД:</span> <span class="alert-info col-md-1 font-weight-bold">@Model.Id</span></div>
@@ -19,7 +23,9 @@
         </li>
     </ul>
 
-<div>
-    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Редактиране</a> |
-    <a class="btn btn-primary" asp-action="Index">Обратно</a>
+    <form asp-action="DeleteConfirm">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Изтрий" class="btn btn-danger" /> |
+        <a class="btn btn-primary" asp-action="Index">Обратно</a>
+    </form>
 </div>

@@ -2,7 +2,7 @@
 {
     public class CourtTownEditViewModel : CourtTownCreateViewModel
     {
-        public int Id { get; set; }
+        public int Id { get; set; } 
 
     }
 }
