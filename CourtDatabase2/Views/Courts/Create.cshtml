@@ -1,8 +1,9 @@
 ﻿@using CourtDatabase2.Data.Models.Enumerations
-@model CourtDatabase2.Data.Models.Court
+@model CourtCreateViewModel
 
 @{
     ViewData["Title"] = "Създай съд";
+    var courtTowns = this.Model.Towns.Select(x => new SelectListItem(x.Value, x.Key));
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -19,7 +20,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="CourtTownId" class="control-label">Град и адрес</label>
-                <select asp-for="CourtTownId" class="form-control" asp-items="ViewBag.CourtTownId"></select>
+                <select asp-for="CourtTownId" class="form-control" asp-items="courtTowns"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Създай" class="btn btn-primary" />

@@ -12,12 +12,12 @@ namespace CourtDatabase2.Controllers
     public class CourtsController : Controller
     {
         private readonly ApplicationDbContext dbContext;
-        private readonly ICourtService service;
+        private readonly ICourtService courtService;
 
         public CourtsController(ApplicationDbContext context, ICourtService service)
         {
             this.dbContext = context;
-            this.service = service;
+            this.courtService = service;
         }
 
         public IActionResult Index()
@@ -27,19 +27,17 @@ namespace CourtDatabase2.Controllers
 
         public async Task<IActionResult> All()
         {
-            var viewModel = await this.service.AllAsync();
+            var viewModel = await this.courtService.AllAsync();
             return this.View(viewModel);
         }
 
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
-            var towns = await this.dbContext.CourtTowns.Select(x => new
+            var viewModel = new CourtCreateViewModel
             {
-                x.Id,
-                TownName = x.TownName + ", " + x.Address,
-            }).ToListAsync();
-            ViewData["CourtTownId"] = new SelectList(towns, "Id", "TownName");
-            return View();
+                Towns = this.courtService.GetAllCourtTowns()
+            };
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -51,7 +49,7 @@ namespace CourtDatabase2.Controllers
                 return this.View(model);
             }
 
-            await this.service.CreateAsync(model.CourtType, model.CourtTownId);
+            await this.courtService.CreateAsync(model.CourtType, model.CourtTownId);
             return this.RedirectToAction(nameof(All));
 
         }
@@ -62,18 +60,13 @@ namespace CourtDatabase2.Controllers
             {
                 return NotFound();
             }
-            var towns = await this.dbContext.CourtTowns.Select(x => new
-            {
-                x.Id,
-                TownName = x.TownName + ", " + x.Address,
-            }).ToListAsync();
+            var towns = await this.courtService.EditAsync(id);
             if (towns == null)
             {
                 return NotFound();
             }
-            ViewData["CourtTownId"] = new SelectList(towns, "Id", "TownName");
-            var courtViewModel = await this.service.EditAsync(id);
-            return this.View(courtViewModel);
+            towns.Towns = this.courtService.GetAllCourtTowns();
+            return this.View(towns);
 
         }
 
@@ -81,8 +74,11 @@ namespace CourtDatabase2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(CourtEditViewModel model)
         {
-            await this.service.EditAsync(model.Id, model.CourtType, model.CourtTownId);
-
+            if (!ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+            await this.courtService.EditAsync(model.Id, model.CourtType, model.CourtTownId);
             return this.RedirectToAction("All");
         }
 

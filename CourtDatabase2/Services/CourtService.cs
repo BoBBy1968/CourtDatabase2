@@ -20,6 +20,15 @@ namespace CourtDatabase2.Services
             this.dbContext = dbContext;
         }
 
+        public IEnumerable<KeyValuePair<string, string>> GetAllCourtTowns()
+        {
+            return this.dbContext.CourtTowns.Select(x => new
+            {
+                Id = x.Id.ToString(),
+                Name = x.TownName + ", " + x.Address,
+            }).ToList().Select(x => new KeyValuePair<string, string>(x.Id, x.Name));
+        }
+
         public async Task<IEnumerable<CourtAllViewModel>> AllAsync()
         {
             return await this.dbContext
@@ -31,7 +40,7 @@ namespace CourtDatabase2.Services
                 Address = c.CourtTown.Address,
                 Id = c.Id,
             })
-           .OrderByDescending(x => x.Id)
+           .OrderBy(x => x.TownName)
            .ToListAsync();
         }
 
