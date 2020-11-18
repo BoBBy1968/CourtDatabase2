@@ -25,5 +25,8 @@
     </li>
 </ul>
 
-<a asp-action="All" class="btn btn-primary">Обратно</a>
-<a asp-action="DeleteConfirm" class="btn btn-danger" asp-route-id="@Model.Id">Изтрий Директно</a>
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" value="Изтрий директно" class="btn btn-danger" /> |
+    <a class="btn btn-primary" asp-action="Index">Обратно</a>
+</form>

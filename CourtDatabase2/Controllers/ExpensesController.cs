@@ -101,6 +101,8 @@ namespace CourtDatabase2.Controllers
             return View(viewModel);
         }
 
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirm(int? id)
         {
             if (id == null)

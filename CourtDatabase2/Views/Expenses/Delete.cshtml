@@ -27,7 +27,8 @@
     Дело ИД: @Model.LawCaseId
 </p>
 
-<div>
-    <a class="btn btn-primary" asp-action="All">Обратно</a>
-    <a class="btn btn-danger" asp-action="DeleteConfirm" asp-route-id="@Model.Id">Изтрий Директно</a>
-</div>
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" value="Изтрий директно" class="btn btn-danger" /> |
+    <a class="btn btn-primary" asp-action="Index">Обратно</a>
+</form>

@@ -23,7 +23,7 @@ namespace CourtDatabase2.Services
             return this.dbContext.LawCases.Select(x => new
             {
                 Id = x.Id.ToString(),
-                Text = x.Debitor.FirstName + " " + x.Debitor.MiddleName + " " + x.Debitor.LastName 
+                Text = x.Id + " - " + x.Debitor.FirstName + " " + x.Debitor.MiddleName + " " + x.Debitor.LastName
                 + " - главница " + x.Value + " лв.",
             }).ToList().Select(x => new KeyValuePair<string, string>(x.Id, x.Text));
         }
@@ -49,7 +49,8 @@ namespace CourtDatabase2.Services
                 Payee = model.Payee,
                 ExpenceDate = model.ExpenceDate,
                 ExpenceDescription = model.ExpenceDescription,
-                ExpenceValue = model.ExpenceValue
+                ExpenceValue = model.ExpenceValue,
+                LawCaseId = model.LawCaseId,
             };
             await this.dbContext.Expenses.AddAsync(expense);
             await this.dbContext.SaveChangesAsync();

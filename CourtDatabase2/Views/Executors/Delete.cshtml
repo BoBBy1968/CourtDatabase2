@@ -1,4 +1,4 @@
-﻿
+﻿@model ExecutorsEditViewModel
 
 @{
     ViewData["Title"] = "Изтрий съдебен изпълнител";
@@ -10,14 +10,22 @@
 
 <p>ИД: @Model.Id</p>
 <hr />
-<p>Служебен номер: @Model.Number</p><hr />
-<p>Имена: @Model.Name</p><hr />
-<p>Адрес: @Model.Address</p><hr />
-<p>Регион: @Model.Region</p><hr />
-<p>Телефон: @Model.Telephon</p><hr />
-<p>Ел поща: @Model.Email</p><hr />
+<p>Служебен номер: @Model.Number</p>
+<hr />
+<p>Имена: @Model.Name</p>
+<hr />
+<p>Адрес: @Model.Address</p>
+<hr />
+<p>Регион: @Model.Region</p>
+<hr />
+<p>Телефон: @Model.Telephon</p>
+<hr />
+<p>Ел поща: @Model.Email</p>
+<hr />
 
 
-<p>
-    <a asp-action="All" class="btn btn-primary">Обратно</a>
-    <a asp-action="DeleteConfirm" asp-route-Id="@Model.Id" class="btn btn-danger">Изтрий</a>
+<form asp-action="Delete">
+    <input type="hidden" asp-for="@Model.Id" />
+    <input type="submit" value="Изтрий директно" class="btn btn-danger" /> |
+    <a class="btn btn-primary" asp-action="Index">Обратно</a>
+</form>
