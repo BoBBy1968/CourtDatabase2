@@ -31,27 +31,6 @@ namespace CourtDatabase2.Controllers
             return this.View(viewModel);
         }
 
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            //var courtCase = await dbContext.CourtCases
-            //    .Include(c => c.Court)
-            //    .Include(c => c.LawCase)
-            //    .FirstOrDefaultAsync(m => m.Id == id);
-
-            var courtCase = await this.courtCasesService.DetailsAsync(id);
-            if (courtCase == null)
-            {
-                return NotFound();
-            }
-
-            return View(courtCase);
-        }
-
         public IActionResult Create()
         {
             var viewModel = new CourtCasesInputModel
@@ -83,7 +62,7 @@ namespace CourtDatabase2.Controllers
                 return NotFound();
             }
 
-            var courtCase = await this.courtCasesService.EditAsync(id);
+            var courtCase = await this.courtCasesService.DetailsAsync(id);
             if (courtCase == null)
             {
                 return NotFound();
@@ -106,6 +85,27 @@ namespace CourtDatabase2.Controllers
             model.CourtTypes = this.courtCasesService.GetAllCourtTypes();
             model.LawCases = this.courtCasesService.GetAllLawCases();
             return View(model);
+        }
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            //var courtCase = await dbContext.CourtCases
+            //    .Include(c => c.Court)
+            //    .Include(c => c.LawCase)
+            //    .FirstOrDefaultAsync(m => m.Id == id);
+
+            var courtCase = await this.courtCasesService.DetailsAsync(id);
+            if (courtCase == null)
+            {
+                return NotFound();
+            }
+
+            return View(courtCase);
         }
 
         public async Task<IActionResult> Delete(int? id)

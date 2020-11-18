@@ -54,7 +54,7 @@ namespace CourtDatabase2.Controllers
             {
                 return NotFound();
             }
-            var viewModel = await this.paymentsService.EditAsync(id);
+            var viewModel = await this.paymentsService.DetailsAsync(id);
             if (viewModel == null)
             {
                 return NotFound();

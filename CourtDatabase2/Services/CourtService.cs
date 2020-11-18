@@ -55,6 +55,17 @@ namespace CourtDatabase2.Services
             await this.dbContext.SaveChangesAsync();
         }
 
+        //public async Task<CourtEditViewModel> EditAsync(int? id)
+        //{
+        //    return await this.dbContext.Courts.Where(x => x.Id == id).Select(x => new CourtEditViewModel
+        //    {
+        //        Id = x.Id,
+        //        CourtType = x.CourtType.ToString(),
+        //        CourtTownId = x.CourtTownId
+
+        //    }).FirstOrDefaultAsync();
+        //}
+
         public async Task EditAsync(int id, string courtType, int courtTownId)
         {
             var court = new Court
@@ -65,17 +76,6 @@ namespace CourtDatabase2.Services
             };
             this.dbContext.Update(court);
             await this.dbContext.SaveChangesAsync();
-        }
-
-        public async Task<CourtEditViewModel> EditAsync(int? id)
-        {
-            return await this.dbContext.Courts.Where(x => x.Id == id).Select(x => new CourtEditViewModel
-            {
-                Id = x.Id,
-                CourtType = x.CourtType.ToString(),
-                CourtTownId = x.CourtTownId
-
-            }).FirstOrDefaultAsync();
         }
 
         public async Task<CourtEditViewModel> DetailsAsync(int? id)

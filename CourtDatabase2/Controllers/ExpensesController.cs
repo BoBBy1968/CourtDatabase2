@@ -52,7 +52,7 @@ namespace CourtDatabase2.Controllers
             {
                 return NotFound();
             }
-            var viewModel = await this.expenseService.Edit(id);
+            var viewModel = await this.expenseService.DetailsAsync(id);
             if (viewModel == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace CourtDatabase2.Controllers
             {
                 return NotFound();
             }
-            var viewModel = await this.expenseService.Details(id);
+            var viewModel = await this.expenseService.DetailsAsync(id);
             if (viewModel == null)
             {
                 return NotFound();

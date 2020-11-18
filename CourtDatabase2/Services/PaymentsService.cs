@@ -20,6 +20,17 @@ namespace CourtDatabase2.Services
             this.dbContext = dbContext;
         }
 
+        //ToListAsync dosn't contain .Select
+        public IEnumerable<KeyValuePair<string, string>> AllLawCasesId()
+        {
+            return this.dbContext.LawCases.Select(x => new
+            {
+                Id = x.Id.ToString(),
+                Text = x.Debitor.FirstName + " " + x.Debitor.MiddleName + " " + x.Debitor.LastName
+                + " - главница " + x.Value + " лв.",
+            }).ToList().Select(d => new KeyValuePair<string, string>(d.Id, d.Text));
+        }
+
         public async Task<IEnumerable<PaymentsAllViewModel>> AllAsync()
         {
             return await this.dbContext.Payments
@@ -35,17 +46,6 @@ namespace CourtDatabase2.Services
                 + " - " + x.LawCase.Value + " лв. "
             }).ToListAsync();
         }
-
-        //ToListAsync dosn't contain .Select
-        public IEnumerable<KeyValuePair<string, string>> AllLawCasesId()
-        {
-            return this.dbContext.LawCases.Select(x => new
-            {
-                Id = x.Id.ToString(),
-                Text = x.Debitor.FirstName + " " + x.Debitor.MiddleName + " " + x.Debitor.LastName
-                + " - главница " + x.Value + " лв.",
-            }).ToList().Select(d => new KeyValuePair<string, string>(d.Id, d.Text));
-        }
          
         public async Task CreateAsync(PaymentsInputViewModel model)
         {
@@ -60,6 +60,18 @@ namespace CourtDatabase2.Services
             await this.dbContext.SaveChangesAsync();
         }
 
+        //public async Task<PaymentsEditViewModel> EditAsync(int? id)
+        //{
+        //    return await this.dbContext.Payments.Where(x => x.Id == id).Select(x => new PaymentsEditViewModel
+        //    {
+        //        Id = x.Id,
+        //        Date = x.Date,
+        //        LawCaseId = x.LawCaseId,
+        //        PaymentSource = x.PaymentSource.ToString(),
+        //        Value = x.Value,
+        //    }).FirstOrDefaultAsync();
+        //}
+
         public async Task EditAsync(PaymentsEditViewModel model)
         {
             var payment = new Payment
@@ -72,18 +84,6 @@ namespace CourtDatabase2.Services
             };
             this.dbContext.Update(payment);
             await this.dbContext.SaveChangesAsync();
-        }
-
-        public async Task<PaymentsEditViewModel> EditAsync(int? id)
-        {
-            return await this.dbContext.Payments.Where(x => x.Id == id).Select(x => new PaymentsEditViewModel
-            {
-                Id = x.Id,
-                Date = x.Date,
-                LawCaseId = x.LawCaseId,
-                PaymentSource = x.PaymentSource.ToString(),
-                Value = x.Value,
-            }).FirstOrDefaultAsync();
         }
 
         public async Task<PaymentsEditViewModel> DetailsAsync(int? id)

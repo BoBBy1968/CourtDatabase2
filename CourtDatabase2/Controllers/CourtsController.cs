@@ -56,7 +56,7 @@ namespace CourtDatabase2.Controllers
             {
                 return NotFound();
             }
-            var towns = await this.courtService.EditAsync(id);
+            var towns = await this.courtService.DetailsAsync(id);
             if (towns == null)
             {
                 return NotFound();

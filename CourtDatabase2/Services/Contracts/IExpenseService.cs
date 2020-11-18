@@ -10,11 +10,11 @@ namespace CourtDatabase2.Services.Contracts
 
         Task CreateAsync(ExpenseInputViewModel model);
 
-        Task<ExpenseEditViewModel> Edit(int? id);
+        //Task<ExpenseEditViewModel> Edit(int? id);
 
         Task Edit(ExpenseEditViewModel model);
 
-        Task<ExpenseEditViewModel> Details(int? id);
+        Task<ExpenseEditViewModel> DetailsAsync(int? id);
 
         Task<ExpenseEditViewModel> Delete(int? id);
 

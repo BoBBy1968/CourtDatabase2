@@ -43,20 +43,6 @@ namespace CourtDatabase2.Controllers
             return this.RedirectToAction("All");
         }
 
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            var viewModel = await this.executorService.DetailsAsync(id);
-            if (viewModel == null)
-            {
-                return NotFound();
-            }
-            return this.View(viewModel);
-        }
-
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,6 +67,20 @@ namespace CourtDatabase2.Controllers
             }
             await this.executorService.EditAsync(model);
             return this.RedirectToAction("All");
+        }
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var viewModel = await this.executorService.DetailsAsync(id);
+            if (viewModel == null)
+            {
+                return NotFound();
+            }
+            return this.View(viewModel);
         }
 
         public async Task<IActionResult> Delete(int? id)

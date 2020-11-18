@@ -18,6 +18,24 @@ namespace CourtDatabase2.Services
             this.dbContext = dbContext;
         }
 
+        public IEnumerable<KeyValuePair<string, string>> GetAllLawCases()
+        {
+            return this.dbContext.LawCases.Select(l=> new 
+            {
+                l.Id,
+                Name = l.Id + " - " + l.Debitor.FirstName + " " + l.Debitor.LastName + " - " + l.Value + " лв." 
+            }).ToList().Select(x=> new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
+        }
+
+        public IEnumerable<KeyValuePair<string, string>> GetAllExecutors()
+        {
+            return this.dbContext.Executors.Select(e => new
+            {
+                Id = e.Id.ToString(),
+                Name = e.Name + " - " + e.Region + " - " + e.Number
+            }).ToList().Select(x => new KeyValuePair<string, string>(x.Id, x.Name));
+        }
+
         public async Task<IEnumerable<ExecutorsCasesAllViewModel>> AllAsync()
         {
             return await this.dbContext
@@ -80,24 +98,6 @@ namespace CourtDatabase2.Services
             var myCase = await this.dbContext.ExecutorCases.Where(x => x.Id == id).FirstOrDefaultAsync();
             this.dbContext.ExecutorCases.Remove(myCase);
             await this.dbContext.SaveChangesAsync();
-        }
-
-        public IEnumerable<KeyValuePair<string, string>> GetAllLawCases()
-        {
-            return this.dbContext.LawCases.Select(l=> new 
-            {
-                l.Id,
-                Name = l.Id + " - " + l.Debitor.FirstName + " " + l.Debitor.LastName + " - " + l.Value + " лв." 
-            }).ToList().Select(x=> new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
-        }
-
-        public IEnumerable<KeyValuePair<string, string>> GetAllExecutors()
-        {
-            return this.dbContext.Executors.Select(e => new
-            {
-                Id = e.Id.ToString(),
-                Name = e.Name + " - " + e.Region + " - " + e.Number
-            }).ToList().Select(x => new KeyValuePair<string, string>(x.Id, x.Name));
         }
     }
 }

@@ -18,6 +18,19 @@ namespace CourtDatabase2.Services
         {
             this.dbContext = dbContext;
         }
+        public IEnumerable<KeyValuePair<string, string>> GetAllCourtTowns()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public IEnumerable<KeyValuePair<string, string>> GetAllHeatEstates()
+        {
+            return this.dbContext.HeatEstates.Select(x => new
+            {
+                Id = x.AbNumber,
+                x.Address,
+            }).ToList().Select(x => new KeyValuePair<string, string>(x.Id, x.Address));
+        }
 
         public async Task<IEnumerable<DebitorsAllViewModel>> AllAsync()
         {
@@ -52,11 +65,28 @@ namespace CourtDatabase2.Services
             await this.dbContext.SaveChangesAsync();
         }
 
+        //public async Task<DebitorEditViewModel> EditAsync(int? id)
+        //{
+        //    return await this.DetailsAsync(id);
+        //}
 
-        public async Task DeleteAsync(int? id)
+        public async Task EditAsync(DebitorEditViewModel model)
         {
-            var debitor = await this.dbContext.Debitors.FindAsync(id);
-            this.dbContext.Debitors.Remove(debitor);
+            var debitor = new Debitor
+            {
+                Id = model.Id,
+                FirstName = model.FirstName,
+                MiddleName = model.MiddleName,
+                LastName = model.LastName,
+                EGN = model.EGN,
+                Email = model.Email,
+                AbNumber = model.AbNumber,
+                HeatEstate = model.HeatEstate,
+                Phone = model.Phone,
+                Representative = model.Representative,
+                AddressToContact = model.AddressToContact,
+            };
+            this.dbContext.Update(debitor);
             await this.dbContext.SaveChangesAsync();
         }
 
@@ -80,45 +110,14 @@ namespace CourtDatabase2.Services
                 }).FirstOrDefaultAsync();
         }
 
-        public async Task<DebitorEditViewModel> EditAsync(int? id)
+        public async Task DeleteAsync(int? id)
         {
-            return await this.DetailsAsync(id);
-        }
-
-        public async Task EditAsync(DebitorEditViewModel model)
-        {
-            var debitor = new Debitor
-            {
-                Id = model.Id,
-                FirstName = model.FirstName,
-                MiddleName = model.MiddleName,
-                LastName = model.LastName,
-                EGN = model.EGN,
-                Email = model.Email,
-                AbNumber = model.AbNumber,
-                HeatEstate = model.HeatEstate,
-                Phone = model.Phone,
-                Representative = model.Representative,
-                AddressToContact = model.AddressToContact,
-            };
-            this.dbContext.Update(debitor);
+            var debitor = await this.dbContext.Debitors.FindAsync(id);
+            this.dbContext.Debitors.Remove(debitor);
             await this.dbContext.SaveChangesAsync();
         }
 
-        public IEnumerable<KeyValuePair<string, string>> GetAllCourtTowns()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<KeyValuePair<string, string>> GetAllHeatEstates()
-        {
-            return this.dbContext.HeatEstates.Select(x => new
-            {
-                Id = x.AbNumber,
-                Address = x.Address,
-            }).ToList().Select(x => new KeyValuePair<string, string>(x.Id, x.Address));
-        }
-
+        //Out of project, just for seeding
         public async Task DeleteAll()
         {
             foreach (var debitor in this.dbContext.Debitors)

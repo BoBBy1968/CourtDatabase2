@@ -12,7 +12,7 @@ namespace CourtDatabase2.Services.Contracts
 
         Task CreateAsync(DebitorCreateViewModel model);
 
-        Task<DebitorEditViewModel> EditAsync(int? id);
+        //Task<DebitorEditViewModel> EditAsync(int? id);
 
         Task EditAsync(DebitorEditViewModel model);
 

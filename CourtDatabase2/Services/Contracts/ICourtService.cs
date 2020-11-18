@@ -13,7 +13,7 @@ namespace CourtDatabase2.Services.Contracts
 
         Task CreateAsync(string courtType, int courtTownId);
 
-        Task<CourtEditViewModel> EditAsync(int? id);
+        //Task<CourtEditViewModel> EditAsync(int? id);
 
         Task EditAsync(int id, string courtType, int courtTownId);
 

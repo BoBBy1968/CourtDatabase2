@@ -74,19 +74,19 @@ namespace CourtDatabase2.Services
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task<CourtCasesViewModel> EditAsync(int? id)
-        {
-            return await this.dbContext.CourtCases.Where(x => x.Id == id).Select(c => new CourtCasesViewModel
-            {
-                Id = c.Id,
-                CaseNumber = c.CaseNumber,
-                CaseYear = c.CaseYear,
-                CaseType = c.CaseType.ToString(),
-                CourtChamber = c.CourtChamber,
-                CourtId = c.CourtId,
-                LawCaseId = c.LawCaseId,
-            }).FirstOrDefaultAsync();
-        }
+        //public async Task<CourtCasesViewModel> EditAsync(int? id)
+        //{
+        //    return await this.dbContext.CourtCases.Where(x => x.Id == id).Select(c => new CourtCasesViewModel
+        //    {
+        //        Id = c.Id,
+        //        CaseNumber = c.CaseNumber,
+        //        CaseYear = c.CaseYear,
+        //        CaseType = c.CaseType.ToString(),
+        //        CourtChamber = c.CourtChamber,
+        //        CourtId = c.CourtId,
+        //        LawCaseId = c.LawCaseId,
+        //    }).FirstOrDefaultAsync();
+        //}
 
         public async Task EditAsync(CourtCasesViewModel model)
         {

@@ -43,20 +43,6 @@ namespace CourtDatabase2.Services
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task<ExecutorsEditViewModel> DetailsAsync(int? id)
-        {
-            return await this.dbContext.Executors.Where(x => x.Id == id).Select(e => new ExecutorsEditViewModel
-            {
-                Name = e.Name,
-                Address = e.Address,
-                Email = e.Email,
-                Number = e.Number,
-                Id = e.Id,
-                Region = e.Region,
-                Telephon = e.Telephon,
-            }).FirstOrDefaultAsync();
-        }
-
         public async Task EditAsync(ExecutorsEditViewModel model)
         {
             var executor = new Executor
@@ -72,6 +58,20 @@ namespace CourtDatabase2.Services
             this.dbContext.Update(executor);
             await this.dbContext.SaveChangesAsync();
         } 
+
+        public async Task<ExecutorsEditViewModel> DetailsAsync(int? id)
+        {
+            return await this.dbContext.Executors.Where(x => x.Id == id).Select(e => new ExecutorsEditViewModel
+            {
+                Name = e.Name,
+                Address = e.Address,
+                Email = e.Email,
+                Number = e.Number,
+                Id = e.Id,
+                Region = e.Region,
+                Telephon = e.Telephon,
+            }).FirstOrDefaultAsync();
+        }
 
         public async Task DeleteAsync(int? id)
         {

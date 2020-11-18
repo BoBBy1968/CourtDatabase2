@@ -18,6 +18,12 @@ namespace CourtDatabase2.Controllers
         {
             return RedirectToAction("All");
         }
+        public async Task<IActionResult> All()
+        {
+            var viewModel = await this.service.AllAsync();
+            return View(viewModel);
+        }
+
 
         public IActionResult Create()
         {
@@ -37,10 +43,30 @@ namespace CourtDatabase2.Controllers
             return this.RedirectToAction("All");
         }
 
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> Edit(int? id)
         {
-            var viewModel = await this.service.AllAsync();
-            return View(viewModel);
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var viewModel = await this.service.DetailsAsync(id);
+            if (viewModel == null)
+            {
+                return NotFound();
+            }
+            return this.View(viewModel);
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(CourtTownEditViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+            await this.service.EditAsync(model.TownName, model.Address, model.Id);
+            return this.RedirectToAction("All");
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -75,32 +101,6 @@ namespace CourtDatabase2.Controllers
             }
             await this.service.DeleteAsync(id);
             return RedirectToAction("all");
-        }
-
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            var viewModel = await this.service.EditAsync(id);
-            if (viewModel == null)
-            {
-                return NotFound();
-            }
-            return this.View(viewModel);
-        }
-        
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(CourtTownEditViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return this.View(model);
-            }
-            await this.service.EditAsync(model.TownName, model.Address, model.Id);
-            return this.RedirectToAction("All");
         }
     }
 }

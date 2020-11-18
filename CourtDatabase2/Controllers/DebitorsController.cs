@@ -30,22 +30,6 @@ namespace CourtDatabase2.Controllers
             return View(viewModel);
         }
 
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var debitor = await this.debitorsService.DetailsAsync(id);
-            if (debitor == null)
-            {
-                return NotFound();
-            }
-
-            return View(debitor);
-        }
-
         public IActionResult Create()
         {
             var viewModel = new DebitorCreateViewModel
@@ -74,7 +58,7 @@ namespace CourtDatabase2.Controllers
                 return NotFound();
             }
 
-            var debitor = await this.debitorsService.EditAsync(id);
+            var debitor = await this.debitorsService.DetailsAsync(id);
             if (debitor == null)
             {
                 return NotFound();
@@ -93,6 +77,22 @@ namespace CourtDatabase2.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(model);
+        }
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var debitor = await this.debitorsService.DetailsAsync(id);
+            if (debitor == null)
+            {
+                return NotFound();
+            }
+
+            return View(debitor);
         }
 
         public async Task<IActionResult> Delete(int? id)

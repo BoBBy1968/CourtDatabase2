@@ -14,7 +14,7 @@ namespace CourtDatabase2.Services.Contracts
 
         Task CreateAsync(LawCaseInputModel model);
 
-        Task<LawCaseViewModel> EditAsync(int? id);
+        //Task<LawCaseViewModel> EditAsync(int? id);
 
         Task EditAsync(LawCaseViewModel model);
 

@@ -18,6 +18,16 @@ namespace CourtDatabase2.Services
             this.dbContext = dbContext;
         }
 
+        public IEnumerable<KeyValuePair<string, string>> GetAllLawCases()
+        {
+            return this.dbContext.LawCases.Select(x => new
+            {
+                Id = x.Id.ToString(),
+                Text = x.Debitor.FirstName + " " + x.Debitor.MiddleName + " " + x.Debitor.LastName 
+                + " - главница " + x.Value + " лв.",
+            }).ToList().Select(x => new KeyValuePair<string, string>(x.Id, x.Text));
+        }
+
         public async Task<IEnumerable<ExpenseAllViewModel>> AllAsync()
         {
             return await this.dbContext.Expenses.Select(x => new ExpenseAllViewModel
@@ -29,16 +39,6 @@ namespace CourtDatabase2.Services
                 ExpenceDescription = x.ExpenceDescription,
                 ExpenceValue = x.ExpenceValue,
             }).ToListAsync();
-        }
-
-        public IEnumerable<KeyValuePair<string, string>> GetAllLawCases()
-        {
-            return this.dbContext.LawCases.Select(x => new
-            {
-                Id = x.Id.ToString(),
-                Text = x.Debitor.FirstName + " " + x.Debitor.MiddleName + " " + x.Debitor.LastName 
-                + " - главница " + x.Value + " лв.",
-            }).ToList().Select(x => new KeyValuePair<string, string>(x.Id, x.Text));
         }
 
         public async Task CreateAsync(ExpenseInputViewModel model)
@@ -55,43 +55,18 @@ namespace CourtDatabase2.Services
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task<ExpenseEditViewModel> Delete(int? id)
-        {
-            return await this.Edit(id);
-        }
-
-        public async Task DeleteConfirm(int? id)
-        {
-            var expense = await this.dbContext.Expenses.Where(x => x.Id == id).FirstOrDefaultAsync();
-            this.dbContext.Expenses.Remove(expense);
-            await this.dbContext.SaveChangesAsync();
-        }
-
-        public async Task<ExpenseEditViewModel> Details(int? id)
-        {
-            return await this.dbContext.Expenses.Where(x => x.Id == id).Select(x => new ExpenseEditViewModel
-            {
-                Id = x.Id,
-                ExpenceDate = x.ExpenceDate,
-                ExpenceDescription = x.ExpenceDescription,
-                ExpenceValue = x.ExpenceValue,
-                LawCaseId = x.LawCaseId,
-                Payee = x.Payee,
-            }).FirstOrDefaultAsync();
-        }
-
-        public async Task<ExpenseEditViewModel> Edit(int? id)
-        {
-            return await this.dbContext.Expenses.Where(x => x.Id == id).Select(x => new ExpenseEditViewModel
-            {
-                Id = x.Id,
-                ExpenceDate = x.ExpenceDate,
-                ExpenceDescription = x.ExpenceDescription,
-                ExpenceValue = x.ExpenceValue,
-                LawCaseId = x.LawCaseId,
-                Payee = x.Payee,
-            }).FirstOrDefaultAsync();
-        }
+        //public async Task<ExpenseEditViewModel> Edit(int? id)
+        //{
+        //    return await this.dbContext.Expenses.Where(x => x.Id == id).Select(x => new ExpenseEditViewModel
+        //    {
+        //        Id = x.Id,
+        //        ExpenceDate = x.ExpenceDate,
+        //        ExpenceDescription = x.ExpenceDescription,
+        //        ExpenceValue = x.ExpenceValue,
+        //        LawCaseId = x.LawCaseId,
+        //        Payee = x.Payee,
+        //    }).FirstOrDefaultAsync();
+        //}
 
         public async Task Edit(ExpenseEditViewModel model)
         {
@@ -105,6 +80,31 @@ namespace CourtDatabase2.Services
                 Payee = model.Payee,
             };
             this.dbContext.Update(expense);
+            await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task<ExpenseEditViewModel> DetailsAsync(int? id)
+        {
+            return await this.dbContext.Expenses.Where(x => x.Id == id).Select(x => new ExpenseEditViewModel
+            {
+                Id = x.Id,
+                ExpenceDate = x.ExpenceDate,
+                ExpenceDescription = x.ExpenceDescription,
+                ExpenceValue = x.ExpenceValue,
+                LawCaseId = x.LawCaseId,
+                Payee = x.Payee,
+            }).FirstOrDefaultAsync();
+        }
+
+        public async Task<ExpenseEditViewModel> Delete(int? id)
+        {
+            return await this.DetailsAsync(id);
+        }
+
+        public async Task DeleteConfirm(int? id)
+        {
+            var expense = await this.dbContext.Expenses.Where(x => x.Id == id).FirstOrDefaultAsync();
+            this.dbContext.Expenses.Remove(expense);
             await this.dbContext.SaveChangesAsync();
         }
     }

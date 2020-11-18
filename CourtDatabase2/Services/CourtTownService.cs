@@ -42,10 +42,15 @@ namespace CourtDatabase2.Services
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int? id)
+        //public async Task<CourtTown> EditAsync(int? id)
+        //    => await this.dbContext.CourtTowns.FirstOrDefaultAsync(t => t.Id == id);
+
+        public async Task EditAsync(string townName, string address, int id)
         {
             var courtTown = await this.dbContext.CourtTowns.FirstOrDefaultAsync(x => x.Id == id);
-            this.dbContext.Remove(courtTown);
+            courtTown.TownName = townName;
+            courtTown.Address = address;
+            this.dbContext.CourtTowns.Update(courtTown);
             await this.dbContext.SaveChangesAsync();
         }
 
@@ -54,15 +59,10 @@ namespace CourtDatabase2.Services
             return await this.dbContext.CourtTowns.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<CourtTown> EditAsync(int? id)
-            => await this.dbContext.CourtTowns.FirstOrDefaultAsync(t => t.Id == id);
-
-        public async Task EditAsync(string townName, string address, int id)
+        public async Task DeleteAsync(int? id)
         {
             var courtTown = await this.dbContext.CourtTowns.FirstOrDefaultAsync(x => x.Id == id);
-            courtTown.TownName = townName;
-            courtTown.Address = address;
-            this.dbContext.CourtTowns.Update(courtTown);
+            this.dbContext.Remove(courtTown);
             await this.dbContext.SaveChangesAsync();
         }
     }

@@ -52,6 +52,31 @@ namespace CourtDatabase2.Controllers
             return this.RedirectToAction("All");
         }
 
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var viewModel = await this.lawCaseService.DetailsAsync(id);
+            viewModel.AbNumbers = this.lawCaseService.AbNumbers();
+            viewModel.Debitors = this.lawCaseService.Debitors();
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(LawCaseViewModel model)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+            await this.lawCaseService.EditAsync(model);
+            return this.RedirectToAction("All");
+        }
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -79,6 +104,7 @@ namespace CourtDatabase2.Controllers
             }
             return this.View(viewModel);
         }
+
         public async Task<IActionResult> DeleteConfirm(int? id)
         {
             if (id == null)
@@ -86,31 +112,6 @@ namespace CourtDatabase2.Controllers
                 return NotFound();
             }
             await this.lawCaseService.DeleteAsync(id);
-            return this.RedirectToAction("All");
-        }
-
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            var viewModel = await this.lawCaseService.EditAsync(id);
-            viewModel.AbNumbers = this.lawCaseService.AbNumbers();
-            viewModel.Debitors = this.lawCaseService.Debitors();
-            return this.View(viewModel);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(LawCaseViewModel model)
-        {
-
-            if (!ModelState.IsValid)
-            {
-                return this.View(model);
-            }
-            await this.lawCaseService.EditAsync(model);
             return this.RedirectToAction("All");
         }
     }

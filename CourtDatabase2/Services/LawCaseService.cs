@@ -77,6 +77,42 @@ namespace CourtDatabase2.Services
             await this.dbContext.SaveChangesAsync();
         }
 
+        //public async Task<LawCaseViewModel> EditAsync(int? id)
+        //{
+        //    return await this.dbContext.LawCases.Where(x => x.Id == id).Select(l => new LawCaseViewModel
+        //    {
+        //        Id = l.Id,
+        //        Date = l.Date,
+        //        AbNumber = l.AbNumber,
+        //        DebitorId = l.DebitorId,
+        //        MoratoriumInterest = l.MoratoriumInterest,
+        //        LegalInterest = l.LegalInterest,
+        //        Value = l.Value,
+        //        PeriodFrom = l.PeriodFrom,
+        //        PeriodTo = l.PeriodTo,
+        //        InvoiceCount = l.InvoiceCount,
+        //    }).FirstOrDefaultAsync();
+        //}
+
+        public async Task EditAsync(LawCaseViewModel model)
+        {
+            var lawCase = new LawCase
+            {
+                Id = model.Id,
+                Date = model.Date,
+                AbNumber = model.AbNumber,
+                DebitorId = model.DebitorId,
+                MoratoriumInterest = model.MoratoriumInterest,
+                LegalInterest = model.LegalInterest,
+                Value = model.Value,
+                PeriodFrom = model.PeriodFrom,
+                PeriodTo = model.PeriodTo,
+                InvoiceCount = model.InvoiceCount,
+            };
+            this.dbContext.Update(lawCase);
+            await this.dbContext.SaveChangesAsync();
+        }
+
         public async Task<LawCaseViewModel> DetailsAsync(int? id)
         {
             return await this.dbContext.LawCases.Where(x => x.Id == id).Select(x => new LawCaseViewModel
@@ -98,42 +134,6 @@ namespace CourtDatabase2.Services
         {
             var lawCase = await this.dbContext.LawCases.Where(x => x.Id == id).FirstOrDefaultAsync();
             this.dbContext.LawCases.Remove(lawCase);
-            await this.dbContext.SaveChangesAsync();
-        }
-
-        public async Task<LawCaseViewModel> EditAsync(int? id)
-        {
-            return await this.dbContext.LawCases.Where(x => x.Id == id).Select(l => new LawCaseViewModel
-            {
-                Id = l.Id,
-                Date = l.Date,
-                AbNumber = l.AbNumber,
-                DebitorId = l.DebitorId,
-                MoratoriumInterest = l.MoratoriumInterest,
-                LegalInterest = l.LegalInterest,
-                Value = l.Value,
-                PeriodFrom = l.PeriodFrom,
-                PeriodTo = l.PeriodTo,
-                InvoiceCount = l.InvoiceCount,
-            }).FirstOrDefaultAsync();
-        }
-
-        public async Task EditAsync(LawCaseViewModel model)
-        {
-            var lawCase = new LawCase
-            {
-                Id = model.Id,
-                Date = model.Date,
-                AbNumber = model.AbNumber,
-                DebitorId = model.DebitorId,
-                MoratoriumInterest = model.MoratoriumInterest,
-                LegalInterest = model.LegalInterest,
-                Value = model.Value,
-                PeriodFrom = model.PeriodFrom,
-                PeriodTo = model.PeriodTo,
-                InvoiceCount = model.InvoiceCount,
-            };
-            this.dbContext.Update(lawCase);
             await this.dbContext.SaveChangesAsync();
         }
     }
