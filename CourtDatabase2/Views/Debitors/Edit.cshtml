@@ -1,7 +1,8 @@
-﻿@model CourtDatabase2.Data.Models.Debitor
+﻿@model DebitorEditViewModel
 
 @{
     ViewData["Title"] = "Редактирай";
+    var heatEstates = this.Model.HeatEstates.Select(x => new SelectListItem(x.Value, x.Key));
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -35,7 +36,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="AbNumber" class="control-label">Абонатен номер</label>
-                <select asp-for="AbNumber" class="form-control" asp-items="ViewBag.AbNumber"></select>
+                <select asp-for="AbNumber" class="form-control" asp-items="@heatEstates"></select>
                 <span asp-validation-for="AbNumber" class="text-danger"></span>
             </div>
             <div class="form-group">

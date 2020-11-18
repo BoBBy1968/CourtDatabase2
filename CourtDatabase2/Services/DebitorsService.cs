@@ -52,6 +52,7 @@ namespace CourtDatabase2.Services
             await this.dbContext.SaveChangesAsync();
         }
 
+
         public async Task DeleteAsync(int? id)
         {
             var debitor = await this.dbContext.Debitors.FindAsync(id);
@@ -79,14 +80,29 @@ namespace CourtDatabase2.Services
                 }).FirstOrDefaultAsync();
         }
 
-        public /*async*/ Task<DebitorEditViewModel> EditAsync(int? id)
+        public async Task<DebitorEditViewModel> EditAsync(int? id)
         {
-            throw new System.NotImplementedException();
+            return await this.DetailsAsync(id);
         }
 
-        public /*async*/ Task EditAsync(DebitorEditViewModel model)
+        public async Task EditAsync(DebitorEditViewModel model)
         {
-            throw new System.NotImplementedException();
+            var debitor = new Debitor
+            {
+                Id = model.Id,
+                FirstName = model.FirstName,
+                MiddleName = model.MiddleName,
+                LastName = model.LastName,
+                EGN = model.EGN,
+                Email = model.Email,
+                AbNumber = model.AbNumber,
+                HeatEstate = model.HeatEstate,
+                Phone = model.Phone,
+                Representative = model.Representative,
+                AddressToContact = model.AddressToContact,
+            };
+            this.dbContext.Update(debitor);
+            await this.dbContext.SaveChangesAsync();
         }
 
         public IEnumerable<KeyValuePair<string, string>> GetAllCourtTowns()
@@ -101,6 +117,16 @@ namespace CourtDatabase2.Services
                 Id = x.AbNumber,
                 Address = x.Address,
             }).ToList().Select(x => new KeyValuePair<string, string>(x.Id, x.Address));
+        }
+
+        public async Task DeleteAll()
+        {
+            foreach (var debitor in this.dbContext.Debitors)
+            {
+                this.dbContext.Debitors.Remove(debitor);
+            }
+            await this.dbContext.SaveChangesAsync();
+            
         }
     }
 }

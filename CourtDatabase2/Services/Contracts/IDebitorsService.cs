@@ -19,5 +19,7 @@ namespace CourtDatabase2.Services.Contracts
         Task<DebitorEditViewModel> DetailsAsync(int? id);
 
         Task DeleteAsync(int? id);
+
+        Task DeleteAll();
     }
 }

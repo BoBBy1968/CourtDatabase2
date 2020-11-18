@@ -1,24 +1,18 @@
 ﻿using CourtDatabase2.Data;
-using CourtDatabase2.Data.Models;
 using CourtDatabase2.Services.Contracts;
 using CourtDatabase2.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace CourtDatabase2.Controllers
 {
     public class DebitorsController : Controller
     {
-        private readonly ApplicationDbContext dbContext;
         private readonly IDebitorsService debitorsService;
 
-        public DebitorsController(ApplicationDbContext dbContext, IDebitorsService debitorsService)
+        public DebitorsController(IDebitorsService debitorsService)
         {
-            this.dbContext = dbContext;
             this.debitorsService = debitorsService;
         }
 
@@ -64,6 +58,7 @@ namespace CourtDatabase2.Controllers
             return View(viewModel);
         }
 
+        //ready
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(DebitorCreateViewModel model)
@@ -76,6 +71,7 @@ namespace CourtDatabase2.Controllers
             return View(model);
         }
 
+        //ready
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -83,46 +79,26 @@ namespace CourtDatabase2.Controllers
                 return NotFound();
             }
 
-            var debitor = await dbContext.Debitors.FindAsync(id);
+            var debitor = await this.debitorsService.EditAsync(id);
             if (debitor == null)
             {
                 return NotFound();
             }
-            ViewData["AbNumber"] = new SelectList(dbContext.HeatEstates, "AbNumber", "AbNumber", debitor.AbNumber);
+            debitor.HeatEstates = this.debitorsService.GetAllHeatEstates();
             return View(debitor);
         }
 
+        //ready
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,MiddleName,LastName,EGN,AbNumber,AddressToContact,Phone,Email,Representative")] Debitor debitor)
+        public async Task<IActionResult> Edit(DebitorEditViewModel model)
         {
-            if (id != debitor.Id)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
-                try
-                {
-                    dbContext.Update(debitor);
-                    await dbContext.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!DebitorExists(debitor.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                await this.debitorsService.EditAsync(model);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AbNumber"] = new SelectList(dbContext.HeatEstates, "AbNumber", "AbNumber", debitor.AbNumber);
-            return View(debitor);
+            return View(model);
         }
 
         //ready
@@ -155,19 +131,11 @@ namespace CourtDatabase2.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //ready
         public async Task<IActionResult> DeleteAll()
         {
-            foreach (var debitor in this.dbContext.Debitors)
-            {
-                this.dbContext.Debitors.Remove(debitor);
-            }
-            await this.dbContext.SaveChangesAsync();
+            await this.debitorsService.DeleteAll();
             return this.RedirectToAction("Index");
-        }
-
-        private bool DebitorExists(int id)
-        {
-            return dbContext.Debitors.Any(e => e.Id == id);
         }
     }
 }
