@@ -7,8 +7,8 @@ namespace CourtDatabase2.Services.Contracts
 {
     public interface ICourtCasesService
     {
-        IEnumerable<KeyValuePair<string, string>> GetAllCourts();
-
+        IEnumerable<KeyValuePair<string, string>> GetAllCourtTypes();
+         
         IEnumerable<KeyValuePair<string, string>> GetAllLawCases();
 
         Task CreateAsync(CourtCasesInputModel model);

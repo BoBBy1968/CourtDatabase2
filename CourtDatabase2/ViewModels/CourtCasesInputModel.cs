@@ -26,5 +26,7 @@ namespace CourtDatabase2.ViewModels
         public string CaseType { get; set; }
 
         public IEnumerable<KeyValuePair<string, string>> LawCases { get; set; }
+
+        public IEnumerable<KeyValuePair<string, string>> CourtTypes { get; set; }
     }
 }
