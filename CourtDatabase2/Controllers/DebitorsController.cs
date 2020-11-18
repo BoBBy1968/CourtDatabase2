@@ -43,9 +43,7 @@ namespace CourtDatabase2.Controllers
                 return NotFound();
             }
 
-            var debitor = await dbContext.Debitors
-                .Include(d => d.HeatEstate)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var debitor = await this.debitorsService.DetailsAsync(id);
             if (debitor == null)
             {
                 return NotFound();
@@ -130,9 +128,7 @@ namespace CourtDatabase2.Controllers
                 return NotFound();
             }
 
-            var debitor = await dbContext.Debitors
-                .Include(d => d.HeatEstate)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var debitor = await this.debitorsService.DetailsAsync(id);
             if (debitor == null)
             {
                 return NotFound();

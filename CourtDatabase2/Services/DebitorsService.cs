@@ -42,9 +42,22 @@ namespace CourtDatabase2.Services
             throw new System.NotImplementedException();
         }
 
-        public /*async*/ Task<DebitorEditViewModel> DetailsAsync(int? id)
+        public async Task<DebitorEditViewModel> DetailsAsync(int? id)
         {
-            throw new System.NotImplementedException();
+            return await this.dbContext.Debitors.Select(d => new DebitorEditViewModel
+            {
+                Id = d.Id,
+                FirstName = d.FirstName,
+                MiddleName = d.MiddleName,
+                LastName = d.LastName,
+                AbNumber = d.AbNumber,
+                EGN = d.EGN,
+                AddressToContact = d.AddressToContact,
+                Email = d.Email,
+                HeatEstate = d.HeatEstate,
+                Phone = d.Phone,
+                Representative = d.Representative,
+            }).FirstOrDefaultAsync();
         }
 
         public /*async*/ Task<DebitorEditViewModel> EditAsync(int? id)
