@@ -92,5 +92,12 @@ namespace CourtDatabase2.Services
                 })
                 .FirstOrDefaultAsync(m => m.Id == id);
         }
+
+        public async Task DeleteAsync(int? id)
+        {
+            var court = await dbContext.Courts.FindAsync(id);
+            dbContext.Courts.Remove(court);
+            await dbContext.SaveChangesAsync();
+        }
     }
 }

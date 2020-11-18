@@ -2,8 +2,6 @@
 using CourtDatabase2.Services.Contracts;
 using CourtDatabase2.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,12 +9,10 @@ namespace CourtDatabase2.Controllers
 {
     public class CourtsController : Controller
     {
-        private readonly ApplicationDbContext dbContext;
         private readonly ICourtService courtService;
 
-        public CourtsController(ApplicationDbContext context, ICourtService service)
+        public CourtsController(ICourtService service)
         {
-            this.dbContext = context;
             this.courtService = service;
         }
 
@@ -107,9 +103,6 @@ namespace CourtDatabase2.Controllers
             }
 
             var viewModel = await this.courtService.DetailsAsync(id);
-            //var court = await dbContext.Courts
-            //    .Include(c => c.CourtTown)
-            //    .FirstOrDefaultAsync(m => m.Id == id);
             if (viewModel == null)
             {
                 return NotFound();
@@ -126,15 +119,13 @@ namespace CourtDatabase2.Controllers
             {
                 return NotFound();
             }
-            var court = await dbContext.Courts.FindAsync(id);
-            dbContext.Courts.Remove(court);
-            await dbContext.SaveChangesAsync();
+            await this.courtService.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CourtExists(int id)
-        {
-            return dbContext.Courts.Any(e => e.Id == id);
-        }
+        //private bool CourtExists(int id)
+        //{
+        //    return dbContext.Courts.Any(e => e.Id == id);
+        //}
     }
 }

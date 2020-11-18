@@ -1,5 +1,7 @@
 ﻿using CourtDatabase2.Data;
 using CourtDatabase2.Data.Models;
+using CourtDatabase2.Services.Contracts;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -12,17 +14,26 @@ namespace CourtDatabase2.Controllers
     public class DebitorsController : Controller
     {
         private readonly ApplicationDbContext dbContext;
+        private readonly IDebitorsService debitorsService;
 
-        public DebitorsController(ApplicationDbContext dbContext)
+        public DebitorsController(ApplicationDbContext dbContext, IDebitorsService debitorsService)
         {
             this.dbContext = dbContext;
+            this.debitorsService = debitorsService;
         }
 
         [Authorize]
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var applicationDbContext = dbContext.Debitors.Include(d => d.HeatEstate);
-            return View(await applicationDbContext.ToListAsync());
+            //var applicationDbContext = dbContext.Debitors.Include(d => d.HeatEstate);
+            //return View(await applicationDbContext.ToListAsync());
+            return this.RedirectToAction("All");
+        }
+
+        public async Task<IActionResult> All()
+        {
+            var viewModel = await this.debitorsService.AllAsync();
+            return View(viewModel);
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -154,9 +165,9 @@ namespace CourtDatabase2.Controllers
             return this.RedirectToAction("Index");
         }
 
-        private bool DebitorExists(int id)
-        {
-            return dbContext.Debitors.Any(e => e.Id == id);
-        }
+        //private bool DebitorExists(int id)
+        //{
+        //    return dbContext.Debitors.Any(e => e.Id == id);
+        //}
     }
 }

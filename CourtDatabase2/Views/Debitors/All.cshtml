@@ -1,0 +1,65 @@
+﻿@model IEnumerable<DebitorsAllViewModel>
+
+@{
+    ViewData["Title"] = "Всички длъжници";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Създай нов</a>
+    <a asp-action="DeleteAll" class="btn btn-danger">ИЗТРИЙ ВСИЧКИ САМО ЗА ЦЕЛИТЕ НА СИЙДВАНЕТО</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Име
+            </th>
+            <th>
+                Презиме
+            </th>
+            <th>
+                Фамилия
+            </th>
+            <th>
+                ЕГН
+            </th>
+            <th>
+                Абонатен номер
+            </th>
+            <th>
+                Имот
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @item.FirstName
+            </td>
+            <td>
+                @item.MiddleName
+            </td>
+            <td>
+                @item.LastName
+            </td>
+            <td>
+                @item.EGN
+            </td>
+            <td>
+                @item.AbNumber
+            </td>
+            <td>
+                @item.HeatEstate
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Редактирай</a> |
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Детайли</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Към Изтрий</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
