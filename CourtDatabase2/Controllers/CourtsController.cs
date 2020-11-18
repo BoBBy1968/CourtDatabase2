@@ -89,7 +89,7 @@ namespace CourtDatabase2.Controllers
                 return NotFound();
             }
 
-            var viewModel = await this.courtService.DetailsAcync(id);
+            var viewModel = await this.courtService.DetailsAsync(id);
             
             if (viewModel == null)
             {
@@ -106,15 +106,16 @@ namespace CourtDatabase2.Controllers
                 return NotFound();
             }
 
-            var court = await dbContext.Courts
-                .Include(c => c.CourtTown)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (court == null)
+            var viewModel = await this.courtService.DetailsAsync(id);
+            //var court = await dbContext.Courts
+            //    .Include(c => c.CourtTown)
+            //    .FirstOrDefaultAsync(m => m.Id == id);
+            if (viewModel == null)
             {
                 return NotFound();
             }
 
-            return View(court);
+            return View(viewModel);
         }
 
         [HttpPost, ActionName("Delete")]

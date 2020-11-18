@@ -78,7 +78,7 @@ namespace CourtDatabase2.Services
             }).FirstOrDefaultAsync();
         }
 
-        public async Task<CourtEditViewModel> DetailsAcync(int? id)
+        public async Task<CourtEditViewModel> DetailsAsync(int? id)
         {
             return await dbContext.Courts
                 .Include(c => c.CourtTown)
