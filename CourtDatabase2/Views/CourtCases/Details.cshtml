@@ -9,50 +9,29 @@
 <div>
     <h4>Детайли по дело</h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CourtId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CourtId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CourtName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CourtName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LawCaseId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LawCaseId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CaseNumber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CaseNumber)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CaseYear)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CaseYear)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CourtChamber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CourtChamber)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CaseType)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CaseType)
-        </dd>
-    </dl>
+    <ul>
+        <li>
+            <div><span class="font-weight-lighter alert-warning">Съд ИД:</span> <span class="alert-info col-md-1 font-weight-bold">@Model.Id</span></div>
+        </li>
+        <li>
+            <div><span class="font-weight-lighter alert-warning">Съд:</span> <span class="font-weight-bold alert-info col-md-1">@Model.CourtName</span></div>
+        </li>
+        <li>
+            <div><span class="font-weight-lighter alert-warning">Дело ИД:</span> <span class="font-weight-bold alert-info col-md-1">@Model.LawCaseId</span></div>
+        </li>
+        <li>
+            <div><span class="font-weight-lighter alert-warning">Дело №:</span> <span class="font-weight-bold alert-info col-md-1">@Model.CaseNumber</span></div>
+        </li>
+        <li>
+            <div><span class="font-weight-lighter alert-warning">Година:</span> <span class="font-weight-bold alert-info col-md-1">@Model.CaseYear</span></div>
+        </li>
+        <li>
+            <div><span class="font-weight-lighter alert-warning">Инстанция:</span> <span class="font-weight-bold alert-info col-md-1">@Model.CourtChamber</span></div>
+        </li>
+        <li>
+            <div><span class="font-weight-lighter alert-warning">Вид дело:</span> <span class="font-weight-bold alert-info col-md-1">@Model.CaseType</span></div>
+        </li>
+    </ul>
 </div>
 <div>
     <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Редактирай</a> |

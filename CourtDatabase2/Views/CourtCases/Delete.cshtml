@@ -1,5 +1,5 @@
 ﻿@using CourtDatabase2.Data.Models
-@model CourtCase
+@model CourtCasesViewModel
 
 @{
     ViewData["Title"] = "Изтриване";
@@ -11,45 +11,29 @@
 <div>
     <h4>Съдебно дело</h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Court)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Court.Id)
-        </dd class>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LawCase)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LawCase.Id)
-        </dd class>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CaseNumber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CaseNumber)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CaseYear)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CaseYear)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CourtChamber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CourtChamber)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CaseType)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CaseType)
-        </dd>
-    </dl>
-    
+    <ul>
+        <li>
+            <div><span class="font-weight-lighter alert-warning">Съд ИД:</span> <span class="alert-info col-md-1 font-weight-bold">@Model.Id</span></div>
+        </li>
+        <li>
+            <div><span class="font-weight-lighter alert-warning">Съд:</span> <span class="font-weight-bold alert-info col-md-1">@Model.CourtName</span></div>
+        </li>
+        <li>
+            <div><span class="font-weight-lighter alert-warning">Дело ИД:</span> <span class="font-weight-bold alert-info col-md-1">@Model.LawCaseId</span></div>
+        </li>
+        <li>
+            <div><span class="font-weight-lighter alert-warning">Дело №:</span> <span class="font-weight-bold alert-info col-md-1">@Model.CaseNumber</span></div>
+        </li>
+        <li>
+            <div><span class="font-weight-lighter alert-warning">Година:</span> <span class="font-weight-bold alert-info col-md-1">@Model.CaseYear</span></div>
+        </li>
+        <li>
+            <div><span class="font-weight-lighter alert-warning">Инстанция:</span> <span class="font-weight-bold alert-info col-md-1">@Model.CourtChamber</span></div>
+        </li>
+        <li>
+            <div><span class="font-weight-lighter alert-warning">Вид дело:</span> <span class="font-weight-bold alert-info col-md-1">@Model.CaseType</span></div>
+        </li>
+    </ul>    
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
         <input type="submit" value="Изтрий директно" class="btn btn-danger" /> |

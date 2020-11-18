@@ -165,9 +165,9 @@ namespace CourtDatabase2.Controllers
             return this.RedirectToAction("Index");
         }
 
-        //private bool DebitorExists(int id)
-        //{
-        //    return dbContext.Debitors.Any(e => e.Id == id);
-        //}
+        private bool DebitorExists(int id)
+        {
+            return dbContext.Debitors.Any(e => e.Id == id);
+        }
     }
 }

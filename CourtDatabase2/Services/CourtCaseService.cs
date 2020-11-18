@@ -120,12 +120,9 @@ namespace CourtDatabase2.Services
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task<CourtCase> Delete(int? id)
+        public async Task<CourtCasesViewModel> Delete(int? id)
         {
-            return await this.dbContext.CourtCases
-                .Include(c => c.Court)
-                .Include(c => c.LawCase)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            return await this.DetailsAsync(id);
         }
 
         public async Task DeleteAsync(int? id)

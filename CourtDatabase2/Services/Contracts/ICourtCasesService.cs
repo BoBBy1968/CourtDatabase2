@@ -21,7 +21,7 @@ namespace CourtDatabase2.Services.Contracts
 
         Task EditAsync(CourtCasesViewModel model);
 
-        Task<CourtCase> Delete(int? id);
+        Task<CourtCasesViewModel> Delete(int? id);
 
         Task DeleteAsync(int? id);
     }
