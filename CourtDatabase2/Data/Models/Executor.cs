@@ -9,14 +9,14 @@ namespace CourtDatabase2.Data.Models
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(150)]
+        [MaxLength(300)]
         public string Name { get; set; }
 
         [MaxLength(300)]
         [Required]
         public string Address { get; set; }
 
-        [MaxLength(15)]
+        [MaxLength(50)]
         public string Telephon { get; set; }
 
         [MaxLength(200)]

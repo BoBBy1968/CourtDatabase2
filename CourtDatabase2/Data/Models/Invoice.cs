@@ -20,7 +20,7 @@ namespace CourtDatabase2.Data.Models
 
         public DateTime Maturity { get; set; } // Падеж
 
-        public DateTime PeriodSince { get; set; } // Период от
+        public DateTime PeriodFrom { get; set; } // Период от
 
         public DateTime PeriodTo { get; set; } // Период до
 

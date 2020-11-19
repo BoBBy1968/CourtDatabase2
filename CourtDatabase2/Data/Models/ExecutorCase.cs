@@ -17,9 +17,10 @@ namespace CourtDatabase2.Data.Models
         public int LawCaseId { get; set; }
         public LawCase LawCase { get; set; }
 
-        [Range(0, 100_000)]
+        [Range(1, 100_000)]
         public int? ExecutorCaseNumber { get; set; }
 
+        [Range(2000, 2050)]
         public int? Year { get; set; } 
     }
 }

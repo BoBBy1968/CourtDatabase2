@@ -10,7 +10,7 @@ namespace CourtDatabase2.Data.Models
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(250)]
+        [MaxLength(300)]
         [Display(Name = "Име")]
         public string FirstName { get; set; }
 
@@ -35,20 +35,20 @@ namespace CourtDatabase2.Data.Models
         [Display(Name = "Имот")]
         public virtual HeatEstate HeatEstate { get; set; }
 
-        [MaxLength(150)]
+        [MaxLength(300)]
         [Display(Name = "Адрес за контакт")]
         public string AddressToContact { get; set; }
 
-        [MaxLength(13)]
+        [MaxLength(50)]
         [Display(Name = "Телефон")]
         public string Phone { get; set; }
 
         [EmailAddress]
-        [MaxLength(50)]
+        [MaxLength(100)]
         [Display(Name = "Електронна поща")]
         public string Email { get; set; }
 
-        [MaxLength(150)]
+        [MaxLength(200)]
         [Display(Name = "Представител")]
         public string Representative { get; set; }
 

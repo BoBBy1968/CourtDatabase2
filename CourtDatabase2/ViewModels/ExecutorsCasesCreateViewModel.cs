@@ -9,7 +9,7 @@ namespace CourtDatabase2.ViewModels
 
         public int LawCaseId { get; set; }
 
-        [Range(0, 100_000)]
+        [Range(1, 100_000)]
         public int? ExecutorCaseNumber { get; set; }
 
         [Range(2000, 2100)]

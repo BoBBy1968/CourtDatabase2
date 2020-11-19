@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CourtDatabase2.ViewModels
 {
     public class CourtCreateViewModel
     {
+        [Required]
         public string CourtType { get; set; }
 
         public int CourtTownId { get; set; }

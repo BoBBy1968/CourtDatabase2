@@ -26,7 +26,7 @@ namespace CourtDatabase2.Data.Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal? LegalInterest { get; set; }
 
-        //for Oblibation------------------------------------------------------
+        //for Obligation------------------------------------------------------
 
         [Range(0, 79228162514264337593543935D)]
         [Column(TypeName = "decimal(18,2)")]
