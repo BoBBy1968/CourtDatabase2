@@ -8,10 +8,12 @@ namespace CourtDatabase2.ViewModels
     {
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Стойността е задължителна.")]
+        [Range(0.01, 79228162514264337593543950335d, ErrorMessage ="Стойността трябва да е положително число.")]
         public decimal Value { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } = DateTime.Now.Date;
 
         public string PaymentSource { get; set; }
 
