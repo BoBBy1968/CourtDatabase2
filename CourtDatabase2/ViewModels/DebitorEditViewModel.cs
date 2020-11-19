@@ -10,6 +10,7 @@ namespace CourtDatabase2.ViewModels
 
         [Required(ErrorMessage = "Името е задължително.")]
         [MaxLength(250, ErrorMessage = "Името е до 250 знака.")]
+        [MinLength(3, ErrorMessage = "Името е поне 3 знака.")]
         [Display(Name = "Име")]
         public string FirstName { get; set; }
 
@@ -22,12 +23,14 @@ namespace CourtDatabase2.ViewModels
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "ЕГН е задължително.")]
-        [MaxLength(10, ErrorMessage = "ЕГН е до 10 знака.")]
+        [MaxLength(10, ErrorMessage = "ЕГН е 10 знака.")]
+        [MinLength(6, ErrorMessage = "ЕГН е поне 6 знака.")]
         [Display(Name = "ЕГН")]
         public string EGN { get; set; }
 
         [MaxLength(11, ErrorMessage = "Абонатния номер е до 11 знака.")]
         [Display(Name = "Абонатен номер")]
+        [Required(ErrorMessage = "Абонатния номер е задължителен.")]
         public string AbNumber { get; set; }
 
         [Display(Name = "Имот")]
