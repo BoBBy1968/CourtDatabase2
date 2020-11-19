@@ -14,6 +14,7 @@
 <div class="row">
     <div class="col-md-5">
         <form asp-controller="ExecutorsCases" asp-action="Edit" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="ExecutorId" class="control-label">Съдебен изпълнител</label>
                 <select asp-for="ExecutorId" class="form-control" asp-items="executors"></select>
@@ -41,3 +42,7 @@
 
 
 <a asp-action="All" class="btn btn-primary">Обратно</a>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -10,6 +10,7 @@
 
 
 <form asp-controller="Expenses" asp-action="Edit" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
         <label asp-for="Payee">Получател  </label>
         <input asp-for="Payee" />
@@ -43,3 +44,7 @@
 <p>
     <a class="btn btn-primary" asp-action="Index">Обратно</a>
 </p>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
