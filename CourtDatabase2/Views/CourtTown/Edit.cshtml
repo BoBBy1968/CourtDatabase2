@@ -7,14 +7,13 @@
 
 <form method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
-    <label asp-for="TownName">Град</label>
-    <input asp-for="TownName" /><br />
-    <span asp-validation-for="TownName" class="text-danger"></span><br />
-    <label asp-for="Address">Адрес</label>
-    <input asp-for="Address" /><br />
-    <span asp-validation-for="Address" class="text-danger"></span><br />
-    <input type="submit" value="Запис" class="btn btn-primary  badge-success" asp-controller="CourtTown" asp-action="Edit" />
-    <a class="btn btn-primary badge-pill" asp-action="All">Обратно</a>
+    <label asp-for="TownName" class="alert-warning">Град</label>
+    <input asp-for="TownName" class="alert-info" />@*<br />*@
+    @*<span asp-validation-for="TownName" class="text-danger"></span><br />*@
+    <label asp-for="Address" class="alert-warning">Адрес</label>
+    <input asp-for="Address" class="alert-info" />@*<br />*@
+    <input type="submit" value="Запис" class="btn btn-outline-warning" asp-controller="CourtTown" asp-action="Edit" />
+    <a class="btn btn-info" asp-action="All">Обратно</a>
 </form>
 
 @section Scripts {

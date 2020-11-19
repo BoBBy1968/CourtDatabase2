@@ -32,13 +32,13 @@
                 <input asp-for="Year" class="form-control" />
                 <span asp-validation-for="Year" class="text-danger"></span>
             </div>
-            <input type="submit" value="Запис" class="btn btn-primary" />
+            <input type="submit" value="Запис" class="btn btn-outline-warning" />
+            <a asp-action="All" class="btn btn-info">Обратно</a>
         </form>
     </div>
 </div>
 
 
-<a asp-action="All" class="btn btn-primary">Обратно</a>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

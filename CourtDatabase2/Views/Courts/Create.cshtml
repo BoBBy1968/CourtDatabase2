@@ -14,24 +14,21 @@
         <form asp-action="Create">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="CourtType" class="control-label">Вид съд</label>
-                <select asp-for="CourtType" class="form-control" asp-items="@Html.GetEnumSelectList<CourtType>()"></select>
+                <label asp-for="CourtType" class="control-label alert-warning">Вид съд</label>
+                <select asp-for="CourtType" class="form-control alert-info" asp-items="@Html.GetEnumSelectList<CourtType>()"></select>
                 <span asp-validation-for="CourtType" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CourtTownId" class="control-label">Град и адрес</label>
-                <select asp-for="CourtTownId" class="form-control" asp-items="courtTowns"></select>
+                <label asp-for="CourtTownId" class="control-label alert-warning">Град и адрес</label>
+                <select asp-for="CourtTownId" class="form-control alert-info" asp-items="courtTowns"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Създай" class="btn btn-primary" />
-                <input type="submit" asp-controller="CourtTown" asp-action="Create" value="Добави нов адрес" class="btn btn-primary" />
+                <input type="submit" value="Създай" class="btn btn-outline-warning" />
+                @*<input type="submit" asp-controller="CourtTown" asp-action="Create" value="Добави нов адрес" class="btn btn-primary" />*@
+                <a class="btn btn-info" asp-action="All">Обратно</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a class="btn btn-primary" asp-action="All">Обратно</a>
 </div>
 
 @section Scripts {
