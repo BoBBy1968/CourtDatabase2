@@ -42,9 +42,6 @@ namespace CourtDatabase2.Services
             await this.dbContext.SaveChangesAsync();
         }
 
-        //public async Task<CourtTown> EditAsync(int? id)
-        //    => await this.dbContext.CourtTowns.FirstOrDefaultAsync(t => t.Id == id);
-
         public async Task EditAsync(string townName, string address, int id)
         {
             var courtTown = await this.dbContext.CourtTowns.FirstOrDefaultAsync(x => x.Id == id);
@@ -54,9 +51,16 @@ namespace CourtDatabase2.Services
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task<CourtTown> DetailsAsync(int? id)
+        public async Task<CourtTownEditViewModel> DetailsAsync(int? id)
         {
-            return await this.dbContext.CourtTowns.FirstOrDefaultAsync(x => x.Id == id);
+            return await this.dbContext.CourtTowns
+                .Select(x=> new CourtTownEditViewModel
+                {
+                    TownName = x.TownName,
+                    Address = x.Address,
+                    Id = x.Id,
+                })
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task DeleteAsync(int? id)

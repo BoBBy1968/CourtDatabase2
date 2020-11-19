@@ -15,7 +15,7 @@ namespace CourtDatabase2.Services.Contracts
 
         Task EditAsync(string townName, string address, int id);
 
-        Task<CourtTown> DetailsAsync(int? id);
+        Task<CourtTownEditViewModel> DetailsAsync(int? id);
 
         Task DeleteAsync(int? id);
     }
