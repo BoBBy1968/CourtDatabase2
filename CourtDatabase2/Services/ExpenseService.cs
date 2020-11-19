@@ -38,6 +38,8 @@ namespace CourtDatabase2.Services
                 ExpenceDate = x.ExpenceDate.ToShortDateString(),
                 ExpenceDescription = x.ExpenceDescription,
                 ExpenceValue = x.ExpenceValue,
+                DebitorName = x.LawCase.Debitor.FirstName + " " + x.LawCase.Debitor.LastName,
+                CaseValue = x.LawCase.Value,
             }).ToListAsync();
         }
 

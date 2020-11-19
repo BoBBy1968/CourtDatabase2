@@ -15,5 +15,9 @@ namespace CourtDatabase2.ViewModels
         public string ExpenceDate { get; set; }
 
         public int LawCaseId { get; set; }
+
+        public string DebitorName { get; set; }
+
+        public decimal CaseValue { get; set; }
     }
 }

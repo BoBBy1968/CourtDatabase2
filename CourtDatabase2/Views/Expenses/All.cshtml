@@ -31,6 +31,12 @@
             <th>
                 Дело ИД
             </th>
+            <th>
+                Имена
+            </th>
+            <th>
+                главница
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -54,6 +60,12 @@
                 </td>
                 <td>
                     @item.LawCaseId
+                </td>
+                <td>
+                    @item.DebitorName
+                </td>
+                <td>
+                    @item.CaseValue
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Редактирай</a>
