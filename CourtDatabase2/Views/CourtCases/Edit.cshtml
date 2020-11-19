@@ -18,16 +18,16 @@
     <select asp-for="LawCaseId" class="alert-info" asp-items="lawCases"></select><br />
     <label asp-for="CaseNumber" class="alert-warning"></label>
     <input asp-for="CaseNumber" class="alert-info" />
-    <span asp-validation-for="CaseNumber" class="text-danger"></span><br />
+    @*<span asp-validation-for="CaseNumber" class="text-danger"></span>*@<br />
     <label asp-for="CaseYear" class="alert-warning"></label>
     <input asp-for="CaseYear" class="alert-info" />
-    <span asp-validation-for="CaseYear" class="text-danger"></span><br />
+    @*<span asp-validation-for="CaseYear" class="text-danger"></span>*@<br />
     <label asp-for="CourtChamber" class="alert-warning"></label>
     <input asp-for="CourtChamber" class="alert-info" />
-    <span asp-validation-for="CourtChamber" class="text-danger"></span><br />
+    @*<span asp-validation-for="CourtChamber" class="text-danger"></span>*@<br />
     <label asp-for="CaseType" class="alert-warning"></label>
     <select asp-for="CaseType" class="alert-info" asp-items="@Html.GetEnumSelectList<CaseType>();"></select>
-    <span asp-validation-for="CaseType" class="text-danger"></span><br />
+    @*<span asp-validation-for="CaseType" class="text-danger"></span>*@<br />
     <input type="submit" value="Запис" class="btn btn-outline-warning" asp-controller="CourtCases" asp-action="Edit" />
     <a class="btn btn-info" asp-action="Index">Обратно</a>
 </form>

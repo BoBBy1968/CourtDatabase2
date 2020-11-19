@@ -16,12 +16,12 @@
             <div class="form-group">
                 <label asp-for="CourtType" class="control-label alert-warning">Вид съд</label>
                 <select asp-for="CourtType" class="form-control alert-info" asp-items="@Html.GetEnumSelectList<CourtType>()"></select>
-                <span asp-validation-for="CourtType" class="text-danger"></span>
+                @*<span asp-validation-for="CourtType" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <label asp-for="CourtTownId" class="control-label alert-warning">Град и адрес</label>
                 <select asp-for="CourtTownId" class="form-control alert-info" asp-items="courtTowns"></select>
-                <span asp-validation-for="CourtTownId" class="text-danger"></span>
+                @*<span asp-validation-for="CourtTownId" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <input type="submit" value="Запис" class="btn btn-outline-warning" />

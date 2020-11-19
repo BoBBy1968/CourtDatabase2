@@ -14,30 +14,30 @@
     <div asp-validation-summary="All" class="text-danger"></div>
     <label asp-for="FirstName" class="alert-warning">Име</label>
     <input asp-for="FirstName" class="alert-info" />
-    <span asp-validation-for="FirstName" class="text-danger"></span>
+    @*<span asp-validation-for="FirstName" class="text-danger"></span>*@
     <label asp-for="MiddleName" class="alert-warning">Презиме</label>
     <input asp-for="MiddleName" class="alert-info" />
-    <span asp-validation-for="MiddleName" class="text-danger"></span>
+    @*<span asp-validation-for="MiddleName" class="text-danger"></span>*@
     <label asp-for="LastName" class="alert-warning">Фамилия</label>
     <input asp-for="LastName" class="alert-info" />
-    <span asp-validation-for="LastName" class="text-danger"></span><br />
+    @*<span asp-validation-for="LastName" class="text-danger"></span>*@<br />
     <label asp-for="EGN" class="alert-warning">Единен граждански номер</label>
     <input asp-for="EGN" class="alert-info" />
-    <span asp-validation-for="EGN" class="text-danger"></span><br />
+    @*<span asp-validation-for="EGN" class="text-danger"></span>*@<br />
     <label asp-for="AbNumber" class="alert-warning">Абонатен номер</label>
     <select asp-for="AbNumber" class="alert-info" asp-items="@heatEstates"></select><br />
     <label asp-for="AddressToContact" class="alert-warning">Адрес за контакт</label>
     <input asp-for="AddressToContact" class="alert-info" />
-    <span asp-validation-for="AddressToContact" class="text-danger"></span><br />
+    @*<span asp-validation-for="AddressToContact" class="text-danger"></span>*@<br />
     <label asp-for="Phone" class="alert-warning">Телефон</label>
     <input asp-for="Phone" class="alert-info" />
-    <span asp-validation-for="Phone" class="text-danger"></span><br />
+    @*<span asp-validation-for="Phone" class="text-danger"></span>*@<br />
     <label asp-for="Email" class="alert-warning">Електронен адрес</label>
     <input asp-for="Email" class="alert-info" />
-    <span asp-validation-for="Email" class="text-danger"></span><br />
+    @*<span asp-validation-for="Email" class="text-danger"></span>*@<br />
     <label asp-for="Representative" class="alert-warning">Представител</label>
     <input asp-for="Representative" class="alert-info" />
-    <span asp-validation-for="Representative" class="text-danger"></span><br />
+    @*<span asp-validation-for="Representative" class="text-danger"></span>*@<br />
     <input type="submit" value="Запис" class="btn btn-outline-warning" />
     <a asp-action="Index" class="btn btn-info">Обратно</a>
 </form>

@@ -6,45 +6,45 @@ namespace CourtDatabase2.ViewModels
 {
     public class DebitorCreateViewModel
     {
-        [Required]
-        [MaxLength(250)]
+        [Required(ErrorMessage = "Името е задължително.")]
+        [MaxLength(250, ErrorMessage = "Името е до 250 знака.")]
         [Display(Name = "Име")]
         public string FirstName { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(50, ErrorMessage = "Името е до 50 знака.")]
         [Display(Name = "Презиме")]
         public string MiddleName { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(50, ErrorMessage = "Името е до 50 знака.")]
         [Display(Name = "Фамилия")]
         public string LastName { get; set; }
 
-        [Required]
-        [MaxLength(10)]
+        [Required(ErrorMessage = "ЕГН е задължително.")]
+        [MaxLength(10, ErrorMessage = "ЕГН е до 10 знака.")]
         [Display(Name = "ЕГН")]
         public string EGN { get; set; }
 
-        [MaxLength(11)]
+        [MaxLength(11, ErrorMessage = "Абонатния номер е до 11 знака.")]
         [Display(Name = "Абонатен номер")]
         public string AbNumber { get; set; }
 
         [Display(Name = "Имот")]
         public virtual HeatEstate HeatEstate { get; set; }
 
-        [MaxLength(150)]
+        [MaxLength(300, ErrorMessage = "Адреса е до 300 знака.")]
         [Display(Name = "Адрес за контакт")]
         public string AddressToContact { get; set; }
 
-        [MaxLength(13)]
+        [MaxLength(50, ErrorMessage = "Телефона е до 250 знака.")]
         [Display(Name = "Телефон")]
         public string Phone { get; set; }
 
         [EmailAddress]
-        [MaxLength(50)]
+        [MaxLength(100, ErrorMessage = "Електронната поща е до 100 знака.")]
         [Display(Name = "Електронна поща")]
         public string Email { get; set; }
 
-        [MaxLength(150)]
+        [MaxLength(200, ErrorMessage = "Представител е до 200 знака.")]
         [Display(Name = "Представител")]
         public string Representative { get; set; }
 
