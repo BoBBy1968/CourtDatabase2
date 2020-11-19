@@ -11,35 +11,23 @@
 
 <form asp-controller="Expenses" asp-action="Edit" method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
-    <div class="form-group">
-        <label asp-for="Payee">Получател  </label>
-        <input asp-for="Payee" />
-        <span asp-validation-for="Payee"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="ExpenceDescription">Описание  </label>
-        <input asp-for="ExpenceDescription" />
-        <span asp-validation-for="ExpenceDescription"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="ExpenceValue">Стойност  </label>
-        <input asp-for="ExpenceValue" />
-        <span asp-validation-for="ExpenceValue"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="ExpenceDate">Дата  </label>
-        <input asp-for="ExpenceDate" />
-        <span asp-validation-for="ExpenceDate"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="LawCaseId">Дело ИД  </label>
-        <select asp-for="LawCaseId" asp-items="lawCases"></select>
-        <span asp-validation-for="LawCaseId"></span>
-    </div>
-    <div>
-        <input type="submit" value="Запис" class="btn btn-outline-warning" />
-        <a class="btn btn-info" asp-action="Index">Обратно</a>
-    </div>
+    <label asp-for="Payee" class="alert-warning">Получател  </label>
+    <input asp-for="Payee" class="alert-info" />
+    <span asp-validation-for="Payee"></span><br/>
+    <label asp-for="ExpenceDescription" class="alert-warning">Описание  </label>
+    <input asp-for="ExpenceDescription" class="alert-info" />
+    <span asp-validation-for="ExpenceDescription"></span><br/>
+    <label asp-for="ExpenceValue" class="alert-warning">Стойност  </label>
+    <input asp-for="ExpenceValue" class="alert-info" />
+    <span asp-validation-for="ExpenceValue"></span><br/>
+    <label asp-for="ExpenceDate" class="alert-warning">Дата  </label>
+    <input asp-for="ExpenceDate" class="alert-info" />
+    <span asp-validation-for="ExpenceDate"></span><br/>
+    <label asp-for="LawCaseId" class="alert-warning">Дело ИД  </label>
+    <select asp-for="LawCaseId" asp-items="lawCases" class="alert-info"></select>
+    <span asp-validation-for="LawCaseId"></span><br/>
+    <input type="submit" value="Запис" class="btn btn-outline-warning" />
+    <a class="btn btn-info" asp-action="Index">Обратно</a>
 </form>
 
 <p>

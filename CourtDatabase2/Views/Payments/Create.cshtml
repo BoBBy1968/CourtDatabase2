@@ -8,39 +8,23 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<div class="row">
-    <div class="col-md-5">
-        <form asp-controller="Payments" asp-action="Create" method="post">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Date" class="control-label">Дата</label>
-                <input asp-for="Date" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Value" class="control-label">Стойност</label>
-                <input asp-for="Value" class="form-control" />
-                <span asp-validation-for="Value" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PaymentSource" class="control-label">Начин на плащане</label>
-                <select asp-for="PaymentSource" class="form-control" asp-items="@Html.GetEnumSelectList<PaymentSource>();"></select>
-                <span asp-validation-for="PaymentSource" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LawCaseId" class="control-label">Дело ИД</label>
-                <select asp-for="LawCaseId" class="form-control" asp-items="lawCasesId"></select>
-                <span asp-validation-for="LawCaseId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Плати" class="btn btn-outline-warning" />
-                <a class="btn btn-info" asp-action="Index">Обратно</a>
-            </div>
-        </form>
-    </div>
-</div>
-<div>
-</div>
+<form asp-controller="Payments" asp-action="Create" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <label asp-for="Date" class="alert-warning">Дата</label>
+    <input asp-for="Date" class="alert-info" />
+    <span asp-validation-for="Date" class="text-danger"></span><br />
+    <label asp-for="Value" class="alert-warning">Стойност</label>
+    <input asp-for="Value" class="alert-info" />
+    <span asp-validation-for="Value" class="text-danger"></span><br />
+    <label asp-for="PaymentSource" class="alert-warning">Начин на плащане</label>
+    <select asp-for="PaymentSource" class="alert-info" asp-items="@Html.GetEnumSelectList<PaymentSource>();"></select>
+    <span asp-validation-for="PaymentSource" class="text-danger"></span><br />
+    <label asp-for="LawCaseId" class="alert-warning">Дело ИД</label>
+    <select asp-for="LawCaseId" class="alert-info" asp-items="lawCasesId"></select>
+    <span asp-validation-for="LawCaseId" class="text-danger"></span><br />
+    <input type="submit" value="Плати" class="btn btn-outline-warning" />
+    <a class="btn btn-info" asp-action="Index">Обратно</a>
+</form>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

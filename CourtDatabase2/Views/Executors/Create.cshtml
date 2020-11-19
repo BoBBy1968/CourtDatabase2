@@ -7,50 +7,29 @@
 <h1>@ViewData["Title"]</h1>
 
 
-<div class="row">
-    <div class="col-md-5">
-        <form asp-controller="Executors" asp-action="Create" method="post">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label">Имена</label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Address" class="control-label">Адрес</label>
-                <input asp-for="Address" class="form-control" />
-                <span asp-validation-for="Address" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Telephon" class="control-label">Телефон</label>
-                <input asp-for="Telephon" class="form-control" />
-                <span asp-validation-for="Telephon" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label">Електронна поща</label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Number" class="control-label">Рег. номер</label>
-                <input asp-for="Number" class="form-control" />
-                <span asp-validation-for="Number" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Region" class="control-label">Регион</label>
-                <input asp-for="Region" class="form-control" />
-                <span asp-validation-for="Region" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Запис" class="btn btn-outline-warning" />
-                <a asp-action="Index" class="btn btn-info">Обратно</a>
-            </div>
-        </form>
-    </div>
-</div>
-
-<p>
-</p>
+<form asp-controller="Executors" asp-action="Create" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <label asp-for="Name" class="alert-warning">Имена</label>
+    <input asp-for="Name" class="alert-info" />
+    <span asp-validation-for="Name" class="text-danger"></span><br />
+    <label asp-for="Address" class="alert-warning">Адрес</label>
+    <input asp-for="Address" class="alert-info" />
+    <span asp-validation-for="Address" class="text-danger"></span><br />
+    <label asp-for="Telephon" class="alert-warning">Телефон</label>
+    <input asp-for="Telephon" class="alert-info" />
+    <span asp-validation-for="Telephon" class="text-danger"></span><br />
+    <label asp-for="Email" class="alert-warning">Електронна поща</label>
+    <input asp-for="Email" class="alert-info" />
+    <span asp-validation-for="Email" class="text-danger"></span><br />
+    <label asp-for="Number" class="alert-warning">Рег. номер</label>
+    <input asp-for="Number" class="alert-info" />
+    <span asp-validation-for="Number" class="text-danger"></span><br />
+    <label asp-for="Region" class="alert-warning">Регион</label>
+    <input asp-for="Region" class="alert-info" />
+    <span asp-validation-for="Region" class="text-danger"></span><br />
+    <input type="submit" value="Запис" class="btn btn-outline-warning" />
+    <a asp-action="Index" class="btn btn-info">Обратно</a>
+</form>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

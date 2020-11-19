@@ -9,31 +9,17 @@
 
 <h4>съдебно действие</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Date" class="control-label">Дата</label>
-                <input asp-for="Date" class="form-control" value="date" />
-                <span asp-validation-for="Date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ActionName" class="control-label">Име на действието</label>
-                <input asp-for="ActionName" class="form-control" />
-                <span asp-validation-for="ActionName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Създай" class="btn btn-outline-warning" />
-                <a class="btn btn-info" asp-action="Index">Обратно</a>
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-</div>
-
+<form asp-action="Create">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <label asp-for="Date" class="alert-warning">Дата</label>
+    <input asp-for="Date" class="alert-info" value="date" />
+    <span asp-validation-for="Date" class="text-danger"></span><br/>
+    <label asp-for="ActionName" class="alert-warning">Име на действието</label>
+    <input asp-for="ActionName" class="alert-info" />
+    <span asp-validation-for="ActionName" class="text-danger"></span><br/>
+    <input type="submit" value="Създай" class="btn btn-outline-warning" />
+    <a class="btn btn-info" asp-action="Index">Обратно</a>
+</form>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

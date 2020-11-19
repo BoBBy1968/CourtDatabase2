@@ -20,6 +20,7 @@ namespace CourtDatabase2.ViewModels
         [Range(0.01, 100_000)]
         public decimal ExpenceValue { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime ExpenceDate { get; set; }
 
         public int LawCaseId { get; set; }

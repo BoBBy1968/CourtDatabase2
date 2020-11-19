@@ -10,48 +10,27 @@
 
 <h4>Съдебно дело</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="CourtId" class="control-label"></label>
-                <select asp-for="CourtId" class="form-control" asp-items="courtTypes"></select>
-                <span asp-validation-for="CourtId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LawCaseId" class="control-label"></label>
-                <select asp-for="LawCaseId" class="form-control" asp-items="lawCases"></select>
-                <span asp-validation-for="LawCaseId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CaseNumber" class="control-label"></label>
-                <input asp-for="CaseNumber" class="form-control" />
-                <span asp-validation-for="CaseNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CaseYear" class="control-label"></label>
-                <input asp-for="CaseYear" class="form-control" />
-                <span asp-validation-for="CaseYear" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CourtChamber" class="control-label"></label>
-                <input asp-for="CourtChamber" class="form-control" />
-                <span asp-validation-for="CourtChamber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CaseType" class="control-label"></label>
-                <select asp-for="CaseType" class="form-control" asp-items="@Html.GetEnumSelectList<CaseType>()"></select>
-                <span asp-validation-for="CaseType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Запиши" class="btn btn-outline-warning" />
-                <a asp-action="Index" class="btn btn-info">Обратно</a>
-            </div>
-        </form>
-    </div>
-</div>
+<form method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <label asp-for="CourtId" class="alert-warning">Съд</label>
+    <select asp-for="CourtId" class="alert-info" asp-items="courtTypes"></select><br />
+    <label asp-for="LawCaseId" class="alert-warning"></label>
+    <select asp-for="LawCaseId" class="alert-info" asp-items="lawCases"></select><br />
+    <label asp-for="CaseNumber" class="alert-warning"></label>
+    <input asp-for="CaseNumber" class="alert-info" />
+    <span asp-validation-for="CaseNumber" class="text-danger"></span><br />
+    <label asp-for="CaseYear" class="alert-warning"></label>
+    <input asp-for="CaseYear" class="alert-info" />
+    <span asp-validation-for="CaseYear" class="text-danger"></span><br />
+    <label asp-for="CourtChamber" class="alert-warning"></label>
+    <input asp-for="CourtChamber" class="alert-info" />
+    <span asp-validation-for="CourtChamber" class="text-danger"></span><br />
+    <label asp-for="CaseType" class="alert-warning"></label>
+    <select asp-for="CaseType" class="alert-info" asp-items="@Html.GetEnumSelectList<CaseType>();"></select>
+    <span asp-validation-for="CaseType" class="text-danger"></span><br />
+    <input type="submit" value="Запис" class="btn btn-outline-warning" asp-controller="CourtCases" asp-action="Edit" />
+    <a class="btn btn-info" asp-action="Index">Обратно</a>
+</form>
 
 <div>
     
