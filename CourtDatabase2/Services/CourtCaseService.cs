@@ -117,6 +117,7 @@ namespace CourtDatabase2.Services
                     CourtId = x.CourtId,
                     LawCaseId = x.LawCaseId,
                     CourtName = x.Court.CourtTown.TownName + " " + x.Court.CourtType.ToString(),
+                    Debitor = x.LawCase.Debitor.FirstName + " " + x.LawCase.Debitor.LastName + " - " + x.LawCase.Value + " лв."
                 }).FirstOrDefaultAsync();
         }
 

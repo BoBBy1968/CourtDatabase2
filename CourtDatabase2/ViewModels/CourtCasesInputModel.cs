@@ -13,6 +13,7 @@ namespace CourtDatabase2.ViewModels
         public int LawCaseId { get; set; }
 
         [Display(Name = "Дело № ")]
+        [Range(0,1000000)]
         public int CaseNumber { get; set; }
 
         [Display(Name = "Дело година")]
@@ -20,9 +21,13 @@ namespace CourtDatabase2.ViewModels
         public int CaseYear { get; set; }
 
         [Display(Name = "Съдебна инстанция")]
+        [MaxLength(50)]
+        [MinLength(2)]
         public string CourtChamber { get; set; }
 
         [Display(Name = "Вид дело")]
+        [MinLength(3)]
+        [MaxLength(20)]
         public string CaseType { get; set; }
 
         public IEnumerable<KeyValuePair<string, string>> LawCases { get; set; }

@@ -27,6 +27,8 @@ namespace CourtDatabase2.Data.Models
         public int CaseYear { get; set; }
 
         [Display(Name = "Съдебна инстанция")]
+        [MaxLength(50)]
+        [MinLength(2)]
         public string CourtChamber { get; set; }
 
         [Display(Name = "Вид дело")]
