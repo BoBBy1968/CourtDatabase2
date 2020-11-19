@@ -27,7 +27,6 @@ namespace CourtDatabase2.ViewModels
         public string CourtChamber { get; set; }
 
         [Display(Name = "Вид дело")]
-        [MaxLength(20)]
         public string CaseType { get; set; }
 
         public IEnumerable<KeyValuePair<string, string>> LawCases { get; set; }

@@ -6,6 +6,7 @@ namespace CourtDatabase2.ViewModels
     public class CourtCreateViewModel
     {
         [Required]
+        [Display(Name = "Вид съд")]
         public string CourtType { get; set; }
 
         public int CourtTownId { get; set; }
