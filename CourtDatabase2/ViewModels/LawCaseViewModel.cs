@@ -19,17 +19,21 @@ namespace CourtDatabase2.ViewModels
         public string AbNumber { get; set; }
         public HeatEstate HeatEstate { get; set; }
 
-        [Range(0, 79228162514264337593543935D)]
+        [Range(0.01, 79228162514264337593543935D, ErrorMessage = "Главницата трябва да бъде положително число.")]
         [Column(TypeName = "decimal(18,2)")]
+        [Required(ErrorMessage = "Главницата е задължителна.")]
         public decimal Value { get; set; }
 
+        [Range(0.01, 79228162514264337593543935D, ErrorMessage = "Мораторната лихва трябва да бъде положително число.")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal? MoratoriumInterest { get; set; }
 
+        [Range(0.01, 79228162514264337593543935D, ErrorMessage = "Законовата лихва трябва да бъде положително число.")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal? LegalInterest { get; set; }
 
-        [Range(0, int.MaxValue)]
+        [Range(1, int.MaxValue, ErrorMessage = "Броят фактури трябва да бъде по-голям от 0.")]
+        [Required(ErrorMessage = "Броят фактури е задължителен.")]
         public int InvoiceCount { get; set; }
 
         [DataType(DataType.Date)]
