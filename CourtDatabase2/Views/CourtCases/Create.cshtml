@@ -54,3 +54,6 @@
     <a class="btn btn-primary" asp-action="Index">Обратно</a>
 </div>
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

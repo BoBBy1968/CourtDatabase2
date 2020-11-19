@@ -7,9 +7,9 @@
 
 <h1>Създаване на съдебен град</h1>
 
-<div asp-validation-summary="All" class="text-danger"></div>
 
 <form method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
     <label asp-for="TownName">Град</label>
     <input asp-for="TownName" /><br />
     <span asp-validation-for="TownName" class="text-danger"></span><br />

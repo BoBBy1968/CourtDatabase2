@@ -10,36 +10,41 @@
 
 
 <form asp-controller="Expenses" asp-action="Create" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
-        <label asp-for="Payee" >Получател  </label>
+        <label asp-for="Payee">Получател  </label>
         <input asp-for="Payee" />
-        <span asp-validation-for="Payee"></span>
+        <span asp-validation-for="Payee" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="ExpenceDescription">Описание  </label>
         <input asp-for="ExpenceDescription" />
-        <span asp-validation-for="ExpenceDescription"></span>
+        <span asp-validation-for="ExpenceDescription" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="ExpenceValue">Стойност  </label>
         <input asp-for="ExpenceValue" />
-        <span asp-validation-for="ExpenceValue"></span>
+        <span asp-validation-for="ExpenceValue" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="ExpenceDate">Дата  </label>
         <input asp-for="ExpenceDate" />
-        <span asp-validation-for="ExpenceDate"></span>
+        <span asp-validation-for="ExpenceDate" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="LawCaseId">Дело ИД  </label>
         <select asp-for="LawCaseId" asp-items="lawCases"></select>
-        <span asp-validation-for="LawCaseId"></span>
+        <span asp-validation-for="LawCaseId" class="text-danger"></span>
     </div>
     <div>
-        <input type="submit" value="Запис"/>
+        <input type="submit" value="Запис" />
     </div>
 </form>
 
 <p>
     <a class="btn btn-primary" asp-action="Index">Обратно</a>
 </p>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

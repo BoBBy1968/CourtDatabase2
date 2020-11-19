@@ -4,7 +4,7 @@
     ViewData["Title"] = "Създаване на гражданско дело";
     var abNumbers = this.Model.AbNumbers.Select(x => new SelectListItem(x.Value, x.Key));
     var debitors = this.Model.Debitors.Select(x => new SelectListItem(x.Value, x.Key));
- }
+}
 
 <h1>@ViewData["Title"]</h1>
 
@@ -27,7 +27,7 @@
                 <label asp-for="AbNumber" class="control-label">Абонатен номер</label>
                 <select asp-for="AbNumber" class="form-control" asp-items="@abNumbers"></select>
                 <span asp-validation-for="AbNumber" class="text-danger"></span>
-            </div> 
+            </div>
             <div class="form-group">
                 <label asp-for="Value" class="control-label">главница</label>
                 <input asp-for="Value" class="form-control" />
@@ -67,3 +67,7 @@
 <div>
     <a class="btn btn-primary" asp-action="Index">Обратно</a>
 </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
