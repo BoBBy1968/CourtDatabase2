@@ -1,0 +1,23 @@
+﻿@model LegalActionViewModel
+
+@{
+    ViewData["Title"] = "Изтрий";
+}
+
+<h1 class="text-danger">@ViewData["Title"]</h1>
+<h3 class="alert-danger">Сигурен ли сте, че искате да изтриете това съдебно действие?</h3>
+
+<ul>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">ИД на плащането: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.Id</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Дата на плащане: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.ActionName</span></div>
+    </li>
+</ul>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" value="Изтрий директно" class="btn btn-danger" /> |
+    <a class="btn btn-info" asp-action="Index">Обратно</a>
+</form>

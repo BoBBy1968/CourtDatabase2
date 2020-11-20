@@ -9,8 +9,6 @@ namespace CourtDatabase2.Data.Models
         [Key]
         public int Id { get; set; }
 
-        //public DateTime Date { get; set; }
-
         [Required]
         [MaxLength(50)]
         public string ActionName { get; set; }

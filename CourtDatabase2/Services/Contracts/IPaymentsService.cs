@@ -12,8 +12,6 @@ namespace CourtDatabase2.Services.Contracts
 
         Task CreateAsync(PaymentsInputViewModel model);
 
-        //Task<PaymentsEditViewModel> EditAsync(int? id);
-
         Task EditAsync(PaymentsEditViewModel model);
 
         Task<PaymentsEditViewModel> DetailsAsync(int? id);

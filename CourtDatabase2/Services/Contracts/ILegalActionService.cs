@@ -1,13 +1,20 @@
 ﻿using CourtDatabase2.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CourtDatabase2.Services.Contracts
 {
     public interface ILegalActionService
     {
-        void Create(DateTime date, string actionName);
+        Task<IEnumerable<LegalActionViewModel>> AllAsync();
 
-        IEnumerable<LegalActionViewModel> All();
+        Task CreateAsync(LegalActionInputModel model);
+
+        Task EditAsync(LegalActionViewModel model);
+
+        Task<LegalActionViewModel> DetailsAsync(int? id);
+
+        Task DeleteConfirm(int? id);
     }
 }

@@ -1,22 +1,24 @@
-﻿@model LegalActionInputModel
+﻿@model LegalActionViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Съдебни действия";
 }
 
-<h1>Създаване</h1>
+<h1>@ViewData["Title"]</h1>
 
-<h4>съдебно действие</h4>
+
 <hr />
 <form asp-action="Create" method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
     <label asp-for="ActionName" class="alert-warning">Име на действието</label>
     <input asp-for="ActionName" class="alert-info" />
-    <span asp-validation-for="ActionName" class="text-danger"></span><br/>
-    <input type="submit" asp-action="Create" asp-controller="LegalActions" value="Създай" class="btn btn-outline-warning" />
+    <span asp-validation-for="ActionName" class="text-danger"></span><br />
+    <input type="submit" asp-action="Edit" asp-controller="LegalActions" value="Запис" class="btn btn-outline-warning" />
     <a class="btn btn-info" asp-action="Index">Обратно</a>
 </form>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+

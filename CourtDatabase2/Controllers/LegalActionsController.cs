@@ -3,6 +3,7 @@ using CourtDatabase2.Services.Contracts;
 using CourtDatabase2.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace CourtDatabase2.Controllers
 {
@@ -19,46 +20,60 @@ namespace CourtDatabase2.Controllers
         public ActionResult Index() => RedirectToAction("All");
 
 
-        public ActionResult All()
+        public async Task<IActionResult> All()
         {
-            var viewModel = this.service.All();
+            var viewModel = await this.service.AllAsync();
             return View(viewModel);
         }
 
-        public ActionResult Create() => View();
+        public async Task<IActionResult> Create(int? id)
+        {
+            var viewModel = await this.service.DetailsAsync(id);
+            return View(viewModel);
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(LegalActionViewModel model)
+        public async Task<IActionResult> Create(LegalActionInputModel model)
         {
-            this.service.Create(model.Date, model.ActionName);
+            await this.service.CreateAsync(model);
             return this.RedirectToAction("All");
         }
 
-        //public ActionResult Edit(int id) => View();
+        public async Task<IActionResult> Edit(int id)
+        {
+            var viewModel = await this.service.DetailsAsync(id);
+            return View(viewModel);
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(LegalActionViewModel model)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                await this.service.EditAsync(model);
+                return RedirectToAction(nameof(All));
             }
             catch
             {
-                return View();
+                return View(model);
             }
         }
 
-        //public ActionResult Delete(int id) => View();
+        public async Task<IActionResult> Delete(int id)
+        {
+            var viewModel = await this.service.DetailsAsync(id);
+            return View(viewModel);
+        }
 
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> DeleteConfirm(int id)
         {
             try
             {
+                await this.service.DeleteConfirm(id);
                 return RedirectToAction(nameof(Index));
             }
             catch
