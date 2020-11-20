@@ -59,6 +59,10 @@ namespace CourtDatabase2.Controllers
                 return NotFound();
             }
             var viewModel = await this.lawCaseService.DetailsAsync(id);
+            if (viewModel == null)
+            {
+                return NotFound();
+            }
             viewModel.AbNumbers = this.lawCaseService.AbNumbers();
             viewModel.Debitors = this.lawCaseService.Debitors();
             return this.View(viewModel);

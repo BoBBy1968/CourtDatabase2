@@ -1,0 +1,55 @@
+﻿@model IEnumerable<CaseActionsAllViewModel>
+
+@{
+    ViewData["Title"] = "Действия по дела";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Създай ново</a>
+</p>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                ИД
+            </th>
+            <th>
+                Действие
+            </th>
+            <th>
+                Дата
+            </th>
+            <th>
+                Дело
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Id   
+                </td>
+                <td>
+                    @item.LegalAction.ActionName   
+                </td>
+                <td>
+                    @item.Date.ToShortDateString()   
+                </td>
+                <td>
+                    @item.Debitor   
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Редактирай</a>
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Детайли</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Към Изтрий</a>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+

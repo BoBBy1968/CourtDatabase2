@@ -1,0 +1,27 @@
+﻿@model CaseActionsEditViewModel
+
+@{
+    ViewData["Title"] = "Редактирай действие по дела";
+    var legalActions = this.Model.LegalActions.Select(x => new SelectListItem(x.Value, x.Key));
+    var lawCases = this.Model.LawCases.Select(x => new SelectListItem(x.Value, x.Key));
+}
+}
+
+<h1>@ViewData["Title"]</h1>
+
+
+<form asp-action="Edit" asp-controller="CaseActions" method="post">
+    <label asp-for="LegalActionId" class="alert-warning">Съдебно действие</label>
+    <select asp-for="LegalActionId" asp-items="legalActions" class="alert-info"></select>
+    <span asp-validation-for="LegalActionId" class="text-danger"></span><br />
+    <label asp-for="LawCaseId" class="alert-warning">Дело</label>
+    <select asp-for="LawCaseId" asp-items="lawCases" class="alert-info"></select>
+    <span asp-validation-for="LawCaseId" class="text-danger"></span><br />
+    <label asp-for="Date" class="alert-warning">Дата</label>
+    <input asp-for="Date" class="alert-info" />
+    <span asp-validation-for="Date" class="text-danger"></span>
+
+    <input type="submit" value="Запис" class="btn btn-outline-warning" />
+    <a asp-action="Index" class="btn btn-info">Обратно</a>
+</form>
+

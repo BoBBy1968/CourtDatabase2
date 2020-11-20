@@ -1,0 +1,24 @@
+﻿@model CaseActionsEditViewModel
+
+@{
+    ViewData["Title"] = "Детайли на действие по дела";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<ul>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">ИД:</span> <span class="alert-info col-md-1 font-weight-bold">@Model.Id</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Действие:</span> <span class="alert-info col-md-1 font-weight-bold">@Model.LegalAction.ActionName</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Дата:</span> <span class="alert-info col-md-1 font-weight-bold">@Model.Date.ToShortDateString()</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Дело:</span> <span class="alert-info col-md-1 font-weight-bold">@Model.Debitor</span></div>
+    </li>
+</ul>
+
+<a asp-action="Index" class="btn btn-info">Обратно</a>

@@ -26,23 +26,34 @@ namespace CourtDatabase2.Controllers
             return View(viewModel);
         }
 
-        public async Task<IActionResult> Create(int? id)
+        public IActionResult Create()
         {
-            var viewModel = await this.service.DetailsAsync(id);
-            return View(viewModel);
+            return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(LegalActionInputModel model)
         {
-            await this.service.CreateAsync(model);
-            return this.RedirectToAction("All");
+            if (ModelState.IsValid)
+            {
+                await this.service.CreateAsync(model);
+                return this.RedirectToAction("All");
+            }
+            return this.View(model);
         }
 
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
             var viewModel = await this.service.DetailsAsync(id);
+            if (viewModel == null)
+            {
+                return NotFound();
+            }
             return View(viewModel);
         }
 
@@ -61,9 +72,17 @@ namespace CourtDatabase2.Controllers
             }
         }
 
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
             var viewModel = await this.service.DetailsAsync(id);
+            if (viewModel == null)
+            {
+                return NotFound();
+            }
             return View(viewModel);
         }
 
