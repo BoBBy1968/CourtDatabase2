@@ -91,7 +91,7 @@ namespace CourtDatabase2.Controllers
 
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id==null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -107,7 +107,7 @@ namespace CourtDatabase2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirm(int? id)
         {
-            if (id==null)
+            if (id == null)
             {
                 return NotFound();
             }
