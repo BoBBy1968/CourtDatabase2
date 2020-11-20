@@ -21,7 +21,7 @@ namespace CourtDatabase2.Services
           => this.dbContext.LegalActions.Select(x => new LegalActionViewModel
           {
               Id = x.Id,
-              Date = x.Date,
+              //Date = x.Date,
               ActionName = x.ActionName,
           })
             .OrderByDescending(x => x.Date)
@@ -32,7 +32,7 @@ namespace CourtDatabase2.Services
         {
             var legalAction = new LegalAction
             {
-                Date = date,
+                //Date = date,
                 ActionName = actionName,
             };
             this.dbContext.LegalActions.Add(legalAction);

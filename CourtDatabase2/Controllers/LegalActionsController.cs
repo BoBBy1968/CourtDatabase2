@@ -35,7 +35,7 @@ namespace CourtDatabase2.Controllers
             return this.RedirectToAction("All");
         }
 
-        public ActionResult Edit(int id) => View();
+        //public ActionResult Edit(int id) => View();
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -51,7 +51,7 @@ namespace CourtDatabase2.Controllers
             }
         }
 
-        public ActionResult Delete(int id) => View();
+        //public ActionResult Delete(int id) => View();
 
         [HttpPost]
         [ValidateAntiForgeryToken]
