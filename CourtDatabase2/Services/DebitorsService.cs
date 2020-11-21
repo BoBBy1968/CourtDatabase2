@@ -43,7 +43,7 @@ namespace CourtDatabase2.Services
                 AbNumber = x.AbNumber,
                 HeatEstate = x.HeatEstate.Address,
                 EGN = x.EGN,
-            }).ToListAsync();
+            }).OrderByDescending(x => x.Id).ToListAsync();
         }
 
         public async Task CreateAsync(DebitorCreateViewModel model)
@@ -125,7 +125,7 @@ namespace CourtDatabase2.Services
                 this.dbContext.Debitors.Remove(debitor);
             }
             await this.dbContext.SaveChangesAsync();
-            
+
         }
     }
 }

@@ -44,9 +44,11 @@ namespace CourtDatabase2.Services
                 LawCase = x.LawCase,
                 Contractor = x.LawCase.Debitor.FirstName + " " + x.LawCase.Debitor.LastName
                 + " - " + x.LawCase.Value + " лв. "
-            }).ToListAsync();
+            })
+            .OrderByDescending(x => x.Id)
+            .ToListAsync();
         }
-         
+
         public async Task CreateAsync(PaymentsInputViewModel model)
         {
             var payment = new Payment

@@ -56,6 +56,7 @@ namespace CourtDatabase2.Services
                     Debitor = x.LawCase.Debitor.FirstName + " " + x.LawCase.Debitor.LastName,
                     CourtName = x.Court.CourtTown.TownName + " " + x.Court.CourtType.ToString(),
                 })
+                .OrderByDescending(x => x.Id)
                 .ToListAsync();
         }
 

@@ -26,7 +26,7 @@ namespace CourtDatabase2.Services
                 x.AbNumber,
                 x.Address,
             }).ToList().Select(a => new KeyValuePair<string, string>(a.AbNumber, a.Address));
-            
+
         }
 
         //.ToListAsync doesn't contain .Select
@@ -55,7 +55,9 @@ namespace CourtDatabase2.Services
                 PeriodFrom = x.PeriodFrom,
                 PeriodTo = x.PeriodTo,
                 Id = x.Id,
-            }).ToListAsync();
+            })
+            .OrderByDescending(x => x.Id)
+            .ToListAsync();
         }
 
         public async Task CreateAsync(LawCaseInputModel model)

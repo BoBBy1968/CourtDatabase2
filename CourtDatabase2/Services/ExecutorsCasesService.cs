@@ -20,11 +20,11 @@ namespace CourtDatabase2.Services
 
         public IEnumerable<KeyValuePair<string, string>> GetAllLawCases()
         {
-            return this.dbContext.LawCases.Select(l=> new 
+            return this.dbContext.LawCases.Select(l => new
             {
                 l.Id,
-                Name = l.Id + " - " + l.Debitor.FirstName + " " + l.Debitor.LastName + " - " + l.Value + " лв." 
-            }).ToList().Select(x=> new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
+                Name = l.Id + " - " + l.Debitor.FirstName + " " + l.Debitor.LastName + " - " + l.Value + " лв."
+            }).ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
         }
 
         public IEnumerable<KeyValuePair<string, string>> GetAllExecutors()
@@ -47,7 +47,9 @@ namespace CourtDatabase2.Services
                 Executor = e.Executor,
                 LawCase = e.LawCase,
                 Debitor = e.LawCase.Debitor,
-            }).ToListAsync();
+            })
+            .OrderByDescending(x => x.Id)
+            .ToListAsync();
         }
 
         public async Task CreateAsync(ExecutorsCasesCreateViewModel model)

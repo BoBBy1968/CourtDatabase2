@@ -20,7 +20,8 @@ namespace CourtDatabase2.Services
 
         public async Task<IEnumerable<CaseActionsAllViewModel>> AllAsync()
         {
-            return await this.dbContext.CaseActions.Select(x => new CaseActionsAllViewModel
+            return await this.dbContext.CaseActions
+                .Select(x => new CaseActionsAllViewModel
             {
                 Id = x.Id,
                 Date = x.Date,
@@ -31,7 +32,9 @@ namespace CourtDatabase2.Services
                 LawCaseId = x.LawCaseId,
                 LegalAction = x.LegalAction,
                 LegalActionId = x.LegalActionId,
-            }).ToListAsync();
+            })
+                .OrderByDescending(x => x.Id)
+                .ToListAsync();
         }
 
         public async Task CreateAsync(CaseActionsCreateViewModel model)

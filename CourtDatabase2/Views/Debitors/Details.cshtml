@@ -3,12 +3,12 @@
 @{
     ViewData["Title"] = "Детайли за Длъжник";
     var addressToContact = string.IsNullOrWhiteSpace(Model.AddressToContact) ? "n/a" : Model.AddressToContact;
-    var email = string.IsNullOrWhiteSpace(Model.Email) ? "n/a" : Model.AddressToContact;
-    var phone = string.IsNullOrWhiteSpace(Model.Phone) ? "n/a" : Model.AddressToContact;
+    var email = string.IsNullOrWhiteSpace(Model.Email) ? "n/a" : Model.Email;
+    var phone = string.IsNullOrWhiteSpace(Model.Phone) ? "n/a" : Model.Phone;
     var representative = string.IsNullOrWhiteSpace(Model.Representative) ? "n/a" : Model.Representative;
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1>@ViewData["Title"]</h1> 
 
 <div>
     <hr />

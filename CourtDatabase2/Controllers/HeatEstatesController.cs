@@ -42,8 +42,8 @@ namespace CourtDatabase2.Controllers
         {
             if (ModelState.IsValid)
             {
-                await this.heatEstateService.CreateAsync(model);
-                return RedirectToAction(nameof(Index));
+                string abNumber = await this.heatEstateService.CreateAsync(model);
+                return this.RedirectToAction("Details", new { id = abNumber});
             }
             return View(model);
         }

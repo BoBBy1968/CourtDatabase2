@@ -28,7 +28,9 @@ namespace CourtDatabase2.Services
                     TownName = t.TownName,
                     Address = t.Address,
                     Id = t.Id,
-                }).ToListAsync();
+                })
+                .OrderByDescending(x => x.Id)
+                .ToListAsync();
         }
 
         public async Task CreateAsync(string townName, string address)

@@ -24,10 +24,11 @@ namespace CourtDatabase2.Services
             {
                 AbNumber = x.AbNumber,
                 Address = x.Address,
-            }).ToListAsync();
+            }).OrderByDescending(x => x.AbNumber).ToListAsync();
+
         }
 
-        public async Task CreateAsync(HeatEstateInputModel model)
+        public async Task<string> CreateAsync(HeatEstateInputModel model)
         {
             var heatEstate = new HeatEstate
             {
@@ -37,6 +38,7 @@ namespace CourtDatabase2.Services
 
             await dbContext.AddAsync(heatEstate);
             await dbContext.SaveChangesAsync();
+            return heatEstate.AbNumber;
         }
 
         public async Task EditAsync(HeatEstateEditViewModel model)

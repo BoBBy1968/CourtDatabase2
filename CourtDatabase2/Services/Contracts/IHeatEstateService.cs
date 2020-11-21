@@ -8,7 +8,7 @@ namespace CourtDatabase2.Services.Contracts
     {
         Task<IEnumerable<HeatEstateEditViewModel>> AllAsync();
 
-        Task CreateAsync(HeatEstateInputModel model);
+        Task<string> CreateAsync(HeatEstateInputModel model);
 
         Task EditAsync(HeatEstateEditViewModel model);
 

@@ -24,20 +24,22 @@ namespace CourtDatabase2.Services
             {
                 Id = x.Id,
                 Name = x.Name,
-                Address = x.Address,
-            }).ToListAsync();
+                Address = x.Address
+            })
+                .OrderByDescending(x => x.Id)
+                .ToListAsync();
         }
 
         public async Task CreateAsync(ExecutorsCreateViewModel model)
         {
             var executor = new Executor
             {
-                 Name = model.Name,
-                 Address = model.Address,
-                 Telephon = model.Telephon,
-                 Email = model.Email,
-                 Number = model.Number,
-                 Region = model.Region,
+                Name = model.Name,
+                Address = model.Address,
+                Telephon = model.Telephon,
+                Email = model.Email,
+                Number = model.Number,
+                Region = model.Region,
             };
             await this.dbContext.Executors.AddAsync(executor);
             await this.dbContext.SaveChangesAsync();
@@ -57,7 +59,7 @@ namespace CourtDatabase2.Services
             };
             this.dbContext.Update(executor);
             await this.dbContext.SaveChangesAsync();
-        } 
+        }
 
         public async Task<ExecutorsEditViewModel> DetailsAsync(int? id)
         {

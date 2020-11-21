@@ -107,7 +107,15 @@ namespace CourtDatabase2.Services
             return this.dbContext.HeatEstates.Select(x => new
             {
                 Id = x.AbNumber,
-                Address = x.AbNumber + " - " + x.Address,
+                Address = x.AbNumber + " - "
+                + x.Address + " - " + this.dbContext
+                                          .Debitors
+                                          .Where(d => d.AbNumber == x.AbNumber)
+                                          .Select(b=> new
+                                          {
+                                              Name = b.Id + " - " + b.FirstName + " " + b.LastName + " " + b.EGN,
+
+                                          }).FirstOrDefault(),
             }).ToList().Select(x => new KeyValuePair<string, string>(x.Id, x.Address));
         }
 

@@ -40,7 +40,7 @@ namespace CourtDatabase2.Services
                 Address = c.CourtTown.Address,
                 Id = c.Id,
             })
-           .OrderBy(x => x.TownName)
+           .OrderByDescending(x => x.Id)
            .ToListAsync();
         }
 

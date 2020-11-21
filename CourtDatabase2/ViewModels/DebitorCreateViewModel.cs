@@ -38,7 +38,7 @@ namespace CourtDatabase2.ViewModels
         [Display(Name = "Адрес за контакт")]
         public string AddressToContact { get; set; }
 
-        [MaxLength(50, ErrorMessage = "Телефона е до 250 знака.")]
+        [MaxLength(50, ErrorMessage = "Телефона е до 50 знака.")]
         [Display(Name = "Телефон")]
         public string Phone { get; set; }
 

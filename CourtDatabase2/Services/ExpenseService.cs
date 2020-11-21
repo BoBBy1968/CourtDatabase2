@@ -40,7 +40,7 @@ namespace CourtDatabase2.Services
                 ExpenceValue = x.ExpenceValue,
                 DebitorName = x.LawCase.Debitor.FirstName + " " + x.LawCase.Debitor.LastName,
                 CaseValue = x.LawCase.Value,
-            }).ToListAsync();
+            }).OrderByDescending(x => x.Id).ToListAsync();
         }
 
         public async Task CreateAsync(ExpenseInputViewModel model)
