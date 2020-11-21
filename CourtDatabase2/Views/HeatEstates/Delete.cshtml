@@ -1,4 +1,4 @@
-﻿@model CourtDatabase2.Data.Models.HeatEstate
+﻿@model HeatEstateEditViewModel
 
 @{
     ViewData["Title"] = "Изтрий";
@@ -9,14 +9,20 @@
 <div>
     <h4>Имот</h4>
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-    </dl>
+    <ul>
+        <li>
+            <div>
+                <span class="font-weight-lighter alert-warning">Абонатен номер: </span>
+                <span class="alert-info col-md-1 font-weight-bold">@Model.AbNumber</span>
+            </div>
+        </li>
+        <li>
+            <div>
+                <span class="font-weight-lighter alert-warning">Адрес: </span>
+                <span class="alert-info col-md-1 font-weight-bold">@Model.Address</span>
+            </div>
+        </li>
+    </ul>
 
     <form asp-action="Delete">
         <input type="hidden" asp-for="AbNumber" />

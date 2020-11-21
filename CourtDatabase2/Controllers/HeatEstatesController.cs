@@ -20,26 +20,15 @@ namespace CourtDatabase2.Controllers
             this.heatEstateService = heatEstateService;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await dbContext.HeatEstates.ToListAsync());
+            return this.RedirectToAction("All");
         }
 
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> All()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var heatEstate = await dbContext.HeatEstates
-                .FirstOrDefaultAsync(m => m.AbNumber == id);
-            if (heatEstate == null)
-            {
-                return NotFound();
-            }
-
-            return View(heatEstate);
+            var viewModel = await this.heatEstateService.AllAsync();
+            return View(viewModel);
         }
 
         public IActionResult Create()
@@ -53,7 +42,7 @@ namespace CourtDatabase2.Controllers
         {
             if (ModelState.IsValid)
             {
-                await this.heatEstateService.Create(model.AbNumber, model.Address);
+                await this.heatEstateService.CreateAsync(model);
                 return RedirectToAction(nameof(Index));
             }
             return View(model);
@@ -66,7 +55,7 @@ namespace CourtDatabase2.Controllers
                 return NotFound();
             }
 
-            var heatEstate = await dbContext.HeatEstates.FindAsync(id);
+            var heatEstate = await this.heatEstateService.DetailsAsync(id);
             if (heatEstate == null)
             {
                 return NotFound();
@@ -76,33 +65,36 @@ namespace CourtDatabase2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("AbNumber,Address")] HeatEstate heatEstate)
+        public async Task<IActionResult> Edit(HeatEstateEditViewModel model)
         {
-            if (id != heatEstate.AbNumber)
+            if (!ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+            var heatEstate = new HeatEstate
+            {
+                AbNumber = model.AbNumber,
+                Address = model.Address,
+            };
+
+            dbContext.Update(heatEstate);
+            await dbContext.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Details(string id)
+        {
+            if (id == null)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            var heatEstate = await this.heatEstateService.DetailsAsync(id);
+            if (heatEstate == null)
             {
-                try
-                {
-                    dbContext.Update(heatEstate);
-                    await dbContext.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!HeatEstateExists(heatEstate.AbNumber))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
+
             return View(heatEstate);
         }
 
@@ -113,8 +105,7 @@ namespace CourtDatabase2.Controllers
                 return NotFound();
             }
 
-            var heatEstate = await dbContext.HeatEstates
-                .FirstOrDefaultAsync(m => m.AbNumber == id);
+            var heatEstate = await this.heatEstateService.DetailsAsync(id);
             if (heatEstate == null)
             {
                 return NotFound();
@@ -127,19 +118,13 @@ namespace CourtDatabase2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var heatEstate = await dbContext.HeatEstates.FindAsync(id);
-            if (heatEstate == null)
-            {
-                return NotFound();
-            }
-            dbContext.HeatEstates.Remove(heatEstate);
-            await dbContext.SaveChangesAsync();
+            await this.heatEstateService.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }
 
-        private bool HeatEstateExists(string id)
-        {
-            return dbContext.HeatEstates.Any(e => e.AbNumber == id);
-        }
+        //private bool HeatEstateExists(string id)
+        //{
+        //    return dbContext.HeatEstates.Any(e => e.AbNumber == id);
+        //}
     }
 }

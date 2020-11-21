@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CourtDatabase2.Data.Models.HeatEstate>
+﻿@model IEnumerable<HeatEstateEditViewModel>
 
 @{
     ViewData["Title"] = "Всички имоти";
@@ -13,10 +13,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Address)
+                Абонатен номер
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AbNumber)
+                Адрес
             </th>
         </tr>
     </thead>
@@ -24,10 +24,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Address)
+                @item.AbNumber
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AbNumber)
+                @item.Address
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.AbNumber" class="btn btn-primary">Редактирай</a> |

@@ -1,4 +1,4 @@
-﻿@model CourtDatabase2.Data.Models.HeatEstate
+﻿@model HeatEstateEditViewModel
 
 @{
     ViewData["Title"] = "Редактиране на имот";
@@ -12,7 +12,7 @@
     <div asp-validation-summary="All" class="text-danger"></div>
     <input type="hidden" asp-for="AbNumber" />
     <label asp-for="AbNumber" class="alert-warning">Абонатен номер</label>
-    <input asp-for="AbNumber" class="alert-info" />
+    <input asp-for="AbNumber" class="alert-secondary" readonly />
     <span asp-validation-for="AbNumber" class="text-danger"></span><br />
     <label asp-for="Address" class="alert-warning">Адрес</label>
     <input asp-for="Address" class="alert-info" />
