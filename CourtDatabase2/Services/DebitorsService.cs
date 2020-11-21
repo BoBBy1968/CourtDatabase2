@@ -28,7 +28,7 @@ namespace CourtDatabase2.Services
             return this.dbContext.HeatEstates.Select(x => new
             {
                 Id = x.AbNumber,
-                x.Address,
+                Address = x.AbNumber + " - " + x.Address,
             }).ToList().Select(x => new KeyValuePair<string, string>(x.Id, x.Address));
         }
 
