@@ -1,0 +1,45 @@
+﻿@model InvoicesEditViewModel
+
+
+@{
+    ViewData["Title"] = "Редактирай фактура";
+    var estates = this.Model.AllEstates.Select(x => new SelectListItem(x.Value, x.Key));
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-controller="Invoices" asp-action="Edit" method="post">
+    <div asp-validation-summary="All" class="alert-danger"></div>
+    <label asp-for="Number" class="alert-warning">Номер</label>
+    <input asp-for="Number" class="alert-info" />
+    <span asp-validation-for="Number" class="alert-danger"></span><br />
+    <label asp-for="IssueDate" class="alert-warning">Дата на издаване</label>
+    <input asp-for="IssueDate" class="alert-info" />
+    <span asp-validation-for="IssueDate" class="alert-danger"></span><br />
+    <label asp-for="Value" class="alert-warning">Стойност</label>
+    <input asp-for="Value" class="alert-info" />
+    <span asp-validation-for="Value" class="alert-danger"></span><br />
+    <label asp-for="Maturity" class="alert-warning">Срок за плащане</label>
+    <input asp-for="Maturity" class="alert-info" />
+    <span asp-validation-for="Maturity" class="alert-danger"></span><br />
+    <label asp-for="PeriodFrom" class="alert-warning">Период от</label>
+    <input asp-for="PeriodFrom" class="alert-info" />
+    <span asp-validation-for="PeriodFrom" class="alert-danger"></span><br />
+    <label asp-for="PeriodTo" class="alert-warning">Период до</label>
+    <input asp-for="PeriodTo" class="alert-info" />
+    <span asp-validation-for="PeriodTo" class="alert-danger"></span><br />
+    <label asp-for="AbNumber" class="alert-warning">Абонатен номер</label>
+    @*<input asp-for="AbNumber" class="alert-info" />*@
+    <select asp-for="AbNumber" class="alert-info" asp-items="estates"></select>
+    <span asp-validation-for="AbNumber" class="alert-danger"></span><br />
+    <label asp-for="DebitorId" class="alert-warning">Длъжник ИД</label>
+    <input asp-for="DebitorId" class="alert-info" />
+    @*<select asp-for="DebitorId" class="alert-info" asp-items="debitors"></select>*@
+    <span asp-validation-for="DebitorId" class="alert-danger"></span><br />
+    <label asp-for="Condition" class="alert-warning">Състояние</label>
+    <input asp-for="Condition" class="alert-info" />
+    <span asp-validation-for="Condition" class="alert-danger"></span><br />
+    <input type="submit" value="Запис" class="btn btn-outline-warning" />
+    <a asp-action="Index" class="btn btn-primary">Обратно</a>
+</form>
+

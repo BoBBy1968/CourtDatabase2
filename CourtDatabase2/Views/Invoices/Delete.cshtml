@@ -1,0 +1,42 @@
+﻿@model InvoicesEditViewModel
+
+
+@{
+    ViewData["Title"] = "Изтрий фактура";
+}
+
+<h1 class="text-danger">@ViewData["Title"]</h1>
+<h3 class="alert-danger">Сигурен ли сте, че желаете да изтриете това дело?</h3>
+
+<ul>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">ИД: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.Id</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Номер: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.Number</span><span class="font-weight-lighter alert-warning">/</span> <span class="alert-info col-md-1 font-weight-bold text-primary">@Model.IssueDate.ToShortDateString()</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Стойност: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.Value лв.</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Период: </span> <span class="alert-info col-md-1 font-weight-bold text-success">@Model.PeriodFrom.ToShortDateString()   -   @Model.PeriodTo.ToShortDateString()</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Срок за плащане: </span> <span class="alert-info col-md-1 font-weight-bold text-danger">@Model.Maturity.ToShortDateString()</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Имот: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.HeatEstate.Address</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Длъжник: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.Debitor.FirstName @Model.Debitor.LastName</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Състояние: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.Condition </span></div>
+    </li>
+</ul>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" value="Изтрий директно" class="btn btn-danger" /> |
+    <a class="btn btn-info" asp-action="Index">Обратно</a>
+</form>
