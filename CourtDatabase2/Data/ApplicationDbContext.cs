@@ -57,11 +57,8 @@ namespace CourtDatabase2.Data
         public DbSet<LawCase> LawCases { get; set; }
 
         public DbSet<LegalAction> LegalActions { get; set; }
-        //public DbSet<Obligation> Obligations { get; set; }
 
         public DbSet<Payment> Payments { get; set; }
-        //public DbSet<CourtDatabase2.ViewModels.LegalActionViewModel> LegalActionViewModel { get; set; }
-        //public DbSet<CourtDatabase2.ViewModels.CourtCasesViewModel> CourtCasesViewModel { get; set; }
 
     }
 }
