@@ -18,10 +18,6 @@ namespace CourtDatabase2.Services
         {
             this.dbContext = dbContext;
         }
-        public IEnumerable<KeyValuePair<string, string>> GetAllCourtTowns()
-        {
-            throw new System.NotImplementedException();
-        }
 
         public IEnumerable<KeyValuePair<string, string>> GetAllHeatEstates()
         {
@@ -86,7 +82,7 @@ namespace CourtDatabase2.Services
                 Representative = model.Representative,
                 AddressToContact = model.AddressToContact,
             };
-            this.dbContext.Update(debitor);
+            this.dbContext.Debitors.Update(debitor);
             await this.dbContext.SaveChangesAsync();
         }
 
