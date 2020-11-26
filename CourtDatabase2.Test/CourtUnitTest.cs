@@ -119,5 +119,21 @@ namespace CourtDatabase2.Test
             Assert.Null(myCourt);
             Assert.True(result.IsCompletedSuccessfully);
         }
+
+        [Fact]
+        public void CourtGetAllTownsTest()
+        {
+            var optionBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("testDb");
+            var dbContext = new ApplicationDbContext(optionBuilder.Options);
+
+            var service = new CourtService(dbContext);
+
+            var result = service.GetAllCourtTowns();
+
+            Assert.NotNull(result);
+            Assert.IsType<List<KeyValuePair<string, string>>>(result.ToList());
+        }
     }
+
 }
