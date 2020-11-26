@@ -107,7 +107,7 @@ namespace CourtDatabase2.Services
 
         public async Task<CourtCasesViewModel> DetailsAsync(int? id)
         {
-            return await this.dbContext.CourtCases.Where(x => x.Id == id)
+            var result = await this.dbContext.CourtCases.Where(x => x.Id == id)
                 .Select(x => new CourtCasesViewModel
                 {
                     Id = x.Id,
@@ -120,6 +120,7 @@ namespace CourtDatabase2.Services
                     CourtName = x.Court.CourtTown.TownName + " " + x.Court.CourtType.ToString(),
                     Debitor = x.LawCase.Debitor.FirstName + " " + x.LawCase.Debitor.LastName + " - " + x.LawCase.Value + " лв."
                 }).FirstOrDefaultAsync();
+            return result;
         }
 
         public async Task<CourtCasesViewModel> Delete(int? id)
