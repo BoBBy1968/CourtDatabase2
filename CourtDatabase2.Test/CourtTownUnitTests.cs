@@ -2,9 +2,7 @@ using CourtDatabase2.Data;
 using CourtDatabase2.Data.Models;
 using CourtDatabase2.Services;
 using CourtDatabase2.ViewModels;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,49 +12,6 @@ namespace CourtDatabase2.Test
 {
     public class CourtTownUnitTests
     {
-        [Fact]
-        public async Task ExpenceCreateAndRetutnsDetails()
-        {
-            // Arrange
-            var expence = new Expense
-            {
-                Id = 1,
-                ExpenceDate = DateTime.UtcNow.Date,
-                ExpenceDescription = "издаване на заповед",
-                ExpenceValue = 27.20m,
-                Payee = "РРС",
-                LawCaseId = 1,
-            };
-
-            var optionBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase("testDb");
-            var dbContext = new ApplicationDbContext(optionBuilder.Options);
-            await dbContext.Expenses.AddAsync(expence);
-            await dbContext.SaveChangesAsync();
-
-            var service = new ExpenseService(dbContext);
-            //var exp = new ExpenseInputViewModel
-            //{
-            //    ExpenceDate = DateTime.UtcNow,
-            //    ExpenceDescription = "издаване на заповед",
-            //    ExpenceValue = 27.2m,
-            //    Payee = "РРС",
-            //    LawCaseId = 1,
-            //};
-            //await service.CreateAsync(exp);
-
-            // Act
-            var result = service.DetailsAsync(1);
-
-            // Assert
-            Assert.NotNull(result);
-            Assert.Equal("издаване на заповед", result.Result.ExpenceDescription);
-            Assert.Equal(1, result.Result.Id);
-            Assert.Equal(1, result.Result.LawCaseId);
-            Assert.Equal(27.20m, result.Result.ExpenceValue);
-            Assert.Equal("РРС", result.Result.Payee);
-        }
-
         [Fact]
         public async Task CourtTownReturnDetails()
         {
@@ -170,7 +125,7 @@ namespace CourtDatabase2.Test
             var service = new CourtTownService(dbContext);
 
             //Act
-            var result = service.EditAsync(courtTown.TownName="Ruse", courtTown.Address="tyAddress"
+            var result = service.EditAsync(courtTown.TownName = "Ruse", courtTown.Address = "tyAddress"
                 , courtTown.Id);
             var name = dbContext.CourtTowns.Where(x => x.Id == 4).Select(x => x.TownName)
                 .FirstOrDefault();

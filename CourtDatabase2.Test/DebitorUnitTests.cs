@@ -43,7 +43,7 @@ namespace CourtDatabase2.Test
 
             Assert.NotNull(result);
             Assert.True(result.Result.Any(x => x.Id == 2));
-            Assert.Equal(1, result.Id);
+            //Assert.Equal(1, result.Id);
             //Assert.Equal("Boris", fName.FirstName);
             //Assert.Equal("Stanchev", lName.LastName);
 

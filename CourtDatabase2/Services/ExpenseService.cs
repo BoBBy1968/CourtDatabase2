@@ -58,19 +58,6 @@ namespace CourtDatabase2.Services
             await this.dbContext.SaveChangesAsync();
         }
 
-        //public async Task<ExpenseEditViewModel> Edit(int? id)
-        //{
-        //    return await this.dbContext.Expenses.Where(x => x.Id == id).Select(x => new ExpenseEditViewModel
-        //    {
-        //        Id = x.Id,
-        //        ExpenceDate = x.ExpenceDate,
-        //        ExpenceDescription = x.ExpenceDescription,
-        //        ExpenceValue = x.ExpenceValue,
-        //        LawCaseId = x.LawCaseId,
-        //        Payee = x.Payee,
-        //    }).FirstOrDefaultAsync();
-        //}
-
         public async Task Edit(ExpenseEditViewModel model)
         {
             var expense = new Expense
