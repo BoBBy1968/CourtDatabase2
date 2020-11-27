@@ -140,5 +140,28 @@ namespace CourtDatabase2.Test
             Assert.True(result.IsCompletedSuccessfully);
             Assert.False(count);
         }
+
+        [Fact]
+        public async Task DebitorDeleteAllTest()
+        {
+            var optionBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("testDb4");
+            var dbContext = new ApplicationDbContext(optionBuilder.Options);
+
+            var service = new DebitorsService(dbContext);
+
+            var model = new DebitorCreateViewModel
+            {
+                FirstName = "Boris",
+                LastName = "Stanchev",
+            };
+            await service.CreateAsync(model);
+            var result = service.DeleteAll();
+
+            var count = dbContext.Debitors.Any(x => x.Id == 1);
+
+            Assert.True(result.IsCompletedSuccessfully);
+            Assert.False(count);
+        }
     }
 }

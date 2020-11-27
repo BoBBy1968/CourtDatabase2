@@ -13,16 +13,16 @@ using Xunit;
 
 namespace CourtDatabase2.Test
 {
-    public class ExecutorCasesUnitTests
+    public class LawCasesUnitTests
     {
         [Fact]
-        public void ExecutorCasessAllTest()
+        public void LawCasessAllTest()
         {
             var optionBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
              .UseInMemoryDatabase("testDb0");
             var dbContext = new ApplicationDbContext(optionBuilder.Options);
 
-            var service = new ExecutorsCasesService(dbContext);
+            var service = new LawCaseService(dbContext);
 
             var result = service.AllAsync();
 
@@ -36,15 +36,19 @@ namespace CourtDatabase2.Test
                .UseInMemoryDatabase("testDb1");
             var dbContext = new ApplicationDbContext(optionBuilder.Options);
 
-            var service = new ExecutorsCasesService(dbContext);
+            var service = new LawCaseService(dbContext);
 
-            var executorCases = new ExecutorsCasesCreateViewModel
+            var lawCase = new LawCaseInputModel
             {
-                ExecutorCaseNumber = 123,
-                Year = 2020,
+                Date = DateTime.UtcNow.Date,
+                InvoiceCount = 5,
+                MoratoriumInterest = 15.3m,
+                Value = 100,
+                PeriodFrom = DateTime.UtcNow.Date.AddMonths(-3),
+                PeriodTo = DateTime.UtcNow.Date.AddMonths(-2)
             };
 
-            var result = service.CreateAsync(executorCases);
+            var result = service.CreateAsync(lawCase);
 
             Assert.NotNull(result);
             //Assert.Equal(2, result.Id);
@@ -57,44 +61,54 @@ namespace CourtDatabase2.Test
                .UseInMemoryDatabase("testDb2");
             var dbContext = new ApplicationDbContext(optionBuilder.Options);
 
-            var service = new ExecutorsCasesService(dbContext);
+            var service = new LawCaseService(dbContext);
 
-            var executorCases = new ExecutorsCasesCreateViewModel
+            var lawCase = new LawCaseInputModel
             {
-                ExecutorCaseNumber = 123,
-                Year = 2020,
+                Date = DateTime.UtcNow.Date,
+                InvoiceCount = 5,
+                MoratoriumInterest = 15.3m,
+                Value = 100,
+                PeriodFrom = DateTime.UtcNow.Date.AddMonths(-3),
+                PeriodTo = DateTime.UtcNow.Date.AddMonths(-2)
             };
 
-            await service.CreateAsync(executorCases);
-
-            var ExecutorCasesEdited = new ExecutorsCasesEditViewModel
+            await service.CreateAsync(lawCase);
+            var lawCaseEdit = new LawCaseViewModel
             {
-                ExecutorCaseNumber = 12333,
-                Year = 2015,
+                Date = DateTime.UtcNow.Date.AddDays(3),
+                InvoiceCount = 6,
+                MoratoriumInterest = 15.3m,
+                Value = 102,
+                PeriodFrom = DateTime.UtcNow.Date.AddMonths(-3),
+                PeriodTo = DateTime.UtcNow.Date.AddMonths(-2)
             };
 
-            var result = service.EditAsync(ExecutorCasesEdited);
+            var result = service.EditAsync(lawCaseEdit);
 
             Assert.NotNull(result);
             //Assert.Equal(2, result.Id);
         }
 
         [Fact]
-        public async Task ExecutorCasessDetailsTest()
+        public async Task LawCasessDetailsTest()
         {
             var optionBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
                .UseInMemoryDatabase("testDb3");
             var dbContext = new ApplicationDbContext(optionBuilder.Options);
 
-            var service = new ExecutorsCasesService(dbContext);
+            var service = new LawCaseService(dbContext);
 
-            var executorCases = new ExecutorsCasesCreateViewModel
+            var lawCase = new LawCaseInputModel
             {
-                ExecutorCaseNumber = 123,
-                Year = 2020,
+                Date = DateTime.UtcNow.Date,
+                InvoiceCount = 5,
+                MoratoriumInterest = 15.3m,
+                Value = 100,
+                PeriodFrom = DateTime.UtcNow.Date.AddMonths(-3),
+                PeriodTo = DateTime.UtcNow.Date.AddMonths(-2)
             };
-
-            await service.CreateAsync(executorCases);
+            await service.CreateAsync(lawCase);
 
             var result = service.DetailsAsync(1);
 
@@ -106,18 +120,21 @@ namespace CourtDatabase2.Test
         public async Task ExecutorCasessDeleteTest()
         {
             var optionBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
-               .UseInMemoryDatabase("testDb3");
+               .UseInMemoryDatabase("testDb4");
             var dbContext = new ApplicationDbContext(optionBuilder.Options);
 
-            var service = new ExecutorsCasesService(dbContext);
+            var service = new LawCaseService(dbContext);
 
-            var executorCases = new ExecutorsCasesCreateViewModel
+            var lawCase = new LawCaseInputModel
             {
-                ExecutorCaseNumber = 123,
-                Year = 2020,
+                Date = DateTime.UtcNow.Date,
+                InvoiceCount = 5,
+                MoratoriumInterest = 15.3m,
+                Value = 100,
+                PeriodFrom = DateTime.UtcNow.Date.AddMonths(-3),
+                PeriodTo = DateTime.UtcNow.Date.AddMonths(-2)
             };
-
-            await service.CreateAsync(executorCases);
+            await service.CreateAsync(lawCase);
 
             var result = service.DeleteAsync(1);
 
@@ -126,30 +143,30 @@ namespace CourtDatabase2.Test
         }
 
         [Fact]
-        public void ExecutorCasessGeTAllLawCasesTest()
+        public void LawCasesAbNumbersTest()
         {
             var optionBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
                .UseInMemoryDatabase("testDb3");
             var dbContext = new ApplicationDbContext(optionBuilder.Options);
 
-            var service = new ExecutorsCasesService(dbContext);
+            var service = new LawCaseService(dbContext);
 
-            var result = service.GetAllLawCases();
+            var result = service.AbNumbers();
 
             Assert.NotNull(result);
             //Assert.Equal(2, result.Id);
         }
 
         [Fact]
-        public void ExecutorCasessGeTAllExecutorsTest()
+        public void LawCasesDebitorsTest()
         {
             var optionBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
                .UseInMemoryDatabase("testDb3");
             var dbContext = new ApplicationDbContext(optionBuilder.Options);
 
-            var service = new ExecutorsCasesService(dbContext);
+            var service = new LawCaseService(dbContext);
 
-            var result = service.GetAllExecutors();
+            var result = service.Debitors();
 
             Assert.NotNull(result);
             //Assert.Equal(2, result.Id);
