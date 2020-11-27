@@ -30,8 +30,10 @@ namespace CourtDatabase2.Services
 
         public async Task CreateAsync(LegalActionInputModel model)
         {
-            var legalAction = new LegalAction();
-            legalAction.ActionName = model.ActionName;
+            var legalAction = new LegalAction
+            {
+                ActionName = model.ActionName
+            };
             await this.dbContext.LegalActions.AddAsync(legalAction);
             await this.dbContext.SaveChangesAsync();
         }

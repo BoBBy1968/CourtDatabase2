@@ -42,7 +42,7 @@ namespace CourtDatabase2.Test
             //}).FirstOrDefault();
 
             Assert.NotNull(result);
-            Assert.True(result.Result.Any(x => x.Id == 2));
+            Assert.Contains(result.Result, x => x.Id == 2);
             //Assert.Equal(1, result.Id);
             //Assert.Equal("Boris", fName.FirstName);
             //Assert.Equal("Stanchev", lName.LastName);
@@ -95,7 +95,7 @@ namespace CourtDatabase2.Test
         public async Task DebitorDetailsTest()
         {
             var optionBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase("testDb");
+                .UseInMemoryDatabase("testDb2");
             var dbContext = new ApplicationDbContext(optionBuilder.Options);
 
             var service = new DebitorsService(dbContext);
@@ -113,7 +113,7 @@ namespace CourtDatabase2.Test
             //Assert.True(result.Id != null);
 
             //Assert.Equal("Stanchev3", name);
-            //Assert.NotNull(result);
+            Assert.NotNull(result);
             //Assert.Equal("Boris3", result.FirstName);
 
         }

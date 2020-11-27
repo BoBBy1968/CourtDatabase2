@@ -13,16 +13,16 @@ using Xunit;
 
 namespace CourtDatabase2.Test
 {
-    public class ExecutorUnitTests
+    public class ExecutorCasesUnitTests
     {
         [Fact]
-        public void ExecutorsAllTest()
+        public void ExecutorCasessAllTest()
         {
             var optionBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
              .UseInMemoryDatabase("testDb0");
             var dbContext = new ApplicationDbContext(optionBuilder.Options);
 
-            var service = new ExecutorService(dbContext);
+            var service = new ExecutorsCasesService(dbContext);
 
             var result = service.AllAsync();
 
@@ -30,79 +30,71 @@ namespace CourtDatabase2.Test
         }
 
         [Fact]
-        public void ExecutorsCreateTest()
+        public void ExecutorCasessCreateTest()
         {
             var optionBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
                .UseInMemoryDatabase("testDb1");
             var dbContext = new ApplicationDbContext(optionBuilder.Options);
 
-            var service = new ExecutorService(dbContext);
+            var service = new ExecutorsCasesService(dbContext);
 
-            var executor = new ExecutorsCreateViewModel
+            var executorCases = new ExecutorsCasesCreateViewModel
             {
-                Name = "Иван Хаджииванов",
-                Address = "ул. Александровска 44",
-                Number = "832",
-                Region = "Русе",
+                ExecutorCaseNumber = 123,
+                Year = 2020,
             };
 
-            var result = service.CreateAsync(executor);
+            var result = service.CreateAsync(executorCases);
 
             Assert.NotNull(result);
             //Assert.Equal(2, result.Id);
         }
 
         [Fact]
-        public async Task ExecutorsEditTest()
+        public async Task ExecutorCasessEditTest()
         {
             var optionBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
                .UseInMemoryDatabase("testDb2");
             var dbContext = new ApplicationDbContext(optionBuilder.Options);
 
-            var service = new ExecutorService(dbContext);
+            var service = new ExecutorsCasesService(dbContext);
 
-            var executor = new ExecutorsCreateViewModel
+            var executorCases = new ExecutorsCasesCreateViewModel
             {
-                Name = "Иван Хаджииванов",
-                Address = "ул. Александровска 44",
-                Number = "832",
-                Region = "Русе",
+                ExecutorCaseNumber = 123,
+                Year = 2020,
             };
 
-            await service.CreateAsync(executor);
+            await service.CreateAsync(executorCases);
 
-            var executorEdited = new ExecutorsEditViewModel
+            var ExecutorCasesEdited = new ExecutorsCasesEditViewModel
             {
-                Name = "Иван Хаджииванов2",
-                Address = "ул. Александровска 44-2",
-                Number = "832-2",
-                Region = "Русе2",
+                ExecutorCaseNumber = 12333,
+                Year = 2015,
             };
 
-            var result = service.EditAsync(executorEdited);
+            var result = service.EditAsync(ExecutorCasesEdited);
 
             Assert.NotNull(result);
             //Assert.Equal(2, result.Id);
         }
 
         [Fact]
-        public async Task ExecutorsDetailsTest()
+        public async Task ExecutorCasessDetailsTest()
         {
             var optionBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
                .UseInMemoryDatabase("testDb3");
             var dbContext = new ApplicationDbContext(optionBuilder.Options);
 
-            var service = new ExecutorService(dbContext);
+            var service = new ExecutorsCasesService(dbContext);
 
-            var executor = new ExecutorsCreateViewModel
+            var executorCases = new ExecutorsCasesCreateViewModel
             {
-                Name = "Иван Хаджииванов",
-                Address = "ул. Александровска 44",
-                Number = "832",
-                Region = "Русе",
+                ExecutorCaseNumber = 123,
+                Year = 2020,
             };
 
-            await service.CreateAsync(executor);
+            await service.CreateAsync(executorCases);
 
             var result = service.DetailsAsync(1);
 
@@ -111,23 +103,21 @@ namespace CourtDatabase2.Test
         }
 
         [Fact]
-        public async Task ExecutorsDeleteTest()
+        public async Task ExecutorCasessDeleteTest()
         {
             var optionBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
                .UseInMemoryDatabase("testDb3");
             var dbContext = new ApplicationDbContext(optionBuilder.Options);
 
-            var service = new ExecutorService(dbContext);
+            var service = new ExecutorsCasesService(dbContext);
 
-            var executor = new ExecutorsCreateViewModel
+            var executorCases = new ExecutorsCasesCreateViewModel
             {
-                Name = "Иван Хаджииванов",
-                Address = "ул. Александровска 44",
-                Number = "832",
-                Region = "Русе",
+                ExecutorCaseNumber = 123,
+                Year = 2020,
             };
 
-            await service.CreateAsync(executor);
+            await service.CreateAsync(executorCases);
 
             var result = service.DeleteAsync(1);
 
