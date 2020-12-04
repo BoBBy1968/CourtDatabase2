@@ -26,6 +26,23 @@ namespace CourtDatabase2.Areas.Admin.Controllers
             return this.View(viewModel);
         }
 
+        public IActionResult AddUserToRole()
+        {
+            var viewModel = new AddUserToRoleInputModel
+            {
+                Users = this.userService.GetAllUsers(),
+                Roles = this.userService.GetAllRoles(),
+            };
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddUserToRole(AddUserToRoleInputModel model)
+        {
+            await this.userService.AddUserToRole(model);
+            return this.RedirectToAction("AllUsers");
+        }
+
         public async Task<IActionResult> AllRoles()
         {
             var viewModel = await this.userService.AllRolesAsync();

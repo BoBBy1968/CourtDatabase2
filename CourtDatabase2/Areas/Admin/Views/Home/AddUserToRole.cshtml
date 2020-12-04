@@ -1,0 +1,29 @@
+﻿@model AddUserToRoleInputModel
+
+@{
+    ViewData["Title"] = "Добавяне на потребител към роля";
+    var users = this.Model.Users.Select(x => new SelectListItem(x.Value, x.Key));
+    var roles = this.Model.Roles.Select(x => new SelectListItem(x.Value, x.Value));
+}
+
+<h1>@ViewData["Title"]</h1>
+
+
+<form asp-action="AddUserToRole" method="post">
+    <div class="form-group">
+        <label asp-for="UserId" class="alert-warning">Потребител</label>
+        @*<input asp-for="UserId" class="alert-info" />*@
+        <select asp-for="UserId" class="alert-info" asp-items="users"></select>
+
+        <span asp-validation-for="UserId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="RoleName" class="alert-warning">Роля</label>
+        @*<input asp-for="RoleName" class="alert-info" />*@
+        <select asp-for="RoleName" class="alert-info" asp-items="roles"></select>
+        <span asp-validation-for="RoleName" class="text-danger"></span>
+
+    </div>
+    <input type="submit" value="Запиши" class="btn btn-primary" />
+    <a asp-action="AllUsers" class="btn btn-info">Обратно</a>
+</form>

@@ -6,12 +6,18 @@ namespace CourtDatabase2.Services.Contracts
 {
     public interface IUsersService
     {
-        Task AddRole(RolesAllViewModel model);
+        IEnumerable<KeyValuePair<string, string>> GetAllUsers();
 
-        Task<IEnumerable<RolesAllViewModel>> AllRolesAsync();
-        
+        IEnumerable<KeyValuePair<string, string>> GetAllRoles();
+
         Task<IEnumerable<UsersAllViewModel>> AllUsersAsync();
 
+        Task<IEnumerable<RolesAllViewModel>> AllRolesAsync();
+
+        Task AddRole(RolesAllViewModel model);
+
+        Task AddUserToRole(AddUserToRoleInputModel model);
+        
         Task DeleteRole(string id);
     }
 }

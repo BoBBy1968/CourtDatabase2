@@ -24,6 +24,9 @@
             <th>
                 Телефон
             </th>
+            <th>
+                Роля
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -46,7 +49,11 @@
                 @item.PhoneNumber
             </td>
             <td>
+                @item.RoleName
+            </td>
+            <td>
                 <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Към Изтрий</a>
+                <a class="btn btn-primary" asp-action="AddUserToRole" asp-route-id="@item.Id">Добави потребител към роля</a>
             </td>
         </tr>
         }
