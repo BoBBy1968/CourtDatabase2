@@ -1,4 +1,5 @@
 using CourtDatabase2.Data;
+using CourtDatabase2.Data.Models;
 using CourtDatabase2.Services;
 using CourtDatabase2.Services.Contracts;
 
@@ -31,7 +32,8 @@ namespace CourtDatabase2
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options =>
+
+            services.AddDefaultIdentity<ApplicationUser>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = false;
                 options.Password.RequireDigit = false;
@@ -44,12 +46,16 @@ namespace CourtDatabase2
                 options.User.RequireUniqueEmail = true;
             })
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
             services.AddControllersWithViews(options =>
             {
                 options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
             });
+
             services.AddRazorPages();
+
             services.AddTransient<IHeatEstateService, HeatEstateService>();
             services.AddTransient<ICourtTownService, CourtTownService>();
             services.AddTransient<ICourtService, CourtService>();
@@ -65,6 +71,7 @@ namespace CourtDatabase2
             services.AddTransient<IDebitorsService, DebitorsService>();
             services.AddTransient<ICaseActionsService, CaseActionsService>();
             services.AddTransient<IInvoicesService, InvoicesService>();
+            services.AddTransient<IUsersService, UsersService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

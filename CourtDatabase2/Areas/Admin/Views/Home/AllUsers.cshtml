@@ -1,0 +1,54 @@
+﻿@model IEnumerable<UsersAllViewModel>
+
+@{
+    ViewData["Title"] = "Всички потребители на системата";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                Име
+            </th>
+            <th>
+                Фамилия
+            </th>
+            <th>
+                Длъжност
+            </th>
+            <th>
+                Имейл
+            </th>
+            <th>
+                Телефон
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @item.FirstName
+            </td>
+            <td>
+                @item.LastName
+            </td>
+            <td>
+                @item.OfficePosition
+            </td>
+            <td>
+                @item.Email
+            </td>
+            <td>
+                @item.PhoneNumber
+            </td>
+            <td>
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Към Изтрий</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

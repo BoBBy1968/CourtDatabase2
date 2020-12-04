@@ -8,7 +8,7 @@ using CourtDatabase2.ViewModels;
 
 namespace CourtDatabase2.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         private const string connectionString = @"Server=.;Database=CourtDatabase2;Integrated Security=true;";
 

@@ -1,0 +1,16 @@
+﻿@model RolesAllViewModel
+
+@{
+    ViewData["Title"] = "Добави роля";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+
+<form asp-action="CreateRole" method="post">
+    <label asp-for="Name" class="alert-warning">Роля</label>
+    <input asp-for="Name" class="alert-info" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+    <input type="submit" value="Запиши" class="btn btn-primary" />
+    <a asp-action="AllRoles" class="btn btn-info">Обратно</a>
+</form>
