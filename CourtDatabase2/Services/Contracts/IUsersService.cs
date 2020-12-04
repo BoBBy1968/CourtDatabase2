@@ -11,5 +11,7 @@ namespace CourtDatabase2.Services.Contracts
         Task<IEnumerable<RolesAllViewModel>> AllRolesAsync();
         
         Task<IEnumerable<UsersAllViewModel>> AllUsersAsync();
+
+        Task DeleteRole(string id);
     }
 }

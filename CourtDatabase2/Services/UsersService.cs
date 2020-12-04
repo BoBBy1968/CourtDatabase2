@@ -41,6 +41,7 @@ namespace CourtDatabase2.Services
             return await this.dbContext.Roles
                 .Select(x => new RolesAllViewModel
                 {
+                    Id = x.Id,
                     Name = x.Name,
                 }).ToListAsync();
         }
@@ -56,6 +57,12 @@ namespace CourtDatabase2.Services
                     ConcurrencyStamp = Guid.NewGuid().ToString(),
                 });
             }
+        }
+
+        public async Task DeleteRole(string id)
+        {
+            var role = await this.roleManager.FindByIdAsync(id);
+            await this.roleManager.DeleteAsync(role);
         }
     }
 }

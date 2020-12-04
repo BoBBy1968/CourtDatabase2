@@ -44,5 +44,11 @@ namespace CourtDatabase2.Areas.Admin.Controllers
             await this.userService.AddRole(model);
             return this.RedirectToAction("AllRoles");
         }
+
+        public async Task<IActionResult> DeleteRole(string id)
+        {
+            await this.userService.DeleteRole(id);
+            return this.RedirectToAction("AllRoles");
+        }
     }
 }
