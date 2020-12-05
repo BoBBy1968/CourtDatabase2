@@ -2,6 +2,7 @@
 using CourtDatabase2.Data.Models;
 using CourtDatabase2.Services.Contracts;
 using CourtDatabase2.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace CourtDatabase2.Controllers
 {
+    [Authorize]
     public class HeatEstatesController : Controller
     {
         private readonly ApplicationDbContext dbContext;

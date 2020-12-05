@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CourtDatabase2.ViewModels;
 using CourtDatabase2.Services.Contracts;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CourtDatabase2.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

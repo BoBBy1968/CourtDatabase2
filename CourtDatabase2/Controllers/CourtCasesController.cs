@@ -1,6 +1,7 @@
 ﻿using CourtDatabase2.Data;
 using CourtDatabase2.Services.Contracts;
 using CourtDatabase2.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace CourtDatabase2.Controllers
 {
+    [Authorize]
     public class CourtCasesController : Controller
     {
         private readonly ApplicationDbContext dbContext;

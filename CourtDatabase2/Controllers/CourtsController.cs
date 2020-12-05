@@ -1,12 +1,14 @@
 ﻿using CourtDatabase2.Data;
 using CourtDatabase2.Services.Contracts;
 using CourtDatabase2.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace CourtDatabase2.Controllers
 {
+    [Authorize]
     public class CourtsController : Controller
     {
         private readonly ICourtService courtService;

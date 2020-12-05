@@ -2,9 +2,11 @@
 using CourtDatabase2.Services.Contracts;
 using System.Threading.Tasks;
 using CourtDatabase2.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CourtDatabase2.Controllers
 {
+    [Authorize]
     public class CaseActionsController : Controller
     {
         private readonly ICaseActionsService caseActionsService;

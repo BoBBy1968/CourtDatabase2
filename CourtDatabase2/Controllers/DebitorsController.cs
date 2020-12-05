@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace CourtDatabase2.Controllers
 {
+    [Authorize]
     public class DebitorsController : Controller
     {
         private readonly IDebitorsService debitorsService;

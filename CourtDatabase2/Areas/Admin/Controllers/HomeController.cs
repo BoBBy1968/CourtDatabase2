@@ -2,10 +2,12 @@
 using CourtDatabase2.Services.Contracts;
 using System.Threading.Tasks;
 using CourtDatabase2.Areas.Admin.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CourtDatabase2.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = nameof(Admin))]
     public class HomeController : Controller
     {
         private readonly IUsersService userService;
