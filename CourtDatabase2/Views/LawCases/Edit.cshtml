@@ -6,42 +6,42 @@
     var debitors = this.Model.Debitors.Select(x => new SelectListItem(x.Value, x.Key));
 }
 
-<h3>@ViewData["Title"]</h3>
+<partial name="_PartialView" />
 
 
-        <form asp-controller="LawCases" asp-action="Edit" method="post">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-                <label asp-for="Date" class="alert-warning">Дата</label>
-                <input asp-for="Date" class="alert-info" />
-                <span asp-validation-for="Date" class="text-danger"></span><br/>
-                <label asp-for="DebitorId" class="alert-warning">Длъжник</label>
-                <select asp-for="DebitorId" class="alert-info" asp-items="debitors"></select>
-                <span asp-validation-for="DebitorId" class="text-danger"></span><br/>
-                <label asp-for="AbNumber" class="alert-warning">Абонатен номер</label>
-                <select asp-for="AbNumber" class="alert-info" asp-items="@abNumbers"></select>
-                <span asp-validation-for="AbNumber" class="text-danger"></span><br/>
-                <label asp-for="Value" class="alert-warning">Главница</label>
-                <input asp-for="Value" class="alert-info" />
-                <span asp-validation-for="Value" class="text-danger"></span><br/>
-                <label asp-for="MoratoriumInterest" class="alert-warning">Мораторна лихва</label>
-                <input asp-for="MoratoriumInterest" class="alert-info" />
-                <span asp-validation-for="MoratoriumInterest" class="text-danger"></span><br/>
-                <label asp-for="LegalInterest" class="alert-warning">Законова лихва</label>
-                <input asp-for="LegalInterest" class="alert-info" />
-                <span asp-validation-for="LegalInterest" class="text-danger"></span><br/>
-                <label asp-for="InvoiceCount" class="alert-warning">Брой фактури</label>
-                <input asp-for="InvoiceCount" class="alert-info" />
-                <span asp-validation-for="InvoiceCount" class="text-danger"></span><br/>
-                <label asp-for="PeriodFrom" class="alert-warning">Период от</label>
-                <input asp-for="PeriodFrom" class="alert-info" />
-                <span asp-validation-for="PeriodFrom" class="text-danger"></span><br/>
-                <label asp-for="PeriodTo" class="alert-warning">Период до</label>
-                <input asp-for="PeriodTo" class="alert-info" />
-                <span asp-validation-for="PeriodTo" class="text-danger"></span><br/>
-                <input type="submit" asp-action="Edit" value="Запис" class="btn btn-outline-warning" />
-                <a class="btn btn-info" asp-action="Index">Обратно</a>
-        </form>
+<form asp-controller="LawCases" asp-action="Edit" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+    <label asp-for="Date" class="alert-warning">Дата</label>
+    <input asp-for="Date" class="alert-info" />
+    <span asp-validation-for="Date" class="text-danger"></span><br />
+    <label asp-for="DebitorId" class="alert-warning">Длъжник</label>
+    <select asp-for="DebitorId" class="alert-info" asp-items="debitors"></select>
+    <span asp-validation-for="DebitorId" class="text-danger"></span><br />
+    <label asp-for="AbNumber" class="alert-warning">Абонатен номер</label>
+    <select asp-for="AbNumber" class="alert-info" asp-items="@abNumbers"></select>
+    <span asp-validation-for="AbNumber" class="text-danger"></span><br />
+    <label asp-for="Value" class="alert-warning">Главница</label>
+    <input asp-for="Value" class="alert-info" />
+    <span asp-validation-for="Value" class="text-danger"></span><br />
+    <label asp-for="MoratoriumInterest" class="alert-warning">Мораторна лихва</label>
+    <input asp-for="MoratoriumInterest" class="alert-info" />
+    <span asp-validation-for="MoratoriumInterest" class="text-danger"></span><br />
+    <label asp-for="LegalInterest" class="alert-warning">Законова лихва</label>
+    <input asp-for="LegalInterest" class="alert-info" />
+    <span asp-validation-for="LegalInterest" class="text-danger"></span><br />
+    <label asp-for="InvoiceCount" class="alert-warning">Брой фактури</label>
+    <input asp-for="InvoiceCount" class="alert-info" />
+    <span asp-validation-for="InvoiceCount" class="text-danger"></span><br />
+    <label asp-for="PeriodFrom" class="alert-warning">Период от</label>
+    <input asp-for="PeriodFrom" class="alert-info" />
+    <span asp-validation-for="PeriodFrom" class="text-danger"></span><br />
+    <label asp-for="PeriodTo" class="alert-warning">Период до</label>
+    <input asp-for="PeriodTo" class="alert-info" />
+    <span asp-validation-for="PeriodTo" class="text-danger"></span><br />
+    <input type="submit" asp-action="Edit" value="Запис" class="btn btn-outline-warning" />
+    <a class="btn btn-info" asp-action="Index">Обратно</a>
+</form>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

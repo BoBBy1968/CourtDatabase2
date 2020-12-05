@@ -4,7 +4,7 @@
     ViewData["Title"] = "Всички граждански дела";
 }
 
-<h1>@ViewData["Title"]</h1>
+<partial name="_PartialView" />
 
 
 <p>
@@ -81,7 +81,7 @@
                     @d.PeriodTo.ToShortDateString()
                 </td>
                 <td>
-                    <a class="btn btn-primary align-items-start"  asp-action="Edit" asp-route-id="@d.Id">Редактирай</a> |
+                    <a class="btn btn-primary align-items-start" asp-action="Edit" asp-route-id="@d.Id">Редактирай</a> |
                     <a class="btn btn-info" asp-action="Details" asp-route-id="@d.Id">Детайли</a> |
                     <a class="btn btn-danger" asp-action="Delete" asp-route-id="@d.Id">Към Изтрий</a>
                 </td>

@@ -1,10 +1,10 @@
 ﻿@model LegalActionInputModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Създаване";
 }
 
-<h1>Създаване</h1>
+<partial name="_PartialView" />
 
 <h4>съдебно действие</h4>
 <hr />
@@ -12,7 +12,7 @@
     <div asp-validation-summary="All" class="text-danger"></div>
     <label asp-for="ActionName" class="alert-warning">Име на действието</label>
     <input asp-for="ActionName" class="alert-info" />
-    <span asp-validation-for="ActionName" class="text-danger"></span><br/>
+    <span asp-validation-for="ActionName" class="text-danger"></span><br />
     <input type="submit" asp-action="Create" asp-controller="LegalActions" value="Създай" class="btn btn-outline-warning" />
     <a class="btn btn-info" asp-action="Index">Обратно</a>
 </form>

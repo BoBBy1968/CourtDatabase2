@@ -7,9 +7,9 @@
     var courtTypes = this.Model.CourtTypes.Select(x => new SelectListItem(x.Value, x.Key));
 }
 
+<partial name="_PartialView" />
 <h1>Създаване</h1>
 
-<h4>@ViewData["Title"]</h4>
 <hr />
 <form method="post">
     <div asp-validation-summary="All" class="text-danger"></div>

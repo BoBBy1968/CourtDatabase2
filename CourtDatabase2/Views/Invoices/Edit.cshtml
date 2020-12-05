@@ -6,7 +6,7 @@
     var estates = this.Model.AllEstates.Select(x => new SelectListItem(x.Value, x.Key));
 }
 
-<h1>@ViewData["Title"]</h1>
+<partial name="_PartialView" />
 
 <form asp-controller="Invoices" asp-action="Edit" method="post">
     <div asp-validation-summary="All" class="alert-danger"></div>

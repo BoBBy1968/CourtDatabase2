@@ -6,22 +6,22 @@
     var lawCases = this.Model.LawCases.Select(x => new SelectListItem(x.Value, x.Key));
 }
 
-<h1>@ViewData["Title"]</h1>
+<partial name="_PartialView" />
 
 <form asp-controller="ExecutorsCases" asp-action="Create" method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
     <label asp-for="ExecutorId" class="alert-warning">Съдебен изпълнител</label>
     <select asp-for="ExecutorId" class="alert-info" asp-items="executors"></select>
-    <span asp-validation-for="ExecutorId" class="text-danger"></span><br/>
+    <span asp-validation-for="ExecutorId" class="text-danger"></span><br />
     <label asp-for="LawCaseId" class="alert-warning">Длъжник</label>
     <select asp-for="LawCaseId" class="alert-info" asp-items="lawCases"></select>
-    <span asp-validation-for="LawCaseId" class="text-danger"></span><br/>
+    <span asp-validation-for="LawCaseId" class="text-danger"></span><br />
     <label asp-for="ExecutorCaseNumber" class="alert-warning">№ изпълнително дело</label>
     <input asp-for="ExecutorCaseNumber" class="alert-info" />
-    <span asp-validation-for="ExecutorCaseNumber" class="text-danger"></span><br/>
+    <span asp-validation-for="ExecutorCaseNumber" class="text-danger"></span><br />
     <label asp-for="Year" class="alert-warning">година</label>
     <input asp-for="Year" class="alert-info" />
-    <span asp-validation-for="Year" class="text-danger"></span><br/>
+    <span asp-validation-for="Year" class="text-danger"></span><br />
     <input type="submit" value="Запис" class="btn btn-outline-warning" />
     <a asp-action="All" class="btn btn-info">Обратно</a>
 </form>

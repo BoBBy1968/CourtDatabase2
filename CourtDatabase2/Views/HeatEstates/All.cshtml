@@ -4,7 +4,7 @@
     ViewData["Title"] = "Всички имоти";
 }
 
-<h1>@ViewData["Title"]</h1>
+<partial name="_PartialView" />
 
 <p>
     <a asp-action="Create" class="btn btn-primary">Създай нов</a>
@@ -21,20 +21,21 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @item.AbNumber
-            </td>
-            <td>
-                @item.Address
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.AbNumber" class="btn btn-primary">Редактирай</a> |
-                <a asp-action="Details" asp-route-id="@item.AbNumber" class="btn btn-info">Детайли</a> |
-                <a asp-action="Delete" asp-route-id="@item.AbNumber" class="btn btn-danger">Към Изтрий</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.AbNumber
+                </td>
+                <td>
+                    @item.Address
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.AbNumber" class="btn btn-primary">Редактирай</a> |
+                    <a asp-action="Details" asp-route-id="@item.AbNumber" class="btn btn-info">Детайли</a> |
+                    <a asp-action="Delete" asp-route-id="@item.AbNumber" class="btn btn-danger">Към Изтрий</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

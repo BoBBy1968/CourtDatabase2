@@ -4,7 +4,7 @@
     ViewData["Title"] = "Всички длъжници";
 }
 
-<h1>@ViewData["Title"]</h1>
+<partial name="_PartialView" />
 
 <p>
     <a asp-action="Create" class="btn btn-primary">Създай нов</a>
@@ -63,3 +63,7 @@
 }
     </tbody>
 </table>
+
+@section Logo {
+    <img src="/logo2.jpg" height="35" />
+}

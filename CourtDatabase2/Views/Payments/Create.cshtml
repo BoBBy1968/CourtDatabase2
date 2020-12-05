@@ -6,7 +6,7 @@
     var lawCasesId = this.Model.LawCases.Select(x => new SelectListItem(x.Value, x.Key));
 }
 
-<h1>@ViewData["Title"]</h1>
+<partial name="_PartialView" />
 
 <form asp-controller="Payments" asp-action="Create" method="post">
     <div asp-validation-summary="All" class="text-danger"></div>

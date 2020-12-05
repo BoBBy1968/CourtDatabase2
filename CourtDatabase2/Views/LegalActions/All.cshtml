@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<LegalActionViewModel>
 
 @{
-    ViewData["Title"] = "All";
+    ViewData["Title"] = "Всички съдебни действия";
 }
 
-<h1>Всички съдебни действия</h1>
+<partial name="_PartialView" />
 
 <p>
     <a class="btn btn-primary" asp-action="Create">Създай ново</a>
@@ -19,16 +19,17 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @item.Id . @item.ActionName
-            </td>
-            <td>
-                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Редактиране</a> |
-                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Изтриване</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Id . @item.ActionName
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Редактиране</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Изтриване</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
