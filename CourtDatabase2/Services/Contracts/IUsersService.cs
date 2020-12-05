@@ -1,4 +1,5 @@
 ﻿using CourtDatabase2.Areas.Admin.Models;
+using CourtDatabase2.Data.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -19,5 +20,7 @@ namespace CourtDatabase2.Services.Contracts
         Task AddUserToRole(AddUserToRoleInputModel model);
         
         Task DeleteRole(string id);
+
+        Task<AddUserToRoleInputModel> GetUserById(string id);
     }
 }

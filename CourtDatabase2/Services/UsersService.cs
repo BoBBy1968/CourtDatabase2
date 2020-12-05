@@ -31,18 +31,33 @@ namespace CourtDatabase2.Services
         {
             return this.dbContext.Users.Select(x => new
             {
-                Id = x.Id,
+                x.Id,
                 Name = x.FirstName + " " + x.LastName,
             }).ToList().Select(x => new KeyValuePair<string, string>(x.Id, x.Name));
         }
+
+        public async Task<AddUserToRoleInputModel> GetUserById(string id)
+        {
+            var result = await this.userManager.FindByIdAsync(id);
+            var user = new AddUserToRoleInputModel
+            {
+                FirstName = result.FirstName,
+                LastName = result.LastName,
+                UserId = result.Id,
+                Users = this.GetAllUsers(),
+                Roles = this.GetAllRoles(),
+            };
+            return user;
+        }
+
         public IEnumerable<KeyValuePair<string, string>> GetAllRoles()
         {
             return this.dbContext
                 .Roles
                 .Select(x => new
             {
-                Id = x.Id,
-                Name = x.Name,
+                    x.Id,
+                    x.Name,
             }).ToList().Select(x => new KeyValuePair<string, string>(x.Id, x.Name));
         }
 
@@ -98,5 +113,6 @@ namespace CourtDatabase2.Services
             var role = await this.roleManager.FindByIdAsync(id);
             await this.roleManager.DeleteAsync(role);
         }
+
     }
 }
