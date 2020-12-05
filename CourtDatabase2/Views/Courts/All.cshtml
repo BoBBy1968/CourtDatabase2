@@ -6,7 +6,7 @@
 <partial name="_PartialView" />
 <p>
     <a class="btn btn-primary" asp-action="Create">Създай нов</a>
- 
+
 </p>
 
 <hr />
@@ -40,10 +40,14 @@
                 <td>
                     <a class="btn btn-primary" asp-action="Edit" asp-route-id="@c.Id">Редактирай</a> |
                     <a class="btn btn-info" asp-action="Details" asp-route-id="@c.Id">Детайли</a> |
-                    <a class="btn btn-danger"  asp-action="Delete" asp-route-id="@c.Id">Към Изтрий</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@c.Id">Към Изтрий</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
 
+
+@section Logo {
+    <img src="/logo2.jpg" height="35" />
+}

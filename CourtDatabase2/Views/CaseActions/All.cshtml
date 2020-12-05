@@ -31,16 +31,16 @@
         {
             <tr>
                 <td>
-                    @item.Id   
+                    @item.Id
                 </td>
                 <td>
-                    @item.LegalAction.ActionName   
+                    @item.LegalAction.ActionName
                 </td>
                 <td>
-                    @item.Date.ToShortDateString()   
+                    @item.Date.ToShortDateString()
                 </td>
                 <td>
-                    @item.Debitor   
+                    @item.Debitor
                 </td>
                 <td>
                     <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Редактирай</a>
@@ -53,3 +53,6 @@
     </tbody>
 </table>
 
+@section Logo {
+    <img src="/logo2.jpg" height="35" />
+}

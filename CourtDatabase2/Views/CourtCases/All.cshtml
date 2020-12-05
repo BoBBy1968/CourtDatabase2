@@ -34,32 +34,37 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @item.Id 
-            </td>
-            <td>
-                @item.Debitor
-            </td>
-            <td>
-                @item.CaseNumber /
-            </td>
-            <td>
-                @item.CaseYear
-            </td>
-            <td>
-                @item.CourtName
-            </td>
-            <td>
-                @item.CaseType
-            </td>
-            <td>
-                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Редактирай</a> |
-                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Детайли</a> |
-                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Към Изтрий</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Id
+                </td>
+                <td>
+                    @item.Debitor
+                </td>
+                <td>
+                    @item.CaseNumber /
+                </td>
+                <td>
+                    @item.CaseYear
+                </td>
+                <td>
+                    @item.CourtName
+                </td>
+                <td>
+                    @item.CaseType
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Редактирай</a> |
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Детайли</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Към Изтрий</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@section Logo {
+    <img src="/logo2.jpg" height="35" />
+}

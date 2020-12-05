@@ -2,7 +2,7 @@
 @model CourtCasesViewModel
 @{
     ViewData["Title"] = "Редактирай";
-    var lawCases  = this.Model.LawCases.Select(x => new SelectListItem(x.Value, x.Key));
+    var lawCases = this.Model.LawCases.Select(x => new SelectListItem(x.Value, x.Key));
     var courtTypes = this.Model.CourtTypes.Select(x => new SelectListItem(x.Value, x.Key));
 }
 
@@ -33,10 +33,14 @@
 </form>
 
 <div>
-    
+
 </div>
 
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@section Logo {
+    <img src="/logo2.jpg" height="35" />
 }

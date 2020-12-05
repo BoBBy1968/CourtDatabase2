@@ -7,19 +7,23 @@
 <partial name="_PartialView" />
 
 <hr />
-    <ul>
-        <li>
-            <div><span class="font-weight-lighter alert-warning">Съд ИД:</span> <span class="alert-info col-md-1 font-weight-bold">@Model.Id</span></div>
-        </li>
-        <li>
-            <div><span class="font-weight-lighter alert-warning">Съд:</span> <span class="font-weight-bold alert-info col-md-1">@Model.TownName</span></div>
-        </li>
-        <li>
-            <div><span class="font-weight-lighter alert-warning">Град:</span> <span class="font-weight-bold alert-info col-md-1">@Model.Address</span></div>
-        </li>
-    </ul>
+<ul>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Съд ИД:</span> <span class="alert-info col-md-1 font-weight-bold">@Model.Id</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Съд:</span> <span class="font-weight-bold alert-info col-md-1">@Model.TownName</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Град:</span> <span class="font-weight-bold alert-info col-md-1">@Model.Address</span></div>
+    </li>
+</ul>
 
 <div>
     <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Редактиране</a> |
     <a class="btn btn-info" asp-action="Index">Обратно</a>
 </div>
+
+@section Logo {
+    <img src="/logo2.jpg" height="35" />
+}

@@ -55,6 +55,7 @@ namespace CourtDatabase2
             });
 
             services.AddRazorPages();
+            services.AddMemoryCache();
 
             services.AddTransient<IHeatEstateService, HeatEstateService>();
             services.AddTransient<ICourtTownService, CourtTownService>();
