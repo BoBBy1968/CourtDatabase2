@@ -5,6 +5,9 @@ using CourtDatabase2.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,11 +18,15 @@ namespace CourtDatabase2.Controllers
     {
         private readonly ApplicationDbContext dbContext;
         private readonly IHeatEstateService heatEstateService;
+        private readonly IMemoryCache memoryCache;
 
-        public HeatEstatesController(ApplicationDbContext dbContext, IHeatEstateService heatEstateService)
+        public HeatEstatesController(ApplicationDbContext dbContext
+            , IHeatEstateService heatEstateService
+            , IMemoryCache memoryCache)
         {
             this.dbContext = dbContext;
             this.heatEstateService = heatEstateService;
+            this.memoryCache = memoryCache;
         }
 
         public IActionResult Index()
@@ -29,7 +36,11 @@ namespace CourtDatabase2.Controllers
 
         public async Task<IActionResult> All()
         {
-            var viewModel = await this.heatEstateService.AllAsync();
+            if (!memoryCache.TryGetValue<IEnumerable<HeatEstateEditViewModel>>("AllEstates", out var viewModel))
+            {
+                viewModel = await this.heatEstateService.AllAsync();
+                memoryCache.Set("AllEstates", viewModel, TimeSpan.FromMinutes(2));
+            }
             return View(viewModel);
         }
 
@@ -45,7 +56,7 @@ namespace CourtDatabase2.Controllers
             if (ModelState.IsValid)
             {
                 string abNumber = await this.heatEstateService.CreateAsync(model);
-                return this.RedirectToAction("Details", new { id = abNumber});
+                return this.RedirectToAction("Details", new { id = abNumber });
             }
             return View(model);
         }
@@ -120,8 +131,16 @@ namespace CourtDatabase2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            await this.heatEstateService.DeleteAsync(id);
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                await this.heatEstateService.DeleteAsync(id);
+                return RedirectToAction(nameof(Index));
+
+            }
+            catch (Exception)
+            {
+                return this.Content("Настъпи грешка. Администрацията на сайта вече е уведомена за това. Моля натиснете бутона Back  <--.");
+            }
         }
 
         //private bool HeatEstateExists(string id)
