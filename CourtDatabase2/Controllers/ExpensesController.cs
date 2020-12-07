@@ -111,8 +111,16 @@ namespace CourtDatabase2.Controllers
             {
                 return NotFound();
             }
-            await this.expenseService.DeleteConfirm(id);
-            return RedirectToAction("All");
+            try
+            {
+                await this.expenseService.DeleteConfirm(id);
+                return RedirectToAction("All");
+            }
+            catch (System.Exception)
+            {
+
+                return this.View();
+            }
         }
     }
 }

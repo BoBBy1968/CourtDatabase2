@@ -23,7 +23,7 @@ namespace CourtDatabase2.Controllers
 
         public async Task<IActionResult> All()
         {
-             var viewModel = await this.lawCaseService.AllAsync();
+            var viewModel = await this.lawCaseService.AllAsync();
             return View(viewModel);
         }
 
@@ -119,8 +119,16 @@ namespace CourtDatabase2.Controllers
             {
                 return NotFound();
             }
-            await this.lawCaseService.DeleteAsync(id);
-            return this.RedirectToAction("All");
+            try
+            {
+                await this.lawCaseService.DeleteAsync(id);
+                return this.RedirectToAction("All");
+            }
+            catch (System.Exception)
+            {
+
+                return this.View();
+            }
         }
     }
 }

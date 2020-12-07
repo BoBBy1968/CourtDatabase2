@@ -121,8 +121,12 @@ namespace CourtDatabase2.Controllers
             {
                 return NotFound();
             }
-            await this.courtService.DeleteAsync(id);
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                await this.courtService.DeleteAsync(id);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (System.Exception) { return this.View(); }
         }
 
         //private bool CourtExists(int id)

@@ -113,8 +113,16 @@ namespace CourtDatabase2.Controllers
             {
                 return NotFound();
             }
-            await this.paymentsService.DeleteAsync(id);
-            return this.RedirectToAction("All");
+            try
+            {
+                await this.paymentsService.DeleteAsync(id);
+                return this.RedirectToAction("All");
+            }
+            catch (System.Exception)
+            {
+
+                return this.View();
+            }
         }
     }
 }

@@ -21,7 +21,7 @@ namespace CourtDatabase2.Controllers
         {
             return this.RedirectToAction("All");
         }
-       
+
         public async Task<IActionResult> All()
         {
             var viewModel = await this.invoicesService.AllAsync();
@@ -51,12 +51,12 @@ namespace CourtDatabase2.Controllers
 
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id==null)
+            if (id == null)
             {
                 return this.NotFound();
             }
             var viewModel = await this.invoicesService.DetailsAsync(id);
-            if (viewModel==null)
+            if (viewModel == null)
             {
                 return this.NotFound();
             }
@@ -78,7 +78,7 @@ namespace CourtDatabase2.Controllers
 
         public async Task<IActionResult> Details(int? id)
         {
-            if (id==null)
+            if (id == null)
             {
                 return this.NotFound();
             }
@@ -112,8 +112,16 @@ namespace CourtDatabase2.Controllers
             {
                 return NotFound();
             }
-            await this.invoicesService.DeleteAsync(id);
-            return RedirectToAction("All");
+            try
+            {
+                await this.invoicesService.DeleteAsync(id);
+                return RedirectToAction("All");
+            }
+            catch (System.Exception)
+            {
+
+                return this.View();
+            }
         }
     }
 }

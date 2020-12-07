@@ -120,8 +120,16 @@ namespace CourtDatabase2.Controllers
             {
                 return NotFound();
             }
-            await this.debitorsService.DeleteAsync(id);
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                await this.debitorsService.DeleteAsync(id);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (System.Exception)
+            {
+
+                return this.View();
+            }
         }
 
         public async Task<IActionResult> DeleteAll()

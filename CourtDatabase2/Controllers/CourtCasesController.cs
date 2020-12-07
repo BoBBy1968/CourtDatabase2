@@ -134,8 +134,16 @@ namespace CourtDatabase2.Controllers
             {
                 return NotFound();
             }
-            this.courtCasesService.DeleteAsync(id);
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                this.courtCasesService.DeleteAsync(id);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (System.Exception)
+            {
+
+                return this.View();
+            }
         }
 
         private bool CourtCaseExists(int id)

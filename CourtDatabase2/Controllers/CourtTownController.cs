@@ -103,8 +103,12 @@ namespace CourtDatabase2.Controllers
             {
                 return NotFound();
             }
-            await this.service.DeleteAsync(id);
-            return RedirectToAction("all");
+            try
+            {
+                await this.service.DeleteAsync(id);
+                return RedirectToAction("all");
+            }
+            catch (System.Exception) { return this.View(); }
         }
     }
 }

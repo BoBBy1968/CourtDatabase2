@@ -90,8 +90,12 @@ namespace CourtDatabase2.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirm(int id)
+        public async Task<IActionResult> DeleteConfirm(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
             try
             {
                 await this.service.DeleteConfirm(id);
