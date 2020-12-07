@@ -123,5 +123,10 @@ namespace CourtDatabase2.Services
             await this.dbContext.SaveChangesAsync();
 
         }
+
+        public void OutPutToWord(int? id)
+        {
+
+        }
     }
 }

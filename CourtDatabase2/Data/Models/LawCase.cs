@@ -41,8 +41,6 @@ namespace CourtDatabase2.Data.Models
 
         public virtual ICollection<Payment> Payments => new HashSet<Payment>();
 
-        //^from Obligation----------------------------------------------------------------------
-
         public virtual ICollection<ExecutorCase> ExecutorCases => new HashSet<ExecutorCase>();
 
         public virtual ICollection<CourtCase> Courts => new HashSet<CourtCase>();

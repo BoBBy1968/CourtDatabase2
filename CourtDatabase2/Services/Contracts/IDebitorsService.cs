@@ -21,5 +21,7 @@ namespace CourtDatabase2.Services.Contracts
         Task DeleteAsync(int? id);
 
         Task DeleteAll();
+
+        void OutPutToWord(int? id);
     }
 }

@@ -137,5 +137,15 @@ namespace CourtDatabase2.Controllers
             await this.debitorsService.DeleteAll();
             return this.RedirectToAction("Index");
         }
+
+        //public IActionResult OutPutToWord(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    this.debitorsService.OutPutToWord(id);
+        //    return this.View();
+        //}
     }
 }
