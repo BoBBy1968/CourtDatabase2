@@ -1,0 +1,73 @@
+﻿@model IEnumerable<DebitorsCasesAllViewModel>
+
+@{
+    ViewData["Title"] = "Това са всички длъжници с дела.";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                ИД
+            </th>
+            <th>
+                Аб. №
+            </th>
+            <th>
+                Имена
+            </th>
+            <th>
+                ЕГН
+            </th>
+            <th>
+                Главница
+            </th>
+            <th>
+                Бр. фактури
+            </th>
+            <th>
+                Период от
+            </th>
+            <th>
+                Период до
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @item.Id
+                </td>
+                <td>
+                    @item.AbNumber
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.EGN
+                </td>
+                <td>
+                    @item.MainValue
+                </td>
+                <td>
+                    @item.InvoiceCount
+                </td>
+                <td>
+                    @item.PeriodFrom.ToShortDateString()
+                </td>
+                <td>
+                    @item.PeriodTo.ToShortDateString()
+                </td>
+                <td>
+                    <a asp-area="DebitorsCases" asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Детайли</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

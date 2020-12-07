@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\DebitorsCases\Data\" />
     <Folder Include="OutPutDocx\" />
   </ItemGroup>
 

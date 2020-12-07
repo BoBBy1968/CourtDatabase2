@@ -1,0 +1,45 @@
+﻿@model DebitorsCasesAllViewModel
+
+@{
+    ViewData["Title"] = "Детайли за дело";
+    var debitorsAddress = Model.AddressDebitor == null ? Model.AddressEstate : Model.AddressDebitor;
+    var legalInterest = Model.LegalInterest == 0 ? "n/a" : Model.LegalInterest.ToString();
+}
+
+<h1>@ViewData["Title"]</h1>
+<a class="btn btn-info" asp-action="Index">Обратно</a>
+<ul>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">ИД: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.Id</span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Имена: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.Name</span><span class="font-weight-lighter alert-warning"></span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">ЕГН: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.EGN</span><span class="font-weight-lighter alert-warning"></span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Адрес на длъжника: </span> <span class="alert-info col-md-1 font-weight-bold">@debitorsAddress</span><span class="font-weight-lighter alert-warning"></span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Адрес на обекта: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.AddressEstate</span><span class="font-weight-lighter alert-warning"></span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Главница: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.MainValue</span><span class="font-weight-lighter alert-warning"></span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Мораторна лихва: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.MoratoriumInterest</span><span class="font-weight-lighter alert-warning"></span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Законна лихва: </span> <span class="alert-info col-md-1 font-weight-bold">@legalInterest</span><span class="font-weight-lighter alert-warning"></span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Брой фактури: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.InvoiceCount</span><span class="font-weight-lighter alert-warning"></span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Период от: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.PeriodFrom.ToShortDateString()</span><span class="font-weight-lighter alert-warning"></span></div>
+    </li>
+    <li>
+        <div><span class="font-weight-lighter alert-warning">Период до: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.PeriodTo.ToShortDateString()</span><span class="font-weight-lighter alert-warning"></span></div>
+    </li>
+</ul>
