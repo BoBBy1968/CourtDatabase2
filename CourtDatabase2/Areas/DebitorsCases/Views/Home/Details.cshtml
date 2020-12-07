@@ -6,40 +6,35 @@
     var legalInterest = Model.LegalInterest == 0 ? "n/a" : Model.LegalInterest.ToString();
 }
 
-<h1>@ViewData["Title"]</h1>
+
+
+<h3 class="text text-info text-center">@ViewData["Title"]</h3>
 <a class="btn btn-info" asp-action="Index">Обратно</a>
 <ul>
     <li>
         <div><span class="font-weight-lighter alert-warning">ИД: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.Id</span></div>
     </li>
     <li>
-        <div><span class="font-weight-lighter alert-warning">Имена: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.Name</span><span class="font-weight-lighter alert-warning"></span></div>
+        <span class="border border-dark"><span class="font-weight-lighter alert-warning">Имена: </span> <span class="alert-info col-md-1 font-weight-bold border border-dark">@Model.Name</span><span class="font-weight-lighter alert-warning">ЕГН: </span><span class="alert-info col-md-1 font-weight-bold border border-dark">@Model.EGN</span><span class="font-weight-lighter alert-warning"></span></span>
     </li>
     <li>
-        <div><span class="font-weight-lighter alert-warning">ЕГН: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.EGN</span><span class="font-weight-lighter alert-warning"></span></div>
+        <span class="border border-dark"><span class="font-weight-lighter alert-warning">Абонатен номер: </span> <span class="alert-info col-md-1 font-weight-bold border border-dark">@Model.AbNumber</span><span class="font-weight-lighter alert-warning"></span><span class="font-weight-lighter alert-warning">Адрес на обекта: </span> <span class="alert-info col-md-1 font-weight-bold border border-dark">@Model.AddressEstate</span></span>
     </li>
     <li>
-        <div><span class="font-weight-lighter alert-warning">Адрес на длъжника: </span> <span class="alert-info col-md-1 font-weight-bold">@debitorsAddress</span><span class="font-weight-lighter alert-warning"></span></div>
+        <span class="border border-dark"><span class="font-weight-lighter alert-warning">Адрес на длъжника: </span> <span class="alert-info col-md-1 font-weight-bold border border-dark">@debitorsAddress</span><span class="font-weight-lighter alert-warning"></span></span>
     </li>
     <li>
-        <div><span class="font-weight-lighter alert-warning">Адрес на обекта: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.AddressEstate</span><span class="font-weight-lighter alert-warning"></span></div>
+        <span class="border border-dark"><span class="font-weight-lighter alert-warning">Главница: </span> <span class="alert-info col-md-1 font-weight-bold border border-dark">@Model.MainValue</span><span class="font-weight-lighter alert-warning">Мораторна лихва: </span> <span class="alert-info col-md-1 font-weight-bold border border-dark">@Model.MoratoriumInterest</span><span class="font-weight-lighter alert-warning">Законна лихва: </span> <span class="alert-info col-md-1 font-weight-bold border border-dark">@legalInterest</span><span class="font-weight-lighter alert-warning"></span></span>
     </li>
     <li>
-        <div><span class="font-weight-lighter alert-warning">Главница: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.MainValue</span><span class="font-weight-lighter alert-warning"></span></div>
+        <span class="border border-dark"><span class="font-weight-lighter alert-warning">Брой фактури: </span> <span class="alert-info col-md-1 font-weight-bold border border-dark">@Model.InvoiceCount</span><span class="font-weight-lighter alert-warning">Период от: </span> <span class="alert-info col-md-1 font-weight-bold border border-dark">@Model.PeriodFrom.ToShortDateString()</span><span class="font-weight-lighter alert-warning">Период до: </span> <span class="alert-info col-md-1 font-weight-bold border border-dark">@Model.PeriodTo.ToShortDateString()</span><span class="font-weight-lighter alert-warning"></span></span>
     </li>
-    <li>
-        <div><span class="font-weight-lighter alert-warning">Мораторна лихва: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.MoratoriumInterest</span><span class="font-weight-lighter alert-warning"></span></div>
-    </li>
-    <li>
-        <div><span class="font-weight-lighter alert-warning">Законна лихва: </span> <span class="alert-info col-md-1 font-weight-bold">@legalInterest</span><span class="font-weight-lighter alert-warning"></span></div>
-    </li>
-    <li>
-        <div><span class="font-weight-lighter alert-warning">Брой фактури: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.InvoiceCount</span><span class="font-weight-lighter alert-warning"></span></div>
-    </li>
-    <li>
-        <div><span class="font-weight-lighter alert-warning">Период от: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.PeriodFrom.ToShortDateString()</span><span class="font-weight-lighter alert-warning"></span></div>
-    </li>
-    <li>
-        <div><span class="font-weight-lighter alert-warning">Период до: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.PeriodTo.ToShortDateString()</span><span class="font-weight-lighter alert-warning"></span></div>
-    </li>
+    
 </ul>
+
+<nav display: block; class="navbar navbar-expand alert-success breadcrumb-item mb-1">
+    <a asp-area="" asp-controller="Expenses" asp-action="Create" class="btn btn-warning font-size: 1px;">Създай разноски</a>|
+    <a asp-area="" asp-controller="LegalActions" asp-action="Create" class="btn btn-warning">Създай действие</a>|
+    2 details
+
+</nav>
