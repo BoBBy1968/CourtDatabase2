@@ -1,12 +1,9 @@
 ﻿@model IEnumerable<ExpenseAllViewModel>
 
 @{
-    //var id = this.Model.Where(x=>x.LawCaseId > 0).Select(x=>x.LawCaseId).FirstOrDefault();
     var id = ViewBag.MyId;
     var name = this.Model.Where(x => x.LawCaseId == id).Select(x => x.DebitorName).FirstOrDefault();
-    //var name = 
     var value = this.Model.Where(x => x.LawCaseId == id).Select(x => x.CaseValue).FirstOrDefault();
-    //var value = this.Model.Where(x => x.Id == id).Select(x => x.CaseValue).FirstOrDefault();
     ViewData["Title"] = $"Всички разноски по делото срещу {name} с главница - {value} лв. - ИД {id}";
 }
 

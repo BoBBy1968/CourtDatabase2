@@ -44,7 +44,7 @@ namespace CourtDatabase2.Areas.DebitorsCases.Controllers
 
         public async Task<IActionResult> AllExpenses(int? id)
         {
-            if (id==null)
+            if (id==null) 
             {
                 return NotFound();
             }
@@ -54,7 +54,6 @@ namespace CourtDatabase2.Areas.DebitorsCases.Controllers
                 return NotFound();
             }
             ViewBag.MyId = id;
-            
             return this.View(viewModel);
         }
 
