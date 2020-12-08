@@ -1,7 +1,10 @@
 ﻿using CourtDatabase2.Areas.DebitorsCases.Models;
 using CourtDatabase2.Data;
+using CourtDatabase2.Data.Models;
 using CourtDatabase2.Services.Contracts;
+using CourtDatabase2.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,10 +25,10 @@ namespace CourtDatabase2.Services
             return await this.dbContext.LawCases.Select(x => new DebitorsCasesAllViewModel
             {
                 Id = x.Id,
-                AbNumber = x.Debitor.AbNumber,
+                HeatEstate = x.HeatEstate,
                 Name = x.Debitor.FirstName + " " + x.Debitor.MiddleName + " " + x.Debitor.LastName,
-                //AddressEstate = x.Debitor.HeatEstate.Address,
-                //AddressDebitor = x.Debitor.AddressToContact,
+                AddressEstate = x.HeatEstate.Address,
+                AddressDebitor = x.Debitor.AddressToContact,
                 MainValue = x.Value,
                 //MoratoriumInterest = (decimal)x.MoratoriumInterest,
                 //LegalInterest = (decimal)x.LegalInterest,
@@ -43,10 +46,10 @@ namespace CourtDatabase2.Services
                 .Select(x => new DebitorsCasesAllViewModel
                 {
                     Id = x.Id,
-                    AbNumber = x.Debitor.AbNumber,
-                    DebitorId = x.Debitor.Id,
+                    HeatEstate = x.HeatEstate,
+                    Debitor = x.Debitor,
                     Name = x.Debitor.FirstName + " " + x.Debitor.MiddleName + " " + x.Debitor.LastName,
-                    AddressEstate = x.Debitor.HeatEstate.Address,
+                    AddressEstate = x.HeatEstate.Address,
                     AddressDebitor = x.Debitor.AddressToContact,
                     MainValue = x.Value,
                     MoratoriumInterest = (decimal)x.MoratoriumInterest,
@@ -56,6 +59,37 @@ namespace CourtDatabase2.Services
                     PeriodTo = x.PeriodTo,
                     InvoiceCount = x.InvoiceCount,
                 }).FirstOrDefaultAsync();
+        }
+
+        public async Task<IEnumerable<ExpenseAllViewModel>> AllExpenses(int? id)
+        {
+            return await this.dbContext.Expenses
+                .Where(x => x.LawCaseId == id)
+                .Select(x => new ExpenseAllViewModel
+                {
+                    Id = x.Id,
+                    ExpenceValue = x.ExpenceValue,
+                    ExpenceDate = x.ExpenceDate.ToShortDateString(),
+                    ExpenceDescription = x.ExpenceDescription,
+                    Payee = x.Payee,
+                    DebitorName = x.LawCase.Debitor.FirstName + " " + x.LawCase.Debitor.LastName,
+                    CaseValue = x.LawCase.Value,
+                    LawCaseId = x.LawCaseId,
+                }).ToListAsync();
+        }
+
+        public async Task CreateExpense(ExpenseInputViewModel model)
+        {
+            var expense = new Expense
+            {
+                LawCaseId = model.LawCaseId,
+                ExpenceDate = DateTime.UtcNow.Date,
+                ExpenceValue = model.ExpenceValue,
+                ExpenceDescription = model.ExpenceDescription,
+                Payee = model.Payee,
+            };
+            await this.dbContext.Expenses.AddAsync(expense);
+            await this.dbContext.SaveChangesAsync();
         }
     }
 }

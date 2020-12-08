@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ExpenseAllViewModel>
+
+@{
+    //var id = this.Model.Where(x=>x.LawCaseId > 0).Select(x=>x.LawCaseId).FirstOrDefault();
+    var id = ViewBag.MyId;
+    var name = this.Model.Where(x => x.LawCaseId == id).Select(x => x.DebitorName).FirstOrDefault();
+    //var name = 
+    var value = this.Model.Where(x => x.LawCaseId == id).Select(x => x.CaseValue).FirstOrDefault();
+    //var value = this.Model.Where(x => x.Id == id).Select(x => x.CaseValue).FirstOrDefault();
+    ViewData["Title"] = $"Всички разноски по делото срещу {name} с главница - {value} лв. - ИД {id}";
+}
+
+<h4>@ViewData["Title"]</h4>
+
+<a asp-area="DebitorsCases" asp-action="Details" asp-route-id="@id" class="btn btn-info">Обратно</a>
+<a asp-area="DebitorsCases" asp-action="CreateExpense" asp-route-id="@id" class="btn btn-info">Създай разноски</a>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Ид</th>
+            <th>Стойност</th>
+            <th>Дата</th>
+            <th>Описание</th>
+            <th>Получател</th>
+            @*<th>Длъжник</th>
+                <th>Главница</th>
+                <th>Дело ИД</th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.ExpenceValue</td>
+                <td>@item.ExpenceDate</td>
+                <td>@item.ExpenceDescription</td>
+                <td>@item.Payee</td>
+                @*<td>@item.DebitorName</td>
+                    <td>@item.CaseValue</td>
+                    <td>@item.LawCaseId</td>*@
+                <td>
+                    @*<a asp-area="DebitorsCases" asp-action="Details" asp-route-id="@item.LawCaseId" class="btn btn-info">Обратно</a>*@
+                </td>
+            </tr>
+
+        }
+
+    </tbody>
+</table>
+
+

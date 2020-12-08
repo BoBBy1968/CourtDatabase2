@@ -9,7 +9,7 @@
 
 
 <h3 class="text text-info text-center">@ViewData["Title"]</h3>
-<a class="btn btn-info" asp-action="Index">Обратно</a>
+<a class="btn btn-info" asp-action="Index">Назад към всички дела</a>
 <ul>
     <li>
         <div><span class="font-weight-lighter alert-warning">ИД: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.Id</span></div>
@@ -18,7 +18,7 @@
         <span class="border border-dark"><span class="font-weight-lighter alert-warning">Имена: </span> <span class="alert-info col-md-1 font-weight-bold border border-dark">@Model.Name</span><span class="font-weight-lighter alert-warning">ЕГН: </span><span class="alert-info col-md-1 font-weight-bold border border-dark">@Model.EGN</span><span class="font-weight-lighter alert-warning"></span></span>
     </li>
     <li>
-        <span class="border border-dark"><span class="font-weight-lighter alert-warning">Абонатен номер: </span> <span class="alert-info col-md-1 font-weight-bold border border-dark">@Model.AbNumber</span><span class="font-weight-lighter alert-warning"></span><span class="font-weight-lighter alert-warning">Адрес на обекта: </span> <span class="alert-info col-md-1 font-weight-bold border border-dark">@Model.AddressEstate</span></span>
+        <span class="border border-dark"><span class="font-weight-lighter alert-warning">Абонатен номер: </span> <span class="alert-info col-md-1 font-weight-bold border border-dark">@Model.HeatEstate.AbNumber</span><span class="font-weight-lighter alert-warning"></span><span class="font-weight-lighter alert-warning">Адрес на обекта: </span> <span class="alert-info col-md-1 font-weight-bold border border-dark">@Model.AddressEstate</span></span>
     </li>
     <li>
         <span class="border border-dark"><span class="font-weight-lighter alert-warning">Адрес на длъжника: </span> <span class="alert-info col-md-1 font-weight-bold border border-dark">@debitorsAddress</span><span class="font-weight-lighter alert-warning"></span></span>
@@ -33,7 +33,13 @@
 </ul>
 
 <nav display: block; class="navbar navbar-expand alert-success breadcrumb-item mb-1">
-    <a asp-area="" asp-controller="Expenses" asp-action="Create" class="btn btn-warning font-size: 1px;">Създай разноски</a>|
+    <a asp-area="DebitorsCases" asp-controller="Home" asp-action="AllExpenses" asp-route-id="@Model.Id" class="btn btn-warning font-size: 1px;">Всички разноски</a>|
+    <a asp-area="" asp-controller="LegalActions" asp-action="Create" class="btn btn-warning">Всички действия</a>|
+    2 details
+
+</nav>
+<nav display: block; class="navbar navbar-expand alert-success breadcrumb-item mb-1">
+    <a asp-area="DebitorsCases" asp-controller="Home" asp-action="CreateExpense" asp-route-id="@Model.Id" class="btn btn-warning font-size: 1px;">Създай разноски</a>|
     <a asp-area="" asp-controller="LegalActions" asp-action="Create" class="btn btn-warning">Създай действие</a>|
     2 details
 

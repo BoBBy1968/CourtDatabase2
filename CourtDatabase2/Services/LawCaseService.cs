@@ -24,7 +24,7 @@ namespace CourtDatabase2.Services
             return this.dbContext.HeatEstates.Select(x => new
             {
                 x.AbNumber,
-                x.Address,
+                Address = x.Address + " - " + x.AbNumber,
             }).ToList().Select(a => new KeyValuePair<string, string>(a.AbNumber, a.Address));
 
         }
@@ -35,7 +35,7 @@ namespace CourtDatabase2.Services
             return this.dbContext.Debitors.Select(x => new
             {
                 Id = x.Id.ToString(),
-                Name = x.FirstName + " " + x.MiddleName + " " + x.LastName,
+                Name = x.FirstName + " " + x.MiddleName + " " + x.LastName + " " + x.AbNumber,
             }).ToList().Select(d => new KeyValuePair<string, string>(d.Id, d.Name));
         }
 

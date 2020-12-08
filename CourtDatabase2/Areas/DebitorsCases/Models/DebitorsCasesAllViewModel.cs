@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CourtDatabase2.Data.Models;
+using System;
 
 namespace CourtDatabase2.Areas.DebitorsCases.Models
 {
@@ -6,9 +7,9 @@ namespace CourtDatabase2.Areas.DebitorsCases.Models
     {
         public int Id { get; set; }
 
-        public string AbNumber { get; set; }
+        public HeatEstate HeatEstate { get; set; }
 
-        public int DebitorId { get; set; }
+        public Debitor Debitor { get; set; }
 
         public string Name { get; set; }
 
