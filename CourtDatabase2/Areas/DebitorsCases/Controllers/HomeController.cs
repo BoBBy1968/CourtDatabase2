@@ -44,7 +44,7 @@ namespace CourtDatabase2.Areas.DebitorsCases.Controllers
 
         public async Task<IActionResult> AllExpenses(int? id)
         {
-            if (id==null) 
+            if (id == null)
             {
                 return NotFound();
             }
@@ -59,7 +59,7 @@ namespace CourtDatabase2.Areas.DebitorsCases.Controllers
 
         public IActionResult CreateExpense(int? id)
         {
-            if (id==null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -78,10 +78,46 @@ namespace CourtDatabase2.Areas.DebitorsCases.Controllers
             await this.service.CreateExpense(model);
             //return this.Redirect($"https://localhost:44342/DebitorsCases/Home/Details/{model.LawCaseId}");
             return this.RedirectToAction("AllExpenses", new { id = model.LawCaseId });
-            
+
         }
 
+        public async Task<IActionResult> AllPayments(int? id)
+        {
+            if (id == null)
+            {
+                return this.NotFound();
+            }
+            var viewModel = await this.service.AllPayments(id);
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
+            ViewBag.MyId = id;
+            return this.View(viewModel);
+        }
 
+        public IActionResult CreatePayment(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var payment = new PaymentsInputViewModel
+            {
+                LawCaseId = (int)id,
+                Date = DateTime.UtcNow.Date,
+            };
+            return this.View(payment);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreatePayment(PaymentsInputViewModel model)
+        {
+            await this.service.CreatePayment(model);
+            //return this.Redirect($"https://localhost:44342/DebitorsCases/Home/Details/{model.LawCaseId}");
+            return this.RedirectToAction("AllPayments", new { id = model.LawCaseId });
+        }
     }
 }
 

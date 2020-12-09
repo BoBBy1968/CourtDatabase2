@@ -19,6 +19,9 @@ namespace CourtDatabase2.ViewModels
         public int LawCaseId { get; set; }
 
         public LawCase LawCase { get; set; }
+
+        public decimal LawCaseValue { get; set; }
+
         public string Contractor { get; set; }
     }
 }

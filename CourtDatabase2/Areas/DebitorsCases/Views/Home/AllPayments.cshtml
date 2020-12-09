@@ -1,0 +1,38 @@
+﻿@model IEnumerable<PaymentsAllViewModel>
+
+@{
+    var sum = this.Model.Sum(x => x.Value);
+    var id = ViewBag.MyId;
+    var name = this.Model.Where(x => x.LawCaseId == id).Select(x => x.Contractor).FirstOrDefault();
+    var value = this.Model.Where(x => x.LawCaseId == id).Select(x => x.LawCaseValue).FirstOrDefault();
+    ViewData["Title"] = $"Всички плащания по делото срещу {name} с главница - {value} лв. - ИД {id}";
+}
+
+<h4>@ViewData["Title"]</h4>
+
+<a asp-area="DebitorsCases" asp-action="Details" asp-route-id="@id" class="btn btn-info">Обратно</a>
+<a asp-area="DebitorsCases" asp-action="CreatePayment" asp-route-id="@id" class="btn btn-info">Направи плащане</a>
+
+<h6><span class="alert-danger">Общо платена сума в размер на @sum лв.</span></h6>
+<table class="table-bordered table-hover">
+    <thead>
+        <tr>
+            <th class="text-center">ИД</th>
+            <th class="text-center">Стойност</th>
+            <th class="text-center">Дата</th>
+            <th class="text-center">Начин на плащане</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center">@item.Id</td>
+                <td class="text-center">@item.Value</td>
+                <td class="text-center">@item.Date.ToShortDateString()</td>
+                <td class="text-center">@item.PaymentSource</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

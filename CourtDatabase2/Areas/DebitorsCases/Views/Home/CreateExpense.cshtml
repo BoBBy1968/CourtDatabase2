@@ -23,10 +23,10 @@
     <input asp-for="ExpenceDate" class="alert-info" />
     <span asp-validation-for="ExpenceDate" class="text-danger"></span><br />
     <label asp-for="LawCaseId" class="alert-warning">Дело ИД  </label>
-    <input asp-for="LawCaseId" asp-items="lawCases" class="alert-info" />
+    <input asp-for="LawCaseId" readonly="readonly" asp-items="lawCases" class="alert-info" />
     <span asp-validation-for="LawCaseId" class="text-danger"></span><br />
     <input type="submit" value="Запис" class="btn btn-outline-warning" />
-    <a class="btn btn-info" asp-action="Details" asp-route-id="@Model.LawCaseId" >Отказ</a>
+    <a class="btn btn-info" asp-action="AllExpenses" asp-route-id="@Model.LawCaseId" >Отказ</a>
 </form>
 
 @section Scripts {

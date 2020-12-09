@@ -11,8 +11,12 @@ namespace CourtDatabase2.Services.Contracts
 
         Task<IEnumerable<ExpenseAllViewModel>> AllExpenses(int? id);
 
+        Task<IEnumerable<PaymentsAllViewModel>> AllPayments(int? id);
+
         Task<DebitorsCasesAllViewModel> CaseDetails(int? id);
 
         Task CreateExpense(ExpenseInputViewModel model);
+
+        Task CreatePayment(PaymentsInputViewModel model);
     }
 }

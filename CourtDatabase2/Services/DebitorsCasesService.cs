@@ -1,6 +1,7 @@
 ﻿using CourtDatabase2.Areas.DebitorsCases.Models;
 using CourtDatabase2.Data;
 using CourtDatabase2.Data.Models;
+using CourtDatabase2.Data.Models.Enumerations;
 using CourtDatabase2.Services.Contracts;
 using CourtDatabase2.ViewModels;
 using Microsoft.EntityFrameworkCore;
@@ -89,6 +90,37 @@ namespace CourtDatabase2.Services
                 Payee = model.Payee,
             };
             await this.dbContext.Expenses.AddAsync(expense);
+            await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<PaymentsAllViewModel>> AllPayments(int? id)
+        {
+            return await this.dbContext.Payments.Where(x => x.LawCaseId == id)
+                .Select(x => new PaymentsAllViewModel
+                {
+                    Id = x.Id,
+                    Value = x.Value,
+                    Date = x.Date,
+                    PaymentSource = x.PaymentSource.ToString(),
+                    LawCase = x.LawCase,
+                    LawCaseValue = x.LawCase.Value,
+                    Contractor = x.LawCase.Debitor.FirstName + " " + x.LawCase.Debitor.LastName,
+                    LawCaseId = x.LawCaseId,
+                })
+                .OrderBy(x => x.Date)
+                .ToListAsync();
+        }
+
+        public async Task CreatePayment(PaymentsInputViewModel model)
+        {
+            var payment = new Payment
+            {
+                LawCaseId = model.LawCaseId,
+                Date = model.Date,
+                Value = model.Value,
+                PaymentSource = Enum.Parse<PaymentSource>(model.PaymentSource, true),
+            };
+            await this.dbContext.Payments.AddAsync(payment);
             await this.dbContext.SaveChangesAsync();
         }
     }
