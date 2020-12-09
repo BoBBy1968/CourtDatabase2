@@ -1,0 +1,9 @@
+﻿
+
+@{
+    ViewData["Title"] = "Наследник";
+    var id = this.TempData["ID"];
+}
+
+<h1>@ViewData["Title"]</h1>
+<a asp-area="DebitorsCases" asp-controller="Home" asp-action="Details" asp-route-id="@id" class="btn btn-info">Обратно</a>
