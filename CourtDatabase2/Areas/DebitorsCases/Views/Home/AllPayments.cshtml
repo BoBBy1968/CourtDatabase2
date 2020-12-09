@@ -17,20 +17,20 @@
 <table class="table-bordered table-hover">
     <thead>
         <tr>
-            <th class="text-center">ИД</th>
-            <th class="text-center">Стойност</th>
-            <th class="text-center">Дата</th>
-            <th class="text-center">Начин на плащане</th>
+            <th class="text-center">&nbsp;ИД&nbsp;</th>
+            <th class="text-center">&nbsp;Стойност&nbsp;</th>
+            <th class="text-center">&nbsp;Дата&nbsp;</th>
+            <th class="text-center">&nbsp;Начин на плащане&nbsp;</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                <td class="text-center">@item.Id</td>
-                <td class="text-center">@item.Value</td>
-                <td class="text-center">@item.Date.ToShortDateString()</td>
-                <td class="text-center">@item.PaymentSource</td>
+                <td class="text-center">&nbsp; @item.Id &nbsp;</td>
+                <td class="text-center">&nbsp; @item.Value &nbsp;</td>
+                <td class="text-center">&nbsp; @item.Date.ToShortDateString() &nbsp;</td>
+                <td class="text-center">&nbsp; @item.PaymentSource &nbsp;</td>
             </tr>
         }
     </tbody>

@@ -10,10 +10,10 @@
 
 
 <form asp-action="AddUserToRole" method="post">
-    <label asp-for="FirstName" class="alert-warning">Потребител</label>
+    @*<label asp-for="FirstName" class="alert-warning">Име</label>
     <input asp-for="FirstName" class="alert-info" /><br />
-    <label asp-for="LastName" class="alert-warning">Потребител</label>
-    <input asp-for="LastName" class="alert-info" /><br />
+    <label asp-for="LastName" class="alert-warning">Фамилия</label>
+    <input asp-for="LastName" class="alert-info" /><br />*@
 
     <label asp-for="UserId" class="alert-warning">Потребител</label>
     <select asp-for="UserId" class="alert-info" asp-items="@users"></select>

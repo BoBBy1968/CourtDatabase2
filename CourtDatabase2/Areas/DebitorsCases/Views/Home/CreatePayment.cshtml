@@ -8,18 +8,18 @@
 
 <form asp-area="DebitorsCases" asp-controller="Home" asp-action="CreatePayment" method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
-    <label asp-for="Date" class="alert-warning">Дата</label>
-    <input asp-for="Date" class="alert-info" />
-    <span asp-validation-for="Date" class="text-danger"></span><br />
     <label asp-for="Value" class="alert-warning">Стойност</label>
     <input asp-for="Value" class="alert-info" />
     <span asp-validation-for="Value" class="text-danger"></span><br />
-    <label asp-for="LawCaseId" class="alert-warning">ИД на дело</label>
-    <input asp-for="LawCaseId" class="alert-info" readonly="readonly"/>
-    <span asp-validation-for="LawCaseId" class="text-danger"></span><br />
     <label asp-for="PaymentSource" class="alert-warning">Начин на плащане</label>
     <select asp-for="PaymentSource" class="alert-info" asp-items="@Html.GetEnumSelectList<PaymentSource>();"></select>
     <span asp-validation-for="PaymentSource" class="text-danger"></span><br />
+    <label asp-for="Date" class="alert-warning">Дата</label>
+    <input asp-for="Date" class="alert-info" />
+    <span asp-validation-for="Date" class="text-danger"></span><br />
+    <label asp-for="LawCaseId" class="alert-warning">ИД на дело</label>
+    <input asp-for="LawCaseId" class="alert-secondary" readonly="readonly"/>
+    <span asp-validation-for="LawCaseId" class="text-danger"></span><br />
     <input type="submit" value="Запис" class="btn btn-outline-warning" />
     <a class="btn btn-info" asp-action="AllPayments" asp-route-id="@Model.LawCaseId">Отказ</a>
 </form>

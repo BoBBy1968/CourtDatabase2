@@ -30,8 +30,15 @@ namespace CourtDatabase2.Areas.Admin.Controllers
 
         public async Task<IActionResult> AddUserToRole(string id)
         {
+            if (id == null)
+            {
+                return this.NotFound();
+            }
             var viewModel = await this.userService.GetUserById(id);
-            
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
             return this.View(viewModel);
         }
 
@@ -61,10 +68,42 @@ namespace CourtDatabase2.Areas.Admin.Controllers
             return this.RedirectToAction("AllRoles");
         }
 
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            if (id==null)
+            {
+                return this.NotFound();
+            }
+            var viewModel = await this.userService.GetUserById(id);
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteRole(string id)
         {
+            if (id==null)
+            {
+                return this.NotFound();
+            }
             await this.userService.DeleteRole(id);
             return this.RedirectToAction("AllRoles");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteUserConfirm(string id)
+        {
+            if (id == null)
+            {
+                return this.NotFound();
+            }
+            await this.userService.DeleteUser(id);
+            return this.RedirectToAction("AllUsers");
         }
     }
 }

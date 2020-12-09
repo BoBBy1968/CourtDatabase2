@@ -22,5 +22,6 @@ namespace CourtDatabase2.Services.Contracts
         Task DeleteRole(string id);
 
         Task<AddUserToRoleInputModel> GetUserById(string id);
+        Task DeleteUser(string id);
     }
 }

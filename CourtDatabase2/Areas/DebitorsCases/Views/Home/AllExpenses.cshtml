@@ -16,26 +16,26 @@
 <h6>
     <span class="alert-danger">Сумата на разноските е @sumExpenses лв.</span>
 </h6>
-<table class="table table-bordered table-hover">
+<table class="table-bordered table-hover">
     <thead>
         <tr>
-            <th>Ид</th>
-            <th>Стойност</th>
-            <th>Дата</th>
-            <th>Описание</th>
-            <th>Получател</th>
+            <th class="text-center">&nbsp; Ид &nbsp;</th>
+            <th class="text-center">&nbsp; Стойност &nbsp;</th>
+            <th class="text-center">&nbsp; Дата &nbsp;</th>
+            <th class="text-center">&nbsp; Описание &nbsp;</th>
+            <th class="text-center">&nbsp; Получател &nbsp;</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.Id</td>
-                <td>@item.ExpenceValue</td>
-                <td>@item.ExpenceDate</td>
-                <td>@item.ExpenceDescription</td>
-                <td>@item.Payee</td>
-                <td>
+                <td class="text-center">&nbsp;@item.Id&nbsp;</td>
+                <td class="text-center">&nbsp;@item.ExpenceValue&nbsp;</td>
+                <td class="text-center">&nbsp;@item.ExpenceDate&nbsp;</td>
+                <td class="text-center">&nbsp;@item.ExpenceDescription&nbsp;</td>
+                <td class="text-center">&nbsp;@item.Payee&nbsp;</td>
+                <td class="text-center">
                 </td>
             </tr>
         }

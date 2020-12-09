@@ -114,5 +114,11 @@ namespace CourtDatabase2.Services
             await this.roleManager.DeleteAsync(role);
         }
 
+        public async Task DeleteUser(string id)
+        {
+            var user = await this.userManager.FindByIdAsync(id);
+            await this.userManager.DeleteAsync(user);
+        }
+
     }
 }

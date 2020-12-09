@@ -10,20 +10,20 @@
 
 <form asp-area="DebitorsCases" asp-controller="Home" asp-action="CreateExpense" method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
+    <label asp-for="ExpenceValue" class="alert-warning">Стойност  </label>
+    <input asp-for="ExpenceValue" class="alert-info" />
+    <span asp-validation-for="ExpenceValue" class="text-danger"></span><br />
     <label asp-for="Payee" class="alert-warning">Получател  </label>
     <input asp-for="Payee" class="alert-info" />
     <span asp-validation-for="Payee" class="text-danger"></span><br />
     <label asp-for="ExpenceDescription" class="alert-warning">Описание  </label>
     <input asp-for="ExpenceDescription" class="alert-info" />
     <span asp-validation-for="ExpenceDescription" class="text-danger"></span><br />
-    <label asp-for="ExpenceValue" class="alert-warning">Стойност  </label>
-    <input asp-for="ExpenceValue" class="alert-info" />
-    <span asp-validation-for="ExpenceValue" class="text-danger"></span><br />
     <label asp-for="ExpenceDate" class="alert-warning">Дата  </label>
     <input asp-for="ExpenceDate" class="alert-info" />
     <span asp-validation-for="ExpenceDate" class="text-danger"></span><br />
     <label asp-for="LawCaseId" class="alert-warning">Дело ИД  </label>
-    <input asp-for="LawCaseId" readonly="readonly" asp-items="lawCases" class="alert-info" />
+    <input asp-for="LawCaseId" readonly="readonly" asp-items="lawCases" class="alert-secondary" />
     <span asp-validation-for="LawCaseId" class="text-danger"></span><br />
     <input type="submit" value="Запис" class="btn btn-outline-warning" />
     <a class="btn btn-info" asp-action="AllExpenses" asp-route-id="@Model.LawCaseId" >Отказ</a>
