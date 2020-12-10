@@ -1,2 +1,2 @@
 # CourtDatabase2
-Web App for "Toplofikacis Ruse" EAD lawyer civil court cases
+Web App for "Toplofikacia Ruse" EAD lawyer civil court cases
