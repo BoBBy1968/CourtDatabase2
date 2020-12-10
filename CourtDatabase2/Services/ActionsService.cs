@@ -26,5 +26,17 @@ namespace CourtDatabase2.Services
             await this.dbContext.CaseActions.AddAsync(caseAction);
             await this.dbContext.SaveChangesAsync();
         }
+
+        public async Task CreateActionReport(CaseActionsCreateViewModel model)
+        {
+            var caseAction = new CaseAction
+            {
+                Date = model.Date,
+                LawCaseId = model.LawCaseId,
+                LegalActionId = model.LegalActionId,
+            };
+            await this.dbContext.AddAsync(caseAction);
+            await this.dbContext.SaveChangesAsync();
+        }
     }
 }

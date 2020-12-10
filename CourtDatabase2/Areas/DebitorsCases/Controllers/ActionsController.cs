@@ -3,6 +3,7 @@ using CourtDatabase2.Services.Contracts;
 using CourtDatabase2.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Threading.Tasks;
 
 namespace CourtDatabase2.Areas.DebitorsCases.Controllers
 {
@@ -22,6 +23,25 @@ namespace CourtDatabase2.Areas.DebitorsCases.Controllers
         public IActionResult Index()
         {
             return this.View();
+        }
+
+        public IActionResult CreateActionReport(int lawCaseId, int legalActionId)
+        {
+            var viewModel = new CaseActionsCreateViewModel
+            {
+                Date = DateTime.UtcNow.Date,
+                LawCaseId = lawCaseId,
+                LegalActionId = legalActionId,
+            };
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateActionReport(CaseActionsCreateViewModel model)
+        {
+            await this.actionsService.CreateActionReport(model);
+            return this.RedirectToAction("AllActions", "Home", new { id = model.LawCaseId});
         }
 
         public IActionResult Application410(int? id)
