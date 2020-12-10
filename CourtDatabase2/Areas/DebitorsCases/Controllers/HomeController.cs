@@ -119,6 +119,12 @@ namespace CourtDatabase2.Areas.DebitorsCases.Controllers
             //return this.Redirect($"https://localhost:44342/DebitorsCases/Home/Details/{model.LawCaseId}");
             return this.RedirectToAction("AllPayments", new { id = model.LawCaseId });
         }
+
+        public async Task<IActionResult> AllActions(int? id)
+        {
+            var viewModel = await this.service.AllActions(id);
+            return this.View(viewModel);
+        }
     }
 }
 

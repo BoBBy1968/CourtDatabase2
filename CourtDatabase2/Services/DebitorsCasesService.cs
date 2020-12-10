@@ -123,5 +123,22 @@ namespace CourtDatabase2.Services
             await this.dbContext.Payments.AddAsync(payment);
             await this.dbContext.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<CaseActionsAllViewModel>> AllActions(int? id)
+        {
+            return await this.dbContext.CaseActions.Where(x => x.LawCaseId == id)
+                .Select(x => new CaseActionsAllViewModel
+                {
+                    Id = x.Id,
+                    Date = x.Date,
+                    LawCaseId = x.LawCaseId,
+                    Debitor = x.LawCase.Debitor.FirstName
+                        + " " + x.LawCase.Debitor.LastName
+                        + " - " + x.LawCase.Value + " лв."
+                        + " - ИД " + x.LawCase.Id,
+                    LegalActionId = x.LegalActionId,
+                    LegalAction = x.LegalAction,
+                }).ToListAsync();
+        }
     }
 }

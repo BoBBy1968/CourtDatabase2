@@ -1,0 +1,38 @@
+﻿@model IEnumerable<CaseActionsAllViewModel>
+
+@{
+    var id = this.TempData["ID"];
+    var name = this.Model.Select(x => x.Debitor).FirstOrDefault();
+    //var value = this.Model.Select(x => x.LawCase.Value).FirstOrDefault();
+    ViewData["Title"] = $"Всички действия по делото срещу {name}";
+}
+
+<h1>@ViewData["Title"]</h1>
+<a asp-area="DebitorsCases" asp-action="Details" asp-route-id="@id" class="btn btn-info">Обратно</a>
+
+<table class="table-bordered table-hover">
+    <thead>
+        <tr>
+            <th class="text-center">&nbsp;ИД&nbsp;</th>
+            <th class="text-center">&nbsp;Дата&nbsp;</th>
+            @*<th class="text-center">&nbsp;Дело ИД&nbsp;</th>*@
+            @*<th class="text-center">&nbsp;Длъжник&nbsp;</th>*@
+            @*<th class="text-center">&nbsp;Действие ИД&nbsp;</th>*@
+            <th class="text-center">&nbsp;Действие&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center">&nbsp;@item.Id&nbsp;</td>
+                <td class="text-center">&nbsp;@item.Date.ToShortDateString()&nbsp;</td>
+                @*<td class="text-center">&nbsp;@item.LawCaseId&nbsp;</td>*@
+                @*<td class="text-center">&nbsp;@item.Debitor&nbsp;</td>*@
+                @*<td class="text-center">&nbsp;@item.LegalActionId&nbsp;</td>*@
+                <td class="text-center">&nbsp;@item.LegalAction.ActionName&nbsp;</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

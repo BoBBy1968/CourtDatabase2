@@ -1,9 +1,13 @@
-﻿
+﻿@model CaseActionsCreateViewModel
 
 @{
     ViewData["Title"] = "Заявление за издаване на заповед за изпълнение на парично задължение по чл. 410 от ГПК";
+    var legalActions = this.Model.LegalActions.Select(x => new SelectListItem(x.Value, x.Key));
     var id = this.TempData["ID"];
 }
 
 <h1>@ViewData["Title"]</h1>
 <a asp-area="DebitorsCases" asp-controller="Home" asp-action="Details" asp-route-id="@id" class="btn btn-info">Обратно</a>
+<a asp-area="" asp-controller="CaseActions" asp-action="Create" asp-route-id="@id" class="btn btn-info">Създай действие</a>
+
+

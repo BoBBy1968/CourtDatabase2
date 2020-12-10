@@ -7,6 +7,8 @@ namespace CourtDatabase2.Services.Contracts
 {
     public interface IDebitorsCasesService
     {
+        Task<IEnumerable<CaseActionsAllViewModel>> AllActions(int? id);
+
         Task<IEnumerable<DebitorsCasesAllViewModel>> AllCases();
 
         Task<IEnumerable<ExpenseAllViewModel>> AllExpenses(int? id);
