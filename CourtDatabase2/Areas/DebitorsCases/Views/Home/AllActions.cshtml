@@ -10,7 +10,7 @@
 }
 
 <h1>@ViewData["Title"]</h1>
-<a asp-area="DebitorsCases" asp-action="Details" asp-route-id="@x" class="btn btn-info">Обратно</a>
+<a asp-area="DebitorsCases" asp-action="Details" asp-route-id="@Context.Request.RouteValues["id"]" class="btn btn-info">Обратно</a>
 
 <table class="table-bordered table-hover">
     <thead>

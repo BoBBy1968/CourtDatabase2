@@ -2,10 +2,10 @@
 
 @{
     ViewData["Title"] = "Отдалечен достъп";
-    var id = this.TempData["ID"];
+    //var id = this.TempData["ID"];
     var currentAction = 11;
 }
 
 <h1>@ViewData["Title"]</h1>
-    <a asp-area="DebitorsCases" asp-controller="Home" asp-action="Details" asp-route-id="@id" class="btn btn-info">Обратно</a>
-    <a asp-area="DebitorsCases" asp-controller="Actions" asp-action="CreateActionReport" asp-route-lawCaseId="@id" asp-route-legalActionId="@currentAction" class="btn btn-info">Създай действие</a>
+    <a asp-area="DebitorsCases" asp-controller="Home" asp-action="Details" asp-route-id="@Context.Request.RouteValues["id"]" class="btn btn-info">Обратно</a>
+    <a asp-area="DebitorsCases" asp-controller="Actions" asp-action="CreateActionReport" asp-route-lawCaseId="@Context.Request.RouteValues["id"]" asp-route-legalActionId="@currentAction" class="btn btn-info">Създай действие</a>

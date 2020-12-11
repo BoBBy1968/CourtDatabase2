@@ -38,8 +38,8 @@ namespace CourtDatabase2.Areas.DebitorsCases.Controllers
             {
                 return NotFound();
             }
-            ViewBag.MyId = id;
-            this.TempData["ID"] = id;
+            //ViewBag.MyId = id;
+            //this.TempData["ID"] = id;
             return this.View(viewModel);
         }
 

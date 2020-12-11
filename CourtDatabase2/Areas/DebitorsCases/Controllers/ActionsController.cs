@@ -48,25 +48,28 @@ namespace CourtDatabase2.Areas.DebitorsCases.Controllers
         {
             var viewModel = new CaseActionsCreateViewModel
             {
-                LegalActions = this.caseActionsService.GetAllLegalActions(),
                 LawCaseId = (int)id,
             };
             return View(viewModel);
 
         }
 
-        [HttpPost] 
-        [ValidateAntiForgeryToken]
-        public IActionResult Application410(CaseActionsCreateViewModel model)
-        {
-            this.actionsService.Application410(model);
+        //[HttpPost] 
+        //[ValidateAntiForgeryToken]
+        //public IActionResult Application410(CaseActionsCreateViewModel model)
+        //{
+        //    this.actionsService.Application410(model);
 
-            return RedirectToAction("Details", "Home", new { id = model.LawCaseId });
-        }
+        //    return RedirectToAction("Details", "Home", new { id = model.LawCaseId });
+        //}
 
         public IActionResult CivilClaim(int? id)
         {
-            return View();
+            var viewModel = new CaseActionsCreateViewModel
+            {
+                LawCaseId = (int)id,
+            };
+            return View(viewModel);
         }
 
         public IActionResult Expert(int? id)

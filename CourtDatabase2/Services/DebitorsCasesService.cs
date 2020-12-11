@@ -37,7 +37,9 @@ namespace CourtDatabase2.Services
                 PeriodFrom = x.PeriodFrom,
                 PeriodTo = x.PeriodTo,
                 InvoiceCount = x.InvoiceCount,
-            }).ToListAsync();
+            })
+                .OrderBy(x=>x.Name)
+                .ToListAsync();
         }
 
         public async Task<DebitorsCasesAllViewModel> CaseDetails(int? id)
