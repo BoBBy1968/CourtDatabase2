@@ -54,22 +54,13 @@ namespace CourtDatabase2.Areas.DebitorsCases.Controllers
 
         }
 
-        //[HttpPost] 
-        //[ValidateAntiForgeryToken]
-        //public IActionResult Application410(CaseActionsCreateViewModel model)
-        //{
-        //    this.actionsService.Application410(model);
-
-        //    return RedirectToAction("Details", "Home", new { id = model.LawCaseId });
-        //}
-
         public IActionResult CivilClaim(int? id)
         {
-            var viewModel = new CaseActionsCreateViewModel
-            {
-                LawCaseId = (int)id,
-            };
-            return View(viewModel);
+            //var viewModel = new CaseActionsCreateViewModel
+            //{
+            //    LawCaseId = (int)id,
+            //};
+            return View();
         }
 
         public IActionResult Expert(int? id)
