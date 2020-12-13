@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Искова молба";
-    //var id = this.TempData["ID"];
     var currentAction = 2;
 }
 
@@ -11,4 +10,12 @@
 
 <a asp-area="DebitorsCases" asp-controller="Home" asp-action="Details" asp-route-id="@Context.Request.RouteValues["id"]" class="btn btn-info">Обратно</a>
 <a asp-area="DebitorsCases" asp-controller="Actions" asp-action="CreateActionReport" asp-route-lawCaseId="@Context.Request.RouteValues["id"]" asp-route-legalActionId="@currentAction" class="btn btn-info">Създай действие</a>
+<hr />
+<p style="text-indent: 25em;">to RRC</p>
+<span style="display:inline-block; width: 100px; text-align:left ">TO RRS</span>
+<p style="text-align:left">Искова молба</p style="text-align:right">
+<p style="text-indent: 25em;">от "Топлофикация Русе" ЕАД със седалище и адрес на управление в гр. Русе, ул. "ТЕЦ-Изток", представлявано от инж. Севдалин Желев Желев - изпълнителен директор, ЕИК 117005106</p>
+<p style="text-align:left">чрез Борис Станчев - юрисконсулт</p>
+
+
 

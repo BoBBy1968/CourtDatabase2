@@ -339,3 +339,7 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 *.driveupload
+/CourtDatabase2/.config/dotnet-tools.json
+/CourtDatabase2/Properties/ServiceDependencies/toploruse-lawyer - Web Deploy/profile.arm.json
+/CourtDatabase2/Properties/ServiceDependencies/toplorusecourt - Web Deploy/profile.arm.json
+/CourtDatabase2/Properties/ServiceDependencies/CourtDatabase - Web Deploy/profile.arm.json
