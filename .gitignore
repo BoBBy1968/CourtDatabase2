@@ -343,3 +343,5 @@ healthchecksdb
 /CourtDatabase2/Properties/ServiceDependencies/toploruse-lawyer - Web Deploy/profile.arm.json
 /CourtDatabase2/Properties/ServiceDependencies/toplorusecourt - Web Deploy/profile.arm.json
 /CourtDatabase2/Properties/ServiceDependencies/CourtDatabase - Web Deploy/profile.arm.json
+/CourtDatabase2/Properties/ServiceDependencies/courtdatabaseApp - Web Deploy/profile.arm.json
+/CourtDatabase2/Properties/ServiceDependencies/ToploCourtCases - Web Deploy/profile.arm.json

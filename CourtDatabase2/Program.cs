@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using CourtDatabase2.Data;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace CourtDatabase2
 {
@@ -14,6 +11,16 @@ namespace CourtDatabase2
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
+
+            //var host = CreateHostBuilder(args).Build();
+
+            //using (var scope = host.Services.CreateScope())
+            //{
+            //    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            //    db.Database.Migrate();
+            //}
+
+            //host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

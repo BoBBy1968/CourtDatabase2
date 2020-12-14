@@ -31,6 +31,7 @@ namespace CourtDatabase2.Data
 
             //modelBuilder.Entity<LawCase>().HasOne(x => x.Obligation).WithOne(x => x.LawCase).OnDelete(DeleteBehavior.Restrict);
         }
+        public DbSet<ThisIsTestDbModel> ThisIsTestDbModels { get; set; }
 
         public DbSet<CaseAction> CaseActions { get; set; }
 

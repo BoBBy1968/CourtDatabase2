@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace WebApplication3.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201203125354_ApplicationUserRemovePhone")]
-    partial class ApplicationUserRemovePhone
+    [Migration("20201213194838_Test")]
+    partial class Test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -515,6 +515,21 @@ namespace WebApplication3.Data.Migrations
                     b.HasIndex("LawCaseId");
 
                     b.ToTable("Payments");
+                });
+
+            modelBuilder.Entity("CourtDatabase2.Data.Models.ThisIsTestDbModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("TestName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ThisIsTestDbModels");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
