@@ -75,6 +75,7 @@ namespace CourtDatabase2
             services.AddTransient<IUsersService, UsersService>();
             services.AddTransient<IDebitorsCasesService, DebitorsCasesService>();
             services.AddTransient<IActionsService, ActionsService>();
+            //services.AddApplicationInsightsTelemetry(Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

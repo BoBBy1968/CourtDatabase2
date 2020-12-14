@@ -40,8 +40,21 @@ namespace CourtDatabase2.Areas.DebitorsCases.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateActionReport(CaseActionsCreateViewModel model)
         {
-            await this.actionsService.CreateActionReport(model);
-            return this.RedirectToAction("AllActions", "Home", new { id = model.LawCaseId});
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await this.actionsService.CreateActionReport(model);
+                    return this.RedirectToAction("AllActions", "Home", new { id = model.LawCaseId });
+                }
+                catch (Exception ex)
+                {
+                    this.ModelState.AddModelError(string.Empty, ex.Message);
+                    this.ViewData["Message"] = "Възникна грешка при създаването на запис. Вероятно няма такова действие в базата.";
+                }
+            }
+            return this.View(model);
         }
 
         public IActionResult Application410(int? id)
@@ -77,42 +90,42 @@ namespace CourtDatabase2.Areas.DebitorsCases.Controllers
         {
             return View();
         }
-        
+
         public IActionResult CopyAndExecutionList(int? id)
         {
             return View();
         }
-        
+
         public IActionResult OrderExecutionList(int? id)
         {
             return View();
         }
-        
+
         public IActionResult Inheritor(int? id)
         {
             return View();
         }
-        
+
         public IActionResult DistanceAccess(int? id)
         {
             return View();
         }
-        
+
         public IActionResult ExecutorCase(int? id)
         {
             return View();
         }
-        
+
         public IActionResult WithDrawalOfCivilClaimWithPaiment(int? id)
         {
             return View();
         }
-        
+
         public IActionResult WithDrawalOfExecutorsCaseWithPaiment(int? id)
         {
             return View();
         }
-        
+
         public IActionResult WithDrawalOfExecutorsCaseNoPaiment(int? id)
         {
             return View();

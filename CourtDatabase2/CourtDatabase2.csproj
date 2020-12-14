@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>aspnet-CourtDatabase2-3C183CC3-AB53-4911-A4A0-22938616E6DD</UserSecretsId>
+    <ApplicationInsightsResourceId>/subscriptions/7304da7e-20ae-4bc6-afc5-e633a091c68f/resourceGroups/ToploCourtCases/providers/microsoft.insights/components/ToploCourtCases</ApplicationInsightsResourceId>
   </PropertyGroup>
 
   <ItemGroup>

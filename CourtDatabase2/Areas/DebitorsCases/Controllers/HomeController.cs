@@ -76,10 +76,22 @@ namespace CourtDatabase2.Areas.DebitorsCases.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateExpense(ExpenseInputViewModel model)
         {
-            await this.service.CreateExpense(model);
-            //return this.Redirect($"https://localhost:44342/DebitorsCases/Home/Details/{model.LawCaseId}");
-            return this.RedirectToAction("AllExpenses", new { id = model.LawCaseId });
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await this.service.CreateExpense(model);
+                    //return this.Redirect($"https://localhost:44342/DebitorsCases/Home/Details/{model.LawCaseId}");
+                    return this.RedirectToAction("AllExpenses", new { id = model.LawCaseId });
 
+                }
+                catch (Exception ex)
+                {
+                    this.ModelState.AddModelError(string.Empty, ex.Message);
+                    this.ViewData["Message"] = "Възникна грешка при създаването на запис.";
+                }
+            }
+            return this.View(model);
         }
 
         public async Task<IActionResult> AllPayments(int? id)
@@ -115,9 +127,21 @@ namespace CourtDatabase2.Areas.DebitorsCases.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreatePayment(PaymentsInputViewModel model)
         {
-            await this.service.CreatePayment(model);
-            //return this.Redirect($"https://localhost:44342/DebitorsCases/Home/Details/{model.LawCaseId}");
-            return this.RedirectToAction("AllPayments", new { id = model.LawCaseId });
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await this.service.CreatePayment(model);
+                    //return this.Redirect($"https://localhost:44342/DebitorsCases/Home/Details/{model.LawCaseId}");
+                    return this.RedirectToAction("AllPayments", new { id = model.LawCaseId });
+                }
+                catch (Exception ex)
+                {
+                    this.ModelState.AddModelError(string.Empty, ex.Message);
+                    this.ViewData["Message"] = "Възникна грешка.";
+                }
+            }
+            return this.View(model);
         }
 
         public async Task<IActionResult> AllActions(int? id)

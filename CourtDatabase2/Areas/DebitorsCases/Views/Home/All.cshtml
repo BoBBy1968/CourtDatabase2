@@ -32,8 +32,8 @@
                 <td class="text-center">&nbsp;@item.HeatEstate.AbNumber&nbsp;</td>
                 <td class="text-center">&nbsp;@item.AddressEstate&nbsp;</td>
                 <td class="text-center">&nbsp;@item.InvoiceCount&nbsp;</td>
-                <td class="text-center">&nbsp;@item.PeriodFrom.ToShortDateString()&nbsp;</td>
-                <td class="text-center">&nbsp;@item.PeriodTo.ToShortDateString()&nbsp;</td>
+                <td class="text-center">&nbsp;@item.PeriodFrom.ToString("dd.MM.yyyy")&nbsp;</td>
+                <td class="text-center">&nbsp;@item.PeriodTo.ToString("dd.MM.yyyy")&nbsp;</td>
                 <td>
                     <a asp-area="DebitorsCases" asp-action="Details" asp-route-id="@item.Id" class="btn btn-info text-lg-center" style="font-size:10px">Детайли</a>
                 </td>
