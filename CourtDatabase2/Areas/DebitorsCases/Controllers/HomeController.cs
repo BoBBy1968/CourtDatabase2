@@ -1,5 +1,6 @@
 ﻿using CourtDatabase2.Services.Contracts;
 using CourtDatabase2.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -19,8 +20,10 @@ namespace CourtDatabase2.Areas.DebitorsCases.Controllers
         public IActionResult Index()
         {
             return this.RedirectToAction("All");
+            //return this.View();
         }
 
+        [Authorize]
         public async Task<IActionResult> All()
         {
             var viewModel = await this.service.AllCases();
