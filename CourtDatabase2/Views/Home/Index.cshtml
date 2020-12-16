@@ -1,8 +1,26 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<style>
+    .container {
+        position: relative;
+        text-align: center;
+        color: white;
+    }
 
-<div class="text-center">
-    <h1 class="display-4">Добре дошли в сайта на юриста от "Топлофикация Русе" ЕАД</h1>
+    .centered {
+        position: absolute;
+        top: 6%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+
+<!--<div class="text-center">
+    <h1 class="display-4">Добре дошли в сайта на юриста от "Топлофикация Русе" ЕАД</h1>-->
     @*<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>*@
+<!--</div>-->
+<div class="container" >
+    <h2 class="centered" style="color:maroon">Добре дошли в сайта на юриста от "Топлофикация Русе" ЕАД</h2>
+    <img src="~/img/Tec.png" alt="Tec-Ruse-Iztok" style="width:100%; height:100%;">
 </div>
