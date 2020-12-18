@@ -32,30 +32,34 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @item.FirstName
-            </td>
-            <td>
-                @item.LastName
-            </td>
-            <td>
-                @item.OfficePosition
-            </td>
-            <td>
-                @item.Email
-            </td>
-            <td>
-                @item.PhoneNumber
-            </td>
-            <td>
-                @item.RoleName
-            </td>
-            <td>
-                <a class="btn btn-danger" asp-action="DeleteUser" asp-route-id="@item.Id">Към Изтрий</a>
-                <a class="btn btn-primary" asp-action="AddUserToRole" asp-route-id="@item.Id">Добави потребител към роля</a>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @item.FirstName
+                </td>
+                <td>
+                    @item.LastName
+                </td>
+                <td>
+                    @item.OfficePosition
+                </td>
+                <td>
+                    @item.Email
+                </td>
+                <td>
+                    @item.PhoneNumber
+                </td>
+                <td>
+                    @item.RoleName
+                </td>
+                <td>
+                    <a class="btn btn-danger" asp-action="DeleteUser" asp-route-id="@item.Id">Към Изтрий</a>
+                    <a class="btn btn-primary" asp-action="AddUserToRole" asp-route-id="@item.Id">Добави потребител към роля</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
+
+@section Logo {
+    <img src="/logo2.jpg" height="35" />
+}

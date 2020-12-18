@@ -11,9 +11,9 @@
 
 <form asp-action="AddUserToRole" method="post">
     @*<label asp-for="FirstName" class="alert-warning">Име</label>
-    <input asp-for="FirstName" class="alert-info" /><br />
-    <label asp-for="LastName" class="alert-warning">Фамилия</label>
-    <input asp-for="LastName" class="alert-info" /><br />*@
+        <input asp-for="FirstName" class="alert-info" /><br />
+        <label asp-for="LastName" class="alert-warning">Фамилия</label>
+        <input asp-for="LastName" class="alert-info" /><br />*@
 
     <label asp-for="UserId" class="alert-warning">Потребител</label>
     <select asp-for="UserId" class="alert-info" asp-items="@users"></select>
@@ -27,3 +27,7 @@
     <input type="submit" value="Запиши" class="btn btn-primary" />
     <a asp-action="AllUsers" class="btn btn-info">Обратно</a>
 </form>
+
+@section Logo {
+    <img src="/logo2.jpg" height="35" />
+}

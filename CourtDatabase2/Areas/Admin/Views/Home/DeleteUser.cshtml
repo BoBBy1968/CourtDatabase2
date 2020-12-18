@@ -17,14 +17,14 @@
         <div><span class="font-weight-lighter alert-warning">Фамилия: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.LastName</span></div>
     </li>
     @*<li>
-        <div><span class="font-weight-lighter alert-warning">Стойност на плащане: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.OfficePosition</span></div>
-    </li>
-    <li>
-        <div><span class="font-weight-lighter alert-warning">Дело ИД: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.PhoneNumber</span></div>
-    </li>*@
+            <div><span class="font-weight-lighter alert-warning">Стойност на плащане: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.OfficePosition</span></div>
+        </li>
+        <li>
+            <div><span class="font-weight-lighter alert-warning">Дело ИД: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.PhoneNumber</span></div>
+        </li>*@
     @*<li>
-        <div><span class="font-weight-lighter alert-warning">Роля: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.RoleName</span></div>
-    </li>*@
+            <div><span class="font-weight-lighter alert-warning">Роля: </span> <span class="alert-info col-md-1 font-weight-bold">@Model.RoleName</span></div>
+        </li>*@
 </ul>
 
 <form asp-area="Admin" asp-controller="Home" asp-action="DeleteUserConfirm" asp-route-id="@Model.UserId" method="post">
@@ -32,6 +32,11 @@
     <input type="submit" value="Изтрий директно" class="btn btn-danger" /> |
     <a class="btn btn-info" asp-action="AllUsers">Обратно</a>
 </form>
+
+@section Logo {
+    <img src="/logo2.jpg" height="35" />
+}
+
 
 @section Logo {
     <img src="/logo2.jpg" height="35" />
