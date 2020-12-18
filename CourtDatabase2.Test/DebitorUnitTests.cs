@@ -1,12 +1,7 @@
 ﻿using CourtDatabase2.Data;
-using CourtDatabase2.Data.Models;
-using CourtDatabase2.Data.Models.Enumerations;
 using CourtDatabase2.Services;
 using CourtDatabase2.ViewModels;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
