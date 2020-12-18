@@ -43,6 +43,7 @@ namespace CourtDatabase2.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddUserToRole(AddUserToRoleInputModel model)
         {
             await this.userService.AddUserToRole(model);
