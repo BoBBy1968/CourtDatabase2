@@ -5,6 +5,7 @@ using CourtDatabase2.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace CourtDatabase2.Services
@@ -30,8 +31,27 @@ namespace CourtDatabase2.Services
                     Id = t.Id,
                 })
                 .OrderByDescending(x => x.Id)
+                //.ToListAsync();
                 .ToListAsync();
         }
+        //public async Task<IEnumerable<CourtTownEditViewModel>> AllAsync()
+        //{
+        //    var towns = await this.dbContext
+        //        .CourtTowns
+        //        .OrderByDescending(c => c.Id)
+        //        .Select(t => new CourtTownEditViewModel
+        //        {
+        //            TownName = t.TownName,
+        //            Address = t.Address,
+        //            Id = t.Id,
+        //        })
+        //        .OrderByDescending(x => x.Id)
+        //        //.ToListAsync();
+        //        .ToListAsync();
+
+        //    var jsonTowns = JsonSerializer.Serialize(towns);
+        //    return jsonTowns;
+        //}
 
         public async Task CreateAsync(string townName, string address)
         {
